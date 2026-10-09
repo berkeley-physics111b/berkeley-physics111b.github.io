@@ -1,0 +1,30 @@
+title: Physics 111B Experimentation Lab
+description: Lab manuals, safety, and documentation for the Experimentation Laboratory
+# For a project site (user.github.io/repo-name) set baseurl: "/repo-name"
+# For a user/org site or custom domain leave it empty.
+baseurl: ""
+url: ""
+
+# Each folder below becomes a dropdown in the nav. Just drop a .md file in it.
+collections:
+  safety:
+    output: true
+    permalink: /safety/:name/
+  documentation:
+    output: true
+    permalink: /documentation/:name/
+  about:
+    output: true
+    permalink: /about/:name/
+
+defaults:
+  - scope: {path: ""}
+    values: {layout: page}
+  - scope: {path: "", type: safety}
+    values: {layout: page, section: safety}
+  - scope: {path: "", type: documentation}
+    values: {layout: page, section: documentation}
+  - scope: {path: "", type: about}
+    values: {layout: page, section: about}
+
+exclude: [README.md]

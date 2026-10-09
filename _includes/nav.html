@@ -1,0 +1,19 @@
+<header class="site-header">
+  <div class="container nav-wrap">
+    <a class="brand" href="{{ '/' | relative_url }}">Physics 111B <span>Experimentation Lab</span></a>
+    <input type="checkbox" id="nav-toggle" class="nav-toggle">
+    <label for="nav-toggle" class="nav-burger" aria-label="Menu">&#9776;</label>
+    <nav>
+      <ul class="menu">
+        <li><a href="{{ '/' | relative_url }}">Home</a></li>
+        {% assign s = site.safety | sort: 'order' %}
+        {% include dropdown.html label="Safety" url="/safety/" overview="Safety Overview" items=s %}
+        <li><a href="{{ '/manuals/' | relative_url }}">Manuals</a></li>
+        {% assign d = site.documentation | sort: 'order' %}
+        {% include dropdown.html label="Documentation" url="/documentation/" items=d %}
+        {% assign a = site.about | sort: 'order' %}
+        {% include dropdown.html label="About" url="/about/" items=a %}
+      </ul>
+    </nav>
+  </div>
+</header>

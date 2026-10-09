@@ -1,0 +1,10 @@
+{%- comment -%} params: label, url, items (already sorted) {%- endcomment -%}
+<li class="has-dropdown">
+  <a href="{{ include.url | relative_url }}">{{ include.label }} <span class="caret">&#9662;</span></a>
+  <ul class="dropdown">
+    {% if include.overview %}<li><a href="{{ include.url | relative_url }}">{{ include.overview }}</a></li>{% endif %}
+    {% for item in include.items %}
+    <li><a href="{{ item.url | relative_url }}">{{ item.title }}</a></li>
+    {% endfor %}
+  </ul>
+</li>

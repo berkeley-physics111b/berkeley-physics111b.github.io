@@ -1,0 +1,7 @@
+# Add a new manual by copying one block. Put the PDF in assets/pdf/manuals/
+# and set `pdf` to its filename (no folder needed).
+- title: Example Experiment (replace me)
+  description: Short one-line description of the experiment.
+  pdf: example-experiment.pdf
+  prelab: example-experiment-prelab.pdf   # optional
+  midlab: example-experiment-midlab.pdf   # optional
