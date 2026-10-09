@@ -27,15 +27,11 @@ Before coming to the lab:
 - Prepare for one mandatory oral report with a professor.
 
 <div class="callout warn" markdown="1">
-**No eating or drinking** in the lab, except at benches marked with the blue strip. <!-- TODO: confirm rooms/wording -->
+**No eating or drinking** in the lab, except at benches marked with the blue strip. Lab attire is closed toed shoes and long pants.<!-- TODO: confirm rooms/wording -->
 </div>
 
 ## About this site
 
 This site hosts the lab manuals for each experiment, including pre-lab and mid-lab questions, theory, references, and instructions, along with safety material and design documentation for lab apparatus.
 
-If you spot an error or something that needs improvement, tell your instructors or the lab manager so the next student gets the improved version.
-
-## Contact
-
-Lab manager: **TODO name**, TODO email, TODO phone.
+If you spot an error or something that needs improvement for an experiment, be sure to note it in the experiment feedback form so the next student gets the improved version.

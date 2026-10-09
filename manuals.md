@@ -3,7 +3,7 @@ title: Manuals
 permalink: /manuals/
 ---
 
-Write-ups for each experiment, with pre-lab and mid-lab questions, theory, references, and instructions. Print what you need and bring it to the lab.
+Write-ups and signature sheets for each experiment. TeX files are accessible for screen readers.
 
 <table>
   <thead><tr><th>Experiment</th><th>Manual</th><th>Pre-lab</th><th>Mid-lab</th></tr></thead>
