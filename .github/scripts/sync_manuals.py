@@ -1,10 +1,14 @@
 #!/usr/bin/env python3
-"""Copy ABC.pdf, ABC_Signatures.pdf and ABC.tex for each requested acronym
-from the checked-out private repo into assets/pdf/manuals/, and add a stub
-entry to _data/manuals.yml for any acronym that doesn't have one yet."""
+"""For each requested acronym:
+  - copy ABC.pdf and ABC_Signatures.pdf from the downloaded latest release assets (RELEASE_DIR)
+  - copy ABC.tex from the checked-out source repo (SOURCE_DIR, searched recursively,
+    preferring a folder named ABC)
+into assets/pdf/manuals/, and add a stub entry to _data/manuals.yml if none exists."""
 import os, re, shutil, sys
 
 SRC = os.environ.get("SOURCE_DIR", "_source")
+REL = os.environ.get("RELEASE_DIR", "_release")
+TAG = os.environ.get("RELEASE_TAG", "unknown")
 DEST = "assets/pdf/manuals"
 YML = "_data/manuals.yml"
 
@@ -13,39 +17,46 @@ bad = [a for a in acronyms if not re.fullmatch(r"[A-Z0-9]+", a)]
 if bad or not acronyms:
     sys.exit(f"Invalid or empty acronym list: {bad or acronyms}")
 
-# index every file in the source repo by filename
-index = {}
-for root, dirs, files in os.walk(SRC):
-    dirs[:] = [d for d in dirs if d != ".git"]
-    for f in files:
-        index.setdefault(f, []).append(os.path.join(root, f))
+def build_index(base):
+    idx = {}
+    for root, dirs, files in os.walk(base):
+        dirs[:] = [d for d in dirs if d != ".git"]
+        for f in files:
+            idx.setdefault(f, []).append(os.path.join(root, f))
+    return idx
 
-def find(name, acr):
+src_index, rel_index = build_index(SRC), build_index(REL)
+
+def find(index, base, name, acr):
     hits = sorted(index.get(name, []))
     if not hits:
-        return None, []
+        return None, False
     in_folder = [p for p in hits
-                 if acr in [d.upper() for d in os.path.relpath(p, SRC).split(os.sep)[:-1]]]
+                 if acr in [d.upper() for d in os.path.relpath(p, base).split(os.sep)[:-1]]]
     pool = in_folder or hits
-    return pool[0], (pool[1:] if len(pool) > 1 else [])
+    return pool[0], len(pool) > 1
 
 os.makedirs(DEST, exist_ok=True)
-log, failed = [], []
+log, failed = [f"Latest release: `{TAG}`"], []
 yml_text = open(YML).read() if os.path.exists(YML) else ""
 
 for a in acronyms:
-    wanted = {"pdf": f"{a}.pdf", "sheets": f"{a}_Signatures.pdf", "tex": f"{a}.tex"}
+    wanted = [  # (key, filename, index, base, origin label)
+        ("pdf",    f"{a}.pdf",            rel_index, REL, "release"),
+        ("sheets", f"{a}_Signatures.pdf", rel_index, REL, "release"),
+        ("tex",    f"{a}.tex",            src_index, SRC, "repo"),
+    ]
     found = {}
-    for key, name in wanted.items():
-        path, extras = find(name, a)
+    for key, name, idx, base, origin in wanted:
+        path, multiple = find(idx, base, name, a)
         if path is None:
-            log.append(f"- ⚠️ {a}: `{name}` not found")
+            log.append(f"- ⚠️ {a}: `{name}` not found in {origin}")
             continue
-        if extras:
-            log.append(f"- ⚠️ {a}: multiple `{name}` found, used `{os.path.relpath(path, SRC)}`")
+        if multiple:
+            log.append(f"- ⚠️ {a}: multiple `{name}` found in {origin}, used `{os.path.relpath(path, base)}`")
         shutil.copy2(path, os.path.join(DEST, name))
         found[key] = name
-        log.append(f"- ✅ {a}: `{os.path.relpath(path, SRC)}` → `{DEST}/{name}`")
+        log.append(f"- ✅ {a}: `{name}` ({origin}) → `{DEST}/{name}`")
     if not found:
         failed.append(a)
         log.append(f"- ❌ {a}: no files found, skipped")

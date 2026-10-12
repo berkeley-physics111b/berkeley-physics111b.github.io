@@ -13,6 +13,7 @@ permissions:
 
 env:
   SOURCE_REPO: berkeley-physics111b/111B-Manuals
+  SOURCE_REPO_NAME: 111B-Manuals
 
 jobs:
   sync:
@@ -20,42 +21,56 @@ jobs:
     steps:
       - name: Check out website repo
         uses: actions/checkout@v4
-      
-      - name: Get app token
+
+      - name: Get GitHub App token for the source repo
         id: app
         uses: actions/create-github-app-token@v2   # check for the latest major version
         with:
           app-id: ${{ vars.APP_ID }}
           private-key: ${{ secrets.APP_PRIVATE_KEY }}
           owner: ${{ github.repository_owner }}
-          repositories: 111b-Manuals
+          repositories: ${{ env.SOURCE_REPO_NAME }}
 
-      - name: Check out private source repo
+      # .tex files come from the repo's code (subfolders named by acronym)
+      - name: Check out source repo (for .tex files)
         uses: actions/checkout@v4
         with:
           repository: ${{ env.SOURCE_REPO }}
           token: ${{ steps.app.outputs.token }}
           path: _source
 
-      - name: Check out private source repo
-        uses: actions/checkout@v4
-        with:
-          repository: ${{ env.SOURCE_REPO }}
-          token: ${{ secrets.SOURCE_REPO_TOKEN }}   # PAT or GitHub App token with read access
-          path: _source
+      # PDFs come from the latest release's assets
+      - name: Download PDFs from latest release
+        id: release
+        env:
+          GH_TOKEN: ${{ steps.app.outputs.token }}
+          ACRONYMS: ${{ inputs.acronyms }}
+        run: |
+          mkdir -p _release
+          tag=$(gh release view --repo "$SOURCE_REPO" --json tagName -q .tagName)
+          echo "tag=$tag" >> "$GITHUB_OUTPUT"
+          args=()
+          for a in $(echo "$ACRONYMS" | tr ',' ' ' | tr '[:lower:]' '[:upper:]'); do
+            args+=(--pattern "${a}.pdf" --pattern "${a}_Signatures.pdf")
+          done
+          gh release download "$tag" --repo "$SOURCE_REPO" --dir _release "${args[@]}" \
+            || echo "::warning::Some or all requested PDFs were not found in release $tag"
 
       - name: Copy files and update manuals.yml
         env:
           ACRONYMS: ${{ inputs.acronyms }}
           SOURCE_DIR: _source
+          RELEASE_DIR: _release
+          RELEASE_TAG: ${{ steps.release.outputs.tag }}
         run: python3 .github/scripts/sync_manuals.py
 
-      - name: Remove source checkout
-        run: rm -rf _source
+      - name: Remove temporary checkouts
+        run: rm -rf _source _release
 
       - name: Commit and push
         env:
           ACRONYMS: ${{ inputs.acronyms }}
+          TAG: ${{ steps.release.outputs.tag }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -63,6 +78,6 @@ jobs:
           if git diff --cached --quiet; then
             echo "No changes to commit."
           else
-            git commit -m "Sync manuals: $ACRONYMS"
+            git commit -m "Sync manuals ($ACRONYMS) from release $TAG"
             git push
           fi
