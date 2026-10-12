@@ -15,23 +15,12 @@ Physics 111B is an intensive laboratory course for upper-division physics studen
   <div class="card"><h3><a href="{{ '/about/' | relative_url }}">About</a></h3>Lab history, people, and the Segrè internship.</div>
 </div>
 
-## What to do first
-
-Before coming to the lab:
-
-- Read the [safety pages]({{ '/safety/' | relative_url }}) and complete any required training.
-- Complete any required online forms (e.g. the signature card on bCourses) *before* starting work in the lab.
-- Attend the introduction meeting on the first day of class.
-- Make sure you have blocks of consecutive afternoons available for experiments that require them.
-- Complete the Error Analysis Exercise assigned in the first week.
-- Prepare for one mandatory oral report with a professor.
-
 <div class="callout warn" markdown="1">
-**No eating or drinking** in the lab, except at benches marked with the blue strip. Lab attire is closed toed shoes and long pants.<!-- TODO: confirm rooms/wording -->
+**No eating or drinking** in the lab, except at benches marked with the blue strip. Lab attire is closed toed shoes and long pants/skirt.<!-- TODO: confirm rooms/wording -->
 </div>
 
 ## About this site
 
 This site hosts the lab manuals for each experiment, including pre-lab and mid-lab questions, theory, references, and instructions, along with safety material and design documentation for lab apparatus.
 
-If you spot an error or something that needs improvement for an experiment, be sure to note it in the experiment feedback form so the next student gets the improved version.
+If you spot an error or something that needs improvement for an experiment, be sure to note it in the experiment feedback form so the next student gets the improved version. If there is an issue with the website, contact the professors or Auden Young.

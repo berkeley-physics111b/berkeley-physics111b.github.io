@@ -1,7 +1,13 @@
-# Add a new manual by copying one block. Put the PDF in assets/pdf/manuals/
-# and set `pdf` to its filename (no folder needed).
+# Add a new manual by copying one block. All files live in assets/pdf/manuals/.
+#
+# slug:   short unique name. Any .tex file in assets/pdf/manuals/ whose
+#         filename contains the slug is listed automatically in the
+#         "TeX files" column (e.g. example.tex, example-figs.tex).
+# pdf:    the manual PDF (optional).
+# sheets: the single PDF containing the pre-lab, mid-lab, and signature
+#         sheet (optional).
 - title: Example Experiment (replace me)
   description: Short one-line description of the experiment.
-  pdf: example-experiment.pdf
-  prelab: example-experiment-prelab.pdf   # optional
-  midlab: example-experiment-midlab.pdf   # optional
+  slug: example
+  pdf: example.pdf
+  sheets: example-sheets.pdf
