@@ -6,8 +6,8 @@
 # pdf:    the manual PDF (optional).
 # sheets: the single PDF containing the pre-lab, mid-lab, and signature
 #         sheet (optional).
-- title: Example Experiment (replace me)
-  description: Short one-line description of the experiment.
-  slug: example
-  pdf: example.pdf
-  sheets: example-sheets.pdf
+- title: Atomic Force Microscope (AFM)
+  description: TODO.
+  slug: AFM
+  pdf: AFM.pdf
+  sheets: AFM_Signature_Sheet.pdf

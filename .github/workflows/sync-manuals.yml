@@ -1,0 +1,68 @@
+name: Sync manuals
+
+on:
+  workflow_dispatch:
+    inputs:
+      acronyms:
+        description: "Acronyms to sync, comma or space separated (e.g. ABC, DEF, GHI)"
+        required: true
+        type: string
+
+permissions:
+  contents: write
+
+env:
+  SOURCE_REPO: berkeley-physics111b/111B-Manuals
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out website repo
+        uses: actions/checkout@v4
+      
+      - name: Get app token
+        id: app
+        uses: actions/create-github-app-token@v2   # check for the latest major version
+        with:
+          app-id: ${{ vars.APP_ID }}
+          private-key: ${{ secrets.APP_PRIVATE_KEY }}
+          owner: ${{ github.repository_owner }}
+          repositories: 111b-Manuals
+
+      - name: Check out private source repo
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ env.SOURCE_REPO }}
+          token: ${{ steps.app.outputs.token }}
+          path: _source
+
+      - name: Check out private source repo
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ env.SOURCE_REPO }}
+          token: ${{ secrets.SOURCE_REPO_TOKEN }}   # PAT or GitHub App token with read access
+          path: _source
+
+      - name: Copy files and update manuals.yml
+        env:
+          ACRONYMS: ${{ inputs.acronyms }}
+          SOURCE_DIR: _source
+        run: python3 .github/scripts/sync_manuals.py
+
+      - name: Remove source checkout
+        run: rm -rf _source
+
+      - name: Commit and push
+        env:
+          ACRONYMS: ${{ inputs.acronyms }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/pdf/manuals _data/manuals.yml
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+          else
+            git commit -m "Sync manuals: $ACRONYMS"
+            git push
+          fi

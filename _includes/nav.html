@@ -10,7 +10,19 @@
         {% include dropdown.html label="Safety" url="/safety/" overview="Safety Overview" items=s %}
         <li><a href="{{ '/manuals/' | relative_url }}">Manuals</a></li>
         {% assign d = site.documentation | sort: 'order' %}
-        {% include dropdown.html label="Documentation" url="/documentation/" items=d %}
+        {% assign ar = site.archive | sort: 'order' %}
+        <li class="has-dropdown">
+          <a href="{{ '/documentation/' | relative_url }}">Documentation <span class="caret">&#9662;</span></a>
+          <ul class="dropdown">
+            {% for item in d %}<li><a href="{{ item.url | relative_url }}">{{ item.title }}</a></li>{% endfor %}
+            <li class="has-sub">
+              <a href="{{ '/documentation/archive/' | relative_url }}">Archived Materials <span class="caret">&#9656;</span></a>
+              <ul class="sub">
+                {% for item in ar %}<li><a href="{{ item.url | relative_url }}">{{ item.title }}</a></li>{% endfor %}
+              </ul>
+            </li>
+          </ul>
+        </li>
         {% assign a = site.about | sort: 'order' %}
         {% include dropdown.html label="About" url="/about/" items=a %}
       </ul>
