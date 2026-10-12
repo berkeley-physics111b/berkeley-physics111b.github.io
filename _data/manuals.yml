@@ -11,3 +11,8 @@
   slug: AFM
   pdf: AFM.pdf
   sheets: AFM_Signature_Sheet.pdf
+- title: BMC
+  description: TODO
+  slug: BMC
+  pdf: BMC.pdf
+  sheets: BMC_Signatures.pdf
