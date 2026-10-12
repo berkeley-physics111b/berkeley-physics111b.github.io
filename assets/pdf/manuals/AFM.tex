@@ -1,0 +1,1186 @@
+\documentclass{../lab}
+
+\labacronym{AFM}
+\labtitle{Atomic Force Microscope}
+
+\newcommand{\afmuserguide}{\href{http://experimentationlab.berkeley.edu/sites/default/files/AFMImages/TT_AFM\%20User-Guide-V2.2-600DPI.pdf}{\textbf{TT-AFM Users Guide}}}
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+
+\section{Summary}
+
+Atomic Force Microscopy (AFM) is a relatively new method of imaging objects from sub-nanometer to micron scale. It can scan surfaces in 3D and provides a quick and easy way to measure dimensions, roughness, topography, and many other material characteristics. Unlike Scanning Tunneling Microscopy (STM), AFM can measure both conductive and insulating materials in ambient condition with little to no sample preparation, and is thus widely used in scientific and engineering fields across the board. 
+
+In this experiment, you will learn the working principles of AFM and get trained to use a commercial AFM by \href{http://www.afmworkshop.com/}{\textbf{AFMworkshop}}. You will perform different measurements to get a taste of its wide-ranging applications. You will gain experience in making extremely precise measurements and in improving data quality by optimizing environmental and instrument parameters. You will also use the AFM to estimate Boltzmann's constant. 
+
+
+\begin{enumerate}
+    \item Pre-requisites: Physics 110A, 112
+
+    \item Days allotted for the experiment: 7
+\end{enumerate}
+
+This lab will be graded 40\% on theory, 40\% on technique, and 20\% on analysis.
+
+
+Last revised 5/7/2026 by Auden Young. Comments: winthrop@berkeley.edu
+
+\section{The Atomic Force Microscope Experiment Photos}
+
+\begin{figure}[H]
+\captionsetup{justification=centering}
+\minipage{0.29\textwidth}
+  \href{http://experimentationlab.berkeley.edu/sites/default/files/AFMImages/9.JPG}{\includegraphics[height=100pt,keepaspectratio]{images/9.JPG}}
+\caption{AFM Ebox\\ \href{http://experimentationlab.berkeley.edu/sites/default/files/AFMImages/9.JPG}{Click here to see larger picture}}
+  \label{fig:AFMEbox}
+\endminipage\hfill
+\minipage{0.36\textwidth}
+  \href{http://experimentationlab.berkeley.edu/sites/default/files/AFMImages/LED2.jpg}{\includegraphics[height=100pt,keepaspectratio]{images/LED2.jpg}}
+  \caption{Illuminator \\ \href{http://experimentationlab.berkeley.edu/sites/default/files/AFMImages/LED2.jpg}{Click here to see larger picture}}
+  \label{fig:Illuminator}
+\endminipage\hfill
+\minipage{0.29\textwidth}
+  \href{http://experimentationlab.berkeley.edu/sites/default/files/AFMImages/AFMstation.jpg}{\includegraphics[height=100pt,keepaspectratio]{images/AFMstation.jpg}}
+  \caption{AFM on level stage \\ \href{http://experimentationlab.berkeley.edu/sites/default/files/AFMImages/AFMstation.jpg}{Click here to see larger picture}}
+  \label{fig:LevelStage}
+\endminipage
+\end{figure}
+
+\section{Before the 1st Day of Lab }
+
+\signatures  \hyperlink{Alignments}{ 1}  \hyperlink{Pre-Scan Settings}{ 2} \hyperlink{Calibration}{ 3} \hyperlink{CD/DVD}{ 4} \hyperlink{Boltzmann's Constant}{ 5}
+
+\begin{enumerate}
+    \item Watch the \href{http://experimentationlab.berkeley.edu/sites/default/files/Introduction\%20Video.mp4}{\textbf{AFM Basics}} introductory video.
+
+    \item Review \href{http://experimentationlab.berkeley.edu/sites/default/files/AFMImages/Lecture\_10\_AFM.pdf}{\textbf{these slides}} for a brief overview of AFM history, background, and basic operation.
+
+    \item Read \textbf{Chapter 1} in \href{http://experimentationlab.berkeley.edu/afm-book}{\textbf{Atomic Force Microscopy}} by Eaton and West. Skim through \textbf{Chapter 2} and \textbf{3}. (Chapters 5, 6 are very helpful for the data analysis portion of this lab as well, and chapter 4 has useful information on obtaining good images and calibration.)
+
+    \item Read the AFM Workshop \afmuserguide. Comprehensive reference manual of the AFM and its software. Basically all of it has useful information, though you can skim a bit.
+
+    \item Read through this entire experiment lab manual. \textbf{Watch all the videos herein} -- they are extremely helpful and will make your experiment much smoother.
+    
+    \item On the first day of lab, ask a staff member for your allotted probe tips.
+    
+    \item Last day of the experiment please fill out the \href{\ExperimentEvaluation}{\textbf{Experiment Evaluation}}
+
+\end{enumerate}
+
+\textbf{Suggested Reading}
+
+\begin{itemize}
+    \item See \href{https://experimentationlab.berkeley.edu/sites/default/files/PID_Theory_Explained.pdf}{this brief article on PID theory} for an overview of PID controllers, which are relevant for how the tip stays in contact with the sample when scanning. Cross reference with the information in Chapter 2 of Eaton \& West, as well as section 4.2.3. 
+
+    \item See \href{https://www.cigs.unimo.it/cigsdownloads/labs/afm2/manuali_letture/multimode_manual_revb.pdf}{MultiMode SPM Instruction Manual}, Section 2.3, for another great overview of PID controllers in the context of an AFM. The other sections of the manual may also be of interest, including Sections 6.5, 7.5, 10, 11.
+
+    \item See \href{https://www.sfu.ca/biophysics/publications/2005/RMP_feedback.pdf}{Feedback for Physicists: A Tutorial Essay on Control} for an excellent overview of control theory. This will help contextualize your readings on PID controllers.
+
+    \item See \href{https://www.sciencedirect.com/science/article/pii/S0167572902000778}{this paper} for a discussion of phase imaging and lateral force microscopy (LFM, also sometimes called friction force microscopy or FFM).
+
+    \item See \href{http://experimentationlab.berkeley.edu/sites/default/files/AFMImages/butt\_AFM.pdf}{\textbf{this paper}} for an in-depth discussion on Force-Distance measurements.  
+    
+    \item Other references are located in the C:/AFM Experiment/Articles PDFs directory of the experiment computer.
+
+
+\end{itemize}
+
+\section{Objectives}
+
+\begin{itemize}
+    \item Understand the working principles of AFM
+    
+    \item Learn how to align, calibrate, and operate an AFM, and how to visualize, process and analyze AFM data with Gwyddion and other software tools
+    
+    \item Gain experience in and understand the limitations of improving data quality in extremely delicate and sensitive measurements by optimizing environmental and instrument parameters
+
+    \item Conduct a wide variety of specific AFM measurements. %, include:
+
+    \item Understand and measure how thermal noise translates to motion.
+
+\end{itemize}
+\pagebreak
+\section{Introduction}
+
+The basic mechanism of the AFM is shown in Fig. \ref{fig:BasicMechanism}. A sharp tip attached to a cantilever interacts with the surface of a sample. Light from a laser is bounced off from the cantilever into a \href{https://www.rp-photonics.com/position_sensitive_detectors.html}{position-sensitive photodetector} that measures the deflection of the cantilever. The sample is placed on a \hyperref[subsubsec:Piezo]{piezoelectric} scanning stage that moves the relative tip-sample position in 3D with nanometer precision. A feedback loop maintains constant tip-sample interaction during scanning and thus traces out the topography of the sample.
+
+\begin{figure}[H]
+    \centering
+    \begin{minipage}{0.75\linewidth}
+    \centering
+    \href{http://experimentationlab.berkeley.edu/sites/default/files/AFMImages/2_0.png}{\includegraphics[width=0.6\linewidth]{images/2_0.png}}
+    \caption{Basic components of an AFM. The deflection of the cantilever as the tip moves across the surface of the sample is measured by the position-sensitive photodetector. This deflection is used by the feedback loop to adjust the relative position between the cantilever and the sample with a piezoelectric scanning stage.}
+    \label{fig:BasicMechanism}
+    \end{minipage}
+\end{figure}
+
+The following features make AFM a versatile tool and allows it to become the basis of many other \href{https://en.wikipedia.org/wiki/Scanning_probe_microscopy}{Scanning Probe Microscopy (SPM)} techniques.
+\begin{itemize}
+    \item Works in diverse environments (air, liquid, vacuum).
+
+    \item Physical interaction with the surface allows for direct measurements of mechanical, chemical, electrical and magnetic properties of a surface with appropriate probes.
+
+    \item Works for both conductive and insulating samples (unlike STM).
+
+    \item Wide length scale range from sub-nanometer to micron.
+
+    \item Very high resolution and accuracy in the vertical direction.
+
+
+\end{itemize}
+\pagebreak
+\subsection{Apparatus}
+Read page 5-8 of the \afmuserguide to understand the major components of our AFM (Fig. \ref{fig:app-overview}).
+
+\begin{figure}[H]
+    \centering
+        \href{http://experimentationlab.berkeley.edu/sites/default/files/AFMImages/AFMgen.jpg}{\includegraphics[width=0.5\linewidth]{images/AFMgen.jpg}}
+        \caption{Overview of major AFM components}
+    \label{fig:app-overview}
+\end{figure}
+
+
+
+\subsubsection{AFM Probes}
+
+An AFM probe, often made of silicon, contains a sharp tip attached to the end of a cantilever, which is in turn attached to a carrier chip (Fig. \ref{fig:AFMProbe}, \ref{fig:AFMProbe2}). We mainly use \href{http://experimentationlab.berkeley.edu/sites/default/files/AFMImages/ACLA\_4\_datasheet.pdf}{\textbf{ACLA probes from AppNano}} that are optimized for \textbf{Vibrating} mode. See animations of:  \href{http://experimentationlab.berkeley.edu/sites/default/files/AFMImages/1.1.\%20Generating\%20an\%20image.flv\_converted.mp4}{the probe interacting with the sample surface},
+\href{http://experimentationlab.berkeley.edu/sites/default/files/AFMImages/5.2.\%20Probe\%20Shape\%20-\%20Hole.flv\_converted.mp4}{{the effect of tip shape}},
+\href{http://experimentationlab.berkeley.edu/sites/default/files/AFMImages/5.1\%20Contamination.flv\_converted.mp4}{{the probe interacting with contamination}} present on samples, and
+\href{http://experimentationlab.berkeley.edu/sites/default/files/AFMImages/5.3.\%20Probe\%20Sample\%20Bump.flv\_converted.mp4}{the probe interacting with small features on the sample.} You can read more about different types of probes and their fabrication in Chapter 2 of Eaton \& West.
+
+\textbf{AFM probes are extremely fragile, and each probe costs around \$30, so you must handle them with extreme care throughout this experiment.} If you did not receive your set of tips for your slot from a GSI at the end of your prelab, ask for them now.
+
+\begin{figure}[H]
+\minipage{0.5\textwidth}
+\centering
+  \href{http://experimentationlab.berkeley.edu/sites/default/files/AFMImages/AFMprobe.JPG}{\includegraphics[height=180pt,keepaspectratio]{images/AFMprobe.JPG}}
+  \caption{AFM probe bottom view (i.e. the tip is facing towards the viewer). The cantilever is hardly visible to the naked eye and the base of the tip is barely visible under a good optical microscope.}
+  \label{fig:AFMProbe}
+\endminipage\hfill
+\minipage{0.43\textwidth}
+\centering
+  \href{http://experimentationlab.berkeley.edu/sites/default/files/AFMImages/26.png}{\includegraphics[height=180pt,keepaspectratio]{images/26.png}}
+  \caption{AFM probe top and side view taken with an electron microscope. Imagine a cross-hair at the triangle point of the cantilever. That is roughly where the tip is located. }
+  \label{fig:AFMProbe2}
+\endminipage
+\end{figure}
+
+\subsubsection{Piezoelectricity and Scanning Stages}
+\label{subsubsec:Piezo}
+
+The \href{https://en.wikipedia.org/wiki/Piezoelectricity}{\textbf{piezoelectric effect}} is the ability of certain materials to generate an electric charge in response to applied mechanical stress. It also works in reverse, meaning that piezoelectric materials exhibit stress, and in turn strain, when an electric field is applied. Therefore, applying a voltage across a piezoelectric material \href{http://experimentationlab.berkeley.edu/sites/default/files/AFMImages/3.2.\%20proportional.flv\_converted.mp4}{stretches or compresses} the piezoelectric material, by a precisely controllable amount. However, piezoelectric response is often nonlinear, requiring further engineering - see Chapter 2 of Eaton and West. During range check (which you'll do in Section \ref{subsec:TurnOnInstrumentsAndOpenPrograms}), the system ramps up and down the voltages to the XYZ piezos, and captures the strain gauge output so that it can scan linearly. You have to do this, or you'll get bizarre scans and most likely \hyperref[subsec:BrokenTip]{break the tip}.
+
+This is the basis of many precision scanning stages, including those used in STM and AFM (animation for the \href{http://experimentationlab.berkeley.edu/sites/default/files/AFMImages/3.3.\%20Y\%20Scanner\_converted.mp4}{\textbf{Y-}} and \href{http://experimentationlab.berkeley.edu/sites/default/files/AFMImages/3.4.\%20Z\%20Scanner.flv\_converted.mp4}{\textbf{Z-axis}} motion). The piezo stages in our AFM have a lateral range of 50 $\mu$m and a vertical range of 17 $\mu$m at maximum high-voltage gain.
+
+\subsubsection{Light Lever and Feedback Loop}
+    
+A light lever is created by reflecting the light off of the cantilever and onto a \href{https://www.rp-photonics.com/position_sensitive_detectors.html}{position-sensitive photodetector} (see Figure \ref{fig:AFMlasermirror}). The signal from the top half (T) minus the signal from the bottom half (B), i.e. T-B, gives the relative vertical deflection of the cantilever (\href{http://experimentationlab.berkeley.edu/sites/default/files/AFMImages/2.3.\%20Light\%20Lever.flv\_converted.mp4}{\textbf{animation}}). 
+
+    \begin{figure}[h]
+        \centering
+        \href{http://experimentationlab.berkeley.edu/sites/default/files/AFMImages/AFMlasermirror.png}{\includegraphics[width=0.5\linewidth]{images/AFMlasermirror.png}}
+        \caption{Laser-cantilever-detector setup}
+        \label{fig:AFMlasermirror}
+    \end{figure}
+
+In our AFM, the entire light lever module can be moved up and down by \href{http://experimentationlab.berkeley.edu/sites/default/files/AFMImages/4.1.\%20Z\%20motion.flv\_converted.mp4}{a coarse stepper motor} (Z motor) in order to engage the probe with the sample. 
+    
+    \begin{figure}[H]
+    \minipage{0.45\textwidth}
+    \centering
+      \href{http://experimentationlab.berkeley.edu/sites/default/files/AFMImages/AFMdiagram.png}{\includegraphics[height=150pt,keepaspectratio]{images/AFMdiagram.png}}
+      \caption{Simplified feedback loop schematic}
+      \label{fig:PiezoIntegration}
+    \endminipage\hfill
+    \minipage{0.52\textwidth}
+    \centering
+      \href{http://experimentationlab.berkeley.edu/sites/default/files/AFMImages/AFMstage2.PNG}{\includegraphics[height=150pt,keepaspectratio]{images/AFMstage2.PNG}}
+      \caption{Laser beam path}
+        \label{fig:LaserSertup}
+    \endminipage
+    \end{figure}
+
+The piezoelectric sample stages perform raster scans. When the probe encounters a surface feature (e.g. a bump), the cantilever bends and thus changes the T-B signal. Depending on the operating mode (vibrating or non-vibrating), the feedback loop tries to keep either the AC or DC component of T-B at a constant ``set point" by moving the Z piezo (a rough schematic is in Figure \ref{fig:PiezoIntegration}). (You can think of the set point as in some senses corresponding to the maximum allowed interaction between the probe and the surface.)
+
+The feedback signal (drive voltage to the Z piezo, or \textbf{Z\_DRIVE}) thus gives the local height of the surface. Other simultaneously measured signals, such as the phase of the cantilever oscillation (\textbf{Z\_PHASE}) or the twist of the cantilever (\textbf{L-R}) contain information about the chemical or mechanical properties of the surface. See page 21 of the \afmuserguide for the definition of all available signals.
+
+\subsubsection{PID Controller}
+
+The feedback loop is controlled by a proportional-integral-derivative (PID) controller. The feedback signal, \textbf{Z\_DRIVE}, is compared to the set point voltage (set in the Pre-Scan tab automatically during tip approach), and their difference is the error signal \textbf{Z\_ERR}. Then the feedback signal is modified according to the following equation (the governing equation for a PID controller):
+
+\begin{equation}
+    Z_{drive} = P\times Z_{err} + I\times\int Z_{err} dt + D\times \frac{dZ_{err}}{dt}
+\end{equation}
+
+Optimizing the parameters $P, I, D$ will minimize the error and improve the quality of the image. Sometimes the entire right hand side is multiplied by an overall gain factor, $G$, as well. See section 2.3.2 and 4.2.3 of Eaton \& West as well as the other optional resources on PID controllers linked above for more details. As an interesting aside, the tip approach itself is governed by its own GPID loop and something called the woodpecker method, which you can read about in Section 2.2.3 of Eaton \& West.
+
+\subsubsection{Electronics}
+
+The Ebox contains most control electronics and is located on the shelf behind the AFM. The Ebox houses the micro-controller unit (MCU) and the National Instrument (NI) data acquisition device (DAQ), and interfaces the AFM hardware with the software on the computer. Additional electronics for e.g. voltage amplification are located in the main AFM body.
+
+\begin{figure}[H]
+\minipage{0.30\textwidth}
+\centering
+  \href{http://experimentationlab.berkeley.edu/sites/default/files/Ebox.jpg}{\includegraphics[height=150pt,keepaspectratio]{images/Ebox.jpg}}
+  \caption{AFM Ebox}
+  \label{fig:Ebox}
+\endminipage\hfill
+\minipage{0.69\textwidth}
+\centering
+  \href{http://experimentationlab.berkeley.edu/sites/default/files/AFMImages/AFMconnections.PNG}{\includegraphics[height=150pt,keepaspectratio]{images/AFMconnections.PNG}}
+  \caption{AFM Electronics block diagram}
+    \label{fig:AFMConnections}
+\endminipage
+\end{figure}
+
+\subsection{Control Software}
+
+The LabVIEW-based \textbf{AFM Workshop} software controls the AFM operation and exports collected data. It controls the motion of the sample stage, automates the tip approach, measures the resonance frequency of the cantilever for \textbf{Vibrating} mode (see below), collects signals from the photodetector, and controls the feedback loop.
+
+Read page 11-25 of the \afmuserguide to get familiarized with the \textbf{Pre-Scan, Topo Scan and Force-Distance} tabs. It is recommended that you read through the entire manual, which has a lot of useful details. \textbf{Note: If you are experiencing bugs in the software, first go through the steps in the \hyperref[subsec:TurnOnInstrumentsAndOpenPrograms]{Starting Up} section and then go to the \hyperref[sec:Troubleshooting]{Troubleshooting} section.}
+
+\begin{figure}[H]
+    \centering
+    \href{http://experimentationlab.berkeley.edu/sites/default/files/AFMImages/prescantab.JPG}{\includegraphics[width=\linewidth]{images/tuned_frequency.png}}
+    \caption{Pre-Scan Tab for Vibrating mode with a well-tuned resonance. This tab is used for laser alignment, range check, cantilever frequency tuning, manual Z motor control, automated tip approach, and switching between Vibrating and Non-Vibrating mode.}
+    \label{fig:prescantab}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+    \href{http://experimentationlab.berkeley.edu/sites/default/files/AFMImages/toposcan.JPG}{\includegraphics[width=\linewidth]{images/toposcantab.png}}
+    \caption{Topo Scan Tab. This tab is used after a successful tip approach to set scan parameters including Z feedback and display signals, and to monitor the results during scanning. It is also used to perform a Tip Retract.}
+    \label{fig:topo_scan_tab}
+\end{figure}
+
+Most settings (including calibration settings) are located in sub-menus accessible via gear icons at the corner of the different subpanels of the different tabs, especially the Pre-Scan tab. Read through the manual for details.
+
+\pagebreak
+
+\section{Experimental Procedures}
+
+This section describes the standard operating procedures for common AFM operations. As you follow along with this lab write-up, you may find the referenced instructional videos to be helpful to see what is physically occurring, especially for tip installation. Sections 6.1 through 6.4 should be pretty quick - if you get very stuck with the software, or with alignment, please check in with a GSI. Section 6.5-6.6 are the bulk of the work, and will likely take you some time. Move methodically through the tip approach steps in these sections, and take notes on what works and what doesn't. These sections are the key to getting good AFM images!
+
+\subsection{Starting Up}
+\label{subsec:TurnOnInstrumentsAndOpenPrograms}
+
+Follow steps in the instructional video  \href{http://experimentationlab.berkeley.edu/sites/default/files/gettingstarted\_final2.mp4}{\textbf{Getting Started and Probe Exchange}} (start to 2:00). Briefly:
+
+\begin{enumerate}
+    \item Power on the Ebox via the switch in the lower rear. Series of green LED lights will turn on.
+    
+    \begin{figure}[H]
+        \centering
+        \href{http://experimentationlab.berkeley.edu/sites/default/files/Ebox2.jpg}{\includegraphics[height=0.35\linewidth,keepaspectratio]{images/Ebox2.jpg}}
+        \href{http://experimentationlab.berkeley.edu/sites/default/files/AFMImages/10.JPG}{\includegraphics[height=0.35\linewidth,keepaspectratio]{images/10.JPG}}
+        \caption{Ebox power switch}
+    \end{figure}
+
+    \item Turn on the LED illuminator. Adjust the LED power as needed.
+    
+     \begin{figure}[H]
+        \centering
+        \href{http://experimentationlab.berkeley.edu/sites/default/files/AFMImages/LED1.jpg}{\includegraphics[height=0.27\linewidth,keepaspectratio]{images/LED1.jpg}}
+        \href{http://experimentationlab.berkeley.edu/sites/default/files/AFMImages/LED2.jpg}{\includegraphics[height=0.27\linewidth,keepaspectratio]{images/LED2.jpg}}
+        \caption{LED illuminator}
+    \end{figure}
+
+    \item From the Desktop, start \textbf{AFM Workshop} and \textbf{AmScope} (click the camera from the list at the top left of the program window to start the camera; adjust the exposure time as needed).
+
+\end{enumerate}
+
+After turning everything on, adjust the focus knob (see Figure \ref{fig:z-motor_camera_knobs}) so that the camera is focused on the sample holder (or sample - you can insert a sample if you'd like at this stage using the instructions in Section \ref{sec:sample_insertion}). \textbf{The cantilever/probe should be out of focus (see Figure \ref{fig:ProbeUnfocused}).} Keeping an eye on the camera will help you observe proximity so you don't break the tip, and help during the range check step.
+
+First, make sure the tip is far from the sample. Next, perform the following checks. If at any step the check is not successful, you may have encountered a software bug - exist AFM Workshop, turn the EBOX off, and restart.
+
+\begin{enumerate}
+    \item Turn EBOX on. Open AFM Workshop. Confirm in the top bar of the software where it says `AFM Control Software' that you are using version 4.0.0.129.
+    \item Click inside the manual Z motor control panel in the Pre-scan tab so that it is active. Click `up'. Do you hear a short whirring sound? Does the laser turn on when the laser power is `on'?
+    \item Turn the laser power off. Is `top - bottom' and `left - right' zero in both `non-vibrating' and `vibrating' mode?
+    \item Press the range check button. Can you see the sample moving left/right and (faintly) in/out of focus on the campera for the XY and Z portions respectively?
+\end{enumerate}
+
+If the software passed all of these checks, you can proceed to the alignment steps. If you have had to restart AFM Workshop more than 2-3 times, turn the EBOX off, exit AFM workshop, restart the computer, and then try to turn the EBOX on/restart AFM Workshop again. If you have to restart the computer more than 2-3 times, go talk to a GSI.
+
+Do not proceed until the software has passed all of the checks above, as the software has several fatal bugs that you must avoid in order to successfully run experiments! If you are experiencing bugs outside of those outlined in the steps above, please refer to \hyperref[sec:Troubleshooting]{\textbf{Troubleshooting}}.
+
+\subsection{Exchanging Probes} 
+\label{subsec:exchange_probes}
+
+Follow the steps in \href{http://experimentationlab.berkeley.edu/sites/default/files/gettingstarted\_final2.mp4}{\textbf{Getting Started and Probe Exchange}} (starting 2:00) \textbf{CAREFULLY} and those on page 23 of the \afmuserguide to install or exchange a probe. You may also reference the instructions below. It's recommended that you practice with a damaged probe first a few times before using a new probe.
+
+PROCEED WITH CAUTION -- THE PROBES ARE VERY DELICATE:
+\begin{itemize}
+    \item \textbf{NEVER PICK UP THE PROBE WITH YOUR HANDS}
+
+    \item \textbf{NEVER PICK UP THE PROBE ALONG THE LONG LENGTH}
+
+    \item \textbf{NEVER TOUCH THE CANTILEVER SIDE OF THE CHIP WITH ANYTHING} %, THIS WILL \hyperref[subsec:BrokenTip]{DESTROY THE TIP}}
+\end{itemize}
+
+\subsubsection{Detailed explanation of probe exchange}
+
+Follow the steps below to remove the probe holder from the AFM to install a probe into the probe holder, or if you need to replace the probe.
+
+\begin{enumerate}
+    \item On the TT-AFM, turn the z micrometer adjustment knob (labeled ``Z Control'', located behind the camera tube on top of the AFM) clockwise to raise the tip a reasonable distance ($\sim$2cm) away from the sample holder to avoid accidentally bumping into anything when removing the tip holder from the apparatus.
+
+     \begin{figure}[H]
+         \centering
+         \href{http://experimentationlab.berkeley.edu/sites/default/files/AFMImages/AFMstagespace_0.jpg}{\includegraphics[width=0.95\linewidth]{images/AFMstagespace_0.jpg}}
+         \caption{Proper spacing between probe holder and sample holder}
+         \label{fig:AFMStageSpace}
+     \end{figure}
+    
+     \item Then, grip the black tab of the probe holder and slide straight out. (See Figure \ref{fig:PullOutYellowSlide}.)
+
+    \begin{figure}[H]
+         \centering
+         \href{http://experimentationlab.berkeley.edu/sites/default/files/AFMImages/14.JPG}{\includegraphics[width=0.65\linewidth]{images/14.JPG}}
+         \caption{Removing the probe holder}
+         \label{fig:PullOutYellowSlide}
+     \end{figure}
+
+     \item Flip the holder over so that the \textbf{copper probe clip is face up}. It should have a label saying `non-conductive' on it; if not check in with a GSI (see Figure \ref{fig:YellowSlideDescription}). There should be a exchange tool under the stereoscope to the left of the AFM. The probe holder should slot nicely on top of this (see Figure \ref{fig:exchange_tool}) with the post underneath the copper clip, and the oval structures on each matching up. Do the next step under the stereoscope (turn on, turn the light up, and focus on the probe).
+
+     \begin{figure}[H]
+        \begin{minipage}[t]{.5\linewidth}
+         \centering
+    \href{http://experimentationlab.berkeley.edu/sites/default/files/AFMImages/15.JPG}{\includegraphics[height=0.7\linewidth, keepaspectratio]{images/15.JPG}}
+         \caption{Probe holder}
+         \label{fig:YellowSlideDescription}
+     \end{minipage}
+     \begin{minipage}[t]{.5\linewidth}
+         \centering
+         \href{http://experimentationlab.berkeley.edu/sites/default/files/AFMImages/17.JPG}{\includegraphics[height=0.7\linewidth, keepaspectratio]{images/17.JPG}}
+         \caption{Probe holder on exchange tool}
+         \label{fig:exchange_tool}
+     \end{minipage}
+     \end{figure}
+
+     \item Gently press down on the probe holder - you should see under the stereoscope that the probe clip has been pushed up, releasing the probe (if there is one already in there) or allowing a new one to be slid in. When inserting or removing a probe, gently use tweezers only on the back/sides of the probe - \textbf{never} touch on the front end or near the cantilever/tip, or it will break. (Use the fine-tipped metal tweezers.) Go slowly, or the probe may skitter off into one of the gaps and potentially break. You may also gently tilt the probe holder/exchange tool to get the probe out. The old probe will slide into the oval ``cup'' of the exchange tool. To insert a new probe, gently slide the probe in with tweezers, again touching only on the back/sides of the probe. Avoid tilting the entire probe holder/exchange tool during probe insertion as this will often lead to the probe skittering off into the distance. Once in the cup, you can use tweezers to carefully pick the probe up by the narrow length (\textbf{never} by the long length) and move it to the gel bed probe case. Try to avoid pressing the probe holder down too long to minimize wear and tear on the probe clips.
+     \item  The probe should rest flat under the clip in the position indicated in Figure \ref{fig:AFMProbe}.
+    
+    \item  Release pressure of the probe holder on the exchange tool and \textbf{carefully} remove the probe holder from the exchange tool.
+    
+    \item \textbf{BEFORE} inserting the probe holder back into the AFM, \textbf{verify that there enough room for you to install the probe holder without hitting the sample holder (the metallic disk located on the stage)}.  Then insert the probe holder with the new tip back into the TT-AFM with the \textbf{copper probe clip facing down}. Insert below all four copper tabs. (You may need to use tweezers to gently lift a tab up to slide it in underneath - be extremely careful not to scratch the mirror or photodetector!) The probe holder should be flat, and the clips should be on top of the metal traces on the probe holder.
+    
+\end{enumerate}
+
+\subsection{Alignments}
+\label{sec:Alignment}
+
+Before any alignment, you must be sure the software is working correctly! See the steps above. In this step, you will perform three sequential alignments: (1) Align the center of the sample holder, the end of the cantilever, and the center of the camera's field-of-view% (Fig. \ref{fig:ScrewTop})
+, (2) Align the laser spot to the back of the cantilever (Fig. \ref{fig:LaserAlignment}), and (3) Align the reflected laser spot to the center of the positive-sensitive photodetector (Fig. \ref{fig:detector_alignment}). Refer to the video tutorial  \href{http://experimentationlab.berkeley.edu/sites/default/files/alignment\_final2.mp4}{\textbf{Alignment: Camera, Laser, and Detector}}. 
+
+You should have already aligned the camera back when you were starting up the software to confirm the Range Check was working properly (it should look like in Figure \ref{fig:ProbeUnfocused}) - now is a good time to adjust the focus (see Figure \ref{fig:z-motor_camera_knobs}) and instead focus on the cantilever (like in Figure \ref{fig:LaserAlignment}); it will make laser alignment easier. 
+
+For laser alignment, adjust the L1 and L2 knobs until the laser looks like that in Figure \ref{fig:LaserAlignment} and the Top + Bottom signal in the Pre Scan tab is on the order of 1 or higher. You may see reflections of the laser on the sample - that's fine, and can actually help you gauge proximity of the tip to the sample. You may want to adjust this alignment further after finishing the photodetector alignment to try to fully maximize the Top + Bottom signal. The laser should be fairly easy to align - if you're having issues, make sure your probe is positioned correctly, the camera is focused on the cantilever, and the probe holder is under \textbf{all four} copper clips/is flush with the holding bracket.
+
+After you are done with laser alignment, refocus the camera on the sample. The next step is to align the photodetector.
+
+\begin{enumerate}
+    \item Be sure to have completed camera and laser alignment first. You should not need to adjust the focus knob or L1/L2 for this stage.
+    \item Look at the beam position chart and Top - Bottom in the Pre-Scan tab. 
+    \item If Top - Bottom is a value with a pretty high magnitude (e.g. $\pm$ 3) and turning D1/D2 doesn't feel like it's doing anything, open the box and look at the photodetector. Use D1/D2 to roughly center the laser on the target visually (don't look at the software yet).
+    \item If in step 2 it doesn't seem like the screws will move far enough, check the probe holder is under all four probe clips and is flat/flush with the black casing. Remove and reinsert if necessary. If this doesn't work, or if it looks like the screws are `pushing out' of their holders, talk to a GSI.
+    \item Once Top - Bottom is a value with lower magnitude (e.g. $\pm 1$), you should see a significant change in the value when you turn D1/D2. Use D1/D2 to adjust until Left - Right and Top - Bottom\footnote{Historically (fall 2026 and earlier), the value of Top - Bottom was kept between 0.3 and 0.4 instead of near zero, but this is no longer achievable (as of spring 2026) with the screw range and does not seem to have affected scan quality. Left - Right has always been kept near zero.} are near zero (though err on the side of slightly positive values). Congrats, you've completed alignment!
+\end{enumerate}
+
+When you are done, you should have a result that looks like Figure \ref{fig:detector_alignment}. Going slowly and surely through the alignment of the camera, laser, and detector will \textbf{save you a lot of time} and \textbf{is essential} for getting good scans.
+
+\begin{figure}[H]
+        \begin{minipage}[t]{.5\linewidth}
+         \centering
+    \href{http://experimentationlab.berkeley.edu/sites/default/files/AFMImages/laser_align.png}{\includegraphics[height=0.5\linewidth, keepaspectratio]{images/laser_align.png}}
+            \caption{Laser aligned to the back of the cantilever. See Figure \ref{fig:laser-placement-intuition} for some intuition for the placement.}
+            \label{fig:LaserAlignment}
+     \end{minipage}
+     \begin{minipage}[t]{.5\linewidth}
+         \centering
+         \href{http://experimentationlab.berkeley.edu/sites/default/files/AFMImages/detectoralign.JPG}{\includegraphics[height=0.4\linewidth, keepaspectratio]{images/detectoralign.JPG}}
+    \caption{Laser aligned to the near-center of the detector. For technical reasons you shall aim for a small positive T-B value (i.e., as near zero as you can get but on the positive side).} % a small positive T-B value (0.2-0.4) instead of zero.}
+    \label{fig:detector_alignment}
+     \end{minipage}
+     \end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\linewidth]{images/laserplacement_nanolabtraining.jpg}
+    \caption{Intuition behind placement of laser. (Spoiler alert: it's position C - a sort of `best of both worlds' spot.) Graphic from `afmclass' Marvell Nanolab training.}
+    \label{fig:laser-placement-intuition}
+\end{figure}
+
+\checkpoint{Alignments}{Show a GSI that you have completed all three alignment steps. Identify any debris or dirt on the sample holder or the probe.}
+
+\subsection{Preparing and Loading a Sample} 
+\label{sec:sample_insertion}
+
+\subsubsection{How to Prepare a Sample}
+\label{subsec:HowToPrepareASample}
+
+If the samples that you are going to use are already prepared, you can \hyperref[subsec:HowToLoadASample]{skip to the next step}.
+
+\begin{enumerate}
+    \item The small sample to be imaged must be less than 8mm thick, and must be able to fit on the adhesive tab on the 15 mm diameter metal sample disk.
+
+    \item It is critical for the sample to be kept as clean as possible. Avoid touching it with your fingers. If the sample is dirty, check in with a GSI before any cleaning, as cleaning could damage the sample.
+
+    \item Use the provided double-sided adhesive tabs and tweezers. Peel off one side of the adhesive protection backing and carefully attach it to the sample disk.  Next, peel off the other side, and use tweezers to place your small sample to be imaged firmly on the sticky tab.  Gently press the corners of the sample until secured. 
+
+    \item Make sure that the area of interest is near the center of the disk, the sample is as flat as possible and that it does not protrude off the edge of the disk. Clip any excess tape! 
+
+\end{enumerate}
+
+\subsubsection{How to Load a Sample}
+\label{subsec:HowToLoadASample}
+
+Watch \href{http://experimentationlab.berkeley.edu/sites/default/files/prescan\_final\_0.mp4}{\textbf{Pre-Scan: Tune Frequency, Tip Approach, and Scanning}} carefully (5:00 to 7:00) and page 27-28 of the \afmuserguide. \textbf{Always begin} by bringing the tip up using the ``Z Control'' knob behind the camera tube on top of the AFM in order to give yourself enough space to work. The sample holder is magnetic, so be careful not to let sample disks `slam' down.
+
+Load the calibration sample (Sample 7, \href{http://experimentationlab.berkeley.edu/sites/default/files/AFMImages/Reference-\%20sample-SHS-01\_3\_datasheet.pdf}{\textbf{AppNano Silicon Step Height Reference, Part\# SHS-0.1-1}}) and find \textbf{Feature B} if it is the first time and/or if you are about to perform a calibration.
+
+\subsection{Setting up Pre-Scan Parameters}
+\label{subsec:SettingUpPreScanParametersForVibratingScan}
+
+Watch \href{http://experimentationlab.berkeley.edu/sites/default/files/prescan\_final2.mp4}{\textbf{Pre-Scan: Tune Frequency, Tip Approach, and Scanning}} (0:00 to 5:00) and pages 11-17 of the \afmuserguide. 
+
+\begin{enumerate}
+    \item On the \textbf{Pre-Scan} tap, set \textbf{Scan Mode} to \textbf{Vibrating} for tapping mode (default) or \textbf{Non-Vibrating} for contact mode. \textbf{Make sure the tip is up away from the sample before switching modes.} The \textbf{Tune Frequency} window becomes enabled only in \textbf{Vibrating} mode.
+
+    \item Focus the camera on the sample surface. You can adjust the magnification/zoom of the camera by turning the knob labeled\textbf{ ``Camera Zoom''}.  The focus of the camera is adjusted by the large black knob to the right of the black tube labeled ``\textbf{Focus''}.
+    \begin{itemize}
+        \item Clockwise rotation of the \textbf{Focus} knob raises the focus.
+        \item Counter-clockwise rotation of the \textbf{Focus} knob lowers the focus.
+    \end{itemize}
+
+    \begin{figure}[H]
+        \centering
+        \href{http://experimentationlab.berkeley.edu/sites/default/files/AFMImages/ZControl.jpg}{\includegraphics[width=0.5\linewidth]{images/ZControl.jpg}}
+        \caption{Z-motor and camera focus knobs}
+        \label{fig:z-motor_camera_knobs}
+    \end{figure}
+    
+    \item\textbf{MAKE SURE THE TIP IS NOT TOO CLOSE TO THE SAMPLE}. If the sample is in focus, the cantilever should be out-of-focus -- refer to Fig. \ref{fig:ProbeUnfocused} below. Make minimal adjustments to the X-Y micrometers labeled S1 and S2 to move the area of interest of the sample under the tip.
+    
+\end{enumerate}
+
+\begin{figure}[H]
+    \centering
+    \href{http://experimentationlab.berkeley.edu/sites/default/files/AFMImages/probe_unfocused1_0.png}{\includegraphics[height=150pt]{images/probe_unfocused1_0.png}}
+    \caption{The sample is in focus while the cantilever is not, when there is a safe distance between the two.}
+    \label{fig:ProbeUnfocused}
+\end{figure}
+
+\subsubsection{Tuning the Cantilever Resonance}
+
+This part is only relevant for \textbf{Vibrating} mode. 
+
+\begin{enumerate}
+    \item In the \textbf{Tune Frequency} window, under \textbf{Frequency Select}, set Lower and Upper Frequencies to the range specified on the probe box. Leave the \textbf{Selected }frequency anywhere in between this range.
+    
+    \item Set the number of steps to 100 and the Demodulation Gain to 4dB.
+    
+    \item Click the \textbf{Start} button to begin the frequency sweep. Once a coarse sweep is finished and the fundamental resonance can be identified in the \textbf{Amplitude} window, drag the green and red markers to be closer to the resonant frequency for finer sweeps. (Keep the blue marker between the green and red.) Adjust the excitation \textbf{Amplitude (Vpp)} and if necessary the Demod Gain to get a smooth curve with a peak amplitude of 0.5 - 2 V. (In particular, double peaks may mean that you are saturating - see \hyperref[subsec:Troubleshooting]{Troubleshooting}.)
+    
+    \item Adjust \textbf{Phase (deg)} such that the phase profile is relatively flat away from the resonance, and is anti-symmetric across the resonance.
+    
+    \item The software will generally find a suitable operating frequency automatically on the low-frequency shoulder of the resonance. If not, drag the blue marker slightly and redo a frequency sweep. See Fig. \ref{fig:prescantab} for an example of a well-tuned resonance. If you can't get a smooth profile like this, you may have broken the tip - see \hyperref[sec:Troubleshooting]{\textbf{Troubleshooting}}.
+
+\end{enumerate}
+
+\checkpoint{Pre-Scan Settings}{Show a GSI the probe resonance and the settings you have selected prior to performing a tip approach. Discuss what these settings do, and why you chose them.}
+
+\subsection{Tip Approach}
+\label{subsec:TipApproach}
+
+As stated earlier, this is the most difficult setup step, and will take some time. Go methodically, and be open to fine tuning different parameters. \textbf{In your lab report, you should describe strategies you used to ensure you were successfully in contact with the sample and to improve image quality.}
+
+For \textbf{Vibrating} (Tapping) mode, read pages 38-40 of the \afmuserguide and follow the steps in \href{http://experimentationlab.berkeley.edu/sites/default/files/prescan\_final2.mp4}{\textbf{Pre-Scan: Tune Frequency, Tip Approach, and Scanning}} (7:00 to 12:30) closely.
+
+For \textbf{Non-Vibrating} (Contact) mode, follow the steps in pages 35-36 of the \afmuserguide. This mode is only used for Force-Distance curves and the Boltzmann's constant experiments. 
+
+\textbf{If at ANY POINT during this process you start hearing an extremely high pitched, loud noise, use the Manual Z Motor Control section of the Pre-Scan tab and click `Motor Up' several times until the noise stops.} You will \textit{know} if the noise is bad; it will be louder than normal conversation. (You may also use the Tip Retract button in the Topo Scan tab.) You probably pushed the tip into the sample, and may have broken the tip. If in vibrating mode, re-run the frequency scan and make sure it still looks good. If it does, you can re-run the tip approach. If you get the high pitched noise multiple times, the tip is almost certainly broken and should be replaced; see Section \ref{subsec:exchange_probes}.
+
+A brief summary of the steps:
+\begin{enumerate}
+
+    \item Confirm the optical table is floating properly (i.e., not continuously hissing). See the \hyperref[sec:Troubleshooting]{Troubleshooting} section for details.
+    
+    \item Move the probe module down by turning the Z-motor knob (Fig. \ref{fig:z-motor_camera_knobs}) while \textbf{physically} monitoring the tip-sample distance, until the tip is few mm away from the sample surface.
+    
+    \item Focus the camera on the sample surface. Use the \textbf{Down} button in the \textbf{Manual Z Motor Control} section of the \textbf{Pre-Scan} tab to \textbf{slowly} lower the tip to the sample until the cantilever is just slightly out of focus (Fig. \ref{fig:before_tip_approach}). Note that sometimes you can see the reflection of the laser on the sample, and when you jog the tip down, you can see the reflection come in `closer' to the tip - this can be another guide for closeness. Be careful with this though, as it depends strongly on the reflectivity of the sample! Err on the side of caution if unsure. (See pages 33-34 of the \afmuserguide.)
+    
+    \begin{figure}[H]
+        \centering
+        \href{http://experimentationlab.berkeley.edu/sites/default/files/AFMImages/probe_unfocused2_0.png}{\includegraphics[width=0.45\linewidth]{images/probe_unfocused2_0.png}}
+        \centering
+        \caption{Approximately how focused the cantilever should be before starting an automated tip approach (laser turned off for clarity)}
+        \label{fig:before_tip_approach}
+    \end{figure}
+    
+    \item Start the \textbf{Automated Tip Approach}.\footnote{A great description of how this works (known as the `Woodpecker Approach') is in \href{https://www.youtube.com/watch?v=YZdvVimB9Bw}{this video}. You may impress your friends with the following fact: Going from 1mm to .1nm above the surface is comparable to flying 380,000 km to the moon and stopping just 38 meters above the surface.} If you start when the cantilever is too far away from the sample, this step can take hours - you can use the motor jog to move it closer. As you do more tip approaches, you'll get a better feel for how close you can move it before letting the automated approach take over.
+    
+    \item Once the tip engages the sample, the \textbf{In-Feedback} indicator will turn on. (If it is flickering, that's okay - first test whether it's true feedback in the next step, and if it is, check the \hyperref[sec:Troubleshooting]{\textbf{Troubleshooting}} section for how to fix this. In particular, `high frequency' flickering is okay, i.e., if it's `mostly green'; if it has longer stretches of not being in feedback that is when to go through the steps in the Troubleshooting section.) Both the sample and the cantilever will be in focus (Fig. \ref{fig:tip_approach_finished}). 
+    
+    \begin{figure}[H]
+        \centering
+        \href{http://experimentationlab.berkeley.edu/sites/default/files/AFMImages/bothfocused.jpg}{\includegraphics[width=0.45\linewidth]{images/bothfocused.jpg}}
+        \caption{Tip approach completed. Note how the laser reflection on the sample is right up against the tip, and how both the sample and probe are in focus on the camera.}
+        \label{fig:tip_approach_finished}
+    \end{figure}
+
+    \item \textbf{BEFORE PROCEEDING,} to ensure that the tip is actually engaged with the sample, and is not in \href{http://experimentationlab.berkeley.edu/sites/default/files/AFMImages/VM\%204.2.\%20On\%20Cont-small\%20vib\_converted\_r1.mp4}{\textbf{False Feedback}} (where the system thinks it is engaged, but in reality it is not) locate the \textbf{Setpoint (mV) }value in the \textbf{Automated Tip Approach} section. Lower this value by increments of 10 and observe the blue pointer. You should not lower the setpoint more than 30 (lowering it by 10 three times). If the tip is engaged with the sample, the blue pointer will not move in position. If it begins to slowly drift noticeably upward, then unfortunately, the system is in false feedback. (If the blue pointer is near the center of its range, this is a good sign; if it's far above or below, it's probably false feedback.) If you find the system is in false feedback, you must use the manual z motor control to move the tip up until it goes out of feedback and then re-do the tip approach. (You may also try using the jog up and jog down buttons to adjust if the blue pointer is not in the middle of its range - make sure to use the jog buttons with a small distance and \textbf{NOT} the manual z motor up/down buttons!) Before reinitiating tip approach, the blue pointer should be near the top of its range in the Z Drive indicator, and the in feedback light should be off. It may take 2-3 attempts to successfully get true feedback! \textbf{If you have done this step more than 4-5 times,} see \hyperref[sec:Troubleshooting]{\textbf{Troubleshooting}} - it may be that the tip is broken or dulled. \textbf{If the system is in true feedback but the feedback light is flickering,} see \hyperref[sec:Troubleshooting]{\textbf{Troubleshooting}} (but don't worry, you won't need to change much).
+    
+\end{enumerate}
+
+\subsection{Topography Scans}
+
+Once the tip is in stable feedback, we can start topography scans. The first scan shall be performed on the calibration sample as noted \href{subsec:HowToLoadASample}{above}. Follow \href{http://experimentationlab.berkeley.edu/sites/default/files/prescan\_final2.mp4}{\textbf{Pre-Scan: Tune Frequency, Tip Approach, and Scanning}} (12:30 to end) closely and page 37-38 (\textbf{Non-Vibrating} mode) and 40-41 (\textbf{Vibrating} mode) of the \afmuserguide. A brief summary below:
+
+\begin{enumerate}
+    \item Set up the scan parameters at the bottom of the {Topo Scan} tab according to the feature of interest. See Fig. \ref{fig:topo_scan_tab} for an example. It is often helpful to start with a relatively slow (0.3-0.5 Hz), large-area (25-40 $\mu$m) and coarse (64 lines) scan, before doing finer scans of smaller areas (Table \ref{tab:scan_times}).
+    
+    In general you can set the Left image to be \textbf{Z\_DRIVE} which represents the topography of the surface, and the Right image to be \textbf{Z\_ERR} or \textbf{Z\_PHASE} for feedback error signal or phase contrast, respectively.
+
+    \begin{table}[H]
+        \centering
+        \begin{tabular}{l|l|l}
+            Scan Lines & Scan Frequency & Scan Time \\\hline
+            128 Lines  & 1 Hz           & 2 minutes \\\hline
+            128 Lines  & 0.5 Hz         & 4 minutes \\\hline
+            256 Lines  & 1 Hz           & 4 minutes \\\hline
+            256 Liens  & 0.5 Hz         & 8 minutes \\\hline
+            512 Lines  & 1 Hz           & 8 minutes \\\hline
+            512 Lines  & 0.5 Hz         & 16 minutes
+        \end{tabular}
+        \caption{Scanning Times}
+        \label{tab:scan_times}
+    \end{table}
+        
+    \item Start the Scan. The sample will move in a raster pattern with the fast axis determined by Scan Rotation. The sample moves forwards and backwards along the fast axis at the Scan Rate, but data is only taken during the forward movement.  
+      
+    \item You may need to tune the \textbf{Z Feedback} generalized PID (GPID) parameters iteratively to achieve optimal feedback performance and thus accurate topography measurements. Refer to Appendix G on page 72 of the \afmuserguide. \textbf{Include in your report line profiles of the calibration sample with too much, too little and optimal feedback gain.} Consider using a standard procedure like the Ziegler-Nichols method instead of trial and error. Discuss why the derivative gain (D) is zero and why we mostly change the integral (I) gain. Be careful modifying these parameters - \textbf{change them slowly,} or you may break the tip. A good rule of thumb is to increment by 10\% or less of the starting/default value. The default values are in Appendix G of the \afmuserguide if you wish to revert. \textbf{It is best to do this on the calibration sample, as it's easier to see the changes.}
+    
+    \item When the scan if finished or \textbf{Stop} is pressed, a window will pop up that lets you change the file name and/or directory if needed, and save the data.
+    
+    \item If you want to scan another region close by, click \textbf{Tip Retract} one or two times, gently move the sample with the X/Y micrometers, and redo a \textbf{Tip Approach}. If you need to move a large distance or to change samples, use \textbf{Tip Retract} FIRST followed by \textbf{Manual Z Motor Control} to move the tip a safe distance away. 
+\end{enumerate}    
+    
+\subsection{Data Processing and Analysis}
+\label{sec:DataProcessingAndAnalysis}
+
+AFM images are 2D arrays of numbers which contain information about the surface properties of the sample. There are three types of processes that one can do with this data: (1) Display: changes how the numbers are viewed, such as changing the color scale, (2) Process: changes the numbers in the array, such as subtracting a background, (3) Analysis: extract numbers from the data array, such as surface roughness. \textbf{You must still perform error analysis on values you obtain!}
+
+
+Use the program \textbf{Gwyddion} to view, process, and analyze your data.
+
+
+Watch the \href{http://experimentationlab.berkeley.edu/sites/default/files/AFMImages/gwyddion1.mp4.mp4}{\textbf{video tutorial for Gwyddion}} and browse \href{http://gwyddion.net/documentation/user-guide-en/}{\textbf{the Gwyddion guide}} online. Skim Chapter 5 of Eaton \& West for explanation of the major types of image processing and analysis. See also \href{https://www.youtube.com/watch?v=OX8q1CYMf8Q}{this video} and \href{https://www.youtube.com/watch?v=c3jpuLogKNE}{this video} for another overview of image processing and artifacts. Make sure you understand how to: \textbf{subtract a background plane, do line-leveling, extract line profiles, measure in-plane and vertical distances between features, and extract statistical parameters like root-mean-square (RMS) roughness}. If you wish to do some of your data processing on another computer, you may download it for free \href{http://gwyddion.net/download.php}{here}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\linewidth]{images/gwyddion_overview.jpg}
+    \caption{Overview of major relevant Gwyddion functions. Read through the Gwyddion guide for other pertinent features and details on what these do. Watch the tutorial as well. See also Chapters 5 \& 6 of Eaton \& West, which discuss AFM image analysis and artifacts.}
+    \label{fig:gwyddion-overview}
+\end{figure}
+    
+One of the most important skills for AFM data analysis is to identify and mitigate artifacts. \textbf{Include some examples of artifacts and debris present in your scans in your report and explain what caused these to occur and how they affected your measurements.} Refer to page 46-49 of the \href{http://experimentationlab.berkeley.edu/sites/default/files/AFMImages/Lecture\_10\_AFM.pdf}{\textbf{reference slides}} and \href{http://experimentationlab.berkeley.edu/sites/default/files/AFMImages/AFM\_image\_artefacts.pdf}{\textbf{Chapter 6: AFM Image Artifacts}} from Eaton \& West.    
+
+\subsection{AFM Calibration (Complete Before Experiments)}
+
+Note: this step usually takes students some time (often longer than most of the individual experiments) as they are getting used to the operation of the AFM. It is recommended that you finish this by the end of day two of your slot.
+
+For your first scan, you will use the calibration sample (Sample 7, \href{http://experimentationlab.berkeley.edu/sites/default/files/AFMImages/Reference-\%20sample-SHS-01\_3\_datasheet.pdf}{\textbf{AppNano Silicon Step Height Reference, Part\# SHS-0.1-1}}) and measure \textbf{Feature B} therein so you can calibrate the piezo stages of the AFM. See Appendix C, page 60 in the \href{http://experimentationlab.berkeley.edu/sites/default/files/AFMImages/TT_AFM\%20User-Guide-V2.2-600DPI.pdf}{\textbf{TT-AFM User Guide}} for more details. Below is a brief summary of the steps:
+
+\begin{enumerate}
+
+    \item Perform a large enough topography scan of a clean area in Feature B region of the calibration sample. This region contains square pits with 10 $\mu$m lateral pitch and 102 nm vertical depth (Fig. \ref{fig:cal_schematic}), so the scan needs to be $>20\ \mu$m to cover multiple periods (See Fig. \ref{fig:topo_scan_tab} for an example). It is helpful to rotate the sample such that the grid is aligned with the scan X/Y direction. Pay attention to Scan Rotation.
+
+    \begin{figure}[H]
+    \centering
+        \href{http://experimentationlab.berkeley.edu/sites/default/files/AFMImages/scanningmethod.jpg}{\includegraphics[width=0.65\linewidth]{images/cal_sample_scheme.png}}
+        \caption{Calibration sample schematic}
+        \label{fig:cal_schematic}
+    \end{figure}
+    
+    \item Load the \textbf{Z\_DRIVE} image into \hyperref[sec:DataProcessingAndAnalysis]{\textbf{Gwyddion}} and perform plane/line fitting and/or background subtraction if needed. Make \textbf{multiple} measurements of the lateral pitches along X and Y directions, and the depths of the pits. Follow Appendix C in \href{http://experimentationlab.berkeley.edu/sites/default/files/AFMImages/TT_AFM\%20User-Guide-V2.2-600DPI.pdf}{\textbf{TT-AFM User Guide}}.
+    
+    \item Open \textbf{Calibration XYZ.html} from the Desktop, populate the form with the current X/Y/Z calibration factors from the \textbf{System} panel in the Pre Scan tab (click the gear icon in the top right of that panel), the measured and actual values of the X/Y pitches and Z depths, and calculate the new X/Y/Z calibration factors.
+
+    This software uses the formulas
+
+    \begin{equation}
+        x_{new}= 2x_{old} - \frac{x_{old}\ell_{x, true}}{\langle\ell_x\rangle}
+    \end{equation}
+     \begin{equation}
+        y_{new}= 2y_{old} - \frac{y_{old}\ell_{y, true}}{\langle\ell_y\rangle}
+    \end{equation}
+    \begin{equation}
+        z_{new}= \frac{z_{old}\ell_{z, true}}{\langle\ell_z\rangle}
+    \end{equation}
+
+    Where $(x_{old}, y_{old}, z_{old})$ are the old calibration factors, $\ell_{true}$ is the true dimension of the measured feature, and $\langle \ell\rangle$ is the average of the measurements of the feature. You may use these formulas if you wish to calculate the values directly or take the average of more data points than four.
+    
+    How different are the new values from the current ones? Write down the current values as a backup. Input the new values to the \textbf{System} Tab and click \textbf{Save}. Next, do a scan with Z\_SENSE on the left and Z\_DRIVE on the right, and follow the instructions in Appendix C to calibrate the Z sensor coefficient (also done in the System panel of the Pre Scan tab). Write down the old Z sensor coefficient value and then enter the new calculated value and save. Then \textbf{exit and reboot the software,} confirming the new values are in place in the System tab. (When you reboot the software, you'll need to run through the checks to confirm the software is functional again.)
+    
+    \item Do another topography scan to confirm that you are getting more accurate results. Now that the AFM is properly calibrated, you are ready to perform the \hyperref[sec:Experiments]{\textbf{Experiments}}.
+\end{enumerate}
+
+\checkpoint{Calibration}{Show a GSI the processed topography scans that you used to generate the new calibration values. Discuss any differences from the current values. Demonstrate that the AFM is now well calibrated.}
+
+\subsection{Shutting Down}
+At the end of each day, turn off the LED illuminator, exit the control software, and turn off the Ebox.
+
+\pagebreak
+\section{Experiments}
+\label{sec:Experiments}
+\textbf{You will perform the following FIVE experiments. We recommend that you do them in the order as listed.} There also additional optional experiments. Note for your planning that usually experiment three takes students the longest.
+
+\begin{enumerate}
+
+\item \hyperref[subsec:NoiseFloor]{Noise Floor Experiment} 
+
+\item \hyperref[subsec:CD/DVD]{CD/DVD Experiment}
+
+\item \hyperref[subsec:GlueStick]{Glue Stick Polymer Experiment}
+
+\item \hyperref[subsec:ForceDistance]{Force-Distance Curve Experiment}
+
+\item \hyperref[subsec:Boltzmann]{Boltzmann's Constant Experiment} 
+
+\item \hyperref[subsec:CarbonCrystal]{Carbon Crystalline Structure Experiment} (Optional)
+
+\item \hyperref[subsec:EFM]{EFM Experiment (Optional)}
+
+\item \hyperref[subsec:DNA]{DNA Experiment} (Optional)
+
+\end{enumerate}
+
+For any of these experiments, you may use the stereoscope to the left of the AFM to get an overview of the samples. It is particularly helpful for experiments that require scanning over a specific area of the sample.
+
+\subsection{Noise Floor Experiment}
+\label{subsec:NoiseFloor}
+
+This short experiment is designed to measure the noise in an AFM measurement from both internal and environmental sources. This will allow you to distinguish actual features from noise. You will also demonstrate ways to mitigate internal and environmental noise. It is based on Appendix D of the \afmuserguide, so this is also a useful reference for these steps. \textbf{Use Sample 8, Blank Silicon Wafer}.
+
+\begin{enumerate}
+    \item Begin with the tip a safe distance away from the sample. Press Ctrl-N in the software to open up the `Noise Floor' tab.
+    \item Change the \textbf{Z HV Gain} to 15 in the \textbf{Noise Floor} Tab. (Read the end of Appendix D for an explanation of why we are doing this.)
+    \item Perform a Vibrating Mode Tip Approach in a clean region on the sample.
+    \item Perform \textbf{TWO} topography scans with the following parameters, one in a very quiet environment (box closed, no talking or touching the bench) and the other in a noisy environment (box open, talking to partner, light typing on the bench). No need to wait for the scan to finish, 50 lines is plenty. 
+    \begin{itemize}
+        \item Scan Rate = 0.5 Hz
+        \item Scan Lines = 256
+        \item Left, Right Image = Z-Drive, Z-Error
+        \item Background: Line Leveling (optional)
+        \item Scan Size = 50 microns (default)
+        \item X, Y center = (25, 25) (default)
+    \end{itemize}
+    
+    \item Retract the tip, set \textbf{Z HV Gain} to 5 and repeat the previous two steps. 
+    
+    \item Retract the tip and set \textbf{Z HV Gain} back to 10, and close out of the `Noise Floor' tab.
+    
+    \item Follow Appendix D of the \afmuserguide \, to process the \textbf{FOUR} scans (combinations of 2 binary conditions) and extract the RMS values in height. 
+    
+    \item Perform Fourier transform on a few line profiles in the four scans and plot the noise spectra. Clearly label the axes. Note that one line takes 0.5 s for a Scan Rate of 1 Hz. 
+    
+    \item Discuss in your report:
+    
+    \begin{itemize}
+        \item How does the Z drive voltage noise (roughly proportional to \textbf{Z HV Gain}) and environmental noise (air flow, sound and vibration) affect the RMS noise floor?
+        \item What about the noise spectra? What are the most common noise frequencies and how are they affected by the voltage and environmental noises?
+        \item Can you identify and explain the different measures that the lab has taken to reduce the noise for the AFM experiment?
+        \item What are other ways and precautions that you can take to lower the noise floor?
+    \end{itemize}
+
+\end{enumerate}
+
+
+\subsection{CD/DVD/Blu-Ray Experiment}
+\label{subsec:CD/DVD}
+
+In this experiment you will scan the information-carrying structures in a CD, DVD, and/or Blu-Ray, to gain a deep understanding of the working principles and capacity limitations of these optical disks. You will also learn to prepare your own AFM samples.
+
+\textbf{For this experiment, you must use two different types of disc}, but this may be any two of the three provided options (CD, DVD, Blu-Ray). Instructions below are provided for sample preparation for each of these three options.
+
+% \textbf{Use the 15 Micron Scanner} \hyperref[subsec:ChangingScanners]{(How to change a scanner)}
+
+\begin{enumerate}
+    \item Explain how a CD/DVD/Blu-Ray works and what we expect to see (Ref. \href{http://experimentationlab.berkeley.edu/sites/default/files/How\%20Information\%20is\%20Stored\%20on\%20a\%20CD.mp4}{\textbf{1}}, \href{http://experimentationlab.berkeley.edu/sites/default/files/Bits_and_CDs.pdf}{\textbf{2}}, \href{http://experimentationlab.berkeley.edu/sites/default/files/How_do_Rewriteable_CDs_work.pdf}{\textbf{3}}, \href{https://en.wikipedia.org/wiki/Optical_disc}{\textbf{4}}).
+
+    \item You will begin by preparing your own CD samples from the provided disks. You need a fresh CD sample because the information-carrying foil will quickly oxidize (in about a week) after it is removed from the protective plastic disk.
+    
+    \begin{enumerate}
+    
+    \item Lay out a paper towel on the table to the left of the AFM and work exclusively on it to catch any flakes that come off the CD and to protect the table.
+    
+    \item Place a large piece of double-sided tape on a magnetic sample plates and use the X-Acto knife to cut away the excess tape so the tape is entirely contained on the plate. 
+    
+    \item Take a silicon wafer piece and attach it firmly to the magnetic plate such that the shiny side faces up, then repeat the step above to put tape on the silicon piece.
+    
+    \begin{figure}[H]
+    \captionsetup{justification=centering}
+         \begin{minipage}[t]{.33\linewidth}
+        \centering
+        \href{http://experimentationlab.berkeley.edu/sites/default/files/SampleMaterials.JPG}{\includegraphics[height=0.75\linewidth,keepaspectratio]{images/SampleMaterials.JPG}}
+        \caption{Supplies needed}
+    \end{minipage}
+    \begin{minipage}[t]{.33\linewidth}
+        \centering
+        \href{http://experimentationlab.berkeley.edu/sites/default/files/CuttingCD.JPG}{\includegraphics[height=0.75\linewidth,keepaspectratio]{images/CuttingCD.JPG}}
+        \caption{Cutting the CD}
+    \end{minipage}
+    \begin{minipage}[t]{.33\linewidth}
+        \centering
+        \href{http://experimentationlab.berkeley.edu/sites/default/files/FinalSample.JPG}{\includegraphics[height=0.75\linewidth]{images/FinalSample.JPG}}
+        \caption{Final prepared sample}
+    \end{minipage}
+    \end{figure}
+    
+    \item Take the ``CD with data" and lay it on the paper towel shiny side DOWN (The underside of a CD is a thick plastic disk that we will NOT be cutting through). Using the X-Acto knife,\footnote{Different methods have worked for different discs/student groups. You may also try using the hole punch to cut out a piece from the CD and then peel the top off, or use scissors to cut out a small section to break down further. Switch to a different disc if one is particularly hard to prepare a sample from.} cut a small (smaller than the silicon wafer) square out of the top of the CD, and use the tweezers to peel and attach it to the silicon wafer shiny side UP. Be careful with the X-acto knife especially if using it to `wedge' between layers; safety goggles are provided. Keep the foil as flat and contamination-free as possible. 
+    
+    \item \textbf{At the end of your lab time with AFM, please remove the silicon, tape, and CD foil from the sample plates so the plates can be reused by the next group.}
+    
+    \end{enumerate}
+    
+    \item Find a clean region on the CD sample and obtain a topography scan with multiple pits and tracks. You may select \textbf{No Background} in the Display window to avoid artifacts from line leveling. Are the pitch depth and track pitch consistent with expectation?
+    
+    \item Next, prepare your second sample (DVD or Blu-Ray). The process is very similar to the CD sample preparation process. 
+    \begin{itemize}
+        \item For a Blu-Ray, the key difference is that in step (d), you should lay the Blu-Ray shiny side up, and you will need to make two cuts - first to peel up a plastic, transparent coating, and next to scrape off the layer beneath, which is translucent but not transparent - do not try to cut through the whole disk. These gray-ish thin scraps that you scrape off are what you will be analyzing. 
+        \item If preparing a DVD sample, follow these steps:
+        \begin{enumerate}
+            \item Using the x-acto knife, scrape the edge of the disc to remove glue. This will expose the edge of the two plastic layers.
+            \item Carefully try to wedge the two plastic layers apart along the edge using the x-acto knife - if initially the adhesion is too strong, instead use a wire cutter to cut a triangle into the DVD. This will allow you to access the area where the two plastic layers aren’t glued around the edge. 
+            \item Separate the two plastic layers. Take the plastic half that has the shiny layer on it (this is the layer which will be placed under the AFM), and use a hole puncher to create a DVD sample. 
+            \item Mount the resultant hole-punched circle onto an AFM sample disc using double sided tape.
+
+        \end{enumerate}
+    \end{itemize}
+    
+    \item Obtain a topography scan from the DVD or Blu-Ray using the same scan size as the CD sample. Note that the Blu-Ray features are smaller than the DVD features. 
+    
+    \item Include in your report: 
+    \begin{itemize}
+        \item How is information stored on a CD? What wavelength of light is used? Why? How is it different for a DVD? A Blu-Ray (hint: the name is rather telling here)?
+        \item Explain constructive and destructive interference, and find the expected pit depth for CD/DVD/Blu-Ray. 
+        \item Processed topography scans of at least two of CD/DVD/Blu-Ray with the same scan size. Does it make sense to use line-by-line leveling or plane subtraction for these samples?
+        \item Compare the expected pit depth values to your measurements.
+        \item From the measured pit density and track pitch, estimate the information density and the total capacity of a single-layer CD/DVD/Blu-Ray. Compare with standard values.
+    \end{itemize}
+
+\end{enumerate}
+
+\checkpoint{CD/DVD/Blu-Ray}{Show a GSI scans of the CD/DVD/Blu-Ray samples, describe how you have processed or plan to process them and discuss whether the pit depth and track pitch are roughly consistent with expectations.}
+
+% \subsection{MicroCircuit Experiment}
+% \label{subsec:Microcircuit}
+
+% \textbf{Use sample 4, Microcircuit Siddiqi Lab, for this experiment}
+
+% \begin{enumerate}
+%     \item View the MicroCircuit under the optical microscope to understand the circuit's structure. Cross-reference this with the schematics on \href{http://experimentationlab.berkeley.edu/sites/default/files/AFMImages/CSQ\_Resonators\_1July2011\%20.pdf}{\textbf{data sheet}}.
+
+%     \item In the Systems tab of the scanning software, change the Z HV Gain to a value of at least 10.  This is because the vertical features on this sample are relatively large and we want the AFM to be able to compensate for these large changes at a reasonable pace without returning inaccurate data.
+
+%     \item Take multiple scans (minimum of 4, but more scans can be \textbf{stitched} together easier and more accurately), spanning across a trace (insert photo) of the circuit.  Make sure your scans overlap, this is crucial for merging your data.
+
+%     \begin{itemize}
+%         \item \textbf{CAUTION: Remember to perform a tip retract before moving the sample with the micrometers to avoid breaking a tip. Multiple tip retracts may be necessary to clear the tip from the features on the sample.}
+
+%         \item Remember the scale at which you are scanning at. A seemingly small adjustment with the micrometers will result in a large shift in your scan image. Moving the sample too far in one turn can result in you losing your scan position.  This will most likely mean that you must re-scan across the entire trace again.
+
+%     \end{itemize}
+
+%     \item Because the 15 micron scanner cannot span across these the traces, you must correct each scan and \hyperref[subsec:ImageMerging]{merge} them together in \hyperref[subsec:Gwyddion]{Gwyddion}.
+
+%     \item Measure the merged and corrected data's features using tools in Gwyddion
+
+%     \begin{itemize}
+%         \item \textbf{NOTE: The merging feature in Gwyddion is an imperfect tool.  Sometimes scans will merge seamlessly. Other times they will not merge properly at all. You must have a general idea of what the features of your scan should look like to determine if your merged data is usable or not.}
+%         \begin{itemize}
+%             \item \textbf{When taking measurements of the merged scan, you must take these flaws into consideration.  Use your knowledge of geometry to extrapolate the actual dimensions of your scans.}
+%         \end{itemize}
+
+%     \end{itemize}
+
+%     \item Do these dimensions that you measured of your scan match up with the dimensions given in the \href{http://experimentationlab.berkeley.edu/sites/default/files/AFMImages/CSQ\_Resonators\_1July2011\%20.pdf}{\textbf{data sheet}}?
+
+%     \item What is the height of the features on this microcircuit?  This value is not given in the data sheet.
+
+%     \item What does the feature that you scanned do? (look at data sheet)
+
+%     \item Print out the schematic of the microcircuit from the data sheet and identify the area that you scanned by boxing it.
+
+%     \item Although the geometric coupling structure is identical for all the multiplexed resonators, $Q_c$ varies with $f_o$, resulting in a range of coupling values.
+
+% \end{enumerate}
+
+\subsection{Polymer Glue Experiment}
+\label{subsec:GlueStick}
+
+In this experiment you will attempt to use phase contrast to distinguish different materials on an otherwise smooth surface. Read about the physics behind an AFM phase measurement on page 40-45 in \href{http://experimentationlab.berkeley.edu/sites/default/files/AFMImages/Lecture\_10\_AFM.pdf}{\textbf{these slides}},  as well as sections 3.2.3.2 and 7.1.5 in Eaton \& West (which also cites some sources that may be of interest). \textbf{Use Sample 12, Hot Glue}.
+
+% \textbf{Use the 50 Micron Scanner} \hyperref[subsec:ChangingScanners]{(How to change a scanner)}
+
+\begin{enumerate}
+    \item Use \textbf{Vibrating} mode, set your Scan Size to $\leq$ 15 $\mu$m.
+
+    \item Scan a clean region on the sample, with the left image set to Z\_DRIVE and the right image set to Z\_PHASE. You may need to move around to find a smooth region with good phase contrast.
+    
+    \item Include in your report:
+        \begin{itemize}
+            \item Side-by-side comparison of the processed topography image and the phase image.
+            \item Do all the features in the phase image correlate with those in the topography image? Why? 
+            \item Does an increase in phase in the absence of topographic features correlate to a relatively harder or softer material? Why?
+            \item How many different polymers do you think you can identify in this hot glue sample?
+        
+        \end{itemize}
+
+
+\end{enumerate}
+
+\subsection{Force-Distance Curve Experiment}
+\label{subsec:ForceDistance}
+
+Force-Distance (F-D) curves are created by measuring the deflection of the cantilever as the sample is moved towards or away from the tip without active feedback (animation \href{http://experimentationlab.berkeley.edu/sites/default/files/AFMImages/Force-distance\_curves\_en\_video.mp4}{1}, \href{http://experimentationlab.berkeley.edu/sites/default/files/AFMImages/6.1\%20Tip\%20Sample.flv\_converted.mp4}{2}).  The shape of a F-D curve depends primarily on the length and stiffness of the cantilever, the thickness of the surface contamination layer and the hardness of the sample. See page 17-21 \href{http://experimentationlab.berkeley.edu/sites/default/files/AFMImages/Lecture\_10\_AFM.pdf}{here} as well as \href{http://experimentationlab.berkeley.edu/sites/default/files/AFMImages/butt\_AFM.pdf}{this paper} for more details. (Review pages 23-24 and Appendix I of the \afmuserguide as well.)
+
+F-D curves also allow us to translate raw \textbf{T-B photodetector output} (often in V) to \textbf{cantilever deflection} (in nm), so we can quantitatively measure e.g. the thermal motion of the cantilever by monitoring the T-B signal. 
+
+
+The relevant forces at play during a F-D curve measurement include:
+
+\begin{itemize}
+    \item Repulsion -- A strong repulsive force is present between the tip and sample atoms when the tip-sample distances are very small (level of only a few angstroms).  This is due to exchange interactions caused by overlapping electron orbitals on the atomic scale. The tip and sample are considered to be in \textbf{Contact} when repulsive forces are predominant.
+
+    \item Attraction (Van der Waals) -- An attractive interaction is created between atoms when the instantaneous polarization of an atom induces the polarization in other nearby atoms. 
+
+    \item Adhesion-- Adhesion can be defined as the free energy change to separate unit areas of two media from contact to infinity in vacuum or in a third medium.
+
+         \begin{itemize}
+             \item The pull-off force is considered as the adhesion force, ranging from a few nanonewtons to tens of nanonewtons.
+
+             \item Adhesion is the cause of meniscus forces, where the tip wants to snap-in to place due to relative humidity, which creates a thin layer of water on the sample's surface
+         \end{itemize}
+
+         \item Electrostatic -- Caused by both the localized charges and the polarization of the substrate due to the potential difference between the tip and the sample.
+
+         \begin{itemize}
+             \item Used to study electrostatic properties of samples such as microelectronic structures, charges on insulator surfaces, or ferroelectric domains. This interaction is used for Electric Force Microscopy (EFM). 
+         \end{itemize}
+
+         \item Magnetic -- Caused by magnetic dipoles both on the tip and the sample. This interaction is used for Magnetic Force Microscopy (MFM) to study magnetic domains on the sample surface.
+
+     \end{itemize}
+
+\textbf{Note before beginning:} we recommend avoiding switching back and forth between topography and F-D measurements a lot; if you must, perform a tip retraction and reboot the software inbetween. Without this, students seem to be more likely to run into bluescreen errors - see \hyperref[sec:Troubleshooting]{Troubleshooting}. Also keep in mind that F-D measurements will dull your tip, so may lead to worse topography scans.
+
+A brief summary of the steps below:
+
+\begin{enumerate}
+    \item In a clean region on the blank silicon wafer or calibration sample, do a Tip Approach in \textbf{Non-Vibrating} mode. Make sure you are not in false feedback. 
+
+    \item In the \textbf{Force-Distance} tab, set \textbf{Extend} to 1000 nm. The AFM will extend this distance further into the sample. Set \textbf{Retract} to 1000 nm. The AFM will retract this distance above the sample after extending into it. Be \textit{very} careful setting these values - extend the tip too far into the sample, and you can break the tip! You should also keep the \textbf{Extend} and \textbf{Retract} values the same. %We do not recommend picking a value above the default (1000 nm). You may wish to take a few runs at distances ranging from 500 nm to 1000 nm, and see what gives you the best data.
+    
+    \item Click the large \textbf{Start} button to the right of the plot window and wait for it to finish. A window will pop up to allow you to save the data. Also take runs at 4000 nm and 5000 nm, and explain the different results. Between each measurement redo the tip approach. Take multiple curves at each value, check their consistency, and average. Estimate the proportionality constant between T-B signal and cantilever deflection. You should be able to get a F-D curve that looks `textbook'.
+        
+    \item Estimate the spring constant $k$ of the cantilever. The manufacturer, AppNano, specifies a range of resonant frequencies and spring constants for their probes on the box. Modeling the cantilever as a simple harmonic oscillator gives a relation between spring constant $k$ and resonant frequency $\omega_r$. Using the end points of the frequency and spring constant range gives you two points along this curve. Using the point (0,0) will give you a third point. Interpolating these three points with a Lagrange polynomial yields the exact relation predicted by the model. The \textbf{Pre-Scan} tab allows an accurate measurement of $\omega_r$. Plugging this into your polynomial to estimate the spring constant $k$ of your probe.
+
+    \item Include in your report:
+        \begin{itemize}
+            \item High-quality F-D curves with the vertical axis in T-B. Explain the various features in the curves, including any "snapping" and "adhesion" of the tip to the sample.
+            \item Describe how you calculated the proportionality constant between T-B signal and cantilever deflection.  
+            \item Describe how you estimated the cantilever spring constant $k$. 
+            \item Using results from the previous two steps, re-plot the F-D curve, this time with the vertical axis in force (e.g. nN).
+            \item Discuss: Is T-B mostly due to the rigid vertical movement of the cantilever, or the change in its inclination (angle)? 
+            \item Discuss: Explain the different regions of the F-D curve and what they represent.
+        
+        \end{itemize}
+
+\begin{figure}[H]
+        \centering
+            \href{http://experimentationlab.berkeley.edu/sites/default/files/FD.png}{\includegraphics[width=\linewidth]{images/forcedistancetab.png}}
+            \caption{Force-Distance tab.}
+            \label{fig:FD_curve}
+        \end{figure}
+
+\end{enumerate}
+
+\subsection{Boltzmann's Constant Experiment}
+\label{subsec:Boltzmann}
+
+% The cantilever is very sensitive to forces. Since we are operating it in ambient conditions, the cantilever is constantly bombarded by air molecules. Thermal fluctuations cause random cantilever deflections. Measuring these deflections will allow us to calculate Boltzmann's constant.
+
+The equipartition theorem relates the temperature of a system to the thermal energy in its various degrees of freedom. In the case of the cantilever, we can model it as a 1D harmonic oscillator bobbing up and down. In this case, there is one degree of freedom $z$ (no translational motion, no twisting, etc.). The energy associated with $z$ is $\frac{1}{2} k z^2$, and thus we have $\frac{1}{2} k \langle z^{2} \rangle = \frac{1}{2} k_B T$, where $k$ is the spring constant of the cantilever and $k_B$ is Boltzmann's constant. You just estimated $k$ in the F-D curve experiment. For $T$, check the thermometer in the acoustic box. This leaves you to measure $\langle z^2 \rangle$ in order to estimate $k_B$.
+
+It is up to you to design an experiment to measure $\langle z^2 \rangle$ with the best possible accuracy and precision. You can use any internal AFM signals under any scan conditions. You can also directly access the raw T-B signal using the BNC cable connected to the back of the Ebox. You can use any combinations of a \href{https://www.thinksrs.com/products/sr560.html}{low-noise voltage amplifier} with tunable bandwidth and gain, a spectrum analyzer (\href{https://siglentna.com/wp-content/uploads/2020/07/UserManual_UG0703P_E02A.pdf}{SSA3021X Plus}), and a digital oscilloscope to measure T-B. 
+
+%a \href{https://www.tek.com/en/datasheet/mixed-signal-oscilloscopes-0}{digital storage oscilloscope} that can perform Fourier transform, and/or a \href{https://www.thinksrs.com/products/sr810830.html}{lock-in amplifier}, if needed.
+
+Consider the following: 
+
+\begin{itemize}
+    \item Should vibrating or non-vibrating mode be used? Why? What do you expect to see in each case?
+    \item What is the expected value of $\langle z^2 \rangle$? Can we measure it given the noise floor of the AFM?
+    \item Recall that the cantilever is a mechanical resonator with the lowest resonant frequency at tens to hundreds of kHz -- \textbf{Is most thermal energy concentrated at this frequency?} If not, why? If yes, does it make sense to use the \href{https://www.ni.com/en-us/support/model.usb-6009.html}{internal analog-to-digital converter}?
+    \item Does T-B measure $z$ or $dz/dx$ of the cantilever? What is the implication to our measurements?
+    \item How can you confirm that the signal is from the cantilever and not background noise? What background dataset should you collect?
+    \item Very helpful references: \href{https://iopscience.iop.org/article/10.1088/0957-4484/6/1/001/meta}{1}, \href{https://aip.scitation.org/doi/abs/10.1063/1.1143970}{2}. 
+    \item Tutorial on \href{https://www.youtube.com/watch?v=P5gxNGckjLc&&ab_channel=RohdeSchwarz}{spectrum analyzers}. A key message is that the spectrum analyzer reading is by default the \textbf{power} within the \textbf{resolution bandwidth} (RBW).
+\end{itemize} 
+
+Include in your report the design of the experiment, the rationale, the measurement result and the estimated $k_B$. Discuss any approximations made and potential sources of errors. 
+
+% In order to measure $\langle z^2 \rangle$, we will scan at 0.1 Hz in \textbf{non-vibrating} mode for around 10 lines \textbf{in air}. Save the data.
+
+% Open the data up in Gwyddion. Extract an image profile with the ``Extract Profiles'' tool under the tools section. Make sure that the line you draw to extract a profile is level (as you draw the line for the profile, make sure that y1 and y2 in the profiles window are the same). Click apply. A new window will pop up with your profile.  By right clicking the image in the new window, ``level'' the data. Then right click again and click on Export Text. Hit OK and save the file with a .txt extension. %Make sure that the file directory is in \textbackslash AFM Experiment\textbackslash 2.0.3 - 15 Micron AFM Workshop\textbackslash Test Data.
+
+% We will use MATLAB to calculate the mean square deflection.
+
+% Open up MATLAB. Navigate to the directory in which you saved the file. That will allow access to your data as well as some scripts. Now, call the function ``mean\_sq'' on your text file, surrounded in single quotes.
+
+% Example: My data is in the text file mydata.txt. I type in mean\_sq(`mydata.txt'). Voila.
+
+% You can check out the power density spectrum by calling the function bolt on your text file (again, in single quotes).
+
+% Use the value returned by mean\_sq to calculate Boltzmann's constant 
+
+
+
+
+\checkpoint{Boltzmann's Constant}{Show a GSI the theoretically estimated $\langle z^2 \rangle$, the spring constant $k$, the experiment plan to measure $\langle z^2 \rangle$ and any preliminary measurements, if available.}
+
+%\textbf{Checkpoint: Show a GSI the calculation you used to determine Boltzmann's constant and indicate any sources of error you might have.}
+
+% \section{Data Analysis}
+
+% Compare the different spring constant values found in this lab, along with the the manufacture specs, and explain your results.  Given what you have learned about AFM in this experiment, you should be able to explain what is going on.
+
+% Take into consideration the limitations of the instrumentation as well as what the equations mean. Discuss how this AFM takes measurements, and what its limitations are. (Hint: investigate noise floor. take more noise floors if necessary)
+
+% It is good to think about how the software makes calculations to better explain the values used, rather than just taking numbers that you know know what they mean.
+
+\subsection{Optional Experiments}
+\label{subsec:optional_experiments}
+
+There are several additional samples you can explore if you have time which are very interesting (and fun to look at)! Here is a description of the different samples along with some questions to answer for each. Skim through and see what is of interest!
+
+\subsubsection{Carbon Crystalline Structure Experiment}
+\label{subsec:CarbonCrystal}
+
+In this experiment, you will use the principles behind Lateral Force Microscopy (LFM) to examine the surface roughness of several samples and characterize their different nature. See Eaton \& West Sections 3.2.3.1 and 7.1.4. This experiment complements the Polymer Glue Experiment well. \textbf{Use samples 5, 6, and 14 (Graphene, HOPG, Graphite) for this experiment.}
+
+%[is changing scanner necessary for this experiment? look at lateral force microscopy - is this a useful reference that should be examined?]
+% % \textbf{Use the 15 Micron Scanner} \hyperref[subsec:ChangingScanners]{(How to change a scanner)}
+
+ \begin{enumerate}
+     \item Take vibrating mode scans of each of the three samples and save your data along with images of each (Z\_DRIVE).
+
+     \begin{itemize}
+         \item Sample 5 (graphene) has small graphene flakes (greenish color) on top of of a Silicon wafer substrate (purplish color). \textbf{Be sure to scan a flake of graphene and NOT the silicon wafer}.
+
+         \item Be sure you know which data belongs with which sample.  \textbf{The data file cannot be opened if renamed improperly. Have some method of keeping track of your data.}
+     \end{itemize}
+
+     \item Measure the surface roughness of each sample in \hyperref[sec:DataProcessingAndAnalysis]{Gwyddion}, using the Statistical Quantities tool \includegraphics[height=2em]{images/36.png}
+    \begin{enumerate}
+         \item Open your Z\_DRIVE image in Gwyddion.
+
+         \item Click the Statistical Quantities tool
+
+         \item Highlight the area of interest you wish to take a surface roughness measurement of on your Z\_DRIVE scan.
+         %\begin{itemize}
+         %    \item A marquee should box this area
+         %\end{itemize}
+
+         \item Record the Ra (Sa) value. This is your surface roughness. The Ra value is given by the equation $R_a=\frac{1}{n} \sum\limits_{i=1}^{n} |y_i|$ where $n$ is the total number of pixels in the area for calculation, and $y$ is the Z axis height of each of the points in the image.
+     \end{enumerate}
+
+     \item Retract the tip and switch to non-vibrating (contact) mode. Repeat the tip approach, and now do a scan with the \textbf{L-R} signal for your left image. Save these images and process them. Explain what this signal is and what it tells us about our sample. Make sure to set the rotation to 90$^\circ$. (See pg 37 of the AFM User's Guide.) This is effectively lateral force microscopy (LFM).
+
+     \item These are all composed of the same element, carbon, so why do they display such different surface characteristics? What can you say about the ordering of the atoms for each of these three samples?
+
+     \item Do your observations make sense when you compare them to the actual crystalline structure for each of these samples? (Look for images of crystalline structure on the internet.)
+
+     %\item Give an example of why someone would want to use AFM to examine surface roughness in real life.
+
+ \end{enumerate}
+
+
+
+%\subsubsection{Microcircuit from Professor Siddiqi's Lab}
+
+%\label{subsec:Microcircuit}
+
+%[unfortunately, as far as i can tell, this one doesn't really introduce anything new/interesting, so i'm not going to bother including it as an optional experiment.]
+
+% \textbf{Use sample 4, Microcircuit Siddiqi Lab, for this experiment.}
+
+% [is changing scanner necessary for this experiment? mentions 15 um scanner in original text. seems like probably not necessary]
+
+%\begin{enumerate}
+%     \item View the MicroCircuit under the optical microscope to understand the circuit's structure. Cross-reference this with the schematics on the \href{http://experimentationlab.berkeley.edu/sites/default/files/AFMImages/CSQ\_Resonators\_1July2011\%20.pdf}{\textbf{data sheet}}.
+
+%     \item In the Systems tab of the scanning software, make sure the Z HV Gain is a value of at least 10. This is because the vertical features on this sample are relatively large and we want the AFM to be able to compensate for these large changes at a reasonable pace without returning inaccurate data.
+
+%     \item Take multiple scans (minimum of 4, but more scans can be \textbf{stitched} together more easily and accurately), spanning across a trace of the circuit.  Make sure your scans overlap, this is crucial for merging your data.
+
+%     \begin{itemize}
+%         \item \textbf{CAUTION: Remember to perform a tip retract before moving the sample with the micrometers to avoid breaking a tip. Multiple tip retracts may be necessary to clear the tip from the features on the sample.}
+
+        %\item Remember the scale at which you are scanning at. A seemingly small adjustment with the micrometers will result in a large shift in your scan image. Moving the sample too far in one turn can result in you losing your scan position.  This will most likely mean that you must re-scan across the entire trace again.
+
+%     \end{itemize}
+
+%     \item You may need to merge scans together in \hyperref[sec:DataProcessingAndAnalysis]{Gwyddion}. See \href{http://gwyddion.net/documentation/user-guide-en/}{\textbf{the Gwyddion guide}}. 
+
+%     \item Measure the merged and corrected data's features using tools in Gwyddion
+
+%     \begin{itemize}
+%         \item NOTE: The merging feature in Gwyddion is an imperfect tool.  Sometimes scans will merge seamlessly. Other times they will not merge properly at all. You must have a general idea of what the features of your scan should look like to determine if your merged data is usable or not.
+%         \item When taking measurements of the merged scan, you must take these flaws into consideration.  Use your knowledge of geometry to extrapolate the actual dimensions of your scans.
+
+%     \end{itemize}
+
+%     \item Do these dimensions that you measured of your scan match up with the dimensions given in the \href{http://experimentationlab.berkeley.edu/sites/default/files/AFMImages/CSQ\_Resonators\_1July2011\%20.pdf}{\textbf{data sheet}}?
+
+%    \item What is the height of the features on this microcircuit?  This value is not given in the data sheet.
+
+%     \item What does the feature that you scanned do? (look at the data sheet). Box the relevant section of the schematic.
+
+%     \item Print out the schematic of the microcircuit from the data sheet and identify the area that you scanned by boxing it.
+
+%     \item Although the geometric coupling structure is identical for all the multiplexed resonators, $Q_c$ varies with $f_o$, resulting in a range of coupling values. [elaborate on this item - can they measure/calculate something here?]
+
+%\end{enumerate}
+
+\subsubsection{Electric Force Microscopy (EFM) Experiment}
+\label{subsec:EFM}
+
+In this experiment, you will explore the use of the AFM for a mode that is neither topographic nor for probing mechanical properties - that is, Electric Force Microscopy (EFM). \textbf{Use sample 5 (graphene) for this experiment.}
+
+\begin{enumerate}
+    \item Begin by reading Sections 3.2.4 and 3.2.5 of Eaton \& West. (Note the operation of EFM is very similar to that of MFM, but MFM requires a specialized tip.) Write a summary of how EFM works. Why can we do it with our system with no substantive modifications?
+
+    \item First, do a topographic scan of a patch of the graphene. \textbf{DO NOT MOVE THE TIP RELATIVE TO THE SAMPLE} between the topographic scan and lifted scan. Record the image (Z\_DRIVE). Next, lift the tip up a small distance - record the exact distance. It should be high enough to clear all the features of the sample, with a small additional buffer, but try to keep it as close as possible. \textbf{Confirm this distance and your understanding of EFM with a GSI before proceeding.} Set the gain to zero. (Why? \textbf{Explain why we must set the gain to zero.}) Repeat the scan at this higher height, recording the image (both Z\_AMP and Z\_PHASE).  %[explain how to do an EFM scan] i think this should work, because we can't do lift height... TEST. apply voltage to sample?? probably a bad idea. maybe remount sample with silver paste or something like this?
+
+    \item We know that the electric field is $\approx V/x$. How can we use the data you have collected to estimate this value? Does it match your theoretical prediction?
+
+    \item Repeat for another sample of your choosing, or another patch of the graphene sample. Compare your results. What does this tell you about the two samples? The method used here is slightly nonstandard in order to make EFM work on our microscope. What would improve our measurements? What is the biggest source of error? Estimate how thermal drift contributes.
+\end{enumerate}
+
+\subsubsection{DNA Experiment}
+
+\label{subsec:DNA}
+
+In this experiment, you will explore the use of AFM for biological samples, taking advantage of its ability to handle delicate samples without damaging them. (For this experiment, you will \textbf{only} use vibrating mode.) \textbf{Use sample 17, DNA strands, for this experiment.}
+
+\textbf{NOTE: for now, there is no available DNA sample, so this experiment cannot be done.}
+
+%update later to not reference paper directly as it `gives away' a lot of details
+
+\begin{enumerate}
+    \item Begin by reading through Section 7 of \href{https://arxiv.org/abs/1512.05662}{this paper} (you may also wish to peruse Section 6, though your noise floor will likely not be good enough to perform this experiment).
+    \item Take images of both Z\_DRIVE and Z\_PHASE. It will likely take some work to choose scan parameters that result in a successful image! See the images in the referenced paper for an example of a good image. Discuss the approach you took to get a good image, and what the noise floor you found in experiment one tells you about the quality of your result.
+    \item Perform the analysis outlined in the given paper, and report the contour length of the DNA.
+\end{enumerate}
+
+\pagebreak
+\section{Troubleshooting}
+\label{sec:Troubleshooting}
+
+Below are solutions to some common problems you might run into while operating the AFM. For a wider range of solutions, refer to pages 42-45 of the \afmuserguide.
+
+\subsection{Software Bugs}
+
+Please make sure you have gone through the steps in the \hyperref[subsec:TurnOnInstrumentsAndOpenPrograms]{Program Startup} section as most of the software bugs can be resolved with this. If you are experiencing problems with the AFM software such as:
+
+\begin{itemize}
+
+    \item \textbf{Software is frozen/unresponsive.} Please attempt to wait without clicking anything until it becomes responsive again so that you can retract the tip (if relevant) and then exit the software. If the tip is retracted already before the software freezes, you may force quit the software using task manager after waiting for a few minutes unsuccessfully. If the tip is not retracted, and waiting is not working, you may force quit the software but be warned this may break your tip - when you reboot the software, try to do a tip retract right away and do a test scan before repeating your main experiment. \textbf{Please alert a staff member if this occurs multiple times.}
+
+    \item \textbf{Feedback light is blinking on and off even though it is in true feedback.} If the blinking is `high frequency' and the light is mostly green, do not bother with this, as it is more likely to lead to problems down the line. If it is blinking slowly/gives the impression of not being very in feedback, confirm first that the system is in true feedback via a test scan. If it looks good, you may go to the Tip Approach panel in the Pre Scan tab and click the gear to access the pertinent settings. Adjust the Feedback Threshold down by 0.01 V. Save, and check the feedback light again. You may iterate in increments of 0.01 V until the light looks reasonably solid. (It should not take more than two or three iterations.) Do \textbf{not} do this unless you know you are in true feedback - this is an internal software limit you are changing, not anything physical. You are just changing the threshold below which it recognizes the system as in feedback!
+    
+    \item \textbf{Laser does not turn on, probe does not move during range check, T - B does not zero out when laser is off.} Run through the steps in \hyperref[subsec:TurnOnInstrumentsAndOpenPrograms]{Program Startup} to confirm the software is not in an error mode.
+
+    \item \textbf{Cannot perform a tip approach properly (excessive tip approach timeouts).} Try exiting the program, power cycling the Ebox, and restarting the program. If the bug persists, also restart the computer after turning off the Ebox. If the AFM is still not functioning properly, get assistance. If instead of a tip timeout, you repeatedly have done the tip approach and it is in false feedback every time (i.e., more than five times) it may be that the tip is broken - see the next section.
+
+    \item \textbf{Topography scan freezes mid-scan.} Stop the scan, perform a tip retract and jog the tip up further, exit the software, turn off the Ebox, restart the computer, and turn the Ebox back on. (It's important you do it in this order!) This most often occurs after doing a Force-Distance measurement.
+
+    \item \textbf{Force distance measurement results in blue screen error.} This is relatively rare, but when it does happen it may happen several times in a row. Turn off the Ebox, power cycle the computer (this may mean turning it on, then off again, then on again), then turn the Ebox on again and repeat attempt. (Start by doing a topography scan to check whether the tip has been damaged - most of the time it seems to be fine when this occurs, but it's good to check.) If it happens several times in a row, leave the computer off for a bit (10+ minutes) before attempting to restart it. (This may be the result of a fundamental bug in LabVIEW, the language the AFMWorkshop software is written in - we are attempting to sort it out with the company.)
+
+\end{itemize}
+
+
+\subsection{Broken Probes}
+\label{subsec:BrokenTip}
+
+Throughout this experiment, it is very likely that you will break one or more probes. \textbf{If you are having a lot of problems with something unrelated to the software (e.g. having to do many tip approaches and still getting false feedback, hearing bad high pitched noises, trouble with frequency scans, blurry images) odds are this is probably what has happened.} Check through this list, and if it sounds like this is what has occurred, \hyperref[subsec:exchange_probes]{replace the tip}. Most tips by far get broken in probe exchange, so before doing your first probe exchange, we recommend practicing the process with one of the provided broken tips.
+% There is no direct visual way to check the condition of the tip, so you often have to analyze your scans to decide whether or not it needs to be replaced. Of course if the cantilever is broken off you will need to replace the probe.
+
+\begin{itemize}
+    \item Common ways to break a tip:
+
+    \begin{itemize}
+        \item If you jam a tip into the sample using Z motor, the tip will most likely become too dull.
+
+        \item If you perform a range check, or move the sample while the tip is actively engaged with the surface of the sample, your tip will be destroyed.
+
+        \item If your probe slides off of the exchange tool, off of the alignment grooves on your probe holder, is dropped, is flipped, or is picked up incorrectly during probe exchange, the tip (and often the cantilever) will likely be destroyed.
+
+    \end{itemize}
+
+    \item Evidence of broken or damaged tips:
+
+    \begin{itemize}
+        \item The cantilever is visually broken or missing in the camera view.
+
+        \item A dull or blunt tip will result in blurry and/or fuzzy appearing images, especially noticeable on surface features with known sharp edges.
+
+        \item A fractured tip will produce "double edges" or "ghosting" around sharp features.
+
+        \item The frequency scan in vibrating mode will not look good/smooth - it'll be jagged, and there may be multiple peaks very close together. (Not all broken tips will have this problem.) Note that double peaks may indicate saturation - try reducing the amplitude or demod gain before abandoning the tip.
+
+        \item It will be very hard to complete a successful tip approach without going into false feedback. If you have done a tip approach 5 or more times with no success and restarting the program hasn't worked, try checking the frequency scan and replacing the tip.
+
+        \item \textbf{If at any point you hear extremely high pitched bad noises}, you have probably broken the tip. Use manual motor control to move the tip up immediately, and replace. (If you are wondering if the high pitched noise you are hearing is a bad noise - it probably isn't. Quiet high-ish pitched noises are fine and sometimes occur during a normal scan. You will \textit{know} if it's a bad noise, because it will start suddenly, be extremely high-pitched/loud, and sound \textit{awful}.)
+
+    \end{itemize}
+
+\end{itemize}
+
+\subsection{Other Issues}
+
+\begin{itemize}
+    \item If the total DC photodetector signal (T+B) is saturated, try changing the photodetector gain switch to low gain (flip down).
+\begin{figure}[H]
+\centering
+    \href{http://experimentationlab.berkeley.edu/sites/default/files/AFMImages/53.png}{\includegraphics[width=0.5\linewidth]{images/53.png}}
+    \caption{Saturated photodetector}
+\end{figure}
+
+    \item Highly tilted or unstable scans: Try attaching the sample to the sample plate more securely, and make sure the probe holder is flat/flush with the metal mounting plate.
+
+    \item Probe not seated in holder correctly:  You will want to re-adjust the probe as a \emph{LAST RESORT}.
+    
+    \item Cantilever resonance signal is saturated. Reduce \textbf{Amplitude (Vpp)} and/or \textbf{Demod Gain}.
+
+    \begin{figure}[H]
+        \centering
+        \href{http://experimentationlab.berkeley.edu/sites/default/files/AFMImages/54.png}{\includegraphics[width=0.7\linewidth]{images/54.png}}
+        \caption{Peak amplitude is too high, resulting in saturation.}
+    \end{figure}
+
+
+    \item \href{http://experimentationlab.berkeley.edu/sites/default/files/AFMImages/VM\%204.2.\%20On\%20Cont-small\%20vib\_converted\_r1.mp4}{\textbf{False Feedback}}:  If the scan line profile is smooth but random, you are probably in False Feedback as the tip interacts with surface contamination. Try redoing the tip approach (other strategies include fine-tuning the set point in small increments, doing tip jogs, and/or selecting a different spot on the sample). Refer to the instructional video. 
+    \item If you hear the optical table (which keeps the AFM level) hissing continuously, and you see the values all read 250 on the top and 999 on the bottom, inform a staff member. (They will simply unplug the top plug on the left side of the box - the power cable - wait a few seconds, and plug it back in. This will reset the system and the table will re-stabilize.) \textbf{Note that it is impossible to get good scans if the table is not properly floating/stable.}
+
+    \item Camera not appearing in AmScope software - disconnect and reconnect USB connection to computer.
+\end{itemize}
+
+\end{document}
