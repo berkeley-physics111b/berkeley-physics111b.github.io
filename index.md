@@ -4,7 +4,7 @@ title: Welcome
 
 Welcome to the **Physics 111B Experimentation Laboratory** at the University of California, Berkeley.
 
-Physics 111B is an intensive laboratory course for upper-division physics students. It follows Physics 111A (Instrumentation) and puts those electronics, measurement, and data-acquisition skills to work. Students complete several experiments, each taking up to two weeks, chosen from the many that are permanently set up in the lab. Many replicate Nobel Prize-winning studies, and all are designed to build skills essential to research.
+Physics 111B is an intensive laboratory course for upper-division physics students. It follows Physics 111A (Instrumentation) and puts those electronics, measurement, and data-acquisition skills to work. Students complete several experiments, each taking up to two weeks, chosen from the 20+ that are permanently set up in the lab. Many replicate Nobel Prize-winning studies, and all are designed to build skills essential to research.
 
 <!-- TODO: add a photo of the lab: put it in assets/img/ and use ![Lab](assets/img/lab.jpg) -->
 
@@ -21,6 +21,6 @@ Physics 111B is an intensive laboratory course for upper-division physics studen
 
 ## About this site
 
-This site hosts the lab manuals for each experiment, including pre-lab and mid-lab questions, theory, references, and instructions, along with safety material and design documentation for lab apparatus.
+This site hosts the lab manuals for each experiment, pre-lab questions, references/documentation for the experiments, and safety material.
 
 If you spot an error or something that needs improvement for an experiment, be sure to note it in the experiment feedback form so the next student gets the improved version. If there is an issue with the website, contact the professors or Auden Young.
