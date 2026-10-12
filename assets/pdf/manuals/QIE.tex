@@ -1,0 +1,703 @@
+ \documentclass{../lab}
+
+\labacronym{QIE}
+\labtitle{Quantum Interference \& Entanglement}
+
+%\newcommand{\[1]}{http://advancedlab.berkeley.edu/mediawiki/index.php/Quantum_Interference_\%26_Entanglement#cite_note-Dehlinger-0}
+%\newcommand{\[3]}{http://advancedlab.berkeley.edu/mediawiki/index.php/Quantum_Interference_\%26_Entanglement#cite_note-CHSH-2}
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+
+\section{Quantum Interference \& Entanglement Description (QIE)}
+
+Revised \today  by Jianjie Xu
+
+\begin{itemize}
+    \item Prerequisites: Physics 137A
+
+    \item Days Allotted for the Experiment: 6
+
+\end{itemize}
+
+\textbf{Attention: There is NO eating or drinking in the 111-Lab anywhere, except in rooms 282 \& 286 Physics North on the bench with the BLUE stripe around it.} Thank You, the Staff.
+
+This lab will be graded 30\% on theory, 40\% on technique, and 30\% on analysis. For more information, see the \href{http://experimentationlab.berkeley.edu/syllabus}{\textbf{Advanced Lab Syllabus}}.
+
+Comments: E-mail \href{\MailLabManager}{\textbf{Dr Winthrop Williams}}
+
+\section{Quantum Interference \& Entanglement Pictures}
+
+\noindent
+    \begin{figure}[H]
+    \captionsetup{justification=centering}
+    \minipage[t]{0.35\linewidth}
+%\href{http://experimentationlab.berkeley.edu/sites/default/files/images/QIE_0613_Crop.jpg}
+  {\includegraphics[width=\linewidth,keepaspectratio]{images/qie_optics_box1_2026.png}}
+  \caption{Quantum Interference \& Entanglement Experiment} %\href{http://experimentationlab.berkeley.edu/sites/default/files/images/qie_optics_box1_2026.png}{Click here to see larger picture}}
+  %\label{fig:QIE_0613_Crop.jpg}
+    \endminipage\hfill
+\minipage[t]{0.35\linewidth}
+  %\href{http://experimentationlab.berkeley.edu/sites/default/files/images/qie_optics_box2_2026.png}
+  {\includegraphics[width=\linewidth,keepaspectratio]{images/qie_optics_box2_2026.png}}
+  \caption{Inside the optics box }
+  %\href{http://experimentationlab.berkeley.edu/sites/default/files/images/QIE_0615.jpg}{Click here to see larger picture}}
+  %\label{fig:QIE_0615.jpg}
+\endminipage\hfill
+\minipage[t]{0.259\linewidth}
+  \href{http://experimentationlab.berkeley.edu/sites/default/files/images/QIE_APDs_0616.jpg}{\includegraphics[width=\linewidth,keepaspectratio]{images/QIE_APDs_0616.jpg}}
+  \caption{Outside the optics box  \href{http://experimentationlab.berkeley.edu/sites/default/files/images/QIE_APDs_0616.jpg}{Click here to see larger picture}}\label{fig:QIE_APDs_0616.jpg}
+\endminipage
+\end{figure}
+
+\section{Before the 1st Day of Lab}
+
+\signatures \hyperlink{Blue Beam Path}{1} \hyperlink{Angle}{2} \hyperlink{Infrared Beam Path}{3} \hyperlink{Arbitrary Offset}{4} \hyperlink{$C_1$, $C_2$, and $\phi$}{5} 
+
+\begin{enumerate}
+    \item View the \href{http://experimentationlab.berkeley.edu/sites/default/files/QIE/qie\_introduction\_final2.mp4}{\textbf{introduction video}} for this experiment. Read the references \cite{Dehlinger}, \cite{Bell}, \cite{Clauser}, \cite{Walborn}, \cite{Lukishova}, \cite{Fox} below. \cite{Dehlinger} and \cite{Lukishova} are particularly useful.
+
+    \item Read the \href{http://experimentationlab.berkeley.edu/sites/default/files/QIE/fundamental-Optics.pdf}{\textbf{Optics Tutorial}}, in particular Sections 1.41 (Polarization), 1.46 (Waveplates), and 1.55 (Beamsplitter Cubes). You should also look at Optical Coatings (all of our waveplates have antireflection coatings) and Intro to Laser Technology. You will not get very far if you do not understand how these optics work; it is essential to prepare before you start working on the lab.
+
+    \item Complete the laser safety training detailed on the \href{http://experimentationlab.berkeley.edu/lasersafety}{\textbf{Laser Safety Training}} page. This includes readings, watching a video, taking a quiz, and filling out a form.
+
+    \item On the last day of the experiment, please fill out the QIE \href{\ExperimentEvaluation}{\textbf{Experiment Evaluation}}.
+
+\end{enumerate}
+
+You should keep a laboratory notebook. The notebook should contain a detailed record of everything that was done and how/why it was done, as well as all of the data and analysis, also with plenty of how/why entries. This will aid you when you write your report.
+
+Other References [\href{http://physics111.lib.berkeley.edu/Physics111/Reprints/QIE/QIE\_index.html}{\textbf{Physics 111 Library Site}}]
+
+\section{Objectives}
+
+\begin{itemize}
+    \item Learn and experience quantum mechanics and in particular entanglement
+
+    \item Learn to handle and align optics (Half-Wave plates, Polarized Beam Splitters, etc...)
+
+    \item Learn about coincidence techniques
+
+    \item Learn how to violate Bell's Inequality
+
+\end{itemize}
+
+\section{Introduction}
+\label{sec:Introduction}
+
+This experiment tests the validity of quantum mechanics against local hidden-variable theories in describing entanglement phenomena. It takes the form of a quantum optics experiment using polarization-entangled photon pairs.
+
+\subsection{Bell's Theorem and the CHSH Inequality}
+
+John Bell showed that any theory in which properties are local and are well-defined prior to measurement must obey certain limitations. Interestingly, quantum mechanics exceeds those limits set by these so-called Bell-inequalities. Therefore, observing that nature does exceed these limits makes a good case for quantum mechanics and proves that there exists no local realistic theory that can describe nature accurately. One particular version of the Bell's theorem is the so-called CHSH inequality (named after Clauser, Horne, Shimony, and Holt). To make the discussion more concrete, we will assume a photon source that sends two photons one to each of two distant locations. The degree-of-freedom we will study is the polarization of these photons. We will be interested only in events where the polarization of both photons has been detected successfully. First let us define the \emph{parity} of the polarization correlations:
+\begin{equation}
+    E = \frac{N_{vv}-N_{vh}-N_{hv}+N_{hh}}{N_\text{total}} = \frac{N_{vv} - N_{vh} - N_{hv} + N_{hh}}{N_{vv} + N_{vh} + N_{hv} + N_{hh}},
+\end{equation}
+where $N_{vv}$ is the number (or rate) of coincidences where both photons are vertically polarized, etc. $E$ can range from -1, meaning that all photon coincidences have opposite polarizations, to 1, meaning they all have the same polarization. Let us then define the quantity, $S$, which is function of four distinct $E$ measurements.
+\begin{equation}
+    S=E(\alpha,\beta)-E(\alpha,\beta') + E(\alpha',\beta) + E(\alpha',\beta') \,,
+\end{equation}
+where $\alpha$ and $\beta$ are the angles in which we are going to analyze the polarization of each photon. The interest of defining the quantity $S$ is that local realistic theories are always bound to yield $|S| \leq 2$, while quantum mechanics allows values of up to $2\sqrt{2} \approx 2.8$.
+
+At first glance, it would seem that $S$ could range from –4 to 4. However, a careful inspection of the physics reveals that no two pairs of angles ($\alpha,\alpha'$) and ($\beta,\beta'$) give a value this large. If the system obeys a local hidden variable theory, then $S$ is restricted by the CHSH inequality: $|S| \leq 2$. However, quantum mechanics predicts that $|S|$ can be as high as $2\sqrt{2}$ for particular quantum states of the two photons and as well as carefully chosen angles. (For a full derivation, see CHSH's paper \cite{Clauser}.) The goal of this experiment is to violate the CHSH inequality, thereby rejecting local hidden variable theories and affirming the validity of quantum mechanics.
+
+\section{Experimental Setup}
+
+\subsection{Overview}
+
+The heart of the experiment is the generation of a particular entangled quantum state of the polarization of two individual photons, a Bell state. In the simplest case, this is a superposition state of both photons being either horizontally or vertically polarized. In the experiment, we achieve this by sending photons near 405\,nm from a diode laser to a pair of non-linear crystals made of beta barium borate (BBO crystal). Within the non-linear crystals the blue photon can decay into a pair of red photons with their polarization being determined by the optical axes of the non-linear crystals. The photon pair emitted under a small angle is then detected after passing through optics for manipulating polarization with two Avalanche Photodiodes (APD) (See the quadsupply diagram \href{https://drive.google.com/file/d/1jYAbLmue-vkkq-x0vIwep98wGffPeys4/view?usp=drive_link}{\textbf{here}}). Finding the two detectors firing within a short time interval indicates that these events were indeed caused by a photon pair and not stray light.
+
+When you enter the room, you'll notice there are two boxes on the table. Each of these boxes houses different elements of the experiment. The one closer to the door (Box 1) holds the diode laser and optical elements for creating a Bell State. The one closer to the computer (Box 2) holds the detection setup. When aligning the laser it is best to take the top off both boxes. Always wear the provided safety goggles when the laser is on. 
+
+\textbf{Check the safety goggles in the room.} Based on your laser safety training, is the OD rating on the side sufficient? Is it rated for the correct wavelength(s)?
+
+\checkpoint{Laser Goggle Safety Check}{Show an instructor the laser goggles and explain your assessment of whether they are sufficient for the experiment.}
+
+When taking data, you will want easy access to the half wave plates in the detector setup, so you can leave the top off of box 2. Ambient light will flood the detectors, so you will want the lights off in the room (computer light is ok). There is an LED lamp \cite{bluelaser} (can you explain why we use blue LEDs? hint: you can look at the APD efficiency versus wavelength in the \href{https://drive.google.com/file/d/17SI-NyknjP7zrS3YAGSdCFkFAXRjYj9b/view?usp=drive_link}{\textbf{manual}} if you are interested.) installed so that you can read the values off of the half wave plates in the detector setup. The `on' switch for the lamp can be found on the back side of the table on the rack above.
+
+%Inside Box 1, the diode laser has a maximum power of around 120\,mW. At 405\,nm, this can seriously damage your eye. However, the blue beam is filtered out and thus in Box 2 the power is reduced to 0.2\,mW, which would not cause serious damage. You should use the power meter located in the room to confirm that the power of the laser beam in Box 2 is not too high. Record the number. If you find it high, ensure that the filter is in place after the BBOs. The filter should never be removed. Of course \emph{you should avoid looking directly into the beam.} This setup makes collecting data more efficient. If you decide to work without the filters (it might impact the quality of the Bell state) be sure to protect your eyes by wearing the appropriate safety goggles. THIS FILTER IS NOT PRESENT ANYMORE.
+
+\textbf{Note: For aligning purpose of this experiment, all the knobs that are designed to be adjusted are labeled by green tapes (see (Figure \ref{fig:qie_optics_image_0})). DO NOT change other parts of the optical path UNLESS instructed by one of the staff.}
+
+\subsection{Diode Laser and Laser Safety}
+
+\begin{figure}[h]
+    \centering
+    \href{http://experimentationlab.berkeley.edu/sites/default/files/images/300px-QIE_LDController.jpg}{\includegraphics[width=0.5\linewidth]{images/300px-QIE_LDController.jpg}}
+    \caption{Thorlabs LDC 205 C Diode Laser Controller.}
+    \label{fig:300px-QIE_LDController}
+\end{figure}
+
+\textbf{Note: Do NOT put the power meter next to the Laser Diode, Only measure power after the optical Isolator.}
+
+The experiment is powered by a \href{http://experimentationlab.berkeley.edu/sites/default/files/QIE/D405-120.pdf}{\textbf{120\,mW, 405\,nm blue diode laser}}, the same wavelength used by Blu-ray Disc\textsuperscript{TM} players. \textbf{This is a Class 3B laser and can cause permanent eye damage if the beam directly enters the eye. 
+DO NOT REMOVE %THE 405 BANDSTOP FILTER AT THE END OF THE DOWN-CONVERSION SOURCE (BBO CRYSTALS) OR 
+THE ORANGE BEAM ENCLOSURES THAT PREVENT STRAY REFLECTIONS FROM LEAVING THE BEAM PATH.} Orange protective goggles are available by the door (see Figure \ref{fig:safetygoggles}).
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.4\linewidth]{images/qiesafetygoggles.jpg}
+    \caption{Laser safety goggles for QIE experiment.}
+    \label{fig:safetygoggles}
+\end{figure}
+
+Because this is a diode laser, all the photons in the beam have the same polarization, in this case horizontal. The laser beam incident on the BBOs (i.e., after the intermediate optics) is sometimes referred to as the ``pump'' beam.
+
+\begin{figure}[h]
+    \centering
+    \href{http://experimentationlab.berkeley.edu/sites/default/files/images/4032px-QIE_TempController.jpg}{\includegraphics[width=0.5\linewidth]{images/508px-QIE_TempController.jpg}}
+    \caption{Temperature Controller.}
+    \label{fig:508px-QIE_TempController}
+\end{figure}
+
+\textbf{Before you turn on the laser, make sure that the Temperature Controller (See Figure~\ref{fig:508px-QIE_TempController}) next to the Laser Diode Controller is on. If not, turn it on.}
+
+The diode laser is powered by a Thorlabs LDC205C diode laser controller, located on top of the optical bench roof. Turn the controller on with the switch in the lower left corner. We run the laser diode in constant current mode and cathode ground (CG) polarity. You will want to view the laser diode current, ILD. To operate the diode, use the button in the upper right corner to turn it on and turn the knob to control the current. Any time the laser diode is on, the light on the QIE room door will be flashing red. The current limit is set to 100 mA to avoid burning out the diode. If you reach this limit, the controller will beep, the red ``LIMIT'' LED will turn on, and you will not be able to increase the current further. However, it is okay to run the laser diode at its maximum current. \textbf{You should have at least 35\,mW (corresponds to about 50\,mW at the laser diode) reasonably well-collimated and focused light after the BBOs and before the band stop. And you should avoid using laser power any closer to 80 mW of the laser diode, as it is unnecessary and damage the laser over long term.}
+
+Right after the laser diode, there is an optical isolator which prevents light reflected further down stream from going back into the diode. Isolators are used to reduce or eliminate the effects of optical feedback: reflections of a laser’s energy back into itself. These effects include noise, amplitude fluctuation, and laser damage. Isolators protect the laser, while maintaining beam alignment and providing maximum forward transmission and reverse isolation. Laser light enters the isolator via the input polarizer and is linearly polarized. This light then enters the rotator, which rotates the plane of polarization +45$^\circ$. The beam exits through the output polarizer, whose axis is oriented +45$^\circ$.
+
+%The isolator used is supposed to have a transmission efficiency of 84\%. It is worth while to check for yourself (using a power meter before and after the isolator) to see if the efficiency is at least close to the expected. If it is not, you may need to realign the polarization optics. \textbf{It is unlikely you need to do this}, but if you do, 1) Loosen the cap screw holding the isolator in the slip ring. (in the side facing away from the laser diode). 2) Rotate the isolator until transmission is maximized. This occurs when the input polarizer is aligned to the laser’s plane of polarization. Lock down the slip ring cap screw.
+
+%To monitor the behavior of the laser diode, every student is asked to measure the 405\,nm laser light power as a function of the supplied current. Use a power meter, measure power after the optical Isolator, (ask the staff if you cannot find it in the room. The meter is shared among many experiments.) Start from 0 mA (or the lowest you can get) and measure the power of 405 nm laser light right after the optical isolator. Make sure the wavelength setting of the power meter is set to 405 nm (why?). Measure up to 100 mA. Include the plot in your lab report.
+
+\subsection{BBOs}
+
+\begin{figure}[h]
+    \centering
+    \href{http://experimentationlab.berkeley.edu/sites/default/files/violetbeamdiagram2.jpg}{\includegraphics[width=0.5\linewidth]{images/violetbeamdiagram2.jpg}}
+    \caption{Diagram of blue beam path optics.}
+\end{figure}
+
+\textbf{IMPORTANT: As of 2016, it is not possible to rotate the BBO optical axes relative to each other.}
+
+The beam passes through some optics (two steering mirrors, two wave plates, and an iris). See Section \ref{sec:Alignment} Alignment before reaching the pair of nonlinear beta barium borate ($\beta$-BaB2O4 or just BBO) crystals. When a pump photon of a particular polarization enters such a BBO crystal, it can be converted into two photons each with (about) half the initial energy of the pump photon (and twice the wavelength = 810 nm). These photons exit the crystal symmetrically at a small angle. Often those photons referred to as the ``signal'' and ``idler'' photons, but we can just as well call them the A and B photons, referring to the two arms of the detection setup along which they will travel. Most importantly, their polarization is entangled, meaning that the photons are guaranteed to have (in this case) the same polarization.
+
+Note that the two beams of the down-converted photons will not be visible to the naked eye because (1) the wavelength of 810\,nm photons are infrared and (2) the beams are extremely low-power as the conversion efficiency of the crystals is quite small. (Think about how much power $\sim$1,000 photons per second correspond to and compare this to the laser diode power rating.)
+
+\begin{figure}[h]
+    \centering
+    \href{http://experimentationlab.berkeley.edu/sites/default/files/qie_optics_image_0.jpg}{\includegraphics[width=0.7\linewidth]{images/qie_optics_box1_2026.png}}
+    \caption{Photo of box 1 blue beam path optics. }
+    \label{fig:qie_optics_image_0}
+\end{figure}
+
+Two BBO crystals are mounted with their optical axis aligned perpendicular to each other. Each BBO crystal converts only photons of a single polarization. Because the separation between the BBOs is so small, the down-converted photons from each BBO essentially travel along the same cone to the detectors. This means that the horizontally polarized pairs are indistinguishable from the vertically polarized pairs until we perform a polarization measurement on them. In a quantum mechanical picture, each pair of down-converted photons is in a superposition of vertical and horizontal polarization until a measurement collapses the wavefunction into one state or the other. The evolution of the quantum state of the system from emission to down-conversion is summarized below in bracket notation \textbf{with the assumption that the BBOs are perpendicular}. $H$ and $V$ refer to horizontally and vertically polarized states of a pump photon, respectively, and $h$ and $v$ refer to horizontally and vertically polarized states of a down-converted photon. $hh$ and $vv$ are short for the combined state of a pair of down-converted photons, and $\theta$ 
+is the polarization angle of the pump beam. Thus, each BBO can act on the pump photon in the following manner:
+\begin{gather*}
+    \text{BBO-1: } |V\rangle \rightarrow  |hh\rangle \\
+    \text{BBO-2: } |H\rangle \rightarrow  |vv\rangle 
+\end{gather*}
+Assuming blue pump light with its polarization described by $\sin \theta |V\rangle + \cos\theta e^{-i\delta} |H\rangle$, we arrive at $|\Psi\rangle = \sin\theta |hh\rangle + \cos\theta e^{-i\delta} |vv\rangle$.
+
+The probability of detecting a given polarization depends on the polarization of the pump laser. You can adjust the polarization of the pump laser by rotating two 405\,nm half-wave plates.
+
+%We have installed a 405\,nm band-stop filter after the BBOs for laser safety reasons. Although approximately 50\,mW of power are incident on the BBOs, the filter attenuates this to less than 1 mW. This power can be viewed safely in order to align the detection components. Therefore you do not need to wear laser safety goggles if this band-stop filter is installed AND no pump light is leaking out of encased area before the band-stop. NOTE IN AUGUST 2026: THIS FILTER IS NOT PRESENT and also this is just not true because the full beam path is not enclosed.
+
+\subsection{Detection}
+
+\begin{figure}[h]
+    \centering
+    \href{http://experimentationlab.berkeley.edu/sites/default/files/images/IMG_4032.jpg}{\includegraphics[width=0.8\linewidth]{images/qie_optics_box2_2026.png}}
+    \caption{Photo of box 2 Detection arms from the front optics}
+    \label{fig:qie_box2}
+\end{figure}
+
+The detection setup consists of two identical arms separated by a small angle (See Figure \ref{fig:qie_box2}). The angle can be adjusted to match the trajectory of the down-converted photons and should be centered around the blue laser beam.
+
+Each of our detectors consists of a small fiber coupler (FC) lens, which focuses the light into an optical fiber. The optical fiber runs from the lens to an avalanche photodiode (APD), which converts single photons into sizable ($\sim$1 V) electronic pulses. They can detect anywhere from hundreds of photons to tens of millions of photons per second. The APDs are powered by a homemade power supply, located above the APDs on the optical bench roof. The power supply has a master on/off switch and four switches to turn the APDs on and off individually. \textbf{An alarm within the APD power supply will alert you if you are overloading the APDs. If you ever hear this, immediately turn off the APDs to prevent damage.} Ambient light conditions are typically okay as long as you \textbf{do not remove the long-pass filter on the detectors while the APDs are on.} Note, however, that this alarm sounds for several seconds every time the APDs are turned on. This is normal.
+
+To measure the polarization of the photon pairs, each detection arm has a half-wave plate to set the measurement basis and a polarizing beam splitter cube. The beam splitter allows horizontally polarized light to pass and reflects vertically polarized light out at 90$^\circ$. This setup only allows photons to reach a given detector if they have a certain polarization (or, equivalently, their arrival at a given detector means that their wavefunctions have collapsed into a given polarization state). In other words, the beam splitter makes the horizontally polarized photons distinguishable from the vertically polarized photons. Please note that there most probably is an arbitrary offset between the reading on the mounts for the half-wave plates and the actual direction of the optical axis of the half-wave plate. Think about a way you can calibrate these wave plates, i.e. finding the ``zero'' of the two half-wave plates by pumping only one crystal at a time (i.e. by sending in only vertically or only horizontally polarized light into the BBOs rather than a superposition of both), removing both of the half-wave plates and then placing one at a time while varying the angle. You should be tracking the coincidence counts throughout this process. Remember that the beam splitters only let through one polarization of light. You can use this fact to zero the half-wave plates. \textbf{This procedure will have to be done after you are receiving coincidence counts. }
+
+\subsection{Coincidence Counting}
+\begin{figure}[H]
+    \centering
+    \href{http://experimentationlab.berkeley.edu/sites/default/files/images/QIE_FPGA.jpg}{\includegraphics[width=0.6\linewidth,keepaspectratio]{images/QIE_FPGA.jpg}}
+    \caption{FPGA Board}
+    \label{fig:FPGA.jpg}
+\end{figure}
+Signals from the APDs are sent to a field-programmable gate array (FPGA) \textbf{(See Figure~\ref{fig:FPGA.jpg} )} that has been programmed to calculate coincidences. A coincidence is the arrival of two photons at different detectors within a short coincidence window, typically 5 ns for our setup. The FPGA sends photon counts for each detector and coincidence counts for each pair of detectors to LabVIEW, which displays the data on the thermometer-like indicators on the front panel. These data can be used to calculate $S$.
+
+\subsection{Proper Start-up Procedure}
+\label{subsec:ProperStartupProcedure}
+\noindent
+\begin{figure}[H]
+\captionsetup{justification=centering}
+\minipage[t]{0.245\linewidth}
+  \href{http://experimentationlab.berkeley.edu/sites/default/files/images/QIE1.jpg}{\includegraphics[width=\linewidth,keepaspectratio]{images/QIE1.jpg}}
+  \caption{Power Supply for 4 APDs}
+  \label{fig:QIE1.jpg}
+\endminipage\hfill
+\minipage[t]{0.245\linewidth}
+  \href{http://experimentationlab.berkeley.edu/sites/default/files/images/QIE4.jpg}{\includegraphics[width=\linewidth,keepaspectratio]{images/QIE4.jpg}}
+  \caption{Power in and data out APDs}
+  \label{fig:QIE4.jpg}
+\endminipage\hfill
+\minipage[t]{0.245\linewidth}
+  \href{http://experimentationlab.berkeley.edu/sites/default/files/images/QIE3.jpg}{\includegraphics[width=\linewidth,keepaspectratio]{images/QIE3.jpg}}
+  \caption{Fiber optic cables in to APDs}
+  \label{fig:QIE3.jpg}
+\endminipage\hfill
+\minipage[t]{0.245\linewidth}
+  \href{http://experimentationlab.berkeley.edu/sites/default/files/images/QIE_Port.jpg}{\includegraphics[width=\linewidth,keepaspectratio]{images/QIE_Port.jpg}}
+  \caption{Ports of an APD}
+  \label{fig:QIE_Port.jpg}
+\endminipage
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \href{http://experimentationlab.berkeley.edu/sites/default/files/images/QIE2.jpg}{\includegraphics[width=0.5\linewidth,keepaspectratio]{images/QIE2.jpg}}
+    \caption{APDs (left) send data to FPGA card (right)}
+    \label{fig:QIE2.jpg}
+\end{figure}
+
+
+\noindent Due to the idiosyncrasies of our software, it is important to follow these steps in the correct order:
+
+\begin{enumerate}
+    \item Turn on the computer and log in.
+
+    \item Turn on the FPGA.
+
+    \item Run the LabVIEW program (latest version: C:\textbackslash QIE\_Counter\textbackslash QIE Counter.exe, see \ref{subsec:UsingLabVIEWProgram} Using the LabVIEW Program).
+\end{enumerate}
+
+If you turn the FPGA on before the computer, you may not be able to use the mouse. If you run LabVIEW before turning on the FPGA, you will get an error message.
+
+The APDs can be turned on and off at any time, but you should be aware that turning them on while the lights are on influences your results (check this out). Therefore we encourage you not to turn the APDs on while the lights are turned on. It is usually best practice to turn on the main switch to the APD power supply (on the left) and then turn each APD on individually. This allows you to know which APD is overloaded should the alarm sound continuously. Remember that it is normal for the alarm to sound for a few seconds as each APD is switched on.
+
+\section{Alignment}
+\label{sec:Alignment}
+
+Because our detector apertures are only a few mm in diameter, proper alignment is essential to obtaining good data. Watch this short video from Thorlabs (the company that supplies all the optical components on the table) to learn about basics diode laser alignment techniques: \href{https://www.youtube.com/watch?v=qzxILY6nOmA&themeRefresh=1}{\textbf{How to Align a Laser.}}
+
+During alignment, refer to the \href{http://experimentationlab.berkeley.edu/sites/default/files/QIE/fundamental-Optics.pdf}{\textbf{Optics Tutorial}} as needed, especially Sections 1.41 (Polarization), 1.46 (Waveplates), and 1.55 (Beamsplitter Cubes). These sections will help you interpret what you see in the apparatus. If you are unsure how an adjustment should change the beam path or polarization state, pause and consult the tutorial before turning additional optics.
+
+\textbf{Warning: For aligning purpose of this experiment, all the knobs that are designed to be adjusted are labeled by green tapes (see Figure \ref{fig:qie_optics_image_0}). DO NOT change other parts of the optical path UNLESS instructed by one of the staff.}
+
+
+\subsection{Blue-Violet Beam Path}
+
+%We are using an optical cage system between the laser diode and the BBOs to make alignment of this portion of the beam path fairly simple, as well as to ensure laser safety. The orange material around most of the beam path attenuates the laser power enough to be safely viewed by the naked eye but not so much as to obscure the view of the laser dot from the outside. If this material ever glows enough to add significant noise to your data, block the detectors' view of it with the black shields.
+
+%The following alignment procedure is based on height of the paper target behind the detector arms being correct. In theory, this target never needs to be moved or adjusted. However, if you notice that the target height seems drastically different than the height of the blue beam, you will need to adjust the blue beam path direction.
+
+%We want the beam of the blue laser to go through the center of both of the BBO crystals as well through the center as defined by both detectors, i.e. the point we will mark with the target near the detectors (question: why do we need to make sure that the blue beam will be in the center b the detector?). For this portion of the alignment procedure you have two choices. Either you could be using the protective goggles, or you could not. The fundamental conundrum is that you need to see the laser. Hence, if you want to use the googles you (very likely) will not be able to see the laser light. Thus you would be to toggle between using googles when changing something and then viewing the alignment after taking the googles off. Alternatively, we can reduce the laser power sufficiently so that the laser beam does not represent a hazard (still avoid looking down the beam path regardless).
+%Turn down the power of the blue laser by using the knob on the laser diode controller such that the beam is faintly visible. Confirm that the output power is (much) less than 1\,mW which is considered to be safe for alignment without protective equipment.
+
+Let's start with the optics in the first box for creating Bell's states. An optical cage system is set up between the laser diode and the BBOs to ensure laser safety. The orange material around most of the beam path attenuates the laser power enough to be safely viewed by the naked eyes but not so much as to obscure the view of the laser dot from the outside. If this material ever glows enough to add significant noise to your data, block the detectors' view of it with the black shields.
+
+%The following alignment procedure is based on height of the paper target behind the detector arms being correct. In theory, this target never needs to be moved or adjusted. However, if you notice that the target height seems drastically different than the height of the blue beam, you will need to adjust the blue beam path direction.
+To be able to observe the laser beam, turn down the power of the blue laser by using the knob on the laser diode controller such that the beam is faintly visible. Confirm that the output power is less than 1 mW which is considered to be safe for alignment without protective equipment.
+
+
+The beam of the blue laser should go through the center of both the BBO crystals, as well as through the centers of the detectors in box 2. The latter you will check by using the iris located at the end of the second box.
+
+Having accomplished a safe environment for laser, place a piece of paper after the BBO crystals to observe where the blue laser hits the BBO crystals (you should see the blue shadow of the BBOs as well as a bright spot where the laser actually hits the paper). 
+
+The laser beam in box 1 should already be aligned and you should not be adjusting any knobs in this box except later the half-wave plates for polarization.
+%For this we need four degrees of freedom which are provided by the two turning mirrors. In most cases the beam already passes sufficiently well through the center of the BBO's and we can use only the mirror furthest downstream, near the BBO's (why this mirror and not the other?) to direct it to the center of the detectors. It is probably most convenient to use the paper target to define where the center of the detectors will be.
+
+%If you find that the alignment is too far off, i.e. the laser passes near the perimeter through the BBOs, we need to use a slightly more involved procedure:
+%Because the first mirror is farther upstream, it is a finer adjustment to the beam spot's position on the BBOs. Use the first mirror to guide the beam to center the beam on the target, use the second mirror to guide the laser beam to the center target near the detectors. Repeat the process until you have the beam accurately centered on both the BBOs and the target. 
+
+%Important: at this point it is also wise to check the tilt of the half waveplate used for the phase adjustment in the box between the halfwave plate (used for pump beam polarization) and the second mirror. Make sure that it is roughly perpendicular to the beam path to begin with and then optimize its angle with respect to the incident blue laser beam. Angles greater than 45 degrees will limit your observable coincidence rates severely. Alternatively, you may just remove it. 
+
+\textbf{Potentially useful additional alignment details -} Check to make sure that the laser spot coming out of the BBOs is focused to a spot. It should not look like a line. If it does look like a line, the path of the blue laser beam is totally misaligned or the collimator of the laser diode is out of focus. Only do this with an instructor. To fix the focus, (together with the instructor), adjust the focus by \textbf{CAREFULLY} removing the protective cover of the laser diode by unscrewing it from the front (it looks like a small black tube protruding from the black box that holds the laser diode). This will expose the lens, which can be focused by turning it. You should change the focus slowly while viewing the laser exiting the BBOs. Focus the laser to a spot as best as possible. Also, for reference of the instructors, the paper target/iris behind the detector arms, in theory, never needs to be moved or adjusted. However, if you notice that the target height seems drastically different from the height of the blue beam, you will need to adjust the direction of the blue beam path (only do this with an instructor present).
+
+%\checkpoint{Blue-Violet Beam Path}{Show a GSI or Professor that you have properly adjusted the Blue Beam Path. This can be demonstrated by focusing the beam on the target located at the back of the detector, between the two detection arms. With the GSI/Professor, perform a stray/errant beam check and initial and date the sheet on the wall. Also demonstrate that you know how to hook and unhook the Fiber Optic cables to the Infrared laser as well as the FPGAs. Some more information and pictures of the Fiber Optic cables are located in the Infrared Beam Path section below.}
+
+\checkpoint{Blue Beam Path Check}{Show a GSI or Professor that the Blue Beam Path is already well aligned by measuring the heights of blue beam at different locations. For example, use the ruler to measure in front of the isolator, BBOs and also the iris at the end of the beam path.}
+\subsection{Infrared Beam Path}
+
+Next, let us move to the second box for detecting the Bell's states (Figure \ref{fig:qie_box2}). This is a \href{http://experimentationlab.berkeley.edu/sites/default/files/QIE/laser.JPG}{\textbf{picture}} of the red laser pointer you should be using to align the infrared beam path. It is a portable, black, cylindrical tube that can fit in your hand.
+
+As described earlier, a pair of 810nm photons is downconverted from a 405nm pump photon when it goes through a BBO crystal. The goal will be to align the detector arms such that they ``look'' at the BBOs where the entangled photon pairs are created. For this, we will send a test beam in the reverse direction through the fibers and the collimation optics, and try to match the path of this test beam and the path that the downconverted photons will take. Note that the light needs to be focused into the core of a single-mode fiber whose diameter is on the order of 1\,$\mu$m. That means that precise alignment is critical, albeit the requirements are less stringent since there is a focusing lens on the fiber imaging the photons into the fiber.
+
+Align the components on each detector arm independently of the other arm using the following procedure. During this procedure, you will have to remove the optical fibers from the APDs. Make sure the APDs are turned off before you do this. Allowing ambient light to enter the APDs directly will overload them. 
+
+\textbf{Be careful not to clamp anything down on top of the optical fibers during alignment. They are fragile and expensive to replace. When plugging into the FPGA a little tooth must be aligned with the port in order to be properly connected. you should not have to force the connection. There are pictures located below }\textbf{of the tooth and }\textbf{of the port for the FPGA. However, when plugging the fiber optic cable no tooth alignment is necessary, so we have also included a picture }\textbf{of the port of the laser where the optical cable is inserted. Along similar lines: don't pull on the jacket (the black cover), instead carefully wiggle on the metal connector to remove the fiber from the connection. In addition, make sure that you do not scratch the front facets. The fibers are really fragile and they are also expensive, so simply do not break them!}
+
+
+\noindent
+
+\begin{figure}[H]
+\captionsetup{justification=centering}
+\minipage[t]{0.33\linewidth}
+  \href{http://experimentationlab.berkeley.edu/sites/default/files/QIE/fiberopticcable_0_0_1.JPG}{\includegraphics[width=\linewidth,keepaspectratio]{images/fiberopticcable_0_0_1.JPG}}
+  \caption{The tooth of a fiberoptic cable}
+  \label{fig:fiberopticcable_0_0_1.JPG}
+\endminipage\hfill
+\minipage[t]{0.33\linewidth}
+  \href{http://experimentationlab.berkeley.edu/sites/default/files/QIE/fpgaport_0_1.JPG}{\includegraphics[width=\linewidth,keepaspectratio]{images/fpgaport_0_1.JPG}}
+  \caption{The FPGA port}
+  \label{fig:fpgaport_0_1.JPG}
+\endminipage\hfill
+\minipage[t]{0.33\linewidth}
+  \href{http://experimentationlab.berkeley.edu/sites/default/files/QIE/insertend_0_1.JPG}{\includegraphics[width=\linewidth,keepaspectratio]{images/insertend_0_1.JPG}}
+  \caption{The insert end}
+  \label{fig:insertend_0_1.JPG}
+\endminipage
+\end{figure}
+
+\begin{enumerate}
+    \item First we remove the long-pass filters from the detectors. You could choose to also remove the half-wave plates, but they do not make any changes on the laser beam path,  except a little bit of reflection, which could be corrected later.
+
+    \item Remove the optical fiber from the APD and connect it to the red fiber testing laser (looks like a laser pointer). The resulting red light cone represents all the light that will be collected by the detector in your experiment. The size of the red-light cone should not be much larger than the diameter of the BBOs. If the laser light is not collimated properly, there must be a problem with the focusing optics of the collimator. Typically the collimator is stuck because somebody tried to adjust it and forced it too far in.  Then the collimator has to be taken apart. 
+    It is important that you do not try to fix this problem yourself and you should call over an instructor to fix the problem (a collimator costs about \$1,000). Instructions for the instructor: after loosening the focusing screw a bit, try to rotate the lens holder with some tool to get it unstuck. If that does not work remove the retaining ring, and wiggle/rotate the lens holder so that it can move out.  When putting it together care has to be taken to rotate the lens holder again so that it can slip in sufficiently far. 
+
+    \item By making small adjustments using the knobs marked by green tapes, your goal is to aim the test laser as precisely as possible at the center of the BBOs. With the red laser and the blue laser on, the two spots should overlap at the BBOs. Study the following parameters to optimize the alignment of the infrared laser beam path.
+    \begin{enumerate}
+        
+    
+    \item \textbf{Detector A/B Height:} 
+    The height of the detectors is controlled by the thumb screws on the side mount, and it is already pre-aligned well enough. 
+    %Swing the detector arm to the center so that the blue beam is centered horizontally on the target. First move the plate on which the detectors are mounted parallel to the back plate with the thumb screws on the back of the detectors. Later, this will allow you to adjust the angle of the detectors in all directions with the thumb screws. Then adjust the height of the detector so that the blue beam passes through the pinhole, i.e., the red and blue beams coincide. Later on, you might be able compensate for slight vertical misalignment by adjusting the second turning mirror in the blue laser path to optimize count rates. However, it may be difficult to optimize this way for both detectors.
+    
+    \item \textbf{Detector A/B Angle:} Adjust the thumb screws on the back of the detector (marked by green tapes) until the red laser cone is well centered on the BBOs. You can use a piece of white paper to see the beam if it helps. At the end, check the height of the beam at the detector and at the BBOs. See if two measurements are close.
+    
+    \textbf{Instructions for instructors if necessary:} adjust the thumb screws on the BBOs so that the back-reflection of the red circle is centered on the detector aperture. These thumb screws move both BBOs together. However, it may be difficult to align this back reflection for both arms.
+    
+    \end{enumerate}
+    %Note that the position of the red-cone will change when you rotate the arms (why is that?). So should think about how to set the detector arm angles and then readjust as necessary.
+
+
+    \item Insert the polarization analyzing elements back and align them with the infrared beam path.
+
+The downconverted photons will be entangled in the polarization degree-of-freedom. Therefore, we will have to analyze the polarization with a combination of polarizers (polarizing beam splitter cube) and a half-wave plate. 
+
+\begin{enumerate}
+    \item \textbf{Cube Position:} Use the thumb knobs on the beam splitter cubes, adjusting the front face towards the BBOs (marked by a dot on top of the cube; There is only one correct position for the dot). Adjust its position and height so that the red beam passes roughly through the center of the back face.
+
+    \item \textbf{Cube Angle:} Adjust the thumb screws on the cube mount so that the light gets reflected straight back into itself. For this, you might want to punch a hole into a sheet of paper and hold it into the beam path. Walk the reflected beam until it matches the hole.
+
+    \item \textbf{Half-Wave Plate A/B:} The half-wave plates are in front of the beam splitter. Adjust the position and angle with respect to the laser beam axis, such that the reflected red laser on the plates go straight back to the detectors. You might want to bring these wave-plates into the beam path right before their calibration.
+\end{enumerate}
+
+For most settings of the halfwave plates, you should see already coincidences. However, you might want to reoptimize the angle settings of the detector arms. Why?
+
+\end{enumerate}
+
+\checkpoint{Infrared Beam Path}{Show a GSI or Professor that you have properly aligned the setup. Using the red test laser, demonstrate that the infrared beam path travels in a straight line from the BBOs to the detectors without any misaligned reflected beams. And the red and blue beam path emerging from the BBO crystals converge (i.e. that the system is aligned).}
+
+
+\subsection{Detection Arm Angle}
+When you are done with the previous alignment, replace the long-pass filters on each detector and reconnect the optical fibers to their corresponding APDs. Make sure when reconnecting the fibers that the notch on the connector is lined up correctly. You will not be able to insert the fiber all the way in if it is not aligned, meaning light could possibly leak in and out.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.6\textwidth]{images/micrometers.png}
+    \caption{Micrometers in control of the detection arms' angles.}
+    \label{fig:micrometer}
+\end{figure}
+
+The optimal angle for the detection arms will be the angle at which AB coincidences are maximized. Use the micrometers (see Figure \ref{fig:micrometer}, marked by tape) to vary the angle of each arm until you find a setting that \textbf{maximizes coincidences}. In order to monitor the coincidence counts while you vary the arm angle, you would initiate the detection set-up and program by revisiting Section \ref{subsec:UsingLabVIEWProgram}. Make a note of the exact readings that correspond to maximum coincidence counts, although you should not need to move these arms again.
+
+Having successfully answered the above question, you should quickly find substantial coincidence rates around a few hundred counts per second. %Now you may want to try to enhance the coincidence rate by adjusting all parameters.
+
+\checkpoint{Angle}{Show a GSI or Professor the angle that you expect a maximum of the red-photon counts on single arm. Explain why one should change the arm angle AFTER the beam path is aligned. You should be done at least one round of alignment by the third day. If you are not, it means you are falling behind and may want to call over a GSI or Professor for some help.}
+%Is there a chance to observe coincidences for any pair of angles? 
+
+
+\section{Producing an Ideal Bell State}
+    Before going on, we are interested in verifying that everything in the experimental setup is doing what we think it is doing, or is supposed to be doing. We will start with the half-wave plates, for which you will be calibrating in the next checkpoint. The wave-plates under discussion are the 405\,nm half-wave plate controlling $\theta_l$ and the half-wave plates for the detector arms.
+
+    Note that the halfwave plate giving a reading of 0 degrees might not corresponds to its actual optical axis to be aligned in the same direction. Using the knowledge that the polarizing beam splitters (PBS) only allow one linear polarization of light into the detectors, and the fact that the BBO optical axes are rotated 90$^\circ$ from each other, think of a way to ensure that you are pumping through only one of the BBOs. From here you should be able to calibrate the 405\,nm half-wave plate, which means no change to the polarization when a photon goes through (e.g. vertical stays as vertical). \textbf{You should record the offset value of the 405nm plate from the calibration.}
+
+    The separation between the BBOs is small enough to be negligible, and as noted above, the angle between the BBOs is practically eliminated when the BBOs are at 90$^\circ$. We cannot control the down-conversion efficiencies of the BBOs, but they should be very similar.
+
+    Next, you will also find the offsets for the detector arm half-wave plates sitting in front of the beam splitter cubes. Discuss the strategy you will use to do the calibration and then record the offset values.
+
+\checkpoint{Arbitrary Offset}{ Call over a GSI or Professor and show them the final value of the arbitrary offset for each Half Wave Plate. Explain how you were able to find this offset. }
+
+
+\subsection{Mid-Lab Questions}
+
+A Bell state is a maximally entangled state of two qubits, namely
+\begin{equation}
+    |\psi^\pm\rangle = \frac{1}{\sqrt{2}}(|hh\rangle \pm |vv\rangle)
+    \quad \text{or} \quad
+    |\phi^\pm\rangle = \frac{1}{\sqrt{2}}(|hv\rangle \pm |vh\rangle).
+\end{equation}
+(Note that we can only produce the $\psi$ states because our BBOs down-convert into pairs with like polarization.) Ideally, we would like each pair of down-converted photons in this experiment to be in a Bell state. However, many factors can contribute to deviations from perfect entanglement:
+
+\begin{enumerate}
+    \item pump beam not polarized at 45$^\circ$
+
+    \item phase shift due to BBOs
+
+    \item separation between BBOs
+
+    \item angle between BBOs
+
+    \item different down-conversion efficiencies of BBOs
+\end{enumerate}
+In particular item 2 needs some explanation. A small phase shift between the horizontally and vertically polarized photon pairs can occur due to dispersion and birefringence in the BBOs. (You can also think of this as adding a slight elliptical polarization to linearly polarized light.) Let's say that instead of producing a perfect Bell's state, the BBOs introduce a small relative phase shift $\delta$:
+\begin{equation}
+    |\psi\rangle = \frac{1}{\sqrt{2}} (|hh\rangle + e^{i\delta} |vv\rangle).
+\end{equation}
+This phase shift would decrease the number of coincidences when the state is analyzed in a diagonal basis (refer to the calculations in Pre-lab). To compensate for this, we need to delay one component of the pump beam by $\phi$=$-\delta$ before it reaches the BBOs. %We can do this with a birefringent crystal. 
+We have chosen to use a half-wave plate rotated about the vertical (so that it functions as a less-than-half-wave plate). The half-wave plate is mounted on a rotational mount with its optical axis parallel to the vertical level. When the reading of the phase adjust shows 0$^\circ$, the laser beam is perpendicular to the face of the wave plate. After a phase shift compensation $\phi$, the Bell's state becomes to:
+
+\begin{equation}
+    |\psi'\rangle = \frac{1}{\sqrt{2}} (|hh\rangle + e^{i\delta'} |vv\rangle).
+\end{equation}
+
+where the ideal case is $\delta' = 0$. However, in reality, you will find it really difficult to zero out the relative phase shift between the BBOs by only using a rotational half-wave plate. We will explore this aspect more in the following section.
+
+Using your calculations from the Pre-lab, try to understand why you will observe maximum coincidence counts when $\delta' = 0$. Rotate the phase adjust wave-plate until you see maximum counts. Record its reading for one of the Mid-lab questions.
+
+
+The real challenge in this lab is adjusting the apparatus to achieve as close to a perfect Bell state as possible. Once a good Bell state has been achieved, acquiring the data to violate Bell's inequality should take less than an hour. Therefore, your success depends on the fine adjustment of the apparatus and you should approach it carefully and methodically.
+
+
+\begin{enumerate}
+    \item \textbf{Calculate the contrast }(max(coincidences)-min(coincidences))/(max(coincidences)+min(coincidences)) for the half wave plate along detector arm A at two fixed angles, 0$^\circ$ and 45$^\circ$ (due to the nature of the half-wave plate this will induce a 90$^\circ$ phase shift in the incoming wave, if you do not understand this, refer to the optics tutorial linked at the start of the lab), and varying the angle of the other half wave plate located along detector arm B.
+    \item \textbf{Calculate $\theta$ and $\phi$.} The Bell state can generally be characterized as $|\psi_{DC}\rangle = \cos(\theta_l) |hh\rangle + \sin(\theta_l) e^{i\phi}|vv\rangle$. In a perfect Bell state we have $\theta_l=45^{\circ}$ and $\phi=0^{\circ}$. Equations 15 and 16 in Dehlinger and Mitchell\cite{Dehlinger} show how the actual values of these angles can be determined with measurements of coincidences at four sets of detector polarization angles ($\alpha,\beta$) = (0, 0), (90, 90), (0, 90), and (45, 45). A high quality Bell state will have low counts for polarization angles of ($\alpha,\beta$)= (0, 90) and equal counts for polarization angles of ($\alpha,\beta$) = (0, 0), (90, 90), and (45, 45). Unequal counts for (0, 0) and (90, 90) indicates $\theta_l\neq 45^{\circ}$ and lower counts for (45, 45) indicates ($\phi \neq 0$). In general, getting $\theta_l =45^{\circ}$ is much easier than getting $\phi=0^{\circ}$. The primary way to change $\phi$ is through rotation of the phase adjust knob which is very sensitive and non-linear in response. You may also need to make subtle adjustments to detector angles and alignment and blue beam path. You will likely need to iterate by making small adjustments and repeatedly remeasuring $\phi$. In practice, you can achieve a significant violation  of Bell's inequality if  $\phi \leq 30^{\circ}$.
+\end{enumerate}
+
+
+
+\subsection{Quantifying your Bell State}
+Next, we will move on to do more serious quantification. The first thing to test towards figuring out the purity of your bell state should be the dependence of the coincidence rates on the settings of the two half-wave plates attached to your detector arms. To fully explore what's going on, you will need to make several plots. Watching only the readings for the individual detectors A and B, you will vary the angles of the half wave plates along the detection arms.
+
+Before doing this, note in your notebook what you expect. If the system is working correctly, how do you expect the individual readings to change as you vary the measurement basis(i.e. the two angles of the half wave plates along the arms)? Think about what the half wave plate and beam splitter are really doing and write down your prediction (this goes back to the technique used to measure the offset of the half-wave plate). Test your prediction. Explain. Include this analysis in your write-up.
+
+
+ What can you say from this about the purity and/or fidelity of your Bell state? Do you expect these contrasts to be equal? If they are not, what is your explanation? 
+
+Once you understand what is going on, you should plot the coincidence rates as a function of the angle of one of the two half-wave plates (keeping the other one fixed). Repeat this measurement for 4 different fixed angles (You can find out which four angles would give you the best intuition of your bell state by reading Dehlinger and Mitchell \cite{Dehlinger}).
+
+A few tips for understanding your bell state and understanding which characteristics are important:
+
+\begin{itemize}
+    \item The span for each of the four data sets, not only the 0$^\circ$ and 45$^\circ$ angles, should be roughly the same (you can varying this using the Half-Wave and Quarter-Wave plate settings of the blue beam path). Keep in mind that the other fixed angles will inform you of the entanglement of your state;
+
+    \item The phase shifts in the fitted data should correspond to the phase shifts induced by the rotation of the half-wave plate that is fixed to an angle;
+\end{itemize}
+
+%Make sure you understand what you expect to see for each plot, and ask an instructor if you are unsure. 
+If you find that you do not have a reasonable Bell state, re-visit the Mid-lab questions and also the Trouble Shooting Section at the end of the manual. Adjust the parameters and retake the data until you create the state you are aiming at. Alignment adjustments can also help improve counts on detectors that seem to be missing photons, however if you receiving good counts before this is unlikely to be the culprit. Dehlinger and Mitchell \cite{Dehlinger} is a good resource for tuning your Bell state.
+
+Once you have recorded four good sets of data, plot them against each other and see what you can gather from these measurements about the phase $\delta'$ of the Bell state $|\psi' \rangle = \frac{1}{\sqrt{2}} (|hh\rangle + e^{i\delta'} |vv\rangle)$? If unsure, use the little program you wrote for the prelab and plot the expected coincidence rate as a function of various angles of the half wave plate detectors along the detection arms. Do the points of your data align with the fit? Note that it will be absolutely crucial that you understand what is going on at this stage before you proceed.
+
+\checkpoint{Bell State Characterization}  Show an instructor the figure of four datasets you have taken. Plot the theoretical predictions on top of them. Demonstrates that you have created a superposition of $|hh\rangle$ and $|vv\rangle$ rather than a statistical mixture. Discuss what you have done to optimize your Bell state.
+
+
+
+%$C_1$, $C_2$, and $\phi$}{Assume indistinguishable particles. Show a GSI or Professor that the measurements you have to make to measure $C_1, C_2$. Which for determining $\phi$? Refer to Dehlinger and Mitchell \cite{Dehlinger} if unsure.}
+
+%Until this point, we have assumed indistinguishable particles. What element of the experimental setup determines if this is truly the case? In other words, how are the photons created to be indistinguishable in a super position of $|vv\rangle$and $|hh\rangle$. If they are not truly indistinguishable, then you can assume that the photon pairs are either $|vv\rangle$ or $|hh\rangle$. What consequences does this have for your coincidence measurements as a function of the angles $\alpha, \beta$? Based on your analysis: how can we test for distinguishability in our setup?
+
+\section{Violating Bell's Inequality}
+
+Four angle pairs are needed for each $E$ measurement. (The E Meter in LabVIEW program is meaningless at this time.) You essentially need to adjust the half-wave plates to redirect photons to the A and B detectors that would otherwise have been reflected by the beam splitters. If you need help figuring out which angle pairs to use, see the paper by Dehlinger and Mitchell \cite{Dehlinger}.
+
+\subsection{Using the LabVIEW Program}
+\label{subsec:UsingLabVIEWProgram}
+
+The most recent version of the LabVIEW program is C:\textbackslash QIE\_Counter\textbackslash QIE Counter.exe. Make sure the FPGA is powered on before you run LabVIEW or you will get an error message. Upon running the vi, you should see the front panel below.
+
+\begin{figure}[h]
+    \centering
+    \href{http://experimentationlab.berkeley.edu/sites/default/files/images/600px-QIE_LabVIEW.png}{\includegraphics[width=0.5\linewidth]{images/600px-QIE_LabVIEW.png}}
+    \caption{Front panel of QIE\_Counter.vi}
+    \label{fig:600px-QIE_LabVIEW}
+\end{figure}
+
+\subsubsection{Count Rate Indicators}
+
+If you have the APDs powered on, the first thing you will notice is the eight large ``thermometer'' indicators. These display count rates on each of the four detectors (at left) and coincidence rates for each pair of detectors (at right). The count rates are calculated by dividing the raw counts from each of the FPGA registers, shown in a column vector at the bottom of the screen, by the update period, controlled in the General Settings box. You could double-click on the number under the thermometers and type in a new number to change its scaling. \textbf{[Since only two detectors are being used in the experiment at this time, some of the indicators are irrelevant in your measurement.]}
+
+Below the coincidence rates are the accidental rates, calculated using the coincidence resolution controls on the following line. You should have derived the formula for this calculation in the pre-lab. The values in the coincidence resolution array may or may not agree with the actual coincidence window used by the FPGA. This is controlled by a physical switch on the FPGA, but it also tends to drift from its nominal value. Keep in mind that the accidental rates are only as accurate as the coincidence resolutions.
+
+To the left of the coincidence resolutions is the E Meter. $E$ is calculated as described in the \ref{sec:Introduction} Introduction. Note that $E$ can only be calculated if all four detectors are being used simultaneously.
+
+To the left of the E Meter are the Raw Counts indicators. You can verify that the count rates are indeed the raw counts divided by the update period.
+
+\subsubsection{Status Indicators}
+
+In the upper left corner, you will see the status indicators. The text box has five possible values:
+
+\textbf{Initializing}
+
+LabVIEW is starting up and connecting to the FPGA.
+
+\textbf{Reading Counters...}
+
+LabVIEW is waiting for one Update Period to elapse.
+
+\textbf{Updated Counts}
+
+LabVIEW has read the FPGA registers and recalculated count rates. The green rectangle flashes once each time this occurs.
+
+\textbf{Closing Program...}
+
+You have clicked the Stop Program button.
+
+\textbf{Program Terminated.}
+
+The vi is not running.
+
+\subsubsection{General Settings}
+
+``Counter Port'' should be set to COM1 in order to connect to the FPGA.
+
+``Update Period'' controls how long LabVIEW will wait between buffer reads. In other words, it will count photons for this amount of time and then display the resulting count rates.
+
+The ``Subtract Accidental Counts?'' button toggles whether or not LabVIEW will subtract the values in the ``Accidental Rates'' array from their respective coincidence rates. Note that there is a lag time of one cycle between when you click this button and when LabVIEW actually starts subtracting.
+
+The ``Round Count Rates in Display?'' button toggles rounding in the eight thermometer indicators. This can be useful because dividing by the update period often gives fractional count rates. Note that this function also exhibits a lag time of one cycle.
+
+\subsubsection{Snapshots}
+
+Snapshots allow you to take data points and save them to a file. ``Snapshot Duration'' is the length of time, in seconds, of the snapshot. You also have the option to enter angles for half-wave plates A and B and a comment, which will be saved with the snapshot. When you click ``Take Snapshot'' for the first time, a new window will pop up displaying the data you have taken. Each subsequent time you click ``Take Snapshot,'' a row will be added to the new window. When you are done taking snapshots, click ``Save Snapshots'' in the main window. To clear the pop-up window for a new set of snapshots, click ``Clear All.''
+
+To avoid any false coincidences we suggest that you turn off the lights and monitor before taking snapshots. If your duration is longer than three seconds, it is easier to use some kind of timer, for instance \href{http://www.timeanddate.com/timer/#}{\textbf{http://www.timeanddate.com/timer/\#}} or the stopwatch on your cellphone.
+
+
+\section{After the Experiment}
+
+Make sure all of the following equipment is powered down at the end of each day:
+
+\begin{itemize}
+    \item laser controller
+
+    \item APD power supply (turn all five switches off)
+
+    \item FPGA
+
+    \item computer, monitor, speakers
+
+    \item room lights
+
+    \item Last day of the experiment please fill out the \href{\ExperimentEvaluation}{\textbf{Experiment Evaluation}}
+
+\end{itemize}
+
+
+\section{Trouble shooting}
+
+Insufficient single photon counts in A, B detector ($<10$k/s)
+
+\begin{enumerate}
+    \item Is there enough blue laser power? You should have at least 35\,mW (corresponds to about 50\,mW at the laser diode) reasonably well-collimated and focused light after the BBOs and before the band stop. If you decide to measure this power, please consult the staff because there are safety concerns.
+
+    \item Are the detectors properly aligned? Is the blue beam passing trough the center of the detectors? You could try adjust the orientation of the detectors while looking at the coincidence counts.
+
+    \item Are the fibers inserted properly into their connectors? The image from the fiber tester at the BBO should be at most twice as large as the BBOs. If this is not the case most likely you have not inserted the fibers correctly into the detector port. Gently rotate the fiber till the notches on the fiber connector line up with the detector port and the connector slides into the port.
+\end{enumerate}
+
+\noindent Low or no coincidence counts ($<200$/s without polarization analysis):
+
+\begin{enumerate}
+    \item Is the half wave plate between the steering mirrors rotated by a reasonable angle? Angles $> 45$ degrees can distort the blue beam and thus limit the number of coincidences severely.
+    \item Have you explored enough range of the detection arm angles? It is possible that the angles that the detectors are set to are not receiving enough downconverted photons.
+\end{enumerate}
+
+\noindent Vastly different coincidence counts for vv and hh even though the blue polarization is set properly.
+
+\begin{enumerate}
+    \item Are the BBO's perpendicular to the blue light? You can adjust the downconversion efficiencies for the horizontal and the vertical beams independently by changing the angle of the BBO's with respect to the blue light. Why does this work? (Only do this with an instructor, and this is the last thing you should try)
+\end{enumerate}
+
+\noindent Coincidence rates as a function of the angle of the measurement basis make no sense
+
+\begin{enumerate}
+    \item Are you using halfwave plates for 810\,nm or 405\,nm to rotate the measurement basis?
+
+    \item Do you really observe photon pair coincidences or are those accidental ones, i.e. the single-detector count-rates are too high?
+\end{enumerate}
+
+
+\section{Additional Experiments for Extra Credits}
+
+\subsection{Double slit quantum eraser}
+
+Before conducting the quantum eraser experiment as described by Walborn et al \cite{Walborn}, you should perform a single photon double slit experiment. For this you only need to consider detector A. Please follow the steps to align the beam path.
+
+\begin{enumerate}
+    \item Center \textbf{detector A} by turning the micrometer to 0 mm and using the inch micrometer (from now on called inchmeter) and screw-on target. Take notice of the position of the inchmeter.
+
+    \item Mount an \textbf{iris} onto the black optical board and align it so the blue beams passes the iris when closed.
+
+    \item Remove the screw-on target and carefully screw the \textbf{200 $\mu$m slit} on top of the 800\,nm bandwidth filter. (There is one particular filter which has been set further into the black tube.) Screw the filter with the slit back on detector A as far as possible with the slit being vertically aligned.
+
+    \item Use the micrometer to find the \textbf{ideal position of the detector}. Take a few measurements (10s each) and then fit a Gaussian.
+
+    \item Put the micrometer to the position of the calculated peak and \textbf{adjust the angle} until you reach the highest possible count rate. The iris in front of the BBOs should be closed and the one downstream opened.
+
+    \item Center your detector again (micrometer should read 0 mm) and put the \textbf{double slit} right behind the iris. You should use the 0.100 mm slit width. Make sure the double slit slide is not angled. Take a piece of paper and observe the interference pattern you should be able to see.
+
+    \item Put the detector arm back into the position for the 810\,nm photons. You might need to slightly adjust the \textbf{position of the double slit} with the turning knob. The count rate should exceed 1000 $S$ - 1. Both irises should be closed.
+
+    \item Open the iris in front of the double slit until it reaches a diameter of about 1.5 mm. You should now detect \textbf{more than 2000 photons per second}.
+
+\end{enumerate}
+
+Now you are able to conduct a double slit experiment and verify the theoretical interference pattern (curve). Use the inchmeter to take measurements at different positions. Think about the number of measurements you should take and about the snapshot duration. (Ten seconds are definitely not enough!)
+
+Ask your GSI if the quarter wave plate for the Quantum Eraser has been cut and is ready to use. If this is the case, try to reproduce the results of the Walborn et al Quantum Eraser experiment.
+
+\noindent
+\begin{figure}[H]
+\captionsetup{justification=centering}
+\minipage[t]{0.305\linewidth}
+  \href{http://experimentationlab.berkeley.edu/sites/default/files/images/Qe_overview.jpeg}{\includegraphics[width=\linewidth,keepaspectratio]{images/Qe_overview.jpeg}}
+  \caption{View of the experiment from above}
+  \label{fig:Qe_overview.jpeg}
+\endminipage\hfill
+\minipage[t]{0.211\linewidth}
+  \href{http://experimentationlab.berkeley.edu/sites/default/files/images/Qe_405interference.jpeg}{\includegraphics[width=\linewidth,keepaspectratio]{images/Qe_405interference.jpeg}}
+  \caption{405\,nm interference pattern}
+  \label{fig:Qe_405interference.jpeg}
+\endminipage\hfill
+\minipage[t]{0.237\linewidth}
+  \href{http://experimentationlab.berkeley.edu/sites/default/files/images/Qe_beamview.jpeg}{\includegraphics[width=\linewidth,keepaspectratio]{images/Qe_beamview.jpeg}}
+  \caption{Slit in front of detector A}
+  \label{fig:Qe_beamview.jpeg}
+\endminipage\hfill
+\minipage[t]{0.228\linewidth}
+  \href{http://experimentationlab.berkeley.edu/sites/default/files/images/Qe_slit.jpeg}{\includegraphics[width=\linewidth,keepaspectratio]{images/Qe_slit.jpeg}}\caption{View of the experiment from the front}
+  \label{fig:Qe_slit.jpeg}
+\endminipage
+\end{figure}
+
+\noindent
+
+\begin{thebibliography}{}
+\label{sec:References}
+    \bibitem{Dehlinger} 
+    D. Dehlinger and M.W. Mitchell, \href{https://drive.google.com/file/d/1ceyOD6bm-Y9m45tl8NAgvBSIBrnNaHoY/view?usp=drive_link}{\textbf{``Entangled photons, nonlocality, and Bell inequalities in the undergraduate laboratory''}}.
+
+    \bibitem{Bell}
+    J.S. Bell, \href{https://drive.google.com/file/d/1DnpfuzoVeRG3AXXw5Ty_7Wz2euoe2uSF/view?usp=drive_link}{\textbf{``On the Einstein Podolsky Roden paradox''}}.
+
+    \bibitem{Clauser}
+    J.F. Clauser, M.A. Horne, A. Shimony and R.A. Holt, \href{https://drive.google.com/file/d/1pc17oxoxrR5zM3GNXj3JX0NaW6xSFal-/view?usp=drive_link}{\textbf{``Proposed experiment to test local hidden-variable theories''}}.
+
+    \bibitem{Walborn}
+    S. P. Walborn, M. O. Terra Cunha, S. Pádua and C. H. Monken, \href{https://drive.google.com/file/d/1ua0InY3m-WscKjkZGOgFUsDw433xbWyo/view?usp=drive_link}{\textbf{``Double-slit quantum eraser'', Phys. Rev. A 65, 033818 (2002)}}.
+    
+    \bibitem{Lukishova}
+    Svetlana G. Lukishova, \href{https://drive.google.com/file/d/1BIyxsls3t6V29_RkZ9iugSKP9Ivd6AaQ/view?usp=drive_link}{\textbf{``Quantum Optics and Quantum Information Teaching Laboratories at the Institute of Optics, University of Rochester''}}.
+
+    \bibitem{Fox}
+    Fox, Mark. \href{https://drive.google.com/file/d/1yJGMelI4773M87MNNwGwGwy9sbuptahC/view?usp=drive_link}{\textbf{Quantum Optics: An Introduction.  Oxford, GBR: Oxford University Press, UK, 2006.}} Search the index for ``Sum Frequency Mixing''
+    
+    \bibitem{Branning}
+    D. Branning, S. Bhandari and M. Beck, \href{https://drive.google.com/file/d/1HFmJEl7hay3D3RWPk18n7lHbcv4TxVyE/view?usp=drive_link}{\textbf{``Low-cost Coincidence-Counting Electronics for Undergraduate Quantum Optics''}}.
+    
+    \bibitem{bluelaser}
+    \href{https://drive.google.com/file/d/1gfUe7tItSHDdwYQpms1lyT17-NDHdg1p/view?usp=drive_link}{\textbf{BLUE-blue LASER DIODE DL-7146-101S}}.
+    
+    %\bibitem{AlteraDE2Headbook}
+    %\href{http://physics111.lib.berkeley.edu/Physics111/Reprints/QIE/AlteraDE2}{\textbf{AlteraDE2 Cyclone II Device Handbook}}.
+
+    %suggest adding the noble prize lecture
+
+\end{thebibliography}
+
+\end{document}

@@ -1,0 +1,418 @@
+\documentclass{../lab}
+
+\labacronym{RUT}
+\labtitle{Rutherford Scattering}
+
+%\newcommand{\RadiationSafety}{http://experimentationlab.berkeley.edu/RadiationSafety}
+%\newcommand{\EnergyLossandStragglingof$\alpha$ParticlesinMetalFoils}{http://physics111.lib.berkeley.edu/Physics111/Reprints/RUT/01-Energy_Loss_and_Straggling.pdf}
+%\newcommand{\HighEnergyData,VolumeII,}{http://physics111.lib.berkeley.edu/Physics111/Reprints/RUT/02-High_Energy_Particle_Data.pdf}
+%\newcommand{\Physics111LibrarySite}{http://physics111.lib.berkeley.edu/Physics111/Reprints/RUT/RUT_index.html}
+%\newcommand{\RutherfordDetector}{http://physics111.lib.berkeley.edu/Physics111/Reprints/RUT/RUT_Detector_018.JPG}
+%\newcommand{\ChamberandAlphaGunAssembly}{http://physics111.lib.berkeley.edu/Physics111/Reprints/RUT/RUT_Chamber_017.JPG}
+%\newcommand{\HowtomakeandmounttheGoldfoils}{http://physics111.lib.berkeley.edu/Physics111/Reprints/RUT/Procedure\%20for\%20Making\%20Foils.pdf}
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+
+\section{Rutherford Scattering Description (RUT)}
+
+Revised 2026-06-04 by Auden Young.
+
+\begin{enumerate}
+    \item \textbf{Note that there is NO eating or drinking in the 111-Lab anywhere, except in rooms 282 \& 286 LeConte on the bench with the BLUE stripe around it.} Thank you -- the Staff.
+
+\end{enumerate}
+
+An experiment that shook the world of physics was carried out by Rutherford in 1910. He found that when scattering \textalpha{} particles from gold foils, far more of them were scattered at large angles than were expected to by theory. He explained the finding by assuming that all of the mass and positive charge of an atom are concentrated in a small volume at the center, in a compact nucleus. He derived an equation in which the differential cross section for scattering by an atomic nucleus is proportional to the inverse fourth power of the sine of the scattering angle.
+
+In this experiment the scattering formula is confirmed for the case of \textalpha{} particles scattered by gold nuclei in a thin gold foil. The charge on the gold nucleus will also be determined.
+
+This experiment needs long counting times owing to the fact that only a small fraction of incident particles is scattered to large angles. The counting rate in the forward direction is on the order of $10^5$ particles/hour, while in the backward direction it is of the order of $10^{-1}$ particles/hour. This low count rate makes the experiment challenging since background and electronic noise can dominate the counts. You set up the equipment and count, only returning to read out data and start another set. You will want to carefully schedule your measurement runs to optimize your results. %It's an easy experiment which requires patience. It is not a fun experiment, but instead illustrates the kind of work often needed to sort out one theory from another.
+This requires patience, but the experimenter is rewarded with an unambiguous insight into the nature of the atom.
+It is also a good introduction to the electronics used in physics experiments (detectors, amplifiers, shapers, delay lines, pulse height analyzers, computer interfacing). Analyzing the data with a computer is necessary.
+
+\begin{enumerate}
+    \item Pre-requisites: None
+
+    \item Days Allotted for the Experiment: 6
+\end{enumerate}
+
+This lab will be graded 20\% on theory, 30\% on technique, and 50\% on analysis. For more information, see the \href{\AdvancedLabSyllabus}{\textbf{Advanced Lab Syllabus}}.
+
+Comments: E-mail \href{\MailLabManager}{\textbf{Dr Winthrop Williams}}
+
+\section{Rutherford Experiment Pictures}
+
+\begin{figure}[H]
+\captionsetup{justification=centering}
+\minipage{0.3\textwidth}
+  \href{http://experimentationlab.berkeley.edu/sites/default/files/images/RUT_3512.jpg}{\includegraphics[width=\linewidth,keepaspectratio]{images/RUT_3512.jpg}}
+  \caption{Rutherford \\ Scattering Apparatus \\ \href{http://experimentationlab.berkeley.edu/sites/default/files/images/RUT_3512.jpg}{Click here to see larger picture}}
+  \label{fig:Apparatus}
+\endminipage\hfill
+\minipage{0.36\textwidth}
+  \href{http://experimentationlab.berkeley.edu/sites/default/files/images/RUT_Valve.jpg}{\includegraphics[width=\linewidth,keepaspectratio]{images/RUT_Valve.jpg}}
+  \caption{Vacuum Valve \\
+  \href{http://experimentationlab.berkeley.edu/sites/default/files/images/RUT_Valve.jpg}{Click here to see larger picture}}
+  \label{fig:Valve}
+\endminipage\hfill
+\minipage{0.3\textwidth}
+  \href{http://experimentationlab.berkeley.edu/sites/default/files/images/RUT_Chamber.jpg}{\includegraphics[width=\linewidth,keepaspectratio]{images/RUT_Chamber.jpg}}
+  \caption{Rutherford \\ Scattering Chamber \\ \href{http://experimentationlab.berkeley.edu/sites/default/files/images/RUT_Chamber.jpg}{Click here to see larger picture}}\label{fig:RUTChamber}
+\endminipage
+\end{figure}
+
+\section{Before the 1st Day of Lab and SOP for this experiment}
+
+\signatures \hyperlink{PN Detector}{1} \hyperlink{Signals}{2} \hyperlink{Measurements}{3} \hyperlink{Trial Run Analysis}{4} \hyperlink{Spectrum}{5} 
+
+\begin{enumerate}
+    \item \emph{\textbf{Note: In order to view the private Youtube videos hosted by the university, you must be signed into your berkeley.edu Google account.}} \\
+    View the \href{http://youtu.be/xHzzXiMEmaU}{\textbf{Rutherford Scattering Video}}.
+
+    \item View the \href{http://youtu.be/KHxtzF5pZZM}{\textbf{\textbf{Radiation Safety Video}}}. After watching the video in the 111-Lab, get a pink Radiation Safety form from a 111-Lab staff person. Fill it out \& sign the form for getting a \textbf{Radiation Ring}.
+
+    \item Now complete the  \href{http://experimentationlab.berkeley.edu/RadiationSafety}{\textbf{Radiation Safety Training}}. \textbf{After completion of training turn in all forms to Winthrop Williams.}
+
+    \item View the \href{\ErrorAnalysisVideo}{\textbf{Introduction to Error Analysis video}} and \href{http://experimentationlab.berkeley.edu/EAX}{\textbf{Error Analysis Notes}}.
+
+    \item Read the Standard Operating Procedures (\href{http://experimentationlab.berkeley.edu/sites/default/files/images/SOP\_3271\_Cs-137\_Na-22\_Co-60\_Mn-54\_Am-241\_Fe-55\_2014.pdf}{\textbf{SOP}}) for this lab before starting.
+
+    \item Last day of the experiment please fill out the \href{\ExperimentEvaluation}{\textbf{Experiment Evaluation}}
+
+\end{enumerate}
+
+\noindent\textbf{Suggested Reading:}
+
+\begin{enumerate}
+    \item A. C. Melissinos, ``\href{https://drive.google.com/file/d/1XUpk_MVeLUhutm548PpIWOzJOl3SFZqI/view?usp=drive_link}{\textbf{Chapter 2: Rutherford Scattering.}}'' \emph{Experiments in Modern Physics}. 1966
+
+    \item R. D. Evans, \href{https://drive.google.com/file/d/1dHgK8gXV5EruHZoahXIMxdXk2cJ6jTod/view?usp=drive_link}{\textbf{\emph{The Atomic Nucleus}}}. McGraw Hill (1972).
+
+    \item ``\href{https://drive.google.com/file/d/1SBZ0aXgsMzJ-81uP0l1_A_FqYBhxzONj/view?usp=drive_link}{\textbf{Rutherford Experiment}}'', Physics 111-Lab Reprints in Physics Library.
+
+    \item J.R. Comfort et al., ``\href{https://drive.google.com/file/d/1HiGED3QV1r7E5Azw2z5a_h24YGiXcGYJ/view?usp=drive_link}{\textbf{Energy Loss and Straggling of \textalpha{} particles in Metal Foils}}''; Physical Review \textbf{150}, 249 (1966). 
+
+    \item Ortec, ``\href{https://experimentationlab.berkeley.edu/sites/default/files/pdfs/Introduction%20to%20Charged%20Particle%20Detectors-1.pdf}{\textbf{Introduction to Charged Particle Detectors}}.'' A great explanation from the manufacturer on how the detector works. You may want to do some background reading in, e.g., Simon's Solid State Basics for more on how semiconductors and depletion layers work.
+
+    \item
+    ``\href{https://drive.google.com/file/d/196AL2-3DE3iMRW9_TVSsGX4ZBztANAKO/view?usp=drive_link}{\textbf{High-Energy Particle Data Volume II}}''; UC Radiation Lab: UCRL 2426, two pages.
+
+    \item F.S. Goulding and D. Landis, ``\href{https://drive.google.com/file/d/1m9gi5aTTzwajrG2pGHecgcZrJxuYaN_N/view?usp=drive_link}{\textbf{Linear Amplifier Gating \& Timing System}}'', Instrumentation Techniques in Nuclear Pulse Analysis, No. 1184, pp. 121-133.
+
+    \item E. Rutherford, ``\href{https://drive.google.com/file/d/13a_QZvOAOaO_8JW3WzF-CiijK-Ihhj-N/view?usp=drive_link}{\textbf{The Scattering of \textalpha{}  and \textbeta{} Particles by Matter and the Structures of the Atom}}'' \emph{Philosophical Magazine 21}, 699 (1911), and ``\href{https://drive.google.com/file/d/1fmdlR8A3DeJ3uDR9-17QqGRd7ZXaDffF/view?usp=drive_link}{\textbf{Collision of  \textalpha{} Particles by Light Atoms}}'' \emph{Philosophical Magazine 37}, 597 (1919). This reference appeals to students who are attracted to the historical aspects of the experiment. It contains references to other papers of historical importance.
+
+\end{enumerate}
+
+\noindent More \hyperref[sec:References]{References}
+
+You should keep a laboratory notebook. The notebook should contain a detailed record of everything that was done and how/why it was done, as well as all of the data and analysis, also with plenty of how/why entries. This will aid you when you write your report.
+
+\section{Objectives}
+
+\begin{itemize}
+    \item Learn what real experimental physics is about.
+
+    \item Learn the synergy between experimental and theoretical work.
+
+    \item Learn to use pieces of equipment that are commonly used in research.
+
+    \item Learn how measurements are performed, analyzed, and interpreted.
+
+    \item Learn how to present your work and results.
+
+    \item Learn problem solving strategies.
+
+    \item Learn how to manage and organize your time.
+\end{itemize}
+
+\section{Introduction}
+
+The Rutherford Scattering Experiment, in which \textalpha{} particles are scattered by a gold foil, is one of the most famous experiments ever performed in physics, because it demonstrated the validity of the \emph{nuclear} model for the atom and permitted a direct measurement of the nuclear charge. When \textalpha{} particles in a beam strike a gold foil and collide with individual gold nuclei, they are elastically scattered (no loss of energy). The collisions and the angles into which the the \textalpha{} particles are scattered are described by a model in which both the gold nuclei and the \textalpha{} particles act like charged spherical particles. The force of repulsion between them is described by the Coulomb's Law. The fraction of particles that are scattered into a particular solid angle at a given direction relative to the incoming beam is called the differential cross section and is given by
+\[
+\frac{d\sigma}{d\Omega} = \left( \frac{1}{4 \pi \epsilon_0} \frac{Z_1 Z_2 e^2}{4E} \right)^2 \sin^{-4} \left(\frac{\theta}{2}\right)
+\]
+where particle 1 is the helium nucleus (\textalpha{} particle), particle 2 is the gold nucleus, and E is the kinetic energy of the \textalpha{} particle\footnote{Note that the formula in Melissinos and Napolitano, whence this discussion is taken, seems to be missing a factor of $1/4 \pi \epsilon_0$ that is needed when using SI units}. Of course there are electrons around each gold nucleus, but they are so light that the energetic \textalpha{} particles push them aside with a relatively small loss of energy.
+
+In the experiment you will measure the relative numbers of \textalpha{} particles scattered as a function of scattering angle. You will observe the $\sin^{-4} \left(\frac{\theta}{2}\right)$ dependence and from your data calculate the nuclear charge of gold.
+
+\section{Equipment used in this experiment}
+
+\begin{enumerate}
+    %\item Computer with National Instruments Digitizer card inside Used with the SoftScope and PHA-5124 programs.
+    \item \href{https://digilent.com/shop/analog-discovery-studio/}{\textbf{Analog Discovery Studio}} or ADS (Used for digital scope and pulse height analyzer measurements.)
+
+    \item \href{http://experimentationlab.berkeley.edu/RadiationSafety}{\textbf{Radiation Safety Video}}
+
+    \item Gloves
+
+    \item \href{http://experimentationlab.berkeley.edu/PHA-5124Program}{\textbf{PHA-5124 Program}}
+
+    \item Tran-L-Amp Linear Amplifier
+
+    \item \href{https://drive.google.com/file/d/10P4Wneg-a9OkbNQRQvUf4y5rwyXPG_p0/view?usp=drive_link}{\textbf{PN Detector}} (Do Not Touch this, it is very expensive)
+
+    \item PN Detector Power supply and divider box
+
+    \item \href{https://drive.google.com/file/d/1X5T12iTwH8tm6YXEiFBOVgY8vileOpKm/view?usp=drive_link}{\textbf{Vacuum ion gauge and pressure meter, Varian 801}}
+
+    \item \href{https://drive.google.com/file/d/1PBHl9fVhZDgeoZGVGwaQ1tZrCZBu5B86/view?usp=drive_link}{\textbf{Vacuum Chamber with Gold Foil Mount}}
+
+    \item Radioactive source $^{241}$Am (130 $\mu$Ci)
+
+    \item Vacuum Pump and valve (to open and close vacuum for chamber)
+
+    \item Gold Foil and holder to be used in vacuum
+
+\end{enumerate}
+
+\newpage
+
+\section{Theory}
+
+It is your responsibility to reproduce the necessary derivations for this experiment. Information on Rutherford scattering is usually first presented in Physics 7C. Detailed derivations are given in Physics 137A or Physics 105 courses and their associated texts. The recommended text for this course (\href{https://drive.google.com/file/d/1XUpk_MVeLUhutm548PpIWOzJOl3SFZqI/view?usp=drive_link}{\textbf{Melissinos}} or Taylor's Mechanics) is an excellent source for Rutherford scattering. The bottom line is that you will need to find a relationship between what you measure - number of counts in a given time interval as a function of scattering angle - to the charge on the nucleus. The Rutherford formula after some algebra gives
+\[Z = K \sqrt{N} * \sin^2 \left(\frac{\theta}{2}\right)\]
+where $K$ is a constant depending on the thickness of the foil, 
+the strength of the source, the angular beam-width $\triangle \theta$ and the counting time, 
+and $N$ is the number of counts.
+
+There are some models that are helpful in thinking about this experiment. The derivation of the formula for Rutherford scattering assumes a single, heavily charged point target and an \textalpha{} particle. But this experiment uses a gold foil, not a single gold nucleus. What difference does this make to your experiment? It may help to think of the possible effects by breaking down the problem into two views. First, imagine the gold foil as an array of immobile gold atoms in space. Now remove the electrons from your picture. The remaining array of fixed bare nuclei is the first order experiment of Rutherford scattering. In this view you can see what it means to have a single scattering event or multiple scattering interactions.
+
+To think of other effects in scattering, imagine the same gold foil array but remove the nuclei from your picture. What remains is a combination of fixed localized electrons (bound electrons) and an electron cloud (conduction electrons) in space. This picture greatly complicates the interpretation of the experimental data. The α particles lose some energy in passing through this array of nuclei and the cloud of electrons. Because the electron-α particle interaction is actually quite complicated and difficult to treat, we create approximations for the interaction.
+
+In our discussion we assumed that the \textalpha{} particles have definite energies that you can look up in a table. They do when emitted, but when we use them they do not, because the source is enclosed in a metallic capsule and the particles lose energy in passing through the capsule wall. Melissinos has a discussion on the loss of energy by \textalpha{} particles passing through matter. It is also true that they lose energy as they pass through the foil, as mentioned above.  In principle, you must account for this when you analyze your data. The energy loss changes as the scattering angle changes. However, there is simply not enough time to discuss the detailed determination of energy loss. Instead, take the energy of the \textalpha{} particles in this experiment to be on average 3.77 MeV, and use this in your calculation of the nuclear charge of gold. You may wonder how Rutherford coped with this and other problems, since he had no sophisticated equipment. He had very much stronger radioactive sources, the sources were not shielded (the shields are a major source of energy loss), and he had people rather than a solid-state detector and electronics to count scintillation photons, the flashes of light emitted when \textalpha{} particles strike a fluorescent screen used as a detector.
+
+There are other reactions taking place that we ignore: Cherenkov radiation, bremsstrahlung and inelastic nuclear interactions. If you have the time and interest, you can pursue the subject of energy losses in either of the two references given immediately below.
+
+\begin{itemize}
+    \item J.R. Comfort, et al., ``\href{https://drive.google.com/file/d/1HiGED3QV1r7E5Azw2z5a_h24YGiXcGYJ/view?usp=drive_link}{\textbf{Energy Loss and Straggling of \text\textalpha{} particles in Metal Foils}}'', Phys. Rev. {\textbf {150}}, 249 (1966). Includes data for gold foils.
+
+    \item J.H. Atkinson, Jr. and B.H. Wills, ``\href{https://drive.google.com/file/d/196AL2-3DE3iMRW9_TVSsGX4ZBztANAKO/view?usp=drive_link}{\textbf{High Energy Data, Volume II}}'', UCRL Report No. 2426 (1957). Page 35 of this report is a useful Range-Energy plot for  \textalpha{} particles of 4 to 10 MeV Kinetic energy. Gold is not included, but lead is.
+\end{itemize}
+
+\newpage
+
+\section{Experimental Overview}
+
+The overall plan of the experiment is as follows. \textalpha{} particles from a radioactive source called an alpha gun are made into a beam by two collimating apertures and directed toward a thin gold foil. Particles scattered by gold nuclei are counted by a detector placed at various angles to the beam direction. A histogram of particle counts vs. energy is made at each angle chosen. Even though nuclear scattering is elastic, some energy is always lost because of interactions with atomic electrons as mentioned above, and these losses are not exactly the same for every \textalpha{} particle. Consequently the histogram is a broad distribution rather than a delta function. The area under the curve is proportional to the number of counts. With these numbers the angular dependence of the scattering law mentioned above can be demonstrated, and the nuclear charge be calculated.
+
+The source of \textalpha{} particles is the isotope 241 of Americium at 130$\mu$Ci. Its half-life is 458 years. The energies of emitted \textalpha{} particles are 5.49 MeV (86\%), 5.44 MeV (13\%), and 5.39 MeV (1.3\%). This also has a 59.6 KeV X-Ray which is used in the Compton experiment (neglecting other very infrequent α energies, all in the range of 5.55 to 4.8 Mev). The Americium is deposited as a thin layer on an aluminum foil located in the gun as shown below in Figure \ref{fig:DiagramOfVacuumChamber}. This deposit randomly flakes off so always wear your gloves (but do \textbf{not} touch other things with your gloves outside the chamber, especially things like your phone or the computer keyboard - this defeats the point of the gloves!).
+
+\begin{figure}[h]
+    \centering
+    \href{http://experimentationlab.berkeley.edu/sites/default/files/images/RUTimage012.gif}{\includegraphics[width=0.5\linewidth]{images/RUTimage012.png}}
+    \caption{Diagram of Vacuum Chamber}
+    \label{fig:DiagramOfVacuumChamber}
+\end{figure}
+
+The \textalpha{} particle gun and 2 pieces of gold foil, each is 1 inch square, are held in fixed positions when data are taken, (you need to know the weight of each foil it should be in the log book) but the detector can be moved at a constant radial distance from the foil. The particle beam is collimated by two apertures adjustable from the alpha gun. If necessary, changing the aperture separation is the easiest way to modify the collimation, since it can be changed without losing vacuum. This aperture size is already measured and can be found in Figure \ref{fig:AlphaGun}. %Students should not be doing this, so I have commented it out - AY, 2026 It is also possible to remove the gun from the chamber and the removable aperture can be changed in size or removed entirely, \emph{\textbf{but do not touch the interior aperture}}. 
+
+If we use a well collimated beam from the alpha-gun in order to have a well defined angular resolution, the total flux of \textalpha{} particles will be weak so that the counting rate at any appreciable scattering angle is extremely low. You will need a few all-night and week-end runs to collect data. Hence, plan accordingly.
+
+The experiment is done in a \href{http://experimentationlab.berkeley.edu/sites/default/files/images/RUT\_Chamber.jpg}{\textbf{vacuum chamber and valve}} because the range of \textalpha{} particles in air at atmospheric pressure is only a few cm.
+
+\section{Procedure: Getting Started on Rutherford Scattering}
+
+\begin{itemize}
+    \item You must have a radiation ring and wear it when working near the apparatus, since there is an Americium-241 source which emits \textalpha{} particles and gamma rays. For safety, check the apparatus with a Geiger counter before you begin (counter usually kept at Gamma Ray experiment). \textbf{Always wear gloves while working in the chamber, and if you are wearing gloves, do not touch anything you intend to not be contaminated (e.g. your phone or the computer).}
+
+    \item Wearing gloves is also important for a reasonable vacuum. If you touch things inside the chamber without gloves, the oils and residue from your fingers can result in outgassing, making it harder to reach good vacuum. And as mentioned in the previous section, a reasonable vacuum is essential to this experiment.
+
+    \item Procedure for making of Gold Foil and mounting on brass holder: \href{https://drive.google.com/file/d/1Uho1Ecl_7gig0CpwZg0Cfkx79GFoE9fm/view?usp=drive_link}{\textbf{Making of Gold Foil}}. Talk with a staff member if you feel a new one needs to be made. \textbf{If you or staff replaces a foil, write down the mass in the foil log. You will need it for your analysis.} If you need to replace/mount the foil, see the procedure below, and practice first with a bit of tissue - the foil is extremely delicate!
+
+\end{itemize}
+
+\begin{enumerate}
+    \item Familiarize yourself with the apparatus. Refer to Figures \ref{fig:DiagramOfVacuumChamber}, \ref{fig:DiagramOfApparatusTopView}, \ref{fig:AlphaGun}. Start by removing the front cover from the chamber. Be aware of the angle cover piece, because \textbf{the detector is light sensitive}. \textbf{Therefore, if you plan to open the chamber, turn the detector off!} Put the screws somewhere where they won't be lost. Open the chamber and look at its construction. The detector is an extremely fragile device. There is a microscopically minute platinum wire between the attachment post and the evaporated gold surface of the detector. Break anything and you'll be out of commission for a week, minimum!
+   
+    \begin{figure}[h]
+    \captionsetup{justification=centering}
+    \begin{minipage}{0.49\linewidth}
+        \href{http://experimentationlab.berkeley.edu/sites/default/files/images/RUT13.jpg}{\includegraphics[height=0.8\linewidth]{images/RUT13.jpg}}
+        \caption{Diagram of Apparatus, Top View}
+        \label{fig:DiagramOfApparatusTopView}
+    \end{minipage} \hfill
+        \begin{minipage}{0.49\linewidth}
+        \href{http://experimentationlab.berkeley.edu/sites/default/files/images/ChamberInterior.JPG}{\includegraphics[height=0.8\linewidth]{images/ChamberInterior.JPG}}
+        \caption{Chamber Interior, Front View}
+        \label{fig:ChamberInterior}
+        \end{minipage}
+    \end{figure}
+
+    \item Gently change the position of the detector using the \textbf{``detector angle adjusting screw''} shown in Figure \ref{fig:DiagramOfApparatusTopView}. Leave it at about zero degrees (protractor on front face of chamber). Be aware that this is not necessarily the exact angle of the beam to the target and you will have to calibrate the offset on this scale. \textbf{Remember, do NOT change the angle more than +30 to -30 degrees - it is unnecessary for the experiment regardless (why?).} \textbf{NOTE: Keep window covered when in use - remember the detector is light sensitive.} Remove the foil holder from the chamber by grasping it firmly, pulling and wiggling it from side to side.
+
+    \begin{figure}[h]
+        \centering
+        \href{http://experimentationlab.berkeley.edu/sites/default/files/images/RUT14.gif}{\includegraphics[width=0.5\linewidth]{images/RUT14.png}}
+        \caption{Alpha Gun}
+        \label{fig:AlphaGun}
+    \end{figure}
+
+    %Removed by WLH. THis was pointless and dangerous. Remove the second aperture of the collimator, the one flush with the end of the gun, with the following procedure: loosen the brass rectangular clamp located at the end of the source tube on the brass rod (far right) of the alpha gun. Slowly push the rod into the tube-the second collimating aperture should fall out. Leave the rod positioned such that the first collimator is flush with the end of the source tube. Now loosen the brass ``O-ring'' clamp (nut) on the source tube, move the tube to the center of the chamber, and then retighten the clamp (finger tight). Also move the hose clamp on the source tube so that it is flush against the brass O-ring clamp, and tighten the hose clamp. It is important to retighten this clamp in the proper position after moving the gun. Otherwise atmospheric pressure on the outside will push the gun into the detector arm when the chamber is evacuated. Now make a run with no foil, non-collimated, point-blank, in order to find the beam flux, energy intensity profile and proper electronic settings.
+    
+    Figure~\ref{fig:AlphaGun} shows the source in the gun assembly with the two collimators. You should be careful to never remove the collimators as they help to keep the radioactive source contained. Never loosen the rectangular brass clamp as it keeps the brass rod from sliding under atmospheric pressure and pushing out the collimators. Consider what the distance between the two collimators should be - what is their purpose? What arrangement of the collimators best suits this? Confirm with the GSIs before changing this. To adjust the position of the alpha gun, with the vacuum pump OFF, loosen the both the hose clamp and the knurled``O-ring'' clamp (nut) on the source tube. Move the tube to the center of the chamber, and then retighten the clamp (finger tight). Also move the hose clamp on the source tube so that it is flush against the O-ring clamp, and tighten the hose clamp. It is important to retighten this clamp in the proper position after moving the gun. Otherwise atmospheric pressure on the outside will push the gun into the detector arm when the chamber is evacuated. Do not change the angle with the gun in this position or it can collide with the detector holder.
+
+    \checkpoint{PN Detector}{Explain how the PN detector sends a signal to the computer. Also, without touching the PN detector, determine the solid angle of the detector. As stated below, the diameter is roughly 0.75 inches. Under what conditions is it safe to turn the PN detector on? Perform the next step (chamber cleaning) under GSI supervision.}
+
+    \item \textbf{ONLY DO THIS UNDER GSI SUPERVISION.} It's very important to keep the chamber clean - that's why it's critical you wear gloves when working in the chamber. The oils from fingerprints can cause \href{https://en.wikipedia.org/wiki/Outgassing}{outgassing}, which can make it very difficult for the chamber to pump down. While the chamber is open, use a kimwipe and isopropyl alcohol (water vapor is also a major cause of outgassing, so never clean vacuum parts with water) to lightly clean the rim of the chamber, the front collimator (with the foil out!), and the cover (don't clean the O-ring, as then it would need to be re-greased). Also clean the gold foil holder - be sure not to touch the gold foil itself. (Technically, tape/adhesives are also extremely bad for vacuum, but it is the easiest way to repeatedly unmount and remount the gold foil, and our vacuum is not very good anyway. Do you think this is a reasonable tradeoff?) We use isopropyl alcohol because water vapor also outgasses extensively and causes problems! \textbf{You should monitor the vacuum pressure throughout your experiment} - we suggest noting the pressure at the beginning and end of each data collection. If it has shifted, what might this cause in your data?
+
+    \item Pump down the chamber with the following procedure. Making sure that the cover is clean, replace the chamber cover and tighten the thumb screws \textbf{by hand only}. Check to see if the cover is evenly seated on the vacuum chamber. Slightly open the venting valve between the chamber and the pump on top of the bench near the chamber. Start the pump under the bench - see switch for power \href{http://experimentationlab.berkeley.edu/sites/default/files/images/Pump\_Switch\_3535.jpg}{\textbf{Pump On/Off Switch}}. You then should hear a hissing sound when the pump is running. The switch is located near the motor. Slowly close the valve - the sound should go away, and the pump should sound lower pitched and more `smooth.' \textbf{Attempt to minimize the amount the valve is open while pumping is occurring, as this can damage the pump.} To open the chamber, reverse the process - slowly open the valve slightly first and listen for the hissing sound, then turn off the pump (then finish slowly opening the valve). These precautions prevent shock waves from damaging the delicate gold foils, and minimize the amount of oil vapor from the pump entering the chamber. (Also note that the pump is located below the chamber - this is partly to allow gravity to help in keeping any oil backflow, if it occurs, from entering the chamber.) If you hear hissing at any point, or the vacuum continues to be extremely loud a few seconds after startup, there is a leak somewhere - check that the chamber front cover is tight, that the knurled O-ring clamp is tight, and that the valve is closed. If you cannot find the leak/the vacuum does not get below 100 mTorr (ideally below 60 mTorr), check with a staff member.
+
+    \item Collect data with no foil and the collimated beam going directly into the detector in order to find the beam flux, energy intensity profile and proper electronic settings. The brass rod should be in the same position as you would normally have it for experiments with the gold foil in.
+
+    \item Repeat the previous measurement, but now with the brass rod pushed all the way in, to minimize energy loss of the alpha particles. Measure the distance between the two brass rod positions. Use this compared to your previous measurement to calculate the pressure in the chamber. How does this compare to the vacuum gauge?
+
+\checkpoint{Vacuum system}{Explain the different parts of the vacuum system. What is outgassing, and how does it affect the pressure? Why does the pressure in the chamber matter, and how did you calculate the precise pressure in the chamber? How did it compare to the vacuum gauge? How might changes in pressure during a run affect your data?}
+
+We are now going to use the scope to follow the signal through the electronics to set everything at proper levels. Do this carefully and ask questions if something does not seem right, but don't expect an instructor to do your thinking for you and tell you what to do.
+
+\end{enumerate}
+
+%\textbf{Checkpoint: Explain how the PN detector sends a signal to the computer. Also, without touching the PN detector, determine the solid angle of the detector. As stated below, the diameter is roughly 0.75 inches.}
+\section{Electronics}
+
+See diagram \href{https://drive.google.com/file/d/1BQr9hTb3EG87-nMeZURuU5lBJU4uHPfE/view?usp=drive_link}{\textbf{here}}.
+
+\begin{enumerate}
+    \item Turn the electronics on. There are four switches to check: the master power switch in the lower right side of the Nim Bin, then the Tran-L-Amp should be inside the Nim Bin rack, then the power for the PN junction, then the power switch for the ADS.
+
+    \item DETECTOR and PRE-AMP: The detector is a Silicon PN-junction with about 250 microns of gold on it. It has a bias of approximately 100 volts at 4 microamps with a diameter of 0.75 inches. The detector receives its power directly from the 100 V power supply in the rack (it used to receive only 50 V via a voltage divider - you should read through the Ortec documentation linked above on detectors of this type and explain how this changes the pulses we see).%through a voltage divider to get 50 volts from the 100 volt power supply in the rack. 
+    Take the output from the pre-amp (BNC coaxial cable) and feed it into the scope. Adjust the A TRIGGER LEVEL on the scope and see if you can obtain the positive pulse as shown in Figure \ref{fig:SoftScopeDisplay}. You may have to increase the intensity of the trace, and put a hood on the oscilloscope to shut out room light. This pulse is the amplified signal from the detector. The positive voltage pulses represent the detected \textalpha{} particles, and the height of the pulses is proportional to the energy of the particles. Reconnect the output of the pre-amp to the AMP IN of the linear amplifier (PG1).
+
+    \item Tran-L-Amp: This unit amplifies and shapes the unipolar pulse (unipolar means it goes up and comes down without crossing zero) from the pre-amp. The polarity knob must be set properly for the input pulses, should it be set to POSITIVE or NEGATIVE? To start with, also set the DIFF to 1.0 $\mu$s, INT to 0.05 $\mu$s, Coarse Gain to 100, and Vennier Gain to about 5.9 for now (you should optimize the settings of this amplifier before starting taking serious data). Use the BNC cable to look at point PG2 ---the output of the Linear -- by connecting to channel 1 of the ADS oscilloscope. Use the pulse viewer (explained below) to view the signal. You should see a positive signal like Figure \ref{fig:SoftScopeDisplay}. %Note: be careful! Changing the x-axis scale by zooming in/out will change your sampling rate. 
+    How wide is a pulse in time? What sampling rate is necessary in order to see a pulse? Confirm your sampling rate with a GSI. %\textbf{Once you've set your sampling rate, be careful not to change it.} 
+    Also, note that the range (volts/div) that you set controls both the maximum voltage you can see as well as the resolution (i.e., the smallest voltages you can distinguish between). Check the ADS manual and select a reasonable range setting based on this. What will happen if you select too high of a range setting? Too low?
+
+\end{enumerate}
+
+\begin{figure}[h]
+\begin{minipage}{0.49\linewidth}
+    \href{http://experimentationlab.berkeley.edu/sites/default/files/images/350px-RUT_Soft_Scope.png}{\includegraphics[width=\linewidth]{images/350px-RUT_Soft_Scope.png}}
+    \caption{The pulse should look something like this (you will be using a modernized version of the software - the pulse viewer).}
+    \label{fig:SoftScopeDisplay}
+    \end{minipage} \hfill
+    \begin{minipage}{0.49\linewidth}
+        \href{http://experimentationlab.berkeley.edu/sites/default/files/images/350px-RUT_Spectrum_with_Foil.png}{\includegraphics[width=\linewidth]{images/350px-RUT_Spectrum_with_Foil.png}}
+    \caption{Example spectrum with gold foil (you will be using a modernized version of the software - the histogram viewer).}
+    \label{fig:350px-RUT_Spectrum_with_Foil}
+    \end{minipage}
+\end{figure}
+
+\checkpoint{Signals}{Call a GSI or Professor over and show them all the signals you have found. Explain the signals, as well as your sampling frequency and range (volts/div) selections.}
+
+%\textbf{Checkpoint: Call a GSI or Professor over and show them all the signals you have found. Explain the signals.}
+
+\section{PHA Setup and Operation}
+
+We recommend beginning with the pulse viewer tab (see Figure \ref{fig:pulseviewer}). Here, you will set the trigger to the desired level - below this, pulses will be discarded as noise (you should choose this value based on the pulses you observe on the Tektronix scope). Should you trigger on a rising or falling edge? Should you invert your signal? You should also select the appropriate sampling rate (you should again choose this value based on the pulses you observe on the Tektronix scope). Run the measurement - do the pulses look how you expect/the same as on the Tektronix scope? Note that the range (volts/div) that you set controls both the maximum voltage you can see as well as the resolution (i.e., the smallest voltages you can distinguish between). Check the ADS manual and select a reasonable range setting based on this. What will happen if you select too high of a range setting? Too low?
+
+Once you have determined the correct parameters to acquire reasonable pulses, you can move to the histogram tab (see Figure \ref{fig:histogramviewer}). Here, you will copy over your final signal acquisition parameters (trigger level, sampling frequency, etc.) from the pulse viewer tab. You should also save the data to a .csv file - name the file something which informs you about the type of data you are saving, and make sure you change the file name between runs! When you run the measurement, you can watch the spectrum build up in real time. You may also modify live the number of bins, the min value, and the max value (though there may be some lag in your ability to update these parameters, especially as you get to many thousands of counts). Once you have recorded sufficient data, you may close the software and use the .csv file of data for your own further analysis. You will also note that the .csv file actually has two columns - one which saves the pulse height data, and one that saves the timestamp. You can use this to calculate count rate and similar. This is an important tool for assessing the legitimacy of your data - you should discuss this in your report, especially since you will be collecting data for long periods of time. 
+
+There is an option in the software to turn on and off the `bias monitor' or bias voltage monitor. This option gives you an extra plot which shows the mean, minimum, and maximum values on the second channel of the ADS (this data will also be saved to the .csv file). You can leave it off for now as the bias voltage monitor is currently not connected; this will be discussed later.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{images/rut_pulse_viewer.png}
+    \caption{Image of pulse viewer.}
+    \label{fig:pulseviewer}
+\end{figure}
+
+%After you have begun the measurement, you can watch the spectra build up in real time by using the `Live Histogram' shortcut from the desktop (see Figure \ref{fig:histogramviewer}). Select the file you are saving data to. Then set the number of bins, the min value, and the max value. The histogram and the number of data points you have acquired will update as the pulses are recorded (there may be some lag, especially as you get to many thousands of counts). Once you have recorded sufficient data, close the histogram viewer and use the .csv file of data for your own further analysis. Make sure to change the .csv file you are saving to between runs, otherwise all of your data will be combined into one file and be unusable.
+
+%There are several additional things the WaveForms logger records besides maximum pulse height. First, it records the time stamp of each pulse. Second, it records several characteristics of the \textit{bias voltage} sent to the detector. The bias voltage monitor is currently not connected; this will be discussed later.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.7\linewidth]{images/rut_histogram_viewer.png}
+    \caption{Image of histogram viewer.}
+    \label{fig:histogramviewer}
+\end{figure}
+
+%\begin{enumerate}
+%    \item There is a LabView Program ICON on the computer desktop called ``PHA-5124''. Read \href{http://experimentationlab.berkeley.edu/PHA-5124Program}{\textbf{PHA-5124}} first. This program automates the data taking. Just double click on the icon and take data. Before taking genuine data, determine the impact of the setting of the control parameters listed in the program. Make sure you understand each one and choose the proper setting for your measurement. Your data will be saved with a header and data such that it can be imported into Matlab or Excel. The data will have time and day stamp on all of the files saved.
+
+%\end{enumerate}
+
+\section{Handling Gold Foils}
+
+[\href{https://drive.google.com/file/d/1Uho1Ecl_7gig0CpwZg0Cfkx79GFoE9fm/view?usp=drive_link}{\textbf{How to make and mount the gold foils}}]
+
+Since the scattering target is a gold foil, you need to know something about them. The foils are of very nonuniform thickness (think hole-y Swiss cheese) so you use double layers of gold leaf foil, each layer of which is about 10 milligrams by weight because of the holes and very fragile. Each pair of foils is fastened to a numbered holder by plastic tape. A weighed sample of each foil sheet is kept with the experiment. The weights should be recorded in the log book for each holder used. With them you can determine the surface density of each foil. In some cases this surface density is tabulated directly in the log book. \textbf{It is essential to write down the foil weight in the log book AND your lab notebook,} otherwise you (and potentially groups after you) will not be able to do complete analysis.
+
+\textbf{Before replacing the foil, practice using a Kim wipe instead of the foil.} The actual gold foils are extremely delicate and also expensive, so it is best to understand the process using the Kim wipe first.
+
+Handle the foils by the edges of the brass holder. Place foils carefully in the slotted repository when they are not in the chamber. The retaining fingers of the foil holder in the chamber are purposely loose so as not to abrade the tape. Keep them that way. You are now ready to go!
+
+\section{Data Collection (see Appendix on Error Analysis)}
+
+\href{http://experimentationlab.berkeley.edu/EAX}{\textbf{Error Analysis Notes}}
+
+Careful planning is essential if you want to complete this experiment. You can't possibly take all the data you need for a research-type project. As you take data, you will see where you have to make compromises. Talk them over with an instructor at every stage.
+
+First you need to decide what you are going to measure. To do this, write down the equations you are going to use, identify those quantities you can measure (such as angle of scattering), those that are given (like the charge of the electron), and those that you want to determine. Then decide how you are going to make the measurements and what parameters you are going to vary to make the measurement an optimum for accuracy and time.
+
+For example, you need to measure scattering angles. Therefore you need to establish the zero-degree position of the detector (it is not necessarily when the protractor reads zero). How are you going to do this? Can you do it without the gold foil in place?
+
+\checkpoint{Measurements}{Talk with a GSI to determine if you're on the right track with your proposed measurements. Don't ask first -- figure it out for yourself, then explain to the GSI what you are going to do and why.}
+
+%\textbf{Checkpoint: Talk with a GSI to determine if you're on the right track with your proposed measurements. Don't ask first -- figure it out for yourself, then explain to the GSI what you are going to do and why.}
+
+You will need to determine solid angles of the detector. You may want to change the solid angle for some measurements, by changing the aperture size.
+
+The signals get weaker as the angles get larger. Think ahead, about how much time each data-taking run will require.
+
+You may find it helpful to make a few trial runs, and analyze the data from them, before taking final measurements. If you are not doing the right thing, you want to find out about it immediately.
+
+You should also perform several time series analyses using the recorded time stamps on each pulse - is the count rate changing over time? How about the recorded voltage? If so, why? (You may wish to ask ATM students to let you know what times they are turning on their magnet...)
+
+The second channel of the ADS can be used as a bias voltage monitor. However, using it may reduce the height of the pulses and introduce noise. We recommend using it in one or two trial runs, but not for all of your runs. With the high voltage off, tee off the connection to the chamber and connect first to the provided voltage divider, then to Channel 2 of the ADS. \textbf{Check your setup with a GSI before turning the detector power on and using the bias voltage monitor; incorrect setup can damage the ADS.} Check the `bias voltage monitor' option in the software. This will allow a live view of the minimum, mean, and maximum bias voltage throughout your run; this data is also saved to the .csv file with timestamps and pulse heights. Does the bias voltage change over time? Would this affect your data? Look at the Ortec documentation for detectors of this type. What bias voltage is recommended? What value are we using, and how does changing the bias voltage affect detector operation?
+
+%Finally, the source is windowed. It has a cover of 1.8 mg/cm$^2$ of titanium, and an active diameter of 3/16". (As of March 2026, we are still working on finding exact thickness of this window, but it is at least thin enough to allow alpha radiation through.) Qualitatively, how will this affect your peaks? %we need to find exact thickness...
+%the source may not be windowed at all? check again
+
+\checkpoint{Trial Run Analysis}{Show a GSI your analysis of your trial runs to check if you're doing the right thing. Show the results of some of your time series analyses and your bias voltage monitor.}
+
+%\textbf{Checkpoint: Show a GSI your analysis of your trial runs to check if you're doing the right thing.}
+
+Finally, analyze your data, remembering that your goal is to observe the angular dependence of the Rutherford scattering formula, and to calculate the atomic number of gold.
+
+One way to test the angular dependence of the differential scattering cross section is to fit a straight line to the data (review the formula and come up with a physical quantity based on the scattering angle that you should use for the x variable such that you end up with a linear function) and to determine the slope of this line by a least-squares fit. Follow the example given in Lyons, \emph{Data Analysis for Physical Science Students,} Chapter 2, especially Section 2.9, p. 63ff, in which is a worked example.
+
+\section{Questions}
+
+\begin{enumerate}
+    \item Estimate whether screening of the nucleus by electrons is relevant for your data? How would you adapt your data analysis to take this effect into account?
+
+    \item At what scattering angles in your experiment will deviations from the Rutherford scattering law occur because of non-zero size of the nucleus?
+
+    \item To what extent (be quantitative) do you expect \textalpha{} particles to experience multiple scattering in the foil?
+
+    \item Last day of the experiment please fill out the \href{\ExperimentEvaluation}{\textbf{Experiment Evaluation}}.
+
+\end{enumerate}
+
+\checkpoint{Spectrum}{Show a Professor or GSI your spectrum taken over the weekend. Discuss if you think it is behaving as expected. Also discuss the questions above and how you will tackle them in your write up.}
+
+%\textbf{Checkpoint: Show a Professor or GSI your spectrum taken over the weekend. Discuss if you think it is behaving as expected. Also discuss the questions above and how you will tackle them in your write up.}
+
+\section{References}
+\label{sec:References}
+
+\begin{enumerate}
+    \item At the lab station there is an Americium-241 Data Sheet. Please take the time to read this and how to mount the gold foils.
+
+    \item
+    \href{https://drive.google.com/file/d/10P4Wneg-a9OkbNQRQvUf4y5rwyXPG_p0/view?usp=drive_link}{\textbf{Rutherford Detector}}
+
+    \item   \href{https://drive.google.com/file/d/1PBHl9fVhZDgeoZGVGwaQ1tZrCZBu5B86/view?usp=drive_link}{\textbf{Rutherford Chamber and Alpha Gun Assembly}}
+
+    \item E.Segre, Nuclei and Particles 2nd.Ed., ``\href{https://drive.google.com/file/d/1etYGfidfuYwDUIOcE5RUqa3y55lfk5Dv/view?usp=drive_link}{\textbf{Scattering from a Fixed Center of Force}}''
+
+\end{enumerate}
+
+There are many texts which incorporate a discussion of Rutherford Scattering at the junior level, such as Kennard, et al., Modern Physics, and Taylor, Classical Mechanics, available in the Physics-Chemistry Library.
+
+\end{document}

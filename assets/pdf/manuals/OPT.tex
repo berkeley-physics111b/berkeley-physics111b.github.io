@@ -1,0 +1,1052 @@
+\documentclass{../lab}
+\usepackage{multicol}
+\usepackage{enumitem}
+
+\labacronym{OPT}
+\labtitle{Optical Pumping}
+
+%\newcommand{\OPTPrelabAndEvaluation}{http://experimentationlab.berkeley.edu/optprelab}
+%\newcommand{\SignOffSheet}{http://experimentationlab.berkeley.edu/optcheckpoints}
+\newcommand{\OpticalPumpingVideo}{https://www.youtube.com/watch?v=v4StxGAhm8Y}
+%\newcommand{\DefinitionsOPT}{http://experimentationlab.berkeley.edu/definitionsopt}
+
+\newcommand{\SRVoltagePREAMP}{https://experimentationlab.berkeley.edu/sites/default/files/General_Equipment/SRS\%20SR560_Manual.pdf}
+
+\newcommand{\PhotodiodeDataSheet}{https://experimentationlab.berkeley.edu/sites/default/files/OPT/Equipment/OSI\%20Optoelectronics_Photodiodes_Datasheet.pdf}
+
+\newcommand{\DSManual}{https://experimentationlab.berkeley.edu/sites/default/files/General_Equipment/SRS\%20DS345_Manual.pdf}
+
+\newcommand{\CircuitForMagneticCoils}{http://experimentationlab.berkeley.edu/sites/default/files/OPT/Circuitformagnetic\%20coils.png}
+
+\newcommand{\PhysicsLibrarySite}{http://physics111.lib.berkeley.edu/Physics111/Reprints/OPT/OPT_index.html}
+
+% Reference links
+\newcommand{\OpticalPumpingZafra}{https://experimentationlab.berkeley.edu/sites/default/files/OPT/References/05-Optical_Pumping-DeZafra.pdf}
+
+\newcommand{\RbEnergyLevels}{https://experimentationlab.berkeley.edu/sites/default/files/OPT/References/RbEnergyLevels.pdf}
+
+\newcommand{\OpticalPumpingBloom}{https://experimentationlab.berkeley.edu/sites/default/files/OPT/References/02-Optical_Pumping-Bloom.pdf}
+
+\newcommand{\ExperimentSeven}{https://experimentationlab.berkeley.edu/sites/default/files/OPT/References/06-Experiment_7.pdf}
+
+\newcommand{\NuclearMoments}{https://experimentationlab.berkeley.edu/sites/default/files/OPT/References/04-Nuclear_Moments.pdf}
+
+\newcommand{\Rubidium}{https://experimentationlab.berkeley.edu/sites/default/files/OPT/References/OPT\%20Rubidium.pdf}
+
+\newcommand{\OPTReprints}{http://physics111.lib.berkeley.edu/Physics111/Reprints/OPT/OPT_index.html}
+
+\newcommand{\ErrorAnalysis}{https://experimentationlab.berkeley.edu/sites/default/files/EAX/Taylor_An\%20Introduction\%20to\%20Error\%20Analysis.pdf}
+
+\newcommand{\DataAnalysis}{https://experimentationlab.berkeley.edu/sites/default/files/EAX/Lyons_A\%20Practical\%20Guide\%20to\%20Error\%20Analysis.pdf}
+
+\newcommand{\RevModPhys}{https://experimentationlab.berkeley.edu/sites/default/files/OPT/References/RevModPhys.49.31.pdf}
+
+\newcommand{\Steckfive}{https://experimentationlab.berkeley.edu/sites/default/files/OPT/References/rubidium85numbers.pdf}
+
+\newcommand{\Steckseven}{https://experimentationlab.berkeley.edu/sites/default/files/OPT/References/rubidium87numbers.pdf}
+
+\newcommand{\AdditionalReferences}
+{https://experimentationlab.berkeley.edu/sites/default/files/OPT/References/00-OPT_Additional\%20References\%20and\%20Resources_Index.pdf}
+
+\newcommand{\EquipmentList}
+{https://experimentationlab.berkeley.edu/sites/default/files/OPT/Equipment/00-OPT_Equipment\%20List_Index.pdf}
+
+% James Camparo broken link
+
+\newcommand{\OpticalPumpingCarver}
+{https://experimentationlab.berkeley.edu/sites/default/files/OPT/References/03-Optical_Pumping-Carver.pdf}
+
+\newcommand{\HanleEffect}
+{https://experimentationlab.berkeley.edu/sites/default/files/OPT/References/07-Hanle_Effect.pdf}
+
+\newcommand{\Diagrams}
+{https://experimentationlab.berkeley.edu/sites/default/files/OPT/Equipment/01-diagrams.pdf}
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+
+\section{Introduction}
+
+One of the great early successes of quantum mechanics was its use to describe the structure of atoms and molecules.  As is now well-known, the internal structure of atoms and molecules can be described by a set of quantum states.  In the case of an atom, these quantum states tell us what is the state of motion of electrons around the nucleus, of the internal spin of those electrons, and also of the internal spin of the nucleus.  In the case of molecules, quantum states also tell us about the relative motion of nuclei.  Quantum mechanics also tells us which of these quantum states are also states of definite total energy -- these are the energy eigenstates.
+
+A powerful way of measuring the energies of atomic quantum states, or, more properly, the energy differences between two energy levels, is through spectroscopy.  In many atomic spectroscopy experiments, we start with a collection of atoms that, at any point in time, occupy the various atomic energy states with some probability distribution.  We then perturb the atoms with a signal characterized by a single well-defined frequency; in some forms of spectroscopy, several frequencies are used simultaneously.  When the signal frequency $\nu$, multiplied by Planck's constant $h$, matches with an energy difference $\Delta E$ between two atomic energy levels, this resonant signal can drive atoms to make transitions between these energy levels.  We then employ some means of detecting the changed state distribution of the atomic ensemble, and thereby determine $\Delta E$.  From such knowledge, we can learn about the structure of the atom, measure fundamental properties of its constituents, or determine environmental conditions that affect $\Delta E$ in known ways.
+
+In this experiment, you will use the phenomenon of optical pumping to prepare an atomic gas in a highly polarized state, and also to detect changes in that polarization when you drive the atoms with a resonant radio-frequency magnetic field.  Through this kind of atomic spectroscopy (``optically detected magnetic resonance'' (ODMR)), you will verify the structure of the ground states of rubidium, measure the nuclear spin of two rubidium isotopes, and make a precise measurement of the ambient magnetic field in your apparatus.
+
+We hope you will find it remarkable that, in this experiment, quantum mechanics really comes to light.  You will notice that several theoretical concepts that you learned about in your courses on quantum mechanics and electromagnetism -- quantum numbers for electron orbitals, electronic and nuclear spin,  fine and hyperfine structure, optical polarization, conservation of angular momentum, selection rules for atomic transitions, and the energy of magnetic dipoles in magnetic fields -- all become tangible and relevant in an experimental setting.  You will also gain an appreciation for the accuracy and precision that can be achieved in atomic spectroscopy experiments.
+
+%This experiment is quantum mechanics in action. When a sample of gaseous atoms is placed in a static magnetic field, the electronic states undergo Zeeman splitting in addition to fine-structure and hyperfine-structure splittings. By applying polarized light at the proper frequency, we can induce transitions from ground state levels to excited state energy levels. The atoms then decay to higher ground state levels until we have ``pumped'' all of them into the same (highest) ground state energy level. At this point we can see an increase in light passing through the sample because no more can be absorbed. However, when we apply a radiofrequency signal of just the right energy to stimulate transitions to a lower level, we see a sudden decrease in the radiation signal as the system is again pumped to the higher level. By determining the frequency of the RF signal we gain information about the atomic energy levels.
+
+%You will need to use your knowledge of fine, hyperfine, and Zeeman splitting to find the energy levels of two isotopes of rubidium. You will determine the nuclear spins of the isotopes, and the strength of the earth's magnetic field in the laboratory.
+\begin{enumerate}
+    \item Helpful: Physics 137B
+
+  \item Days Allotted for the Experiment: 3
+
+\end{enumerate}
+
+This lab will be graded 20\% on theory, 30\% on technique, and 50\% on analysis. For more information, see the \href{\AdvancedLabSyllabus}{\textbf{Advanced Lab Syllabus}}. 
+
+Last updated 2026-10-12 by Auden Young.
+
+
+%\section{Optical Pumping Experiment Photos}
+
+\section{Before the first day of lab}
+
+\begin{enumerate}
+    \item Read through this lab description and manual thoroughly.
+    
+    \item Look through the references. The articles by De Zafra \cite{Zafra} and Bloom \cite{Bloom}, while dated, are quite valuable. You will find more references in the \hyperref[references]{\textbf{References}} section. Additional references can be found \href{\AdditionalReferences}{\textbf{here}}.
+
+    \item Familiarize yourself with the equipment. A full list with links to manuals can be found \href{\EquipmentList}{\textbf{here}}.
+
+    
+    \item   View the \href{\OpticalPumpingVideo}{\textbf{Optical Pumping Video}}.
+    
+    \emph{\textbf{Please note: In order to view the private Youtube videos hosted by the university, you must be signed into your berkeley.edu Google account.}}\\
+  
+    \textbf{Please note as well:} We have become aware of some inconsistencies in the OPT video.  These have led students to some misconceptions about the lab and optical pumping.  Until we have a chance to redo the video, we ask for your attention to clarifications at a few points in the video.
+    
+    Time code in Minutes for video in Bold:
+
+    \begin{description}
+        \item [05:26] The $^2$P$_{3/2}$ state splits into $F = 3,2,1,$ and 0 (because $J = I = 3/2$ for $^{87}$Rb).
+
+        \item [06:30] The order of the $m_F$ sublevels of the F=1 state has to be reversed (because $g_F = -1/2$).
+
+        \item [12:34] The ratio of probabilities is not generally 50:50 (it depends on the specific sublevels involved), but this does not make too much of a difference for the discussion.
+
+        \item [13:05] In the OPT experiment, the atoms are actually pumped into an $|m_F|=2$ sublevel of the $F = 2$ state (in the case of $^{87}$Rb).
+
+        \item [14:53] One might say it is wrong to call radio-frequency radiation ``light''.
+
+        \item [18:02] It is incorrect to label the horizontal axis ``t''.
+
+        \item [20:22] The filter that removes the D2 radiation is not there to get rid of noise. In fact, if one removes the filter, while the same ground state will be pumped, the pumping, however, will not result in the rubidium vapor becoming transparent. This is a finer point of the experiment (of which there are many, most of them being glossed over).
+    \end{description}
+
+\item{} Review your knowledge of error analysis by viewing the \href{\ErrorAnalysisVideo}{\textbf{Error Analysis video}} and \href{\ErrorAnalysisNotes}{\textbf{Error Analysis Notes}}.
+
+\item{} Read through this lab description and manual again!  And this time, look for all the \textbf{Questions left for the student}.   These questions are all in \textbf{boldface}, and are labeled \textbf{Q1}, \textbf{Q2}, etc. You should work out the answers to all of these questions, potentially with your partner(s).  You should then be prepared to answer them all in your pre-lab and mid-lab discussion.  \emph{You may choose also} to include some relevant parts (and only the relevant parts!) or your answers in your laboratory report.
+
+
+\item{} Go over the pre-lab questions at an appointment with the teaching staff; see below.
+
+\item{} Make sure you have a lab notebook and use it when performing the experiment. The notebook should contain a detailed record of everything that was done and how/why it was done, as well as all of the data and analysis, also with plenty of how/why entries. This will aid you when you write your report.
+
+
+\end{enumerate}
+
+
+%\hyperlink{DS345 Preparation}{ 1} \hyperlink{Resonance Conditions and Symmetry}{  2} \hyperlink{Error Analysis Methods}{  3}
+
+% \begin{enumerate}
+%     \item \emph{\textbf{Note: In order to view the private Youtube videos hosted by the university, you must be signed into your berkeley.edu Google account.}}\\
+%     View the \href{\OpticalPumpingVideo}{\textbf{Optical Pumping Video}}.
+%     \textbf{Note:} While the OPT video has been a great resource for the students helping them to quickly orient in the lab, it has become apparent that some common misconceptions regarding the experiment stem from some minor inconsistencies in the video. To remedy this, I have compiled an (incomplete) list of corrections below labeled by the time in the video. On a personal note, I am sad that Prof. Sumner Davis, a wonderful warm person, a colleague of many years, and a 111 lab enthusiast is no longer with us to call upon to tweak the video...
+
+%     Time code in Minutes for video in Bold:
+
+%     \begin{description}
+%         \item [05:26] The $^2$P$_{3/2}$ state splits into $F = 3,2,1,$ and 0 (because $J = I = 3/2$ for $^{87}$Rb).
+
+%         \item [06:30] The order of the $m_F$ sublevels of the F=1 state has to be reversed (because $g_F = -1/2$).
+
+%         \item [12:34] The ratio of probabilities is not generally 50:50 (it depends on the specific sublevels involved), but this does not make too much of a difference for the discussion.
+
+%         \item [13:05] In the OPT experiment, the atoms are actually pumped into an $|m_F|=2$ sublevel of the $F = 2$ state (in the case of $^{87}$Rb).
+
+%         \item [14:53] I would say it is wrong to call radio-frequency radiation ``light''.
+
+%         \item [18:02] It is incorrect to label the horizontal axis ``t''.
+
+%         \item [20:22] The filter that removes the D2 radiation is not there to get rid of noise. In fact, if one removes the filter, while the same ground state will be pumped, the pumping, however, will not result in the rubidium vapor becoming transparent. This is a finer point of the experiment (of which there are many, most of them being glossed over).
+%     \end{description}
+
+%     \item View the \href{\ErrorAnalysisVideo}{\textbf{Error Analysis video}} and \href{\ErrorAnalysisNotes}{\textbf{Error Analysis Notes}}.
+% \end{enumerate}
+
+%\noindent\textbf{Last day of the experiment please fill out the \href{\ExperimentEvaluation}{\textbf{Experiment Evaluation}}}. \\
+
+%\noindent\textbf{Suggested Reading: Read carefully References \cite{Zafra,RbDiagrams,Bloom,ExperimentSeven}}
+
+
+\noindent 
+\section{Objectives}
+\begin{itemize}
+    \item Observe and understand optical pumping of rubidium atoms
+    \item Observe resonant transitions among Zeeman levels in the atomic electronic ground state
+    \item Observe aspects of the hyperfine and Zeeman structure of alkali atoms, and confirm predictions of the Breit-Rabi equation
+    \item Observe different resonances for the two rubidium isotopes, $^{85}$Rb and $^{87}$Rb, and determine their nuclear spin
+    \item Measure the ambient magnetic field in the experimental apparatus
+    \item Observe zero-field transitions
+    \item Measure timescales for optical pumping
+    \item Practice how to extract information from data in robust manner and how to assess statistical and systematic uncertainties
+\end{itemize}
+
+\section{Background}
+
+\subsection{Atomic structure}
+
+Rubidium is an alkali-metal atom with atomic number 37.  It comes naturally in two isotopes: the more abundant $^{85}$Rb, and the less abundant $^{87}$Rb.
+
+In the electronic ground state of Rb, 36 of the 37 bound electrons form a closed inert shell, while the remaining valence electron occupies the 5s atomic orbital.  In the first excited electronic state of Rb, which lies about 1.6~eV above the ground state, that valence electron is promoted to the 5p orbital.
+
+Looking more closely, the Rb atom contains three forms of angular momentum: electron orbital angular momentum, electron spin, and nuclear spin.  These angular momenta are characterized by the angular momentum quantum numbers $L$, $S$ and $I$, respectively. Considering the states above, the orbital angular momentum of the atom is contained entirely in the valence electron, because the other 36 electrons fully occupy their energy shells.  So, for the 5s ground state we have $L=0$, while for the 5p excited state we have $L=1$.  The electron spin in both cases is $S=1/2$, representing the spin of the single valence electron.  The nuclear spins turn out to be different for the two isotopes: $I=5/2$ for $^{85}$Rb, and $I=3/2$ for $^{87}$Rb.
+
+The presence of this angular momentum enriches the atomic structure.  For example, the 5s electronic ground state is now actually comprised of $(2 S + 1) \times (2 I + 1)$ states (so 12 states for $^{85}$Rb and 10 for $^{87}$Rb), which correspond to different orientations of the electron and nuclear spin.  Similarly, the 5p electronic excited state is now comprised of $(2 L + 1) \times (2 S + 1) \times (2 I + 1)$ states (36 for $^{85}$Rb, 24 for $^{87}$Rb).
+
+Further, the different types of angular momentum in the atom are coupled to one another.  \textit{You should know, and be prepared to explain, what is the physical cause of this coupling.}
+
+As a result, the many angular momentum states discussed above are not all degenerate; rather, they are separated by energy differences that are much smaller than the eV-scale energies of electronic excited states.  As you should recall from your quantum mechanics courses, the origin of these interactions is somewhat complex.  However, because of a clear hierarchy of energy scales in these interactions, and drawing on the lessons of perturbation theory, the net effect of these interactions is simple to describe.
+
+The first-order correction to atomic structure is the fine energy splitting, which comes about because of relativisitic effects that couple the electronic orbital angular momentum to its spin.  We can describe these splittings by considering the effect of a Hamiltonian of the form $H_{f} \propto \mathbf{L}\cdot\mathbf{S}$.  \emph{You should be able to show} that the energy eigenstates of this Hamiltonian are states with a definite total electronic angular momentum $\mathbf{J} = \mathbf{L} + \mathbf{S}$.  The fine-structure splitting introduced by $H_{f}$ separates the 5p electronic excited state into two terms: the $^{2}P_{3/2}$ term and the $^{2}P_{1/2}$ term, where, here, we use the nomenclature $^{2S + 1}L_{J}$ to denote the value of the angular momentum quantum numbers $S$, $L$, and $J$ in these terms.  There is no fine-structure splitting of the 5s electronic ground state (\emph{can you explain why?}).
+
+The fine structure splitting of the excited state is on the order of 0.04~eV.  This splitting affects the optical spectrum of Rb.  Transitions from the electronic ground states to states within the $^2P_{1/2}$ term occur with the optical wavelength $\lambda_{D1} = 795$~nm, and those to states within the $^2P_{3/2}$ term occur with the optical wavelength $\lambda_{D2} = 780$~nm.  These wavelengths lie in the near infrared spectrum. They are only barely visible to the naked eye as a deep red color, giving rubidium its name.  The 795-nm transition is labelled as the D1 line and the 780-nm transition as the D2 line of the rubidium spectrum.  These labels were assigned by Fraunhofer who detected and labeled the analogous transitions in atomic sodium (another alkali metal) when observing the spectrum of sunlight.
+
+The next-order corrections are known as the hyperfine structure.  These corrections come about because of interactions between the electronic angular momentum and the nuclear spin.  Because the magnetic moment of the nucleus is so much smaller than that of the electron (about $10^4$ times smaller, similar to the ratio of the electron to proton mass), so too is the hyperfine structure many orders of magnitude smaller than the fine structure splitting.
+
+In the absence of an applied magnetic field, rotational symmetry implies that the energy eigenstates of an atom must also be eigenstates of the \emph{total} angular momentum of the atom.  We denote this total angular momentum as $\mathbf{F} = \mathbf{I} + \mathbf{J}$.  Thus, without having to look further into details, we can foresee already that the ground and excited terms of the atom will split up into manifolds of states, each of which has a well defined total angular momentum quantum number $F$.
+
+Consider the example of the ground term\footnote{Note, the term ``term'' refers to all quantum states that have the same ``term symbol.''  Here, that term symbol is $a ^2S_{1/2}$, where the label $a$ tells us it's the lowest-energy electron configuration with that even parity state.  The use of the word ``term'' here is anachronistic, referring back to the early days of atomic spectroscopy where the existence of quantum states was not yet known, and where energies were just terms in a formula that described the spectrum of an atom.} of $^{87}$Rb.  For this term, $J = 1/2$, while $I = 3/2$.  Following the rules for the addition of angular momentum, we know that the total angular momentum quantum number can have the values $F=1$ and $F=2$.  If you examine the atomic structure of $^{87}$Rb, shown, for example, in Ref.\ \cite{RbDiagrams}, you see indeed that the electronic ground state of $^{87}$Rb consists the low-energy $F=1$ state and the higher-energy $F=2$ state, separated by an energy of $E_{hfs} = h \times 6.8$~GHz.  Ref.\ \cite{RbDiagrams} also shows the hyperfine structure of the $^2P_{1/2}$ and $^2P_{3/2}$ excited states.  Make sure that you are able to explain that hyperfine structure also. (Can you explain why the hyperfine structure in the P-states is smaller than in the S-states?)
+
+\subsection{Rb in a magnetic field: The Breit-Rabi formula}
+
+Now, let us get more quantitative.  For illustration, we will consider the specific case of the ground electronic term of $^{87}$Rb, but, note that the treatment here can be extended easily to the excited states of $^{87}$Rb and also to the states of $^{85}$Rb.  
+
+As discussed previously, this term contains 8 distinct (linearly independent) quantum states that correspond to the different orientations of the electron angular momentum and the nuclear spin.  In order to identify these states, let us recall that the operators $J^2, I^2, J_z,$ and $I_z$ all commute with one another; here, we have picked out a direction in space to be the $\mathbf{z}$ axis, and defined $J_z$ and $I_z$ as projections of the angular momentum operators onto this axis.  We can now label the eight states $|J,I; m_J, m_I\rangle$ as basis states that span the electron ground states of $^{87}$Rb.  Following the algebra of angular momentum operators, the magnetic quantum numbers run over the ranges $m_J \in \{-1/2, 1/2\}$ and $m_I \in \{-3/2, -1/2, 1/2, 3/2\}$.  This choice of basis can be called the ``separable basis.'', i.e.\, the basis states correspond to products of the angular momentum eigenstates of the atom's shell and the nucleus, respectively.
+
+An alternate choice of basis is the ``coupled basis.''  Here, we specify states according to their total angular momentum $\mathbf{F} = \mathbf{J} + \mathbf{I}$, and its projection $F_z$, using the notation $|J,I; F, m_F\rangle$.  Recall that, in this case, $F$ can have the values $F=1$ and $F=2$, while $m_F$ runs over the range $\{-F, -F+1, ... F\}$.  You should confirm that, again, we identify eight basis states.
+
+Now we wish to describe the energy eigenstates and eigenvalues of the atom, both in the absence and in the presence of a magnetic field.  For this, we consider the effect of the hyperfine Hamiltonian $H_{\rm hfs}$ that acts on the state space described above.  The hyperfine Hamiltonian has the following form:
+\begin{equation}
+    H_{hfs} = -\boldsymbol{\mu}_I \cdot \left( \mathbf{B}_J + \mathbf{B}_{ext}\right) - \boldsymbol{\mu}_J \cdot \mathbf{B}_{ext}
+    \label{eq:Hhfs}
+\end{equation}
+In this expression, we introduce the magnetic dipole moments of the electrons ($\boldsymbol{\mu}_J$) and of the nucleus ($\boldsymbol{\mu}_I$), where we use the convention that boldfaced symbols are vectors.  
+
+The atomic electrons and the nucleus are gyromagnets, meaning that their magnetic moment is proportional to their angular momentum.  For the electrons, the proportionality is expressed as
+\begin{equation}
+  \boldsymbol{\mu}_J = g_J \mu_B \mathbf{J},  
+\end{equation} where
+\begin{equation}
+    \mu_B = \frac{e \hbar}{2 m_e}
+\end{equation}
+is the Bohr magneton ($e$ is the electron charge, and $m_e$ is the electron mass), and $g_J$ is the Land\'{e} g-factor.  The Land\'{e} g-factor depends on the angular momentum quantum numbers $L$, $S$ and $J$, and it summarizes how the electron orbital angular momentum and spin, which each have different g-factors, are coupled to each other to yield a net magnetic moment.
+
+Similarly, the nuclear magnetic moment is given as
+\begin{equation}
+    \boldsymbol{\mu}_I = g_I \mu_N \mathbf{I}
+\end{equation}
+where $\mu_N$ is known as the nuclear magneton, and is defined as
+\begin{equation}
+    \mu_N = \frac{e \hbar}{2 m_p}
+\end{equation}
+where $m_p$ is the proton mass. 
+
+Looking at Eq.\ (\ref{eq:Hhfs}) more closely, we see it contains two types of terms.  First, there is the intrinsic term $-\boldsymbol{\mu}_I \cdot \mathbf{B}_J \equiv A h \mathbf{I} \cdot \mathbf{J}$ \cite{arim77}.  This term summarizes the coupling within the atom between the nuclear and electronic angular momenta.  Details of how this coupling term is calculated are given in various texts, including in Ref.\ \cite{arim77}, which reviews experimental data on the hyperfine structure of alkali atoms.  A simple description is that this term quantifies the energy of the nuclear magnetic dipole when placed within the internal magnetic field $\mathbf{B}_J$ produced by the atomic electrons at the location of the nucleus.  Practically, we just accept that this term exists, and that the hyperfine coupling constant $A$ has been measured and tabulated.
+
+Next, there are the extrinsic terms $- \left(\boldsymbol{\mu}_I + \boldsymbol{\mu}_J\right) \cdot \mathbf{B}_\mathrm{ext}$ that describe the energies of the atomic magnetic dipoles placed within an externally applied magnetic field $\mathbf{B}_\mathrm{ext}$.
+
+\emph{Some questions regarding atomic hyperfine structure to consider with your partner/on your own:}
+\begin{enumerate}[series=forstudents,label=Q\arabic*.]%\bfseries
+    \item In the case that the external magnetic field is zero, what are the atomic energy eigenstates and their energies in the $^2S_{1/2}$ electronic ground state, and also in the $^2P_{1/2}$ and $^2P_{3/2}$ electronic excited states, both for $^{85}$Rb and for $^{87}$Rb? Here, we are just interested in the energies determined from the hyperfine splitting Hamiltonian $H_\mathrm{hfs} = h A \mathbf{I} \cdot \mathbf{J}$, i.e.,\ those measured with respect the atomic energy in the absence of hyperfine coupling.  You should leave your answer in terms of the hyperfine coupling constants $A$, which are different for the two isotopes and for the ground and excited states.
+    \item Now look up the accepted values for those hyperfine coupling constants $A$ (see Table IX in Ref.\ \cite{arim77}), and then, using your expression determined above, calculate the hyperfine energy splitting in the ground electronic states of both elements.  Compare your answer to known values of this energy splitting; these are found in many places, but let us guide you specifically to Daniel Steck's nice write-ups on $^{85}$Rb \cite{steckrb85} and $^{87}$Rb \cite{steckrb87}, which you can find at \url{https://steck.us/alkalidata/}.  You should take note also of the magnitude of the excited state hyperfine splittings.  For the $^2P_{3/2}$ excited state, these splittings include also effects of the nuclear electric quadrupole moment.
+    \item{} From Eq.\ \ref{eq:Hhfs}, we see that the hyperfine energy splitting in the ground state is of the order of $\mu_I B_\mathrm{J}$, i.e.\ of the product of the magnitude of the nuclear magnetic moment $\mu_I$ and of the magnetic field generated internally within the atom by the atomic electrons $B_\mathrm{J}$.  Having determined the ground-state hyperfine energy, provide an estimate for $B_\mathrm{J}$.  For comparison, what is the magnitude of the magnetic field that you will apply in your experiment?
+    \item{} Now, we consider the energy eigenvalues determined from $H_\mathrm{hfs}$ also in the presence of a non-zero external magnetic field.  In the alkali-atom ground level, these energies can be calculated using the Breit-Rabi formula.  You should look up the derivation of this formula, and be able to describe the concepts used in its derivation.  Specifically for this experiment, we are interested in the low-field limit of this formula, which applies when the Zeeman energy produced by the external magnetic field is very small compared to the hyperfine energy splitting discussed above.  Derive the following expression for the energy splitting $h \nu$ between neighboring Zeeman states in this low-field case:
+    \begin{equation}
+        \frac{\nu}{B_\mathrm{exp}} = \frac{2.799}{2 I + 1} \frac{\text{\normalfont{MHz}}}{\text{\normalfont{G}}}
+        \label{eq:Zeeman}
+    \end{equation}
+    where $B_\mathrm{ext}$ is the magnitude of the externally applied magnetic field.
+\end{enumerate}
+
+\subsection{Optical pumping}
+
+Our aim in this experiment is to drive and observe the effects of Zeeman transitions in the electronic ground states of rubidium atoms.  These are transitions between an initial state $|F, m_F\rangle$ and a final state $|F, m_F \pm 1\rangle$, for which the transition frequency $\nu$ is given by Eq.\ \ref{eq:Zeeman}, which you have, hopefully, just derived.
+
+
+In general, we detect that these transitions are taking place by measuring a change in the distribution of atoms among hyperfine states.  But in order to do, we must first prepare the atoms in an initial state that is \emph{spin polarized}.  Specifically, in this case, we need to prepare the atoms so that the population of atoms in the initial state is much larger than it is in the final state.  Such spin polarization is needed because the radio-frequency magnetic field, which you will apply to your atoms, is just as effective driving atoms from the initial state to the final state as it is from the final state to the initial state.  If the atoms are not spin polarized, then the redistribution of atoms between initial and final states will have no net effect on the atomic populations, and, thus, we will be unable to tell whether these transitions are taking place.
+
+Consider the distribution of atoms among the atomic internal states that exists naturally within the vapor cells used in this experiment.  At thermal equilibrium, the probability of finding an atom in a low-energy state is higher than that of finding the atom in a high-energy state. Specifically, at the absolute temperature $T$, the probabilities $P_1$ and $P_2$ of finding an atom in states with energies $E_1$ and $E_2$, respectively, are related by the Boltzmann factor
+    \begin{equation}
+        \frac{P_2}{P_1} = \exp\left(-\frac{E_2 - E_1}{k_B T}\right),
+    \end{equation}
+    where $k_B$ is the Boltzmann factor.
+
+
+\emph{Some questions regarding the thermal distribution of atomic vapor to consider with your partner/on your own:}
+\begin{enumerate}[resume=forstudents,label=Q\arabic*.]%\bfseries
+    \item  Considering an atomic vapor of rubidium atoms at a temperature of 40 $^\circ$C, determine the ratio of the population of atoms in the electronic excited state to that in the electronic ground state.  You will find that the fraction of atoms in the electronic excited 5p state is very small. This is the reason that light from the rubidium lamp will be absorbed in passing through the vapor cell.
+    \item Considering the same conditions, and focusing now on the hyperfine states of the electronic ground state, what is (1) the ratio of the population of atoms in the higher-energy $F = I+1/2$ hyperfine state to that in the lower-energy $F= I-1/2$ hyperfine state, and (2) the ratio of populations in neighboring Zeeman states?  You will find that these ratios are near unity, meaning that, at thermal equilibrium, there is nearly zero spin polarization in an atomic vapor cell.
+\end{enumerate}
+
+Optical pumping is a method to generate spin polarization.  In this experiment, such pumping takes place by exposing atoms to infrared light with a spectrum that can drive all transitions on the D1 line, and that has circular polarization.  Consider that the light propagates in the $\mathbf{z}$ direction, and that the circular polarization of the light is left-handed.  In this case, the selection rules for electric dipole transitions tell us that the light drives transitions that increase the magnetic quantum number $m_F$ by one.  Then, when the excited state atom decays, it will spontaneously emit an infrared photon, and in the process may change its magnetic quantum number by $\Delta m_F = \{-1, 0, +1\}$ (depending of course on whether ground states with those final values of $m_F$ exist).  Altogether, through a cycle of absorption and then spontaneous emission, we see that the atoms end up being pumped toward states of larger $m_F$.  After very many such cycles, each atom in the atomic vapor, regardless of its initial state, will be pumped to the electronic ground state that has the highest value of $m_F$.  For example, in $^{87}$Rb, this is the hyperfine state $|F=2, m_F = 2\rangle$.
+
+This state may or may not be the highest energy hyperfine state. That is, with the conditions above and the same choice of isotope, if the external field $\mathbf{B}_\mathrm{eff}$ points also along the $\mathbf{z}$ direction, then, indeed, the $|F=2, m_F = 2\rangle$ state is the highest energy state.  However, if we reverse the magnetic field so that it points in the $-\mathbf{z}$ direction, but we still label states according to the projection of their spin along the $+\mathbf{z}$ direction as before, then, now, the final state for optical pumping is the lowest-energy state among the $F=2$ states.
+
+\emph{A question to consider with your partner/on your own:}
+\begin{enumerate}[resume=forstudents,label=Q\arabic*.]%\bfseries
+\item{} What is is the steady-state atomic population reached by optical pumping when the magnetic field is oriented orthogonally to the $\mathbf{z}$ axis?  This is a somewhat tricky question, and a good topic for discussion.
+\end{enumerate}
+
+
+\subsection{Optically detected magnetic resonance}
+
+A crucial feature of this experiment is that the state reached after many cycles of optical pumping (the ``pumped state''), is also a state in which the atom no longer absorbs the light that is performing optical pumping (i.e., it is a ``dark state'').  
+
+\emph{Questions regarding light absorption by an atomic vapor to consider with your partner/on your own:}
+\begin{enumerate}[resume=forstudents, label=Q\arabic*.]%\bfseries
+\item{} The broad spectrum of light emitted by the rubidium lamp spans \emph{all} transitions on the D1 lines of both rubidium isotopes.  Explain why the pumped state is a dark state.
+\item{} What if we had made a different choice in this experiment, and we had filtered the output of the rubidium lamp so that it was still circularly polarized, but that now it contained light that drove all D2 lines of both rubidium isotopes.  In this case, is the pumped state a dark state?  Explain why.
+\end{enumerate}
+
+The fact that the optically pumped state is also a dark state allows us to use optical means to detect a radio-frequency magnetic transition within the atomic vapor.  Such a technique is generally known as ``optically detected magnetic resonance'' (ODMR).  The idea is simple:  If the atoms are not driven with a resonant radio-frequency magnetic field, then they are all optically pumped into a dark state that no longer absorbs optical pumping light.  A photodetector that collects light transmitted through the atomic vapor will read a high light level.  In contrast, if we apply a resonant radio-frequency magnetic field, that rf field will drive the atoms out of the optically pumped state.  This means that, now, the atomic vapor will absorb some of the optical pumping light, and the photodetector will read a lower light level.
+
+\section{Experimental setup}
+
+\textbf{Note: if you are on OPT-3, after reviewing this section, you MUST review Section \ref{sec:opt3equipment} to see the differences in that apparatus and the corresponding procedure. Otherwise, you will not be able to successfully use the apparatus.} 
+
+The experimental setup is described in the \href{\OpticalPumpingVideo}{\textbf{Optical Pumping Video}}, in the photographs shown in Figs.\ \ref{fig:opt_photo_1}, \ref{fig:opt_photo_2}, and \ref{fig:opt_photo_3}, and also in the schematic drawing of Fig.\ \ref{fig:BlockDiagram}.  Let us go over some of this equipment:
+
+
+\begin{figure}[t]
+\begin{minipage}{0.36\textwidth}
+    \href{http://experimentationlab.berkeley.edu/sites/default/files/images/OPT_3524.jpg}{\includegraphics[width=\linewidth,keepaspectratio]{images/OPT_3524.jpg}}
+    \caption{Optical Pumping setup. See larger image \href{http://experimentationlab.berkeley.edu/sites/default/files/images/OPT_3524.jpg}{\textbf{here}}}
+    \label{fig:opt_photo_1}
+\end{minipage}
+\begin{minipage}{0.36\textwidth}
+    \href{http://experimentationlab.berkeley.edu/sites/default/files/images/OPT_3548.jpg}{\includegraphics[width=\linewidth,keepaspectratio]{images/OPT_3548.jpg}}
+    \caption{Optical Pumping Equipment \& Coil. See larger image \href{http://experimentationlab.berkeley.edu/sites/default/files/images/OPT_3548.jpg}{\textbf{here}}}
+      \label{fig:opt_photo_2}
+\end{minipage}
+\begin{minipage}{0.25\textwidth}
+    \href{http://experimentationlab.berkeley.edu/sites/default/files/images/OPT_Coils_Top_t9743.jpg}{\includegraphics[width=\linewidth,keepaspectratio]{images/OPT_Top_t9743.jpg}}
+    \caption{Optical Pumping coils assembly. See larger image \href{http://experimentationlab.berkeley.edu/sites/default/files/images/OPT_Coils_Top_t9743.jpg}{\textbf{here}}}
+      \label{fig:opt_photo_3}
+\end{minipage}
+\end{figure}
+
+
+    \begin{figure}[t]
+        \centering
+        \includegraphics[width=0.8\linewidth]{images/BlockDiagram}
+        \caption{Block diagram of Equipment}
+        \label{fig:BlockDiagram}
+    \end{figure}
+    
+\begin{itemize}
+    \item{} The atomic vapor cell:  In the heart of the experiment, there is a few-inch-diameter spherical glass bulb.  This bulb is coated with a thin wax coating, and contains a gas which is mostly a low-density neutral buffer gas.  It also contains a small amount of rubidium.  When the bulb is cold, that rubidium resides mostly on the walls of the glass cell, in a quantity that is so small that the glass is still transparent.  When the bulb is heated, some of that rubidium is released into the buffer gas within the optical bulb.
+    
+    The density of rubidium within the buffer gas is thereby controlled by varying the temperature of the bulb.  Such temperature control is achieved using a resistive heater, which is operated by the Heater Control Unit.  This control unit is turned on or off based on the temperature read by a temperature sensor.   We note that the resistive heater generates a stray magnetic field that interferes with our ODMR measurements. Therefore, when making precise measurements, we choose just to switch off the heater.
+    
+    Because of collisions with the buffer gas, rubidium atoms diffuse for a long time within the cell before striking the walls.  This long lifetime gives enough time for the rubidium atoms to absorb and re-emit many optical pumping photons.  The atomic spin is generally conserved in a collision with the buffer gas, so that once an atom is in the pumped state, it will stay there for some time (you will measure how long).
+    
+    \item{} Optical pumping optics: The optical pumping light is generated by a lamp that contains rubidium gas within an electronic discharge.  This is a smart choice: the light emitted by electronically excited rubidium in the lamp is exactly the color of light that ground-state rubidium in the glass cell can absorb!   More specifically, the emission from the lamp contains light that can drive all of the D1 and D2 lines for both isotopes of rubidium, and also other rubidium emission lines that are irrelevant to this experiment.
+    
+    The emission from the lamp passes through two optical elements.  First, it runs through an optical polarizer that allows light through only if it is circularly polarized.  We are unsure whether the emitted light is strictly left-handed or strictly right-handed -- but it is one of these two choices!  Second, the light runs through a ``D1 pass filter.''  This is an interferometric filter that allows light through only if its wavelength is near 795~nm.  This band-pass means that the light passing through this filter can drive all D1 transitions in the vapor cell, but that it no longer contains the spectrum to drive D2 transitions (do you remember why this is important?).
+    
+    The lamp emission then passes through the atomic vapor cell, and shines upon a photodiode.  Details on the photodiode are found here: \href{\PhotodiodeDataSheet}{\textbf{Photodiode Data Sheet}}.
+    
+    The current in this photodiode is amplified using a SRS SR560 amplifier (Fig.\ \ref{fig:SR560}).  This amplifier is ubiquitous in experimental physics laboratories, and you should review its manual (\href{\SRVoltagePREAMP}{\textbf{SR560 Voltage PRE-AMP}}) to be familiar with its function.  The amplified output is then measured on an oscilloscope.
+    
+    
+    \begin{figure}[t]
+        \centering
+        \includegraphics[width=0.6\linewidth]{images/SR560}
+        \caption{SR560 Amplifier}
+        \label{fig:SR560}
+    \end{figure}
+
+    This optical setup defines an optical axis -- call it $\mathbf{z}$.  The optical pumping state is the state with maximum angular momentum projection along this axis.
+    
+    
+    \item{} Radio-frequency coil:  The atomic vapor is positioned between two nearby electromagnet coils, which are connected in series, and which are driven by a an SRS DS345 function generator.  Again, this function generator (see Fig.\ \ref{fig:DS345}) is quite ubiquitous in experimental physics labs, and, so, it would make sense for you to learn how to operate it.  We suggest strongly you familiarize yourself with the \href{\DSManual}{\textbf{DS345 Manual}}.
+    
+\begin{figure}[t]
+    \begin{subfigure}[b]{0.5\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{images/DS345front}
+        \caption{Front}
+        \label{fig:DS345front}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.5\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{images/DS345back}
+        \caption{Back}
+        \label{fig:DS345back}
+    \end{subfigure}
+    \caption{DS 345 Synthesized Function Generator}\label{fig:DS345}
+\end{figure}
+
+
+    The sinusoidal current produced by this SRS DS345 function generator runs through the rf coils, and generates a radio-frequency magnetic field along a direction that is orthogonal both to the optical axis and also to the axis of a strong external magnetic field (see next).  This transverse magnetic field has the right polarization to drive Zeeman transitions within the vapor.
+    
+    \item{} Light-proof box:  The vapor cell, heater, optical setup, and rf coils are all located within a light-proof, thermally insulating box.  This box allows us to detect the weak optical signal of lamp light that is transmitted through the cell without the interference of room light. The box also keeps the  vapor cell at a constant elevated temperature for long enough for us to perform measurements.
+    
+    \item{} Axial magnetic field:  Magnetic fields along the $\mathbf{z}$ axis are produced by two large, coaxial, circular coils placed outside the light-proof box.  These two coils are in the \emph{Helmholtz configuration}, which means that the separation $d$ between the coils, and the radius $a$ of the coils, are chosen so as to produce a near-constant magnetic field.
+    
+    \emph{Questions regarding Helmholtz coils to consider with your partner/on your own:}
+    \begin{enumerate}[resume=forstudents, label=Q\arabic*.]%\bfseries
+    \item{} Consider two coaxial coils, each with radius $a$, and with total separation $d$.  Assume the coils are connected in series, so that each carries the same current $i$ running in the same direction through each coil.  Let the origin $z=0$ be located along the coil axis ($\mathbf{z}$) and midway between the two coils.  What is the field $B_z(z)$ along the coil axis?
+    \item{} The Helmholtz condition is chosen so that the magnetic field is nearly uniform in the region between the coils.  Consider the second derivative $d^2 B_z / dz^2$ in the axial field, evaluated at $z=0$.  Show that $d^2 B_z / dz^2 = 0$ when $d=a$.
+    
+    \item{} Now assume that each coil is made up of $N$ turns of wire.  Neglecting the wire thickness, so that all the wire in each coils has the exact radius $a$ and separation $d$ between coils, show that the axial magnetic field is given as
+   % \begin{equation}
+       % B_z(z=0)=0.9 \times 10^{-2} \, \frac{N i}{a} \times \frac{\text{\normalfont{G m}}}{\text{\normalfont{A}}}.
+       % \end{equation}
+        \begin{equation}
+         B_z(z=0)=0.9 \times 10^{-2} \, N \left(\frac{\rm meters}{a}\right)  \left(\frac{i}{\rm Amps}\right) {\rm Gauss}
+        \label{eq:helmholtz}
+    \end{equation}
+    
+    \item{} Even at the Helmholtz condition, the field between the coils is not perfectly homogeneous.  Using your expression above for $B_z(z)$, what is the magnetic field at $z=0$ and at $z = 2.5$~cm, where we take the values for the experimental setup as $N=135$ turns and $a = 27.5$~cm?  You see that, even under ideal conditions where we neglect all other possible sources of magnetic field inhomogneity, there is a difference between the magnetic field at the center ($z=0$) and at the out edge ($z=2.5$ cm) of the glass bulb.
+\end{enumerate}
+
+    These Helmholtz coils are driven by a current source that is the sum of a DC current, produced by a dedicated DC current supply, summed with an AC current.  See here for  \href{\CircuitForMagneticCoils}{\textbf{details of the magnetic coil circuit}}.  This AC current is generated by taking the 60~Hz AC power mains and then reducing its peak-to-peak voltage using a variable transformer.  As a result, the magnetic field produced by the Helmholtz coil contains both a DC and a (small) AC component.  The same AC voltage, with an additional variable phase shift, is sent to the same oscilloscope that monitors the photodiode signal.  As we will see below, the DC current controls the Zeeman resonance frequency $\nu$ of the atomic vapor, while the AC current modulation provides a robust, and remarkably precise, method to detect the magnetic resonance condition.
+    
+    The DC current is measured by running it across a well-calibrated, low-impedance resistor (called a ``shunt resistor''), and then measuring the voltage across this resistor.   The shunt is a calibrated resistor and is temperature compensated so that its resistance value does not change with a change in temperature (On average the shunt's resistance changes less than 0.002\% (or 20 ppm = parts per million) per $^\circ$C of temperature change). The voltage that develops across the shunt is 10~mV per ampere of current through the coils. 
+    
+\end{itemize}
+
+
+\section{Experimental procedure}
+
+\textbf{Note: if you are on OPT-3, after reviewing this section, you MUST review Section \ref{sec:opt3equipment} to see the differences in that apparatus and the corresponding procedure. Otherwise, you will not be able to successfully use the apparatus.} 
+
+%Now, let us take you through the steps you will perform in conducting the experiment.\textit{would} perform if you were conducting the experiment yourself.  We will follow these same procedures during our remote experiment demonstration. Make sure to read through this procedure in detail before the demonstration, so that you can understand what is going on, that you can answer impromptu questions when called upon, and that you can think about and ask about more advanced topics during the demonstration. In particular, for your lab report, you will be called upon to provide a detailed and well justified quantification of statistical and systematic errors in the measurements that we will perform together.  You should come to the remote demonstration as a well-prepared detective, ready to sleuth out all these sources of error.
+
+\subsection{Inspecting and turning on the experiment}
+
+Compare the experimental setup to the block diagram (Figure \ref{fig:BlockDiagram}).  Follow all the connections, and identify what each unit does.  Inspect the inside of the light-proof box.  Be particularly cautious with the fragile glass vapor cell and with the optical filters.  If you feel something needs to be adjusted, ask the teaching staff for help rather than doing it yourself.
+
+When satisfied, turn on all the equipment.  Start with the main switch, which is at the lower right-hand corner of the Rubidium Lamp Supply/Coil Driver Panel.  Be mindful of some limits: Current in the Helmholtz coil should not be run above around 3~A (can you come up with a reason why?).  The temperature of the light-proof box should not exceed 55~$^\circ$C.
+
+Monitor the photodiode signal and turn on the rubidium lamp. The lamp should switch on and emit light that is detected on your photodiode at a current of 25 - 30~mA.
+
+You will adjust the SR560 pre-amplifier at various points in your experiment.  But to get started, we advise you to select Input `A', with the DC/GND/Ac button on the AC position.  Set the gain initially to 500, the LF Roll-off to 0.1 Hz, and the HF Roll-off to 10 kHz, with both filters set at 6 dB per octave.  (Be sure to play with these settings later on to discover why they are a good starting point!)  Pay attention that sometimes the SR560 goes into ``overload.''  To reset the unit, you will need to press the OL REC (OverLoad RECovery) button.
+
+\subsection{First observation of ODMR: Fixing the current and sweeping the frequency.}
+
+Now we will make our first observation of Zeeman resonances in the two rubidium isotopes.  For this, we will apply a DC magnetic field to the vapor cell, which fixes the Zeeman resonance frequencies of the two isotopes.  Then, while monitoring the photodiode signal, we will use the DS 345 generator to output an rf frequency that is swept slowly over a wide range of frequencies.  Resonances will be observed as changes in the photodiode signal.  We will see later on that this is not a particularly precise or accurate way of finding the Zeeman resonances.  But this method does provide us with a broad view of what is going on in the experiment.
+
+We first heat up the glass cell to place a substantial number of rubidium atoms into the vapor.  Heat the light-proof box to about 50 $^\circ$C.
+
+In the meanwhile, set up the rest of the experiment.  We suggest you start with a DC current of 1~A through the Helmholtz coil.  Observe not only the reading on the current supply, but, also, measure and write down the DC voltage across the shunt resistor.  To set the parameters of the radio-frequency sweep, we should first answer the following questions:
+
+\emph{Questions regarding Zeeman transition frequencies to consider with your partner/on your own:}
+\begin{enumerate}[resume=forstudents, label=Q\arabic*.]%\bfseries
+\item{} Using your formula for the magnetic field produced by the Helmholtz coil, what is the field generated with a $i = 1$~A current, with $N=135$ turns in each coil, and a coil radius of $a = 27.5$~cm?
+\item{} At this magnetic field, what are the expected Zeeman transition frequencies for $^{85}$Rb and for $^{87}$Rb?
+\end{enumerate}
+
+Note that the total magnetic field on the vapor cell is the sum of the applied magnetic field and the ambient magnetic field in the lab.  We might refer to this ambient field as the ``Earth's field,'' although, in fact, the ambient field is the sum of all fields in the lab, i.e.\, not just that produced by the Earth's core, but also fields produced by rebar in the walls of the building, magnetic materials within the experimental apparatus, etc, and most annoyingly, currents in the power lines nearby.
+
+\emph{Questions regarding the Earth's field to consider with your partner/on your own:}
+\begin{enumerate}[resume=forstudents,label=Q\arabic*] %\bfseries
+\item{} What is the field produced by the Earth in Berkeley, California?  What is its magnitude and what is its orientation?
+\label{question:earthfield}
+\item{} The ambient magnetic field and the field produced by the Helmholtz coils are both vectors.  The experimental setup is designed so that these two field vectors are aligned with one another.  But nothing's perfect!  What effects would a misalignment of the two fields have on your measurements?  For example, how would a misalignment affect the how the  Zeeman resonance frequency varies with the current $i$ in the Helmoltz coil?  Also, if we tune the Helmholtz coil to cancel out precisely the component of the ambient field along the optical axis, what residual field might remain, and what effect would it have?
+\end{enumerate}
+
+From your answer to question \ref{question:earthfield}, you should now have a good guess for the expected Zeeman resonance frequencies.
+
+Set the DS 345 unit so that it will produce a sinusoidal current whose frequency is swept linearly, with a 100~ms sweep period, over a 3~MHz range that spans the expected resonance frequencies.  Set the output voltage initially to 5~V peak-to-peak.
+
+We will use the oscilloscope to measure the amplified photodiode signal vs.\ the frequency of the rf magnetic field.  Let us use the oscilloscope's XY mode for this.  On the X-axis (Channel 1), we will place the ``Sweep Output'' of the SRS DS 345 unit.  Check that this output indeed produces a triangle wave, whose voltage is proportional to the frequency of the rf output.  On the Y-axis (Channel 2), we will place the photodiode signal.
+
+If all goes well, we should now be seeing the ODMR signals!  See Fig.\ \ref{fig:PhotodiodeSignal} for what to expect.
+
+
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=0.7\linewidth]{images/PhotodiodeSignal}
+    \caption{Amplified photo diode signal with large span frequency modulation.}
+    \label{fig:PhotodiodeSignal}
+\end{figure}
+
+
+You may see the resonance frequencies jumping around as the heater in the light-proof box switches on and off (can you explain why?).  To avoid this jumpiness, turn off the heater (What other detrimental effects may the heater have on our experiment. For this think about how the heater works).
+
+Let us explore this signal to make several qualitative observations:
+\begin{itemize}
+    \item How does the signal vary with current in the Helmholtz coils?  Why?
+    \item You should see two resonances.  Which corresponds to which isotope?  What can you observe about the isotopic abundances in your glass cell?
+    \item How does the resonance signal vary with assorted parameters, such as the sweep period, the rf voltage, settings of the photodiode amplifier, current in the rubidium lamp, etc.?  You should quiz yourself: Do you understand why all these variations come about?  This is an essential part of experimental physics: verifying that you have a qualitative understanding of your apparatus and the underlying physics, and gaining a finer sense of how your measurements results vary with and may depend on various parameters so that you can convincingly assess all sources of error.
+    \item How precisely can you determine the resonance frequency by this method?  Here, you might play around with more settings to improve your measurement.For this it is important to understand where the asymmetric shape of the signal comes from. 
+\end{itemize}
+
+\subsection{Finding good settings for the bulb temperature}
+\label{sec:optimal-temp}
+
+A good way to determine the ideal bulb temperature is by plotting the height of the ODMR signals for each isotope vs.\ the box temperature. This is not necessary to do in this lab, unless you are curious and have time left at the end of your slot. This plot may look similar to Fig.\ \ref{fig:ODMRvstemp}, but more recently, it is common to see a plateau at the peak rather than falling back down. Instead of making this plot, you may take the conclusion to operate around 43 - 50\textdegree C, which is more consistant with the recent plateau plots.
+
+    \begin{figure}[t]
+        \centering
+        \includegraphics[width=0.8\linewidth]{images/SigVsTemp}
+        \caption{Optical signal amplitude vs. Temperature for Rubidium 85.}
+        \label{fig:ODMRvstemp}
+    \end{figure}
+
+\subsection{Current modulation/lock-in detection of the resonance frequency}
+\label{sec:lockindetectionprocedure}
+
+As explained in the introduction video and in some of the key references for this experiment, a quicker, more accurate, and more precise method for finding the Zeeman resonance frequency is to modulate the Helmholtz current while applying a single-frequency rf field\footnote{Alternately, you could consider fixing the Helmholtz current and modulating the rf frequency.  However, this approach has the downside of competing against 60 Hz variations in the magnetic field from power-line noise.  By modulating the current instead, precisely in sync with the 60 Hz power lines, we make it that the 60 Hz magnetic field noise just adds to our modulation and does not obstruct our measurement}.
+
+The essential idea here is that of lock-in detection.  Let us first consider a slow and difficult method to detect the Zeeman resonance.  Say we observe the DC level of the photodiode, turn on the rf field at a single frequency, and then slowly change the current in the Helmholtz coil.  When we are away from the resonance condition, the photodiode output will be high (careful: your voltage signal might be inverted depending on the direction of the photocurrent and amplifier settings).  When we strike the resonance condition, the photodiode output will be low.  By carefully tuning the current and identifying the minimum photodiode output, we find the resonance condition as precisely as we can.
+
+This method is slow:  We have to slowly vary the current until we find the center of the resonance signal.  Even worse, this method is prone to low-frequency noise:  During our procedure, the photodiode signal strength, which we are measuring essentially as a DC signal, will drift.  This drift occurs for many reasons: variations in the rubidium lamp intensity, temperature changes in the vapor cell, slow changes in the amplifier gain, drifts of the ambient magnetic field (e.g.\ when somebody moves a magnetic stool or screwdriver in the lab), etc.  Indeed, the longer the time over which we perform our measurement, the more types of noise sources enter into our measurement.
+
+
+Lock-in detection involves applying a modulation to the experimental apparatus at ``high'' frequency, and then measuring specifically the variation of a measured signal at the modulation frequency.  This lock-in detection method has two enormous advantages over the slow DC approach described previously.  First, the lock-in method detects an AC signal rather than a DC signal.  We then benefit from the fact that experimental noise is typically lower at high frequency than it is at low frequency, essentially because many causes of noise occur at low frequency but fewer of them occur at low frequency.  In this experiment, we choose 60~Hz as our  modulation frequency. While this is not a particularly ``high'' frequency, it is handy to generate, and, moreover, a 60~Hz modulation in the magnetic field produced by the power mains already exists in the lab.  Might as well ride the wave\footnote{Ok, this view is a little naive.  There are other sources of disturbance that are also synchronized to 60 Hz, and these might, in fact, bias our measurement.  Can you think of any such sources?}!
+
+ 
+Second, our lock-in detection naturally allows us to take derivatives of the photodiode signal vs.\ current.  That is, by modulating the current, we are constantly scanning across the Zeeman resonance signal.  By examining the signal variation that is synchronous with our current modulation, we can quickly, precisely, and accurately locate the center of the resonance response.
+
+To implement this method, we turn on the field modulation by flipping the ``Field'' switch on the Coil Driver panel, and also turn on the ``Phase Out'' output by flipping the ``Phase Switch.''  The Phase Out signal tracks the 60~Hz modulation placed on the Helmholtz coils.  We record this on the X-axis (Channel 1) of our oscilloscope, while still recording the amplified photodiode voltage on the Y-axis (Channel 2).
+
+Let us begin by finding the Zeeman resonance under this method.  From our previous ODMR work, we have a first mesurement of the Zeeman resonance frequencies at a 1.0~A DC field.  We will find each of these resonances:  (1) set the rf function generator to the estimated resonance frequency (with no frequency modulation), and then (2) finely tune the DC current around 1.0~A until the resonance is observed.  Repeat for each isotope.
+
+In summary, you should do a resonance frequency vs.\ current data scan.  This should be measured both for $^{85}$Rb and $^{87}$Rb, and also should be recorded for both forward and backward current through the Helmholtz coil.  While making these measurements, we should continually ask:  What is the accuracy of my measurement?  What is the precision?  How can I estimate these quantities?  We might find that we want to use different parameters for measurement at high current vs.\ low current, or for one isotope vs.\ the other.  We should be vigilant for anything that might influence and bias our measurement.  Our measurements might be ``heteroscedastic,'' meaning that the estimated error is not constant across the dataset, but, rather, varies from point to point. Also, we should spot-check our data as they are gathered, in order to catch any mistakes that might require us to retake data.  One warning: don't confuse a $^{85}$Rb signal for a $^{87}$Rb and visa versa.
+
+One important consideration is how much data and which data should we take. For instance, what currents and what step-size should we choose? What parameters should we record? This question is usually difficult to answer before doing the experiment. Thus, we suggest ask yourself first the following questions: 
+\begin{itemize}
+
+\item What are the largest (smallest) values I can (safely) use? Often we learn most in the extreme regimes
+\item At which values do I expect the most interesting signatures? What step size do I need to choose to make sure that I do not miss a feature (such as a resonance)?
+\end{itemize}
+Usually, it is a good idea to do a pilot measurement before taking the actual data. This will inform you whether the apparatus works as expected, where interesting features are and how large they are, gives already hints about potential problems. This should give you then sufficient information to plan your actual data taking, i.e., to determine which range to scan over, how much data to collect as well as the step-size  to obtain sufficient precision. 
+
+\emph{Questions regarding lock-in resonance detection to consider with your partner/on your own:}
+\begin{enumerate}[resume=forstudents,label=Q\arabic*.]%\bfseries
+\item What should the lock-in signal on the scope look like when we are exactly on resonance?  Do we expect any symmetry in the signal, and if so, how should it be symmetrical?  What should it look like if we are just slightly off resonance?
+\item How should the signal vary as we change (1) the magnitude of the 60 Hz modulation, (2) the density of rubidium in the cell, (3) the peak-to-peak amplitude of the rf signal?  Under what conditions will our measurement be most precise?
+\end{enumerate}
+
+\subsection{Zero applied field and zero net field measurements}
+
+In this laboratory we are interested in measuring the magnetic moment of the Rubidium atoms as well as determining the background magnetic field. In experimental physics it is usually a good idea to explore a few options to make measurements. This will help us greatly to identify major problems as well as to estimate how reliable our measurements are. This is one reason we flipped the sign of the magnetic field and recorded data for both isotopes in the previous section. We record the resonances not only for one magnetic field value, but for many, including the special case where it should vanish:
+
+\begin{enumerate}
+    \item Take measurements of the Zeeman resonance frequency at zero DC current.  This resonance frequency is a direct measurement of the ambient magnetic field in the laboratory. Investigate how constant our measurements are in time, and whether they vary systematically for any reason.
+    \item Observation of a zero-field resonance: For this, turn off the depumping frequency and scan the current $i$ through the Helmholtz coils in a small range around the negative of the ambient magnetic field. Importantly, make sure your applied magnetic field modulation is nonzero. In other words, the net magnetic field should be modulated about zero. You should still be able to find a Lissajous resonance feature even though there is no depumping field. How is this possible? Why aren't you seeing constant bright light? As a hint, you should use this resonance as another way to measure the strength of the ambient field (you'll comment later on its precision and accuracy).
+\end{enumerate}
+
+
+\subsection{Timescales for optical pumping using square wave amplitude modulation of the rf field}
+\label{sec:timescales-procedure}
+
+Here, we will make some time-domain measurements in order to characterize the timescales of optical pumping and of Zeeman transitions.
+
+Recall a setting (rf frequency, current, current polarity) you found previously for a strong Zeeman resonance.  Set the function generator to output a sinusoidal signal that is amplitude modulated via a square wave. You may also need to select `AM' on the left column in the `Sweep/Modulate' section. The sinusoidal frequency should be your RF resonance frequency, and the modulation frequency should be around a few Hz. Because we are now interested in the timescale, change the scope settings so that time is now on the x-axis. Observe the amplified photodiode signal as a function of time on the scope, using the external trigger port on the scope to trigger synchronously with the amplitude modulation.
+
+You should see that (1) when the rf magnetic field is off (bottom of the square wave modulation), the gas becomes optically pumped and transparent, and (2) when the rf magnetic field is switched back on, the atomic spins are rotated away from the pumped state and the gas becomes opaque.
+
+What is the ``pumping time'' ($1/e$) for the non-pumped gas to become optically pumped?  What is the ``relaxation time'' for the rf-driven gas to arrive at its new steady state? If using an analog scope, you may find it easier to take a video of the scope and scroll through the video frames to better estimate this; if using a digital scope you should export the data using a USB drive and/or use the cursors.
+
+%If we zoom in, we may be able to see signs of coherent Rabi oscillations.  These occur when the optical pumped atomic spins are suddenly subjected to an rf magnetic field.  In response, the atomic spin should rotate cyclically away from the pumped state and then back.  You should be able to explain this phenomenon clearly based on your studies of magnetic resonance, e.g., in your quantum mechanics or electromagnetism courses.  This Rabi oscillation is damped for several reasons, including spin-relaxation in collisions, spin-relaxation upon striking the wall of the glass cell, magnetic field inhomogeneity, and light scattering.
+
+%\section{Preparation Before The Lab}
+
+%\newpage
+
+%Starting with the articles by Bloom \cite{Bloom} and Zafra \cite{Zafra}, read through the Optical Pumping Reprints. The reprints for this lab are all theoretical, and should be understood before coming to lab. Note, however, that not all of the diagrams or discussions are correct for our experiment: some of the articles discuss only transitions between hyperfine levels, while we have Zeeman splitting as well. Try to keep clear which splittings are which, and which are important for our transitions. See, for example, Zafra \cite{Zafra} (p.647). (You will also find that there is some variation in notation between the various reprint articles; parsing these differences can be challenging, but it is an important skill to have. Let the consistency of the underlying physics guide you.)
+
+%\subsection{Definitions}
+
+% As you study, here are some terms to understand (You can find all of the definitions to these terms and how they relate to the lab under the references tab or by clicking \href{\DefinitionsOPT}{\textbf{here}}):
+
+% \begin{multicols}{3}
+% \noindent
+% Absorption \\
+% Atomic energy levels \\
+% Atomic orientation \\
+% Buffer gas \\
+% Breit-Rabi equation \\
+% Degeneracy \\
+% Discharge lamp \\
+% Electric dipole transition \\
+% Electron configuration \\
+% Equilibrium distribution \\
+% Fine structure \\
+% Helmholtz coil \\
+% Hyperfine structure \\
+% Interference filter \\
+% Larmor frequency \\
+% Line width \\
+% Linear and circular polarizers \\
+% LS coupling \\
+% Magnetic dipole moment \\
+% Maxwell-Boltzmann distribution \\
+% Modulation \\
+% Nuclear spin \\
+% Paschen Bach effect \\
+% Quantum numbers \\
+% Radiative lifetime \\
+% Relaxation \\
+% Resonance \\
+% Selection rules \\
+% Spontaneous emission \\
+% Stimulated emission \\
+% Spectroscopic notation \\
+% Zeeman effect
+% \end{multicols}
+
+% \noindent\textbf{A. Starting with the Hamiltonian}
+% \begin{equation}
+%     H = -\vec{\mu_I} \cdot \left(\overrightarrow{B_J} + \overrightarrow{B_\textrm{ext}}\right) - \vec{\mu_J} \cdot \overrightarrow{B_\textrm{ext}}
+% \end{equation}
+% where $\vec{\mu_I}$ is the nuclear magnetic moment, $\vec{\mu_J}$ is the electronic magnetic moment, $\overrightarrow{B_J}$ is the magnetic field at the nucleus arising from the rest of the atom, and $\overrightarrow{B_\textrm{ext}}$ is an externally applied field, derive the Breit-Rabi law in the low-field case:
+% \begin{equation}\label{eq:Zeeman}
+%     \frac{\nu}{B_\textrm{ext}} = \frac{2.799}{2I + 1} ~\textrm{MHz/gauss}
+% \end{equation}
+% (See Ramsey, for example. [Again, look for any notational differences that may exist; Ramsey lays out his conventions in the text, but some analysis may be required nonetheless.]) \\
+
+% Also work out the numerical values of the g-factor associated with the split hyperfine states for $^{85}$Rb and $^{87}$Rb. You will be asked to demonstrate this in the Pre-lab discussion, but you should not include it in your lab write up. \\
+
+% \noindent\textbf{B. Derive the expression for the magnetic field at the rubidium bulb due to the Helmholtz coils:}
+% \begin{equation}\label{eq:HelmholtzCoilField}
+%     0.9 \times 10^{-6} \left(\frac{\textrm{tesla} \cdot \textrm{meter}}{\textrm{ampere}}\right) \frac{N i}{a}
+% \end{equation}
+% where $N$ is the number of turns of the coils, $i$ is the current, and $a$ is the radius of the coils. (Recall that there are $10^4$ Gauss in a Tesla.) Discuss the Helmholtz coil. Why is the field so uniform at the center, both laterally and longitudinally? How inhomogeneous is the magnetic field at the bulb? What are the qualitative and quantitative effects of this inhomogeneity? Are they important in this experiment? \\
+
+% You will be asked to demonstrate this in the Pre-lab discussion, but you should not include it in your lab write up. \\
+
+% \noindent\textbf{C. What are the effects of Earth's magnetic field? What would happen if the Helmholtz coils were not perfectly aligned with the earth's field?}
+
+% \section{Experimental Procedure}
+
+% Taking data for this experiment is more straightforward than for any other lab in this course. But the experiment deserves more time and thought than most because it illustrates fundamental ideas about quantum mechanics which you probably have only vague notions. Take the time to think about what's going on, and answer any questions that occur to you. You should know the equipment and how this experiment is connected to make things work. If you understand the signal flow for this experiment then it will be easy to complete.
+
+% \begin{enumerate}
+%     \item Look over the block diagram (Figure \ref{fig:BlockDiagram}) and check the connections of the equipment carefully.  Make sure you understand what each unit does and that you know the limitations of the equipment (e.g. don't run the current of the coil higher than 3 A; be sure to understand how the voltmeter and shunt gives you precise current measurements; don't drive the RF at more than 5 V; don't heat the bulb over 50$^\circ$C; etc.).  Inspect and open carefully the Rb light box to see its construction. You can get a better understanding of how the bulb works through the tutorial video and the definitions page. Be particularly careful of the D1 pass filter. It is expensive to replace! All pieces in this unit are already in their proper places.
+
+%     You will find a large glass bulb in the light box, placed between the Rb lamp and the photodetector. The glass bulb is a Rubidium ABS Cell, Pyrex 80 mm OD sphere filled with Rb + 20 Torr N2 [filled with a thin atomic gas of rubidium in both its naturally abundant isotopes ($^{85}$Rb and $^{87}$Rb)]. Rb also resides on the walls of the glass bulb, whence it can be released by heating the glass cell, thereby giving a stronger optical pumping signal. The bulb also contains an inert buffer gas (e.g. helium, neon, or molecular nitrogen). The buffer gas keeps the Rb atoms localized within the volume of the bulb for long times before they diffuse onto the glass walls of the bulb. The bulb may or may not be coated with a thin wax layer (paraffin). The wax keeps the Rb atoms from hitting the glass surface, allowing them to retain their spin polarization for longer, and thereby leading to a longer relaxation time from the optically pumped state.
+
+%     \textbf{The glass bulbs are fragile, expensive, and hard to replace. You should not need to handle the bulb or remove it from the light box. If you feel you need to do this, then please ask one of the laboratory teaching staff for help.}
+
+
+    % \item \textbf{Warning: Never turn off the plug strip if any of the equipment is powered up.} Turn on all the equipment, starting with the Main switch (lower right-hand corner of the Rubidium Lamp Supply/Coil Driver Panel). Set the Rubidium Supply Output Current for the Rb lamp to approximately 25 milliamperes using the Adjust Knob. (Like much of the experimental apparatus, the Rb lamps at the two Optical Pumping stations are not identical; one may require a higher current to light the lamp [perhaps 30 mA].)
+
+    % \begin{figure}[h!]
+    %     \centering
+    %     \includegraphics[width=0.6\linewidth]{images/SR560}
+    %     \caption{SR560 Amplifier}
+    %     \label{fig:SR560}
+    % \end{figure}
+
+% %     \item When you turn on the [\href{\SRVoltagePREAMP}{\textbf{SR560 Voltage PRE-AMP}}] make sure that the INPUT ‘A' is selected, the DC/GND/AC button is set to the AC position. To start, set the Gain to 500, LF Roll-off to 0.1 Hz, and the HF Roll-off to 10 KHz. You may have to change some settings to make your signal clear. Also note that if you suddenly lose your signal, i.e. if your scope trace goes to a flat-line, you should press the OL REC (OverLoad RECovery) button. The SR560 requires you to adjust the dynamic reserve and the filter roll-off; set the gain mode to low noise and the roll off to 6 dB per octave for both the high and low pass filters.
+
+% % \newpage
+
+% %     \item We will be using a DS 345 synthesized function generator to drive the RF coils in this experiment (see Figure \ref{fig:BlockDiagram}). Before you begin taking data, it would be wise to familiarize yourself with its capabilities, its limitations, and its interface (see Figure \ref{fig:DS345} and the [\href{\DSManual}{\textbf{DS345 Manual}}]).
+% % \end{enumerate}
+
+% \section{DS345 generator} \href{http://experimentationlab.berkeley.edu/ds345}{\emph{\textbf{video on DS345}}}
+% \begin{itemize}
+%     \item Try experimenting with the signal modulation capabilities of the DS 345. Connect the modulation output (Do Not Terminate) of the DS345 (on the back panel, see Figure \ref{fig:DS345}) to the Ch. 1 (X) input of the oscilloscope and connect the terminated function output of the DS 345 to the Ch. 2 (Y) input of the scope. Set the oscilloscope to trigger off of channel 1 in the ``Norm'' mode. Set the scope to ``Alt'' rather than ``Chop''. Experiment with different amplitude modulation waveforms, span, and rate settings. You might also try using the X-Y mode of the scope to observe the output of the DS 345 (Function output against Modulation output) but don't let it confuse you. It is important to have a clear understanding of what the X-Y mode represents and when to use it (the display is called a Lissajous figure).
+
+%     \item Now try frequency modulation. Note that you can't set the span to twice the carrier frequency or more (the DS345 has trouble making oscillations with zero or negative frequencies). Try different modulation waveforms; look at sine, triangle and ramp modulations. Again, start with the oscilloscope in the linear, time sweep mode. The X-Y mode can also be revealing if you keep in mind what the modulation output represents. (As with AM, in FM, the modulation output gives a 0-5 V representation of the modulation function. Again, zero volts corresponds to the minimum frequency [the carrier frequency minus half the span] and 5 volts corresponds to the maximum frequency [the carrier frequency plus half the span], and so forth.) You should now have familiarized with the DS345 enough for this experiment.
+% \end{itemize}
+
+% \checkpoint{DS345 Preparation}{This is a Checkpoint: Once you feel you are familiar with the DS345, call over a GSI or Professor and explain what you will be using it for in this lab and show them you are capable of navigating the device.}
+
+%\noindent\textbf{\textcolor{red}{This is a Checkpoint: Once you feel you are familiar with the DS345, call over a GSI or Professor and explain what you will be using it for in this lab and show them you are capable of navigating the device.}}
+% \section{The Effect of Temperature on Signal Strength}
+
+% The temperature controller provides a DC signal to copper wires located inside the apparatus next to the rubidium bulb. The electrical current will radiate in the form of heat from the wires due to the friction of electron interaction ($\frac{dQ}{dt} = I^2 R = I^2 * \frac{\rho l}{A}$).  The greater the current the hotter the wires will get, as the electrons traveling down the wire will feel more of a frictional force. You will notice that the ``DC microamp'' display of the controller runs both ways. In order to increase the heat you will want to turn the black knob clockwise, shifting the red needle to the left. The greater the displacement of the needle the faster the temperature will rise, you will be able to keep your signal at roughly a constant temperature by adjusting this knob. \\
+
+% \newpage
+
+% Heat the sample to 48$^\circ$C, then turn the heater off to reduce noise, but remember that you want the temperature between 38$^\circ$C and 45$^\circ$C for good data (You will explore this temperature dependence in the following section and the noise associated with it). A reading from the temperature sensor is output to an LED display labeled `Oven Temperature'. \textbf{Make sure the temperature does not go above 55$^\circ$C}; if you start to approach this temperature, turn down the thermostat. The heater has an over-temperature shutoff switch in the heater box. If you over heat the box it will need time to rest and you should call one of the staff. \\
+
+% \textbf{Note: If the heater temperature stops, then you have overheated the oven.
+% When the oven reaches about 52$^\circ$C, this will activate the thermal switch, which won't automatically reset for 20 minutes. The red light labelled "heater" will turn off, while the interlock light remains illuminated.}
+
+% To reset: get some cool spray, open the lid to the Rubidium bulb, and spray it directly on the over-temperature switch, black in color seen below, for 3 to 5 seconds. This manually resets the switch, otherwise, repeat the above procedure.
+
+    % \begin{figure}[h!]
+    %     \centering
+    %     \includegraphics[width=0.6\linewidth]{images/IMG_4500}
+    %     \caption{Black thermal switch}
+    % \end{figure}
+
+
+% As mentioned before, heating the glass cell will release more rubidium atoms off the walls of the cell and into the buffer gas in the volume of the cell. The higher vapor density will attenuate the Rb lamp more when it is not optically pumped, and so your detected signal -- the difference in optical transmission through the cell in the presence and the absence of optical pumping -- will be larger. However, as the cell heats up and the vapor density increases, there may be effects, such as Rb-Rb collisions, that reduce the lifetime of the optically pumped electronic state, having the effect of decreasing the strength of your signal. \\
+
+% Take an experimentalist's approach: once you have identified the optical pumping resonance of each of the two isotopes in the following section, explore the variations of the signal with the changing temperature of the cell over the allowed range (from room temperature up to about 55$^\circ$C as shown below). See what effect this has on the resonance strength and whether or not the value of resonance changes with temperature. The effect may be different for the two rubidium isotopes.
+
+
+%\subsection{More documentation}
+
+ 
+%\href{\CircuitForMagneticCoils}{\textbf{Detailed magnetic coil circuit}}
+% \noindent Note: Temperatures for $^{87}$Rb may be different. Why? (Note that $^{87}$Rb signal peaks at 42$^\circ$C). Explore these differences.
+
+% \section{Finding Resonance}
+
+% \subsection{Using the Function Generator to Find Resonance}\label{sec:freq_mod}
+
+% The setup will need to be slightly tuned to find the resonance frequencies of the two isotopes. Initially we will want to induce the Zeeman splitting by driving a DC current through the magnetic coil, power the coils with roughly 1.0 Amp to start with. The strength of the coils will change the spacing between Zeeman levels and will ultimately dictate the resonance frequency needed to induce stimulated emission of the Rb. Next the RF coils should be set to create the electromagnetic radiation required to induce these emissions. They can be driven using the function output of the DS345. The variation in the opacity of Rubidium gas that occurs when it is optically pumped and then hit by the resonance frequency electromagnetic radiation can be observed through the photodiode. In order to read the signal generated inside the bulb the photo diode's output will need to be connected to the PRE-AMP as the signal of radiation will be very low. It is important to make sure the PRE-AMP settings are as specified before or you will not receive a proper signal. Finally run the output of the PRE-AMP (the amplified photo diode output, see [\href{\PhotodiodeDataSheet}{\textbf{Photodiode Data Sheet}}] for photo detector operation) to Ch.2 (Y) of the oscilloscope and keep Ch.1 (X) connected to the DS 345's modulation output. It will be best to observe the results in the X-Y mode of the oscilloscope. \\
+
+% \newpage
+
+% Use the Current knob on the Power Supply to adjust the current and the 10 M$\Omega$ shunt to measure it. Current shunt resistors are low resistance precision resistors used to measure AC or DC electrical currents by the voltage drop those currents create across the resistance. The shunt is a calibrated resistor and is temperature compensated so that its resistance value does not change with a change in temperature (On average the shunt's resistance changes less than 0.002\% (or 20 ppm = parts per million) per °C of temperature change). The voltage that develops across the shunt is 10 mV per Amp of current through the coils. The Digital Volt meter reads the millivolt reading. (Note that there is a button on the front of the Digital Volt meter that changes the connections from front to rear of the unit.) This button should be in the front position. A circuit diagram of the set up can be found \href{\CircuitForMagneticCoils}{\textbf{here}}. Make a note of the current value that the Multimeter and the power supply give you (the Multimeter displays voltage drop and will have to be converted to current using ohms law).
+
+% \begin{figure}[ht]
+%     \centering
+%     \includegraphics[width=0.7\linewidth]{images/PhotodiodeSignal}
+%     \caption{Amplified photo diode signal with large span frequency modulation.}
+%     \label{fig:PhotodiodeSignal}
+% \end{figure}
+
+% % On the oscilloscope, with the modulation connected to ch1 and the amplified signal connected to ch2, you should see something like what is shown in Figure \ref{fig:PhotodiodeSignal}. You may see some 60 Hz noise in your signal; adjusting the connections may help minimize the problem. The fault may simply be related to the electronics and not the settings. It is important to recognize the source of this noise if it arises (60 Hz noise is a commonly recurring theme in experimental physics). The function of the modulated signal will ultimately dictate how the oscilloscopes depicts what is happening. Since the frequency modulation serves to sweep a range set by the span of the function generator and output frequencies ranging from OutF - Span/2 to OutF + Span/2 the oscilloscope in XY mode will divide this frequency range amongst roughly 10 divisions along the axis where the Modulation output of the function generator is plugged in starting (with the minimum frequency on the left hand side of the display). Based on this information it should be noted that the span can not be equal to or greater than twice the carrier frequency of the function output [In case the reasoning behind this isn't so obvious see the  FM Modulation section in the DS345 Manual]. This, in combination with understanding what the perpendicular axis represents in the XY plot, is useful for determining what the resonance frequencies of the isotopes are. 
+
+% % \newpage
+
+% % Center the output of the function generator to a frequency close to one that would correspond to the energy difference between two Zeeman levels (You can calculate what this energy difference would be by using the Breit-Rabi equation you found in the prelab), thus inducing spontaneous emission. The signal should be a sine wave with a 10 Hz modulation. Sweep a range you believe will hold the resonance frequencies for the two isotopes, if you have hit the resonance frequency then the figure should look like Figure \ref{fig:PhotodiodeSignal}. Once you have found the proper range it will be possible to better resolve the image to extract a better estimate of the resonance frequency value. You should be able to determine which peak corresponds to which isotope by examining the natural abundance of the two isotopes.
+
+% % \subsection{Using the Helmholtz Coils to Induce a Modulating Frequency to Find Resonance}
+
+% % As explained in the introduction video, modulating the magnetic field of the Helmholtz coils is a quicker and more accurate way of finding what the resonance frequency is. That is, we will modulate the coil current and not the RF. The magnetic modulation does not cover as much as the RF modulation did so change the frequency of the carrier so it is closer to the resonance. Turn on field modulation by flipping the ``Field'' switch on the Coil Driver panel, and turn on the ``Phase Out'' output with the ``Phase Switch''. \\
+
+% % Familiarize yourself with the Coil Driver panel: The PHASE ADJUST control on Coil Driver panel changes the phase of the modulation signal seen by the scope (the Phase Out signal) relative to the modulation signal that the rubidium sample experiences (which is the actual modulation in the coil current that changes the phase of the photo-detected signal). Connect the Phase out signal to Ch 1 (X) of the oscilloscope and the amplified photodetector signal to Ch 2 (Y). With the scope in Dual Trace Mode (Both Channels), trigger on EXT/Line Source (60 Hz PG\&E power line) and set the time scale to around 2 msec/DIV. You may have to adjust the trigger Level knob to get a stable trace. Now change the phase with the Adjust knob: the modulation signal (Ch. 1) moves because we are changing its phase relative to the 60 Hz line signal that we are triggering on the oscilloscope. Seeing as the oscilloscope is powered by a 60 Hz signal and the detected signal is an effect caused by the rubidium bulb, the Adjust knob does not change the phase of the signal that the sample sees. It is simply a visual effect experienced by the electronics of the system. 
+
+% % After swapping the modulation output from the function generator with the modulation output from the Helmholtz coils (phase out), put the scope in X-Y mode. You should now see the detected signal (Ch.2) displayed on the y-axis versus the field modulation signal (Ch.1) on the x-axis. 
+% % \\
+
+% % \checkpoint{Resonance Conditions and Symmetry}{This is a checkpoint and a great time to stop and think about the physics. Discuss the following questions with you partner and once you feel you have a better understanding of what is happening, call over a GSI to sign you off.}
+
+% % %\noindent\textbf{\textcolor{red}{This is a checkpoint and a great time to stop and think about the physics. Discuss the following questions with you partner and once you feel you have a better understanding of what is happening, call over a GSI to sign you off:}}
+
+% % \textbf{\textcolor{red}{How can you tell when you have found the resonance condition in this mode? Should there be any symmetry? If so, how should it be symmetrical? Along what axis should the symmetry be found? It is up to you to determine which of the modes (Time Trace or X-Y) gives a more precise determination of the resonance condition-you might consider using both. Try them for repeatability. Discuss your reasoning with the GSI. These values will be useful when you estimate your errors using each method.}}
+
+% % \newpage
+
+% \subsection{Once you have a good understanding of what is going on, here are some things to explore}
+
+% \begin{itemize}
+%     \item Variation of the signal as a function of the oven temperature
+
+%     \item Variation of the signal with different voltages (ranging from 0V -- 9V) applied across the Helmholtz coils (including reverse polarity). How does the resonance change with voltage/current supplied to the Helmholtz coils?
+
+%     \item Refining the resonance frequency measurements:
+%     \begin{itemize}
+%         \item This can be achieved using either of the two techniques: fixing the RF frequency and modulating the Helmholtz Coils while varying the current or fixing the current to the Helmholtz coils and modulating the RF signal;
+
+%         \item Pro Tip: It is much easier to fix the RF signal and vary the current of the Modulated Helmholtz coils while looking at the signal in the X-Y mode. It should be possible to get fairly accurate and precise resonance measurements using small span RF frequency modulation; if you have time, you might try retaking your points with this alternate method.
+%     \end{itemize}
+%     \item Adjusting the span, rate, phase, carrier frequency, and using a triangle modulation rather than a ramp modulation:
+%     \begin{itemize}
+%         \item How sensitive are your resonance measurements to changes of these variables? Record the qualitative behavior, and explain it. You should also get a quantitative estimate of the statistical error in you measurement technique; try making several independent measurements of the resonance frequency and see how they vary (See the \href{\ErrorAnalysisNotes}{\textbf{Error Analysis Notes}} for further discussion of errors). Are there any possible sources of systematic error? You may want to check that the field is properly aligned; find the field direction meter (vertical compass) and place it close to the center of the Helmholtz coils. See what happens to the magnetized ``needle'' when you reverse the current or turn off the power supply. You should also get a sense of what effects the 60-Hz pick up might have on your measurements.
+
+%         %\item \textbf{\textcolor{red}{This is a checkpoint: Derive a method for determining the error with your lab partner utilizing the Error Analysis Notes. Discuss this method with a GSI Before Taking Data.  You should get a representative sample that at least includes both isotopes (the isotopes have different intensities, so one might expect different errors.)}}
+%     \end{itemize}
+    
+%     \checkpoint{Error Analysis}{Derive a method for determining this error with your lab partner utilizing the Error Analysis Notes. Discuss this method with a GSI Before Taking Data.  You should get a representative sample that includes both isotopes (the isotopes have different intensities, so one might expect different errors.)}
+    
+%     \item Turn off the RF generator, and vary the current while looking for a resonance. The magnetic field should be on with reverse polarity. Set the field modulation to 100. Set the oscilloscope for a linear internal sweep in the x-direction. The resonance should be found around 0.08 A. (This is known as the Zero Field Resonance.)
+%     \item Measure the pumping time at resonance with a square wave amplitude modulation.  The frequency of the modulation should be low (review Section \ref{sec:freq_mod}). Apply a DC current of 1 A to the Helmholtz coils and apply the resonance frequency for the more abundant isotope through the RF coils. The PRE-AMP should run to Ch.2 and the modulation output from the function generator to Ch.1. Once the temperature is within the optimal range turn off the heater. %Apply an FM signal through the signal generator so that the gas reaches equilibrium before each shift in RF amplitude. 
+%     Measure the rate of change in the signal amplitude when the RF is gated on or off (that is, when the modulation signal goes from low to high or from high to low). Look for the time it takes for the signal to change by 1/e. Which corresponds to the pumping time and which to the relaxation time?
+    
+% \newpage
+    
+%     \begin{itemize}
+%         \item Remember to take advantage of the magnification capabilities of the oscilloscope. The horizontal mode can be set to Mag, with magnifications of $\times$5, $\times$10, and $\times$50. If you observe the relaxation process with a high enough magnification you will see small oscillations in the signal even after you eliminate the 60-Hz noise. These are real, physical effects in the relaxation process known as Rabi oscillations. (You should be able to distinguish them from noise by modulating the frequency by small increments, [less than 1 Hz, say]; if they continue to track with the modulation, they're probably real.)
+%         \item Be mindful of the effects that the PRE-AMP's filters and source coupling can have on your signal; adjust them to make sure that your values are real.
+%         \item Examine the time constant of the other isotope. 
+%     \end{itemize}
+
+% \end{itemize}
+
+\section{Analysis}
+
+(See \href{\ErrorAnalysisNotes}{\textbf{Error Analysis Notes}} for further discussion.)
+
+The main aims of our data analysis are to determine the nuclear spin values of the two rubidium isotopes, to verify the Breit-Rabi formula, and to determine the ambient magnetic field.  We recommend the following procedures.
+
+\begin{enumerate}
+    \item Make plots of frequency vs. current applied to the Helmholtz coils to help you analyze your data. You should have four sets of data (two isotopes, two polarities) and four lines when you plot them. The individual points, the slopes of the curves, and their axial intercepts have an interrelated significance.
+    
+    Note that, whether your rf drive is driving a Zeeman transition that decreases the energy of the atom (with the external magnetic field oriented in one direction), or increases the energy of the atom (with the external magnetic field oriented in the opposite direction) you will still read a positive frequency on your rf function generator.  That is, because the rf field is linearly polarized, the resonance condition will be $h \nu = |\Delta E|$ where $\Delta E$ is the energy gained by the atom.  Given this fact, how should you plot your data?
+    
+    Also, recall that the magnetic field is a vector quantity.  Your Helmholtz coil produces a field only along one axis, while the ambient magnetic field, in principle, can be oriented along a slightly different axis.  How should you account for this fact in your data analysis?
+    
+     \item Think about what model (=fit function) describes the frequency vs. current relationship best. How can you quantify how good this model fits the data? Please see the EAX for methods to decide whether something is a good fit, especially the $\chi^2$ method. 
+     
+     In this experiment the errors on the data points tend to be too small to be visible when plotting the data. Furthermore, often the fit fits the data so well that it looks like it is a perfect fit. In order to make the discrepancies visible and assess the quality of the fit, we recommend plotting also the residuals, i.e. $y_i-f(x_i)$ where $y_i$ is the measured data point, $f$ is the fit function and $x_i$ is the independent variable at which the data $y_i$ was taken. As the error on the residual use only the error from $y_i$.  
+     
+     To analyze the data more efficiently it might be best to combine positive and negative polarities.  
+     
+     Crucially, your data fitting should also account for errors.  One approach is to use the error estimates that you derived for each data point in your data set as weights within your linear regression formulae.  Another approach is to let all your data have equal weight and then to estimate errors based on residuals to your linear fit (again, see Ref.\ \cite{Lyons}).  Do the fit results and error estimates using these two methods agree with one another?  If they do not, explain why this might be the case.  Again, we are not looking for excuses or for you to tune your experimental findings.  Just be honest and give your best-reasoned answer.
+     
+    %  error estimates.a line fit on each of your four data sets. For each, find the slope and intercept along with their errors using the theory and techniques of error analysis as illustrated in Ref.\ \cite{Lyons}, (Data Analysis for Physical Science Students, Section 2.9, page 63ff. Also see \href{\ErrorAnalysisNotes}{\textbf{Error Analysis Notes}}). Show clearly how you do this, with a sample calculation. If you use Excel you must show that you know what the program is doing. In particular, what is R and what influences its value? Don't just use a data reduction code blindly - you don't learn anything that way. You might also do a least-squares fit to check whether your data and error estimates are consistent (again, see Ref.\ \cite{Lyons}). Also, check to see that their slopes are consistent with the values of nuclear spins that you found.
+
+    \item \emph{Determine the nuclear spins of $^{85}$Rb and $^{87}$Rb}:
+    
+    You are asked to pursue two approaches.  First, you will analyze your data to determine the ratio $\nu_{85}/\nu_{87}$ between the Zeeman resonance frequencies of the two isotopes at the same magnetic field.  You have two equations to work with; one is the Breit-Rabi equation (Eq.\ \ref{eq:Zeeman}), and the other is the magnetic field of the Helmholtz coils as a function of current (Eq.\ \ref{eq:helmholtz}). Write down the equations, rearrange them, see how the two isotopes fit in, see how additions or subtractions can help, use both $+$ and $-$ currents. Keep in mind that the  magnetic field in the Breit-Rabi equation is the sum or difference of the magnetic field of the Helmholtz coils and the Earth's field. From Eq.\ (\ref{eq:Zeeman}) we have a relation between the Zeeman resonance frequency $\nu_{85}$ and the nuclear spin quantum number $I_{85}$ for the $^{85}$Rb isotope, and, similarly, between $\nu_{87}$ and $I_{87}$ for the $^{87}$Rb isotope.
+    
+     From your data determine the best ratio $\nu_{85} / \nu_{87}$.  Given that your resonance frequency measurements for the two isotopes were likely not performed at exactly the same external magnetic field, you should extract this ratio by fits to your overall data set.  Think through how this should be done, and which sources of error are either retained or eliminated by your analysis method.  From this ratio, deduce the values of $I_{85}$ and $I_{87}$. Their true values are exactly half-integral. Are the ratio, and this half-integral expectation, sufficient to determine both nuclear spins?
+    
+    Second, the relation you obtained that combines Eqs.\ \ref{eq:Zeeman} and \ref{eq:helmholtz} should allow you to determine $I_{85}$ and $I_{87}$ individually, directly from linear fits to your data sets.  Do this.  Now consider the result: What statistical and systematic errors are there in this method of determining the nuclear spin?  Are your measurements consistent with known values?
+    
+    Here's an important lesson:  It is absolutely not your job as an experimentalist to tune your error estimates to the point where your measurements are consistent with your expectations!  Your error estimates are based on your best evaluation of all aspects of your measurement. If your error estimates are either very much smaller or very much larger than the difference between your measurement outcome and the expected theoretical value, that's just how it is!  Do not try to cover up this discrepancy!  Rather, it is then your job to interpret this difference: Is it possible that you over/under estimated your errors?  Explain how.  Is it possible that your theoretical prediction is wrong?
+
+    \item Having now determined the values of the nuclear spins use Eq.\ (\ref{eq:Zeeman}) to determine the value of $B$ at the bulb for one positive and one negative value of the current in the coil. Compare these values with those calculated from the coil dimensions and current.   What is the accuracy of each of these values? There are many effects for you to consider: the accuracy of our knowledge of the Bohr magneton $\mu_B$, possible errors from neglecting the nuclear Zeeman energy, the accuracy of describing the Helmholtz coils as coils of precisely defined and known radius and position, the accuracy of the shunt resistor and other parts of the measurement apparatus, etc.
+    
+    % Which values are more accurate? Why? Once you have determined the nuclear spins, the Breit-Rabi equation is as accurate as the numerical constant 2.799. The field of the Helmholtz coils is not as accurate as the numerical constant $0.9 \times 10^{-6}$ since the radii of the copper wire turns are not all exactly the same, and the separation of the coils is not exact. By using the Breit-Rabi equation, you can determine this constant more accurately. Try drawing a line parallel to the frequency axis at a particular current, both plus and minus. What can you learn from the intersections with the curves? Do the same with a line parallel to the current or B axis.
+
+   % \item Perform a line fit on each of your four data sets. For each, find the slope and intercept along with their errors using the theory and techniques of error analysis as illustrated in Ref.\ \cite{Lyons}, (Data Analysis for Physical Science Students, Section 2.9, page 63ff. Also see \href{\ErrorAnalysisNotes}{\textbf{Error Analysis Notes}}). Show clearly how you do this, with a sample calculation. If you use Excel you must show that you know what the program is doing. In particular, what is R and what influences its value? Don't just use a data reduction code blindly - you don't learn anything that way. You might also do a least-squares fit to check whether your data and error estimates are consistent (again, see Ref.\ \cite{Lyons}). Also, check to see that their slopes are consistent with the values of nuclear spins that you found.
+
+    \item \emph{Determine the magnitude of the ambient (``Earth's'') magnetic field:} 
+    
+    You should compare three approaches:  First, you have previously made measurements of the Zeeman resonance frequency with zero DC current in the Helmholtz coils.  Describe how these measurements provide a measurement of the ambient field strength, and present your results and your estimated error in these results.
+    
+    Second, you can determine the ambient magnetic field by considering the linear fits performed earlier to your data sets.  Explain how this is done, and obtain the results.  Depending on how you analyzed your data, you will have either two or four measured values of the ambient field.  You should have an independent estimate of the error in each of these results.
+
+    
+    Now compare these various measurements of the ambient magnetic field.  Are they consistent with each other?  That is, are the variations between measured values consistent (either too large or too small) with your estimated errors?  Is one method more precise or accurate than another method?   Explain.
+
+    \item Explain why there is a resonance at zero field, i.e.\ when the total magnetic field along the Helmholtz-coil axis, being the sum of the Helmoltz field and the ambient field, is zero. Under which condition can you observe it? What does your observation (or lack there of) tell you about the orientation of the ambient and the Helmholtz fields? Does this have impact on the results you obtained from the linear extrapolation and the zero-DC current measurements above?
+
+    \item What do you need to know and take account for, in order to make a rough estimate or calculation of the pumping time to compare with your experimentally measured value?
+
+    %\item Go to the page on data analysis and complete the steps.
+\end{enumerate}
+
+%\subsection{Data Analysis}
+
+%\subsubsection{Overview}
+
+%The purpose of the experiment is to determine the nuclear spins of the two isotopes $^{85}$Rb and $^{87}$Rb [It is known that both spins are odd half-integral values, like 1/2, 3/2, 5/2, etc.] and to measure $B_{E}$, the Earth's magnetic field. \\
+
+%We have two rubidium isotopes in gaseous form inside a bulb placed in a magnetic field and subject to electromagnetic radiation. The Earth's magnetic field also affects the rubidium energy levels and their populations. We set the current in the coil producing the magnetic field, and adjust the radio frequency to produce a resonance condition. The parameters that we either want to change, vary, or to measure are the current, the magnetic field produced by the current, and the frequency of the applied RF radiation at resonance. The relevant equations are Eq. \ref{eq:HelmholtzCoilField} and Eq. \ref{eq:Zeeman}. \\
+
+%We have $B_{H}$ = magnetic field from the Helmholtz coils, $i$ = current in the coils, and $a$ = radius of the coils. The value 0.9 is approximate because the radius $a$ is not exactly the same for each of the $N$ windings and we have no simpler way of incorporating this fact. \\
+
+%Next we have $\nu$ = frequency of applied em radiation, $I$ = nuclear spin of Rb, and $B = B_{H} + B_{E}$ = the total magnetic field from the Helmholtz coil and the Earth.
+
+%\subsubsection{Nuclear Spins}
+
+%Using the results from the four tables of Resonance Frequency vs. Current, determine the values of the nuclear spins ($I$) of both the isotopes. This can be accomplished by looking at the same current value, and thus same external magnetic field, and rearranging the Breit-Rabi equation to get a linear equation with a slope dependence of $2I + 1$, and an intercept dependent only on the earth's field. [Sketch 4 straight lines] \\
+
+%Another way of determining the spins is to set the current and take the ratio of the resonance frequencies for the two isotopes, at the same current. \\
+
+%In both methods there will be some errors, but it does not matter because we know that the spins have exact half-integral values. This is a case in which the use of error analysis is unwarranted because the results are unambiguous.
+
+%\subsubsection{Earth's Magnetic Field}
+
+%To determine the value of the earth's magnetic field, we need to find a way to determine $B_{H}$ exactly, or to eliminate it from the equations. $B_{H}$ can be eliminated by setting $i = 0$ and using the frequency intercepts and the Breit-Rabi equation. Recall that the equation for $B_{H}$ as a function of $i$ is not exact. \\
+
+%\newpage
+
+%There is yet another way to determine the earth's field. There is a reversing switch on the coil current, to reverse the direction of the field. For the same absolute value of the current, the field must have the same strength, except for possible hysteresis effects. Check for hysteresis by measuring the resonant frequency at a particular current, when the value of current is reached from above (run the current to a max, and then come down to the desired value), and from below (run the current to zero, and then come up to the desired value). \\
+
+%So, at a particular current, measure the resonance frequencies for both positive and negative values of current. Add and subtract the two equations, and get exact expressions for $B_{E}$ and for the more exact parameter for the relation between current and $B_{H}$.
+
+%\subsubsection{Errors in the Field}
+
+%How do we treat the errors in the value of the earth's field? Step back a little, and see what data you have and how you can arrange it to make error computation the simplest. Here are several approaches.
+%\begin{enumerate}
+    %\item Look at plots of your data. You should have 4 lines, two for each isotope, one with positive current and one with negative current. You can do a least-square fit of each line, calculate the position of the zero-current intercepts, and obtain values for the field. Then you can calculate ``errors of adjusted coefficients'' using the methods given in \citeauthor{Lyons} and other references.
+
+    %\item But, by changing negative current points to negative frequencies as well, each isotope has only one plot line and presumably the zero crossing is more accurate. Then there are only two lines to fit, one for each isotope, and the errors can be calculated as described above for adjusted coefficients.
+
+    %\item A still easier method is to use pairs of points with the same absolute values of current, and add the two resulting equations. We then have values of the earth's field without adjusting any coefficients, and the errors can be calculated as an error of a single parameter, rather than as an error of an adjusted coefficient. We have
+    %\[
+    %\nu^+ = \frac{2.799 (|\overrightarrow{B_H}|
+        %+ |\overrightarrow{B_E}|)}{2I + 1}, \qquad
+    %\nu^- = \frac{2.799 (|\overrightarrow{B_H}|
+        %- |\overrightarrow{B_E}|)}{2I + 1}, \qquad
+    %|\overrightarrow{B_H}| =
+        %\frac{1}{2}\left(\frac{|\nu^+ - \nu^-|}{2.799}\right)(2I + 1)
+    %\]
+    %The standard deviation is calculated as described above in Error of a Single Parameter: Measurement Statistics. Compute the average; compute the differences, square them, add, divide by $N(N - 1)$ and take the square root. Then step back, look at the results, and see if they look reasonable. If not, you've goofed somewhere, and must try again.
+%\end{enumerate}
+
+% \section{Notes and advice from Prof. Budker}
+
+% Nov. 19, 2007. The Physics-111 Optical Pumping experiment utilizes radio-frequency transitions between Zeeman sublevels split in energy in an external magnetic field (for example, the field of the Earth). The experiment illustrates how an optical-pumping device can be used as a magnetometer. Another interesting and very important application of optical pumping is atomic clocks. The clocks are based on microwave (rather than rf) transitions which are between the two ground-state hyperfine-structure levels (i.e., the levels with different total angular momentum F). A nice discussion appropriate for the Physics-111 students (particularly those who have mastered the Optical Pumping experiment) is given in an article by James Camparo, ``The Rubidium Atomic Clock and Basic Research,'' Physics Today -- November 2007. \\
+
+\noindent\textbf{Last day of the experiment please fill out the \href{\ExperimentEvaluation}{\textbf{Experiment Evaluation}}}.
+
+\section{OPT-3 Equipment \& Procedure Differences}
+\label{sec:opt3equipment}
+
+While OPT-3 is a new apparatus, large portions of the preceding sections are still essential reading. In particular, all of the background and analysis sections still apply with no changes. You should still consider all of the questions throughout the procedure sections above, and end up with measurements of all the same quantities except where explicitly noted below.
+
+The experimental setup and experimental procedure sections do have some changes, detailed below. In the explanations below, we assume you have read the sections above, and we detail differences to the procedure with some explanation of why they exist. \textbf{Reading just this section is not sufficient to gain an understanding of the apparatus or procedure; you must also read the main sections above.}
+
+\subsection{Equipment}
+
+%INSERT block diagram
+
+The two major changes are to the heater and lamp, described below. Additionally, the DC power supply for providing current for the coils is different; it is the Gwinstek GPS-1850D. However, it operates in the same way as the power supplies on OPT-1 and OPT-2.
+
+\subsubsection{Heater}
+In OPT-1 and OPT-2, the heater should not be kept on during data collection for a few reasons, including the AC nature of the heater control. In OPT-3, we use a DC heater controller, which avoids this problem, so you can keep the heater on while taking data.
+
+The heater controller is an \href{https://assets.dwyeromega.com/manuals/CND3-Series_Manual.pdf}{Omega CND3 temperature controller} (see Figure \ref{fig:heatercontroller}). To set a temperature, use the up/down arrow buttons to tune the temperature on the screen. Then use the `gear' button to confirm the temperature setting. Then use the `rewind/arrow' button to cycle to the next setting on the screen, the `Run/Stop' (`R-S') setting. Use the arrow keys to select whether to run or stop the heater and the `gear' button to confirm the setting. Use the `rewind/arrow' button to cycle back to view the actual and set temperature. While the heater is running, you should always keep an eye on the temperature. \textbf{You must stop the heater (using the `Run/Stop' setting) whenever no one will be watching the experiment} (including if you leave to take a break, or when you leave for the day).
+
+Some diagnostics: there is a backup temperature readout on the labeled multimeter, as well as a multimeter which displays a readout of the voltage being applied to the heating elements (which ranges from 0-24 V). The power cable for the heater supply is labeled on the power strip at the back; if you are worried the box is overheating, you can immediately unplug this to turn off the heater supply.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.3\linewidth]{images/heatercontroller.png}
+    \caption{Heater controller for OPT-3. From left to right, the four buttons are referred to in the text as the `gear', `rewind/arrow', and `up/down arrow' buttons.}
+    \label{fig:heatercontroller}
+\end{figure}
+
+\subsubsection{Lamp}
+The OPT-1 and OPT-2 apparatuses use a type of lamp called an \href{https://link.springer.com/chapter/10.1007/978-981-15-3548-2_7}{RF discharge lamp}. OPT-3 instead uses a \href{https://en.wikipedia.org/wiki/Hollow-cathode_lamp}{hollow cathode lamp}. Hollow cathode lamps are more widely available, and are commonly used in spectroscopy (e.g. in atomic absorption spectrometers). There are two major consequences of this difference.
+
+First, they are powered differently. OPT-3 uses an \href{}{SRS PS325} (see Figure \ref{fig:opt3lamppowersupply}) to supply the high voltage needed to ignite the lamp, and uses the current limit on the power supply to set the current the lamp runs at. First, turn on the power supply using the on/off button at the bottom right of the front panel. Next, use the `Select' button to cycle through the `Voltage' and `mA' (current) settings. Confirm that the set voltage is at 300 V,\footnote{Note that when the lamp is running, the displayed voltage should be well below the set voltage - why? How does a hollow cathode lamp work, and why don't we just set the voltage to this lower value?} the limit voltage is at 305 V, and the trip current is at 10 mA. The limit current is the only value you should be changing; we recommend staying at 4.75 mA (higher current increases intensity and therefore signal amplitude, but above this value the lamp current begins to fluctuate, which causes huge amounts of noise on the signal). You can type in the number and then hit enter to change the value, or for small changes use the left/right arrow keys to select the digit to change and the up/down arrow keys to increment/decrement the digit. When you are ready, use the rocker switch at the bottom left to apply the high voltage you have set. When you are done, turn this off, then turn off the whole power supply. %at some point we should see how low of a set voltage still allows the lamp to ignite to prolong lamp life
+
+If you see the voltage or current value fluctuating, try lowering the current limit setting and/or turning off the high voltage and waiting a few minutes before turning it back on. This can sometimes happen if the lamp has been running for awhile. (Let staff know if this happens.)
+
+The attentive reader will have noticed the second major difference between the lamp types - the current we're running the lamp at is a lot lower than for OPT-1 and OPT-2. While this is necessary due to the different type of lamp, this also decreases our signal amplitude. Any noise present in the system, therefore, becomes more of a problem (this is the concept of the signal to noise ratio, or SNR). Below, we will be discussing a few types of noise present in the apparatus and what we'll do to mitigate them.
+
+We do know one of the sources of noise is due to the power supply, which does not have as stable of a current output as we would like (you may notice the photodiode baseline readout drifting over the time the lamp is on, for example).
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.5\linewidth]{images/opt3lamppowersupply.png}
+    \caption{OPT-3 lamp power supply.}
+    \label{fig:opt3lamppowersupply}
+\end{figure}
+
+%\subsubsection{Dimensions}
+%coil radius double check? should be the same
+
+\subsection{Procedure differences}
+The main procedure still follows the sections above. Modifications to the different subsections are as follows.
+
+\subsubsection{Inspecting and turning on experiment}
+You should begin by following all the connections and comparing to the block diagram in Figure \ref{fig:BlockDiagram}.
+
+Begin by turning the heater on. We recommend keeping it set to between 45 and 50$^\circ$C (see Section \ref{sec:optimal-temp}). The lamp current limit, as noted above, should be kept below 4.8 mA; we've noticed fluctuations in the lamp output tend to become much more common above this value. The SR560 should be set to have a gain of 1000 and an HF roll-off of 10 Hz.
+
+The attentive reader will notice that this is a drastically lower HF roll-off than for OPT-1 and OPT-2. This is because there is a very large amount of 60 Hz noise in this system, which we are still working on eliminating. What consequences might there be to such aggressive filtering?
+
+\subsubsection{First observation of ODMR}
+
+We recommend using the digital oscilloscope instead of the AD3/computer for the ODMR measurement. You will likely want to use averaging (under the `Acquire' menu) to improve the signal quality. As noted above, the heater can remain on while taking measurements. You may want to use a higher output voltage (up to 10 V peak-to-peak) on the DS 345. You'll also want a slower rate, around 1 Hz, due to the slower pumping/depumping time.
+
+\subsubsection{Current modulation/lock-in detection}
+
+Instead of using the 60 Hz modulation supplied from the main control box to get our Lissajous figures, we'll use the FM modulation supplied from the DS 345. The main reason for this is that the pumping and depumping time is slower on the OPT-3 apparatus than on OPT-1 and OPT-2, meaning that we need to modulate more slowly (why?). Thus, instead of amplitude modulating the current through the Helmholtz coils, we'll use frequency modulation on the RF coils (why does this still work? discuss with a staff member if you don't follow this crucial point). (Note that this means you do not need to use the field or phase switches or the modulation knob on the black control box the heater is in.)
+
+For this portion of the experiment you will use the \href{https://digilent.com/shop/analog-discovery-3/}{Digilent AD3}, a more compact version of the ADS you may be familiar with from 111A. This will allow us to more easily apply notch filters to eliminate 60 Hz noise and harmonics, and to allow you to take the data without averaging, improving the speed of data acquisition. These filters are already set up for you in WaveForms workspaces saved in shortcuts on the desktop. Please do not save changes you make so that other students can use the same starting point, but you are welcome to play around with different filtering, averaging, etc.
+
+First, set the DS345 to output a linear sweep, with the center at your estimate for the resonance, and the DC power supply set to your current estimate for the resonance. This should have a span of 50-100 kHz and a rate of around 1 Hz (we're doing a similar measurement as for the ODMR, just with a narrower range). Put the linear sweep on channel 1 and the photodiode signal on channel 2, and open the `Frequency Sweep' workspace shortcut on the desktop (it will open in WaveForms); see Figure \ref{fig:opt3waveformslinsweep}. You can use this to find the rough value of the resonance.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.5\linewidth]{images/opt3-resonance-linearsweep.png}
+    \caption{WaveForms workspace for a linear sweep to roughly find the resonance. This is not quite on resonance; your resonances should generally look better than this.}
+    \label{fig:opt3waveformslinsweep}
+\end{figure}
+
+Next, with your rough resonance estimate in mind, we'll switch to frequency modulation to obtain our Lissajous and get an accurate resonance measurement. Switch the DS345 to FM with a sine wave, set the span to 25-50 kHz, and set the rate to 2.7 Hz (we want both this value and its double to be below 10 Hz, and to not be a factor of 60 Hz - why?). Put the modulation output from the DS345 on channel 1 and keep the photodiode signal on channel 2. Close WaveForms and open the `Lock-in' WaveForms workspace shortcut. You can now tune the frequency setting on the DS345 to obtain a good Lissajous. Make sure you record error!
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.5\linewidth]{images/opt3-lissajous-fm.png}
+    \caption{WaveForms workspace for FM modulation and obtaining a Lissajous.}
+    \label{fig:opt3waveformsfm}
+\end{figure}
+
+Note that currently, there is no phase adjustment knob - it is possible to change the phase offset between channel 1 and 2 in WaveForms, but it is not necessary. However, to do it you can apply a shift (in units of time) using the settings drop down for channel 2.
+
+The same general concepts from the procedure in Section \ref{sec:lockindetectionprocedure} still apply - the concept of lock-in detection, the data you should collect, the ways you should estimate the quantities involved, and the questions you should consider.
+
+\subsubsection{Zero applied field and zero net field}
+
+Below around 40 mA, you may have a hard time finding resonances - this is hard on OPT-1 and OPT-2 as well, but the increased noise on OPT-3 accentuates the problem. However, you still have options. First, use the same technique as for the other Lissajous figures, but also turn on averaging in WaveForms (under the `Time' menu in the right-hand panel). Second, probe how low of an applied field you can still get a discernable resonance from, and see what parameters for frequency sweep, frequency modulation, and RF amplitude optimize this resonance. Once you've optimized this, try finding a resonance at lower applied fields again.  Be sure you carefully record your procedure and techniques you apply in attempting to find the resonance, and the error in your results! 
+
+The zero applied field measurement is still something you should try for, using the techniques above. The zero field resonance you cannot currently do with this apparatus because we are modulating frequency, not current. Instead, you will do the following: measure the amplitude of the peaks at different currents - how is the amplitude changing with current, and why is this happening?
+
+\subsubsection{Timescales for optical pumping}
+
+We recommend using the digital oscilloscope instead of the AD3/computer for the timescale measurement. You will likely want to use averaging (under the `Acquire' menu) to improve the signal quality. As noted above, the heater can remain on while taking measurements. You may want to use a higher output voltage (up to 10 V peak-to-peak) on the DS 345. What does your estimate imply is the speed we can modulate at to obtain a Lissajous successfully? Why might we choose a lower frequency? Additionally, investigate how the pumping and depumping time changes with magnetic field (you only need to take a few data points for this).
+
+\subsection{Acknowledgments}
+
+Science is done by people. Particular thanks to Kaung Htet-San, Vivian Frisk, and John Ciavarra for extensive work designing, constructing, and testing the apparatus, and to Brandon Matson for testing and documenting the apparatus. Some of the methods in this appendix are drawn from Brandon's notes.
+
+\begin{thebibliography}{}
+\label{references}
+
+\bibitem{Zafra}
+R.L. De Zafra, ``\href{\OpticalPumpingZafra}{\textbf{Optical Pumping}}'', Amer. Journ. of Phys. 28, 646 (1960). \#QC1.A4
+
+\bibitem{RbDiagrams}
+Reference Rubidium Diagrams \href{\RbEnergyLevels}{\textbf{Rb Energy Levels}}
+
+\bibitem{Bloom}
+A.L. Bloom, ``\href{\OpticalPumpingBloom}{\textbf{Optical Pumping}}'', Scientific American, October 1960, p.72. \#T1.S5
+
+\bibitem{Ramsey}
+N.F. Ramsey, \href{\NuclearMoments}{\textbf{\textit{Nuclear Moments}}}, Wiley, 1953. \#QC174.1.R31. Advanced treatment.
+
+% % \bibitem{Moore}
+% % C.E. Moore. ``\href{\Rubidium}{\textbf{Rubidium}}''. Atomic Energy Levels Vol. II, National Bureau of Standards, 1952. \#QC453.M6
+
+
+% \bibitem{OpticalPumpingReferences}
+% \href{\OPTReprints}{\textbf{All Optical Pumping References}} on Library Site
+
+% \bibitem{LabLibrarySite}
+% \href{http://physics111.lib.berkeley.edu/Physics111/Reprints/OPT/OPT_index.html}{\textbf{Physics 111-Lab Library site}}
+
+
+% \bibitem{Taylor}
+% J.R. Taylor, ``\href{\ErrorAnalysis}{\textbf{An Introduction to Error Analysis}}'', 2nd ed., Oxford.
+
+\bibitem{Lyons}
+L. Lyons, \href{\DataAnalysis}{\textbf{\textit{A Practical Guide to Data Analysis for Physical Science Students}}}, Cambridge, 1991. \#QC33.L9
+
+
+\bibitem{arim77}
+Arimondo, E., et al.\ ``\href{\RevModPhys}{\textbf{Experimental determinations of the hyperfine structure in the alkali atoms}}'', Reviews of Modern Physics 49, 31 (1977).
+
+\bibitem{steckrb85}
+Daniel Steck, ``\href{\Steckfive}{Rubidium 85 D Line Data},'' online at \url{https://steck.us/alkalidata/}. 
+
+\bibitem{steckrb87}
+Daniel Steck, ``\href{\Steckseven}{Rubidium 87 D Line Data},'' online at \url{https://steck.us/alkalidata/}.
+
+\bibitem{ExperimentSeven}
+Detailed description of an optical pumping experiment. Important derivation in appendix. ``\href{\ExperimentSeven}{\textbf{Electron Spin Resonance by Optical Pumping}}.''
+
+\bibitem{AdditionalReferences}
+\href{\AdditionalReferences}{\textbf{Additional References and Resources}}
+
+\bibitem{EquipmentList}
+\href{\EquipmentList}{\textbf{List of OPT Equipment and Manuals}}
+
+% \bibitem{Camparo}
+% James Camparo, ``\href{http://physics111.lib.berkeley.edu/Physics111/Reprints/OPT/Camparo,PhysTodayNov(07)33-Rb\%20Atomic\%20Clock.pdf}{\textbf{The Rubidium Atomic Clock and Basic Research}}'', Physics Today -- November 2007.
+
+% \bibitem{Carver}
+% Carver, Thomas R. ``\href{\OpticalPumpingCarver}{\textbf{Optical Pumping}}''; Science: vol. 141, Aug 16, 1963, pp. 599-608.
+
+% \bibitem{Corney}
+% Corney, Alan, ``\href{\HanleEffect}{\textbf{The Hanle Effect and The Theory of Resonance Fluorescence Experiments}}''; Atomic and Laser Spectroscopy, (1977). Pp. 473-533.
+
+% \bibitem{ElectronicsDiagrams}
+% Diagrams of the electronics [\href{\Diagrams}{\textbf{Diagrams}}]
+
+% \bibitem{Reprints}
+% Check out all the \href{\OPTReprints}{\textbf{Reprints}} for this experiment;
+ \end{thebibliography}
+
+% \vspace{1em}
+% \noindent Other reprints and reference materials can be found on the \href{\PhysicsLibrarySite}{\textbf{Physics 111 Library Site}}.
+
+\end{document}

@@ -1,0 +1,637 @@
+% Last updated: Feb 10th, 2025
+
+\documentclass{../lab}
+
+\usepackage{listings}
+\usepackage{xcolor}
+\lstset{
+  basicstyle=\ttfamily,
+  columns=fullflexible,
+  frame=single,
+  breaklines=true,
+  postbreak=\mbox{\textcolor{red}{$\hookrightarrow$}\space},
+}
+
+\labacronym{SOL}
+\labtitle{Solar Spectroscopy}
+
+%\newcommand{\ofOpticsTutorial}{http://experimentationlab.berkeley.edu/sites/default/files/QIE/fundamental-Optics.pdf}
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+
+\section{Solar Spectroscopy (SOL) Description}
+
+\begin{enumerate}
+    \item \textbf{Note that there is NO eating or drinking in the 111-Lab anywhere, except in rooms 282 \& 286 LeConte on the bench with the BLUE stripe around it.} Thank you -- the Staff.
+
+\end{enumerate}
+
+In this experiment, we study the emission from various gas lamps to map out their primary emission lines to known wavelengths. In doing so, you will calibrate camera pixel data to wavelengths to establish the spectrometer, and use this to analyze solar and sky spectra. You will explore various sources of noise and find the resolving power of your instrumentation. You will be introduced to the field of astronomical spectroscopy, a critical tool in observational astrophysics.
+
+\begin{enumerate}
+    \item Pre-requisites: Physics 137A
+
+    \item Days Allotted for the Experiment: 5
+
+    \item Consecutive days: Yes
+
+\end{enumerate}
+
+
+This lab will be graded 20\% on theory, 30\% on technique, and 50\% on analysis. For more information, see the \href{\AdvancedLabSyllabus}{\textbf{Advanced Lab Syllabus}}.
+
+Comments: E-mail \href{\MailLabManager}{\textbf{Winthrop Williams}}
+
+Last updated 8/26/26 by Auden Young.
+
+Thanks to the UC Berkeley Astronomy Department. Large parts of this lab and lab manual are adapted from materials provided by Professors Jessica Lu, Ryan Chornock, and Alan Chew that were developed for the Astro 120 Optical Instrumentation Laboratory class.
+
+
+\noindent\textbf{Suggested Reading:}
+
+\begin{enumerate}
+    \item \href{https://drive.google.com/drive/folders/1-1AobgZIU3wm8dJnMgqiHQFDR6FosZeF?usp=drive_link}{Chapters 1-4 of ``Handbook of CCD Astronomy," S. B. Howell, Cambridge University Press.} Pay special attention to 3.4-3.8, 4.2-4.3, and 4.5.
+    \item \href{https://search.library.berkeley.edu/permalink/01UCS_BER/1thfj9n/alma991076736979706532}{``To Measure the Sky," F. R. Chromey, Cambridge University Press.}
+    \item McLean, \href{https://drive.google.com/drive/folders/1-1AobgZIU3wm8dJnMgqiHQFDR6FosZeF?usp=drive_link}{Electronic imaging in astronomy.}
+    \item \href{https://www.astropy.org/ccd-reduction-and-photometry-guide/v/dev/notebooks/00-00-Preface.html}{CCD Data Reduction Guide}, AstroPy.
+    \item \href{https://learn.astropy.org/tutorials/index-spectroscopy.html}{Tutorial Series on Spectroscopic Data Reduction Basics}, AstroPy.
+    \item \href{https://arinainphysics.com/educational-resources/atomic-spectroscopy/}{Atomic Spectroscopy Study Resource}.
+    \item \href{https://bass2000.obspm.fr/solar_spect.php}{BASS2000 Interactive Solar Spectrum}
+    \item \href{https://search.library.berkeley.edu/permalink/01UCS_BER/1thfj9n/alma991002414119706532}{Introduction to Astronomical Spectroscopy}, Appenzeller.
+    \item 
+    \href{https://www.astrosen.unam.mx/~richer/docencia/tecnicas/articulos/inst_ccd_technology_burkeetal05.pdf}{CCD Technology, Burke et al 2005}
+    \item \href{https://www.thorlabs.com/camera-noise-and-temperature-tutorial?tabName=Camera%2520Noise}{Thor Labs Camera Noise and Temperature Tutorial}.
+\end{enumerate}
+
+%More \hyperref[sec:References]{References}
+
+You should keep a laboratory notebook. The notebook should contain a detailed record of everything that was done and how/why it was done, as well as all of the data and analysis, also with plenty of how/why entries. This will aid you when you write your report.
+
+\section{Objectives}
+
+\begin{itemize}
+    \item Understand spectroscopy and its applications in a variety of fields
+
+    \item Learn about different types of cameras and their usage in observational astrophysics
+
+    \item Perform calibrations of the camera and noise analysis 
+
+    \item Observe Fraunhofer lines from the sun and match these to chemical elements
+
+    \item Perform basic optical alignment
+
+    \item Observe the sky and use this to perform background subtraction and analysis
+
+    \item Become familiar with the AstroPy Python package and its uses for analysis
+
+\end{itemize}
+
+\section{Solar Spectroscopy (SOL) Pictures}
+\noindent
+\begin{figure}[H]
+\captionsetup{justification=centering}
+\minipage[t]{0.45\linewidth}
+  \includegraphics[width=\linewidth,keepaspectratio]{images/solstation.png}
+  \caption{Solar Spectroscopy (SOL) experiment.}
+  \label{fig:solstation}
+\endminipage\hfill
+\minipage[t]{0.45\linewidth}
+  \includegraphics[width=\linewidth,keepaspectratio]{images/gaslampswindow.png}
+  \caption{Gas lamps and alignment laser at window for SOL.}
+  \label{fig:solgaslamps}
+\endminipage\hfill
+
+\end{figure}
+
+\section{Introduction}
+
+Spectroscopy is one of the most widespread tools in science, and at its most fundamental level is the study of how electromagnetic radiation interacts with matter. Spectroscopy is a key tool used by astrophysicists; for example, it is used to learn the chemical composition and physical conditions (temperature, pressure, and magnetic field strength) of distant planets, stars, and galaxies. In this lab, you will use a spectrograph to collect data from common sources (room lights), establish a wavelength scale using certain gas lamps, investigate the spectral resolution of your spectrograph and limitations of your detector, and measure astronomical spectra of the sky under different observing conditions.
+
+\subsection{Elemental fingerprints and Fraunhofer lines}
+
+We know from quantum mechanics that $E=h\nu$, and therefore that the energy level structure of atoms corresponds to the wavelengths of light involved when an atom emits or absorbs a photon. Since different atoms have different energy level structures, they also have different wavelengths of light produced when they are excited, unique to each element. Effectively, these atomic lines are fingerprints that can be used to explore what elements are present in different systems based on the wavelengths of light they interact with. 
+
+Perhaps the most famous example is Fraunhofer lines, named after Joseph Fraunhofer who in 1814 noticed dark lines in the spectrum of the Sun and systematically mapped hundreds of their wavelengths (see Figure \ref{fig:sun_spectrum}), naming the most prominent with letters A through K.\footnote{These lines were actually first noticed in 1802 by William Wollaston, but since Fraunhofer made the first serious study, he gets the credit.} (Johann Balmer later found a formula for the mathematical pattern of these lines.) 
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\linewidth]{images/sun_spectrum.png}
+    \caption{Spectrum of the Sun. Image from Wikimedia Commons.}
+    \label{fig:sun_spectrum}
+\end{figure}
+
+Later in the 19th century, Gustav Kirchhoff and Robert Bunsen noticed that the Fraunhofer line wavelengths corresponded to characteristic wavelengths emitted by certain heated elements, and thereby concluded that these lines were from the absorption of elements in the Sun's photosphere. These experiments launched the field of astronomical spectroscopy.
+
+It was not until the 20th century that the correspondence of these lines to elements via their atomic energy level structures and electronic transitions was explained by Bohr's model of the atom and quantum mechanics. (This was, in fact, one of the major triumphs of the early Bohr model - the explanation of Fraunhofer/Balmer lines. For more details, see the atomic physics (ATM) experiment!)
+
+\subsection{Emission lines of gas lamps}
+
+In the 19th century, Gustav Kirchhoff and Robert Bunsen systematized what Fraunhofer and others did before them, using Bunsen's eponymous newly developed burner and Fraunhofer's observational techniques to find the correspondence of elements to spectral lines. To do this, they also developed the spectrograph (see Section \ref{sec:spectrograph}).
+
+While inventing the spectrograph and developing spectrochemical analysis,\footnote{And coming up with Kirchhoff's laws of circuits, thermochemistry, thermal radiation, ... the man was busy.} Kirchhoff developed three laws of spectroscopy, as follows (see Figure \ref{fig:kirchhoff_laws}):
+
+\begin{enumerate}
+    \item Law I: A hot opaque body, such as a hot, dense gas or a hot solid material radiates equally at all wavelengths and thus produces a continuous spectrum.
+    \item Law II: A hot, transparent gas produces an emission line spectrum.
+    \item Law III: A cool, transparent (dilute) gas in front of a hotter source of continuous emission produces an absorption line spectrum.
+\end{enumerate}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\linewidth]{images/kirchoff_laws.png}
+    \caption{Diagram depicting Kirchhoff's Laws of Spectroscopy. Image from Penn State Department of Astronomy.}
+    \label{fig:kirchhoff_laws}
+\end{figure}
+
+Note that these are purely empirical laws! We must turn to Bohr's model and quantum mechanics to explain why these are true.
+
+A continuous source of light (a blackbody) emits photons across the full spectrum of energies, and therefore wavelengths. When these photons pass through a cloud of gas, photons with the correct energy (wavelength) to excite an atom in the gas can be absorbed. All other (non-resonant) photons can pass through the gas. Thus, after the light passes through the gas cloud, most of the photons in a narrow range of frequencies/colors will not pass through the gas. This leads to the presence of dark absorption lines in the otherwise continuous spectra emitted from the broadband light source. These absorption lines thus correspond to the elements present in the gas cloud.
+
+If you have a low density cloud of gas where the atoms are being excited by some process, the electrons in the gas will be excited into their higher atomic energy levels. The photon absorption will lead to dark absorption lines in the transmitted spectra. As these excited atoms then decay to the ground state, photons are emitted, giving rise to emission lines. A classic example is gas lamps, like neon tubes used in neon light signs - when the gas in the tubes are excited with electrical current, and thus emit light in their characteristic colors. Note that the photon wavelength relates to its energy as $$\lambda = c / \nu, $$ where 
+% 
+% In all cases, we know that
+% 
+\begin{equation}
+    \nu = \frac{E_2 - E_1}{h}.
+\end{equation}
+
+Another important note here is that while it is true that if a spectral line is observed, the element must be present, it is \textit{not} true that the absence of a spectral line means that the element is not present. The observation of spectral lines can be affected by a variety of factors, for example:
+
+\begin{itemize}
+    \item \textbf{Chemical abundance} - the chemical needs to be present.
+    \item \textbf{Temperature} - if no electrons are present at a specific energy level, there will be no corresponding spectral lines present; occupation of these energy levels is dependent on temperature and described by the Boltzmann distribution:
+    \begin{equation}
+        \frac{n_j}{n_i} \propto e^{-(E_j - E_i)/k_BT}
+    \end{equation}
+    The ionization of the atoms also changes the population of spectral lines, and also depends on temperature as described in the Saha equation:
+    \begin{equation}
+        \frac{n_+}{n_0} \propto T^{1.5}e^{-E_i/k_BT}
+    \end{equation}
+    \item \textbf{Atomic structure} - the presence of the spectral lines is dependent on the atomic structure.
+    \item \textbf{Density} - collisional de-excitation may occur instead of spectral line emission depending on the density of the object.
+    \item \textbf{Many other factors} - surface gravity, metallicity, line of sight velocities, etc. See provided references.
+\end{itemize}
+
+\subsection{Blackbody radiation}
+
+We've said that a continuous source of light is a blackbody, but what precisely does this mean? A blackbody is a source which has a continuous frequency spectrum dependent only on the body's temperature. (Another definition is that a blackbody is perfectly opaque, i.e., it absorbs all incident electromagnetic radiation, hence the name.) The distribution it follows is the Planck spectrum, described by Planck's law:
+
+\begin{equation}
+    u_{\nu}(\nu, T) = \frac{8\pi h\nu^3}{c^3}\frac{1}{e^{\frac{h\nu}{k_BT}}-1}
+\end{equation}
+
+Where $u_\nu$ is the spectral energy density (energy per unit volume per unit frequency). See Figure \ref{fig:blackbody}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\linewidth]{images/blackbody.png}
+        \caption{Blackbody radiation spectra at a variety of temperatures. The classical theory here refers to the Rayleigh-Jeans law, and the increase towards infinite energy as lower wavelengths were approached is what was called the ultraviolet catastrophe. Image from Wikimedia Commons.}
+    \label{fig:blackbody}
+\end{figure}
+
+Planck originally came up with this law empirically to solve the dramatically (and yet accurately) named ultraviolet catastrophe, and he did so by stitching together two approximations (the Rayleigh-Jeans approximation and Wien's approximation) and making some inspired guesses (about the discretization of light) that later were backed up by and refined into quantum mechanics.\footnote{If you haven't read the story around the origins of quantum mechanics, the arguments among Planck, Bohr, Einstein, and others, and the inciting problems in the field, you should - it's a riveting history. A good book about it is \textit{From x-rays to quarks: modern physicists and their discoveries} by Emilio Segr\'e - yes, \textit{that} Segr\'e.} Before Planck did this, though, some other facts were discovered about this blackbody peak, notably by Wilhelm Wien, whose displacement law says that
+
+\begin{equation}
+    \lambda_{peak} = \frac{b}{T}
+\end{equation}
+
+Where $b\approx 2898\,\mu$m$\cdot$K is Wien's displacement constant. Thus, measuring spectra also tells us something about the temperature of an object.
+
+\subsection{Spectrometers and spectral resolution}
+\label{sec:spectrograph}
+
+In a big picture sense, several things must occur to perform spectroscopy. First, the light of interest must be collimated, then diffracted (using, say, a diffraction grating or prism\footnote{Though a grating is much better as the relationship between dispersion and wavelength is linear, and a larger range of dispersions is possible. A nice discussion of the history of gratings vs. prisms is in Appenzeller.}) to turn the different wavelengths into spatial separation. Finally, there must be an image plane of some sort so we can take our measurement. We must calibrate the spatial separation with known wavelengths; then we can use our spectrometer with a source of unknown composition, and use our calibration to extract out the wavelengths and thereby the elements present in the source.
+
+Note that since spatial separation of the different wavelengths matters, what happens upon realignments of the optical system? Upon jostling of components? What steps might you need to take in order to ensure you can analyze your data across different days of the experiment?
+
+Diffraction gratings, like prisms, can spatially separate the different wavelengths in incoming light. The diffraction follows the equation:
+
+\begin{equation}
+    d \cdot \sin\theta = m \lambda
+\end{equation}
+
+where $d$ is the distance between two slits, $m$ counts the fringes, $\lambda$ is the wavelength, and $\theta$ is the angle between the fringe and the diffraction grating. (Note this only holds if the distance between the image plane and the grating is much larger than the distance between slits.)
+
+The spectral resolution refers to the wavelength resolution of the spectra you obtain. It is the minimum difference in wavelengths between two spectrum lines that can be distinguished, and generally denoted by $\Delta\lambda$. We have that 
+
+\begin{equation}
+    \Delta \lambda= \frac{\lambda}{Nm}
+\end{equation}
+
+Here again $\Delta \lambda$ is the resolution, $m$ the diffraction order (in our case, we'll set up our system so that $m=1$), and $N$ is the grating of our diffraction grating (in grooves/inch). 
+
+The resolving power $R$ of our instrument is then defined as
+
+\begin{equation}
+    R = \frac{\lambda}{\Delta \lambda}=Nm
+\end{equation}
+
+\subsection{CMOS and CCD cameras}
+
+Until now we've glossed over how exactly to take our measurement - the image plane could be our retina, but that would be rather unwise; we could use a piece of paper but measuring by hand is always difficult to do well. Actually, though, there is another issue besides precision of measurement, which is how to collect as many photons as possible with our measurement. Another concern is linearity of the response of the detector to different light levels.\footnote{Historically, when photographic plates were used, this was a huge problem, as the response to light level was highly nonlinear. See Appenzeller for a nice history of this.} 
+
+The fraction of photons that are detected divided by the number of photons that reach the detector is the quantum efficiency (QE). QE is often dependent on wavelength since photon energy is dependent on wavelength. We write
+
+\begin{equation}
+    QE_\lambda = \eta = \frac{N_e}{N_\nu}
+\end{equation}
+
+where $N_e$ is the number of electrons produced and $N_\nu$ is the number absorbed. We then have
+
+\begin{align}
+    \frac{N_\nu}{t} &= \Phi_0\frac{\lambda}{hc}\\
+    \frac{N_e}{t} &= \Phi_\xi\frac{\lambda}{hc}
+\end{align}
+
+where $t$ is the measurement time in seconds, $\Phi_0$ is the incident optical power in watts, and $\Phi_\xi$ is the optical power absorbed in the depletion layer in watts.
+
+%have them map the QE at different wavelengths..?
+
+Charged coupled devices (CCD) are typically manufactured in silicon wafers. A depletion region where electrons get trapped is formed inside the silicon by applying a positive voltage to the surface of the wafer. Incoming light arrives at the backside of the wafer and knocks electrons from the silicon lattice via the photoelectric effect. The photoelectrons then travel to the depletion region (a potential well) where they get transferred to an output circuit for readout. (See McLean for more details.) %Given the silicon composition of CCDs ...
+
+%These electrons get trapped in the ...
+
+By contrast, complementary metal oxide semiconductor (CMOS) sensors are a type of active pixel sensor (APS). In an active pixel sensor, each pixel has a photodetector (generally a pinned photodiode\footnote{See \href{https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=6742594}{A Review of the Pinned Photodiode for CCD and CMOS Image Sensors} by Fossum and Hondongwa for an overview of what pinned photodiodes are, how they are useful, and how they are manufactured.}) connected to one or more transistors; in a CMOS APS, CMOS field effect transistors are used as amplifiers. CMOS simply refers to a standard manufacturing process in nanofabrication.\footnote{For more on this, see Jaeger, \textit{Microfabrication}, an excellent little book.}
+
+CMOS sensors are generally much cheaper and easier to manufacture than CCDs (hence our use of one as opposed to a CCD). They are also generally faster and more scalable, and consume less power. On the other hand, CCDs are able to capture images with lower noise, though CMOS sensors have been catching up and are approaching comparable quality. Depending on the CMOS sensor, they also can have lower quantum efficiency than CCD detectors (which often have a QE over 90\%).
+
+\subsection{Camera noise}
+
+With any measurement tool comes noise, and our camera is no different. One main source of noise is dark current, i.e., the electric current present in photosensitive devices (like photomultiplier tubes or CCDs) even when no photons are present. This is due to the random generation of hole/electron pairs at the depletion layer of the device.\footnote{See Simon, \textit{Solid State Basics} for more details.} The first step is to subtract dark frames, which will remove the mean background, but the dark current also has shot noise, which is temporal and follows Poisson statistics.\footnote{Review the EAX exercise as well as Hughes and Hase for more on Poisson statistics.} Shot noise is uncertainty which arises from discrete events (like photon arrivals) which follow the Poisson distribution but are occurring at such a low rate that the uncertainty is large.
+
+Another main source of noise is readout noise (also known as read noise). There are two main components to readout noise (which are not separable) - first, the electronics themselves will produce some extra electrons, causing random fluctuations in the output, and second, the analog to digital conversion is not perfectly repeatable (nor perfectly precise) and will produce some statistical distribution of digital answers centered on a mean value. Increased readout speeds can cause increased temperature swings and therefore increased noise as well\footnote{For details on how this happens and various types of noise, explore the LLS lab.}, so generally readout noise can be minimized by minimizing readout speeds, though there are of course other tradeoffs dependent on the camera. See McLean for a more thorough discussion.
+
+Finally, we'll consider the noise on the photon signal we receive at the detector, which follows Poisson statistics. In all of these cases, the key is looking at our signal to noise ratio (SNR). We'll assume in this experiment that there are four main types of noise (discussion drawn from McLean's \textit{Electronic imaging in astronomy}):
+
+\begin{enumerate}
+    \item Readout noise, denoted $R$
+    \item Poisson noise on the signal from the object, denoted $S$
+    \item Poisson noise on the signal from the background, denoted $B$
+    \item Shot noise on the dark current signal, denoted $D$
+\end{enumerate}
+
+The signals $S$, $B$, and $D$ are in units of electrons per second, and we can calculate these by multiplying observed counts by the camera transfer factor $g$ (in units of electrons/count). We assume that $S$, $B$, the photon signals, follow Poisson statistics, so we need to find the original photon arrival rate - to do this we can divide by the quantum efficiency, $\eta$, as discussed earlier. We also assume that $D$ will follow Poisson statistics, meaning that the noise is the square root of the number of electrons recorded.
+
+For random independent noise sources, we can add the noise terms in quadrature. Now, considering a source covering $n$ pixels on the CCD, we'll estimate an SNR (denoted $S/N$) as
+
+\begin{align*}
+    \frac{S}{N} &=\\
+                & S\sqrt{T}\left[u_r^2 + S +\sum\limits_{i=1}^n\left\{\left(B+d+\frac{R^2}{t}\right)+\epsilon_D\left(D+\frac{R^2}{t}\right)+(1-f)^2\epsilon_B\left(B+D+\frac{R^2}{t}\right)+(1+f)^2\epsilon_D\left(D+\frac{R^2}{t}\right)\right\}\right]^{-\frac{1}{2}}
+\end{align*}
+
+Where $T=tn_0$ is the total integration time accumulated on the object frames, $f$ is the ratio of the source signal to the background signal per pixel, $\epsilon_B=n_0/n_B$ is the ratio of the number of object frames to background frames, and $\epsilon_D=n_0/n_D$ is the ratio of the number of object to dark current frames. We're defining $S$ as the total object signal summed over $n$ pixels and $u_r$ represents the average over $n$ pixels of any residual.
+
+We will collect $n_0$ object frames, $n_B$ sky background or flat frames, and $n_D$ dark frames, with procedures outlined below. The object frames are the `actual' data, the pictures of your signal you will take. The flat frames are pictures taken of a pure white light, which helps account for pixel response variation, and the sky background frames are pictures of the sky (say, on a cloudy day, or with the sun out of frame). You will test multiple approaches to see which better subtracts background. Finally, the dark frames are pictures taken when the camera is covered, in order to find the noise related to the dark current, as described earlier.
+
+\subsection{The atmosphere is in the way}
+
+So, we have obtained our spectrum. But there is yet another problem, which is that unlike Kirchhoff and Bunsen who mostly worked in the chemical laboratory, we are observing the Sun, which is a far away source with many other things inbetween\footnote{Citation needed.} - most notably, Earth's atmosphere. We must consider how this affects our results. Consider, for example, a cloudy day versus a clear sunny day - how does this change our spectrum?
+
+It turns out one of the main differences is the type of scattering photons undergo entering the atmosphere. On a clear, sunny day, the photons undergo Rayleigh scattering. In this case, the light is scattered by particles much smaller than the wavelength of the radiation. Specifically, the oscillating electric field of the light polarizes the charges in the particle, producing a radiating dipole whose radiation we see as scattered light.\footnote{See Griffiths' \textit{Electromagnetism} for a more thorough discussion of radiation.} When the smoke clears from the mathematics, we find that the Rayleigh scattering cross section of particles in air is
+
+\begin{equation*}
+    \sigma_s = \frac{8\pi}{3}\left(\frac{2\pi}{\lambda}\right)^4\left(\frac{n^2-1}{n^2+2}\right)^2r^6
+\end{equation*}
+
+where $r$ is the observer's distance to the particle and $n$ is the refractive index. See Figure \ref{fig:rayleigh}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\linewidth]{images/rayleigh.png}
+    \caption{Relative Rayleigh cross section (roughly, percent of light scattered) as a function of wavelength. Image courtesy of NASA.}
+    \label{fig:rayleigh}
+\end{figure}
+
+We can see that the strong wavelength dependence, $\propto \lambda^{-4}$, causes blue light to be scattered far more than red light (hence the blue color of the sky). How might this affect your spectra?
+
+By contrast, on a cloudy day, they undergo Mie scattering. Here, the light is scattered by particles comparable in size to their wavelength. The mathematics here is much messier (indeed, Rayleigh scattering is a limit of Mie scattering), and we often use numerical simulations to find the resulting wavelength dependence, dependent on the type and size of particle that is doing the scattering. See Figure \ref{fig:mie}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\linewidth]{images/mie.png}
+    \caption{Sample Mie scattering spectrum for 1 $\mu$m water droplets (not a terrible approximation for clouds, though water droplets for these are generally bigger). Figure taken from miepython documentation.}
+    \label{fig:mie}
+\end{figure}
+
+How might this affect your spectra? If you would like to do more careful simulations, take a look at the \href{https://miepython.readthedocs.io/en/3.1.0/index.html}{miepython} package, and look at average droplet size distributions in clouds.
+
+\section{Equipment}
+
+\begin{itemize}
+    \item \href{https://amscope.com/products/mu043m-fl?srsltid=AfmBOoraMNdLLKz4UvSt-a3ezDBTtJ4qwd5eWIXhwzeyAOOec2Dqhvwt}{AmScope MU043M-FL}
+    \item Visible transmission grating, 1200 grooves/mm, 36.9$^\circ$ blaze/groove angle, 50 mm x 50 mm
+    \item A 50 mm and a 100 mm plano convex lenses
+    \item Multi-modal fiber optic cables
+    \item Hydrogen, helium, nitrogen, and neon gas lamps
+    \item High voltage gas-lamp vernier power supply
+\end{itemize}
+
+See Figure \ref{fig:opticalpath} for a diagram of the optical path.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\linewidth]{images/sol_optical_path.jpg}
+    \caption{Optical path for SOL. Figure from Eli Gendreau-Distler \& Brianna Peck, 2026; many thanks to them for their improvements to the quality of the spectra SOL can obtain.}
+    \label{fig:opticalpath}
+\end{figure}
+
+\subsection{AstroPy}
+
+In this experiment, you will work with image processing using the \href{https://www.astropy.org/}{AstroPy} package. AstroPy is a widely used Python library in astronomy, and part of the goal of this lab is to help you become familiar with some of its core functions.
+
+The first thing you will need to do is convert the images you take as \textit{*.raw} to \textit{*.fits}. A snippet of this code may be found in Appendix \ref{sec:fitsconversioncode}. It is also possible to convert \textit{*.bmp} (bitmap) to \textit{*.fits}; there are many options online for doing this with Python.
+
+
+\section{Experiments}
+
+Your report should have discussions and explanations of the data obtained in the following experiments.
+
+\textbf{A note on planning:} this experiment is somewhat weather dependent! Check the forecast at the beginning of your experiment slot and see what days make sense for which solar spectra conditions you need to collect (we recommend ideally one sunny day and one overcast day if possible). Since we live in California, this is generally achievable, and we expect you to plan around the forecast to the extent possible. However, if there are no sunny or no cloudy days during your slot, this will not be held against you - simply note it in your report, and discuss with staff another alternative condition to take a solar spectrum under.
+
+%\subsection{Alignment check}
+
+%FINISH and discuss red fault finder/etc in this section, explain that it should be fiber coupled, etc. can pull from QIE second box alignment
+
+%In this lab you will \textbf{not} do any major alignment. We will instead perform a simple check to confirm that the alignment is correct 
+
+\subsection{CMOS Characterization}
+In this section you will determine the noise characteristics of the CMOS camera. We will look at the readout noise, dark current, and bias level. 
+
+
+CMOS sense photons and produce an electrical signal in response. We measure this electrical signal, often in discretized (digital) units of ADU (analog-digital units) or counts. The number of counts detected in a pixel is proportional to the number of photons that landed in the pixel:
+
+\begin{equation}
+    \text{number of photons} = \text{gain}*ADU
+    \label{eq:gain}
+\end{equation}
+
+CMOS are not perfect devices. They can have spurious signals (dark current, amplifier glow,
+saturation, cosmic-rays) and noise (readout noise). In order to understand the astronomical signals
+and noise, we must first understand the detector.
+The detectors used in this lab are all CMOS devices similar to those found in your cell-phone
+cameras. While it is currently more common to use CCDs in optical astronomy, CMOS detectors
+are rapidly becoming comparable in sensitivity and noise characteristics and are significantly
+cheaper than CCDs. Our CMOS camera is an \href{https://amscope.com/products/mu043m-fl?srsltid=AfmBOoraMNdLLKz4UvSt-a3ezDBTtJ4qwd5eWIXhwzeyAOOec2Dqhvwt}{AmScope MU043M-FL}.
+
+In this experiment, you will be using the AmScope software to read the detector. The settings are already configured so that you may use the camera in continuous mode (video) for optical alignment and ``Snap" (single frame) mode for taking images with specific integration times.
+
+\subsubsection{Dark Current}
+
+The bias level of an image can be measured by taking dark frames with very short integration times. To take a dark frame, screw the cap onto the CMOS detector. In essence, a dark frame is an image of the focal plane with the shutter closed.
+
+To collect dark frames, open the AmScope software on the desktop. Select the camera “MU043M‑FL.” Under “Capture \& Resolution,” adjust the exposure time and click “Snap” to acquire a single frame. Save each image as a \textit{.raw} file.
+
+Collect a stack of five dark frames at six different exposure times. For each image, examine the pixel-value distribution by flattening the array and plotting a histogram of the resulting values. Next, combine the five dark frames at each exposure time into a single master image. You may do this using NumPy arrays or \href{ https://ccdproc.readthedocs.io/en/latest/api/ccdproc.ImageFileCollection.html}{ccdproc ImageFileCollection}.
+Then calculate the mean pixel value for each master image and plot these means as a function of exposure time. Also compute the mean signal and the error on the mean to estimate the bias level. Be sure to include some long exposures (10 seconds, 30 seconds), as the dark current in CMOS detectors is often very low.
+
+\emph{Note, if you have been running your camera for a while, it will heat up. Many detector properties are temperature dependent. Beware.} Investigate this effect using the provided temperature sensor (it is connected to a multimeter).
+
+\subsubsection{Readout Noise}
+
+Detector readout noise is not related to photon noise. It is an extra source of noise inherent in all detectors with analog-to-digital converters. McLean 2008 notes that these two forms of noise
+combine to contribute to the total noise:
+\begin{itemize}
+    \item Photon noise on the signal photoelectrons (p)
+    \item Readout noise in electrons from the CCD output amplifier (R).
+\end{itemize}
+
+These two noise sources are independent and random, and therefore their noise power spectral densities can be summed in quadrature. Thus, the total noise is given by:
+
+\begin{equation}
+    (S_\text{noise})^2=S_p^2+S_R^2
+\end{equation}
+% \begin{equation}
+%     (noise)^2=p^2+R^2
+% \end{equation}
+
+One way to characterize detector readout noise is to measure images of a white light ``flat frame" source (ideally flat over the field of view, say a cell phone camera with a white screen) at different intensities. This can be controlled by changing the white light intensity or by changing
+the integration time. For very short integration times, the noise (the root-mean-square error on the signal) is dominated by read-noise. For longer integration times, photon noise (which is Poisson distributed) dominates. 
+
+To capture flat frames, place the provided white screen in front of the CMOS, illuminate it with a white light source (the flashlight from your phone works great for this), and acquire images at a range of exposure times. As with the dark frames, collect and analyze a stack of flat frames to measure the readout noise. 
+
+
+\checkpoint{Dark Current and Readout Noise}{Call over an instructor or GSI and show them the mean pixel distributions for each exposure time you selected, as well as mean pixel value of the combined frames, as a function of exposure time for both your dark and flat frames. \textit{Hint: You may want to select a log scale for your flat frames}.}
+
+Additionally, you will need to understand the concept of signal-to-noise - see the background section.
+
+
+\subsection{Detector Pixel to Wavelength Calibration}
+
+In this section you will determine the mapping between pixel number and wavelength. Do this by measuring the pixel position of bright hydrogen, helium, neon, and nitrogen emission lines of known wavelengths. 
+
+Begin by placing one end of the optical fiber at a white‑light source. This allows you to visualize the diffraction pattern received by the camera. Once you confirm that the optical path is properly aligned, cover the setup with the black box and lid. 
+
+
+\checkpoint{Alignment.}{Call over an instructor or GSI and show them the optical path, demonstrating that the diffracted light is succesfully detected by the CMOS in the AmScope software. }
+
+% Identify the range of visible color lines. Can the CMOS capture the full spectrum (i.e. from purple to red), or does cutoff at a specific color? Discuss with the staff and keep this in mind as you determine which strong emission lines you're able to map in the following steps.
+
+
+Next, align the fiber optic with the gas lamp and cover it with the provided cardboard box. In the AmScope software, you should see the continuous acquisition along with the bright emission lines. Adjust the exposure time until you obtain images that clearly show distinct emission lines (as shown on Fig. \ref{fig:gaslampspectrum}). \textbf{Don't forget to turn off the gas lamp after you're done for the day.}
+
+
+
+\subsubsection{Data Processing}
+
+ Once you have obtained images for various gas lamps convert the \textbf{*.raw} images to \textit{*.fits} using AstroPy, just as you did for your dark and flat frames. We recommend visualizing these images using AstroPy's ``fits" function. You may also choose to use a software like \href{https://sites.google.com/cfa.harvard.edu/saoimageds9/download}{ds9} (not recommended but handy for quick checks). 
+ 
+ To account for the noises sources you characterized in the previous section, you will need to ``clean" any images you take, using the following procedure:
+
+\begin{equation}
+    Final\,Frame = \frac{\text{Object Frame - Dark Frame}}{\text{Flat Frame - Dark Frame}}
+\end{equation}
+
+The dark and flat frames in this equation should be the master frames corresponding to the exposure time of your object frame. For example, if your hydrogen calibration required a 5-second exposure, then your master dark and master flat frames must also be collected at 5 second exposures. 
+ 
+
+\checkpoint{Cleaned Image}{Show an instructor or GSI one of your Final Frames (i.e. an image after you have ``cleaned" it). Do you notice any difference? Is it worth cleaning all of the images?}
+
+
+Additionally, as shown on Fig. \ref{fig:gaslampspectrum}, only a portion of the CMOS sensor receives the gas lamp spectrum due to the dimensions of the diffraction grating. We recommend trimming each image to extract only relevant data. \href{https://docs.astropy.org/en/stable/nddata/utils.html#cutout-images}{Cutout2D} from astropy.nddata may be handy for this. 
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\linewidth]{images/gasspectrumamscope.png}
+    \caption{Sample image of gas lamp emission spectrum as it appears in the AmScope software.}
+    \label{fig:gaslampspectrum}
+\end{figure}
+
+
+Once the images have been cleaned and trimmed, compute the average pixel value of each column and identify the peak values (you may want to use \href{https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.find_peaks.html}{find\_peaks} and \href{https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.peak_widths.html}{peak\_widths} from scipy.signal). Match the pixel corresponding to the peaks to the known strong emission lines of each element, then use the method of linear least squares on the resultant pixel-wavelength pairs to determine a polynomial fit that maps pixel number to wavelength. Additionally, find the full-width at half-max (FWHM) of one of your strong peaks centered at a known wavelength. This value corresponds to your experimental resolution, $\Delta \lambda$. You may use the standard-deviation to FWHM conversion if you prefer. Does this value agree with the theoretical expectations? 
+
+\checkpoint{Spectral resolution.}{Call over an instructor or GSI and show them your pixel to wavelength calibration plot as well as your best fit line. Find your theoretical and experimental $\Delta \lambda$ and discuss the results with an instructor or GSI.}
+
+%\checkpoint{Spectral Resolution}{Find your theoretical and experimental $\Delta \lambda$ and discuss the results with an instructor or GSI.}
+
+
+
+\subsection{We're Finally Chasing The Sun}
+
+Now we get to actually look at the Sun! (But not directly, please. We prefer to minimize eye damage in this lab. Similarly, \textbf{do not look directly into the end of the optical fiber.} Aim the fiber at some paper or similar to see the light.)
+
+Before swapping the fiber‑optic mount to collect the solar spectrum, place a white‑light source at the end of the fiber‑optic cable currently in use for gas‑lamp measurements. Using the AmScope “line” or “rectangle” tool, mark the region of the continuous spectrum captured by the CMOS detector.
+This step is important because the alignment will shift slightly once you change fiber‑optic mounts. Even though the mounts are designed to maintain a consistent vertical and lateral alignment, the placement will not be perfectly identical. The marked region on the screen provides a reference to help you verify that the new alignment remains within a reasonable range.
+You should note this source of error in your calibration and analysis. (Future iterations of this lab will reduce this alignment uncertainty by upgrading the fiber‑optic mounts. For now, we appreciate your creativity in obtaining a solar spectrum with the current setup.)
+
+
+Once you have completed this step, replace the fiber‑optic mount with the one labeled “Sun” located at the back edge of the optics table. To maintain consistent vertical and lateral alignment, these posts have been collared—do not adjust the collar height, as doing so will affect the alignment. After mounting the “Sun” fiber and verifying that the fiber‑optic input is oriented straight ahead for proper alignment, compare the spectrum position to the region you previously marked in the software. If you observe a significant deviation from the marked location, call over a staff member.
+
+
+% For this section, you will need to replace the fiber optic cable.
+% replace the optical-path fiber with the longer cable. Attach one end to the new cable to the spectrometer input, then run the other end of the cable to the window. 
+
+Next, obtain spectra of the outside sunlight under different conditions (blue sky, overcast, sunset, or fog). The “Sun” fiber‑optic cable runs to the window located between the LLS and the sink station. You may open the window to collect the spectrum, and be sure to remove the cap from the window‑side end of the fiber. As with the gas‑lamp measurements, you will need to adjust the exposure times to avoid saturation while still capturing clear spectral features.
+
+\checkpoint{Different conditions.}{Show a GSI spectra taken under two different conditions. Qualitatively explain similarities/differences and how they compare with your theoretical explanations.}
+
+Once you have captured the spectrum, convert pixel number to wavelength using your calibration plot/equation and identify narrower features (atomic, molecular or solid-state) in those spectra and manually determine their possible elemental composition and origin. Plot five to twenty of these solar absorption lines. 
+
+\textbf{A word of wisdom:}
+
+\begin{itemize}
+    \item \textbf{The stability of your optical bench spectrograph} may vary from one observation to the next due to environmental factors or handling/jostling of the optical components. A good practice would be to \textbf{perform a wavelength calibration immediately before and after taking a sun or combined sky observation, then combine the two wavelength calibrations to obtain a mean wavelength solution for that set of sun/sky observations.}
+\end{itemize}
+
+
+% If you're taking data over multiple days, it is likely that the optical setup has experiences small fluctuations. You may want to re-run your calibrations with at least one lamp before taking sky data so that your mapping is accurate.
+
+Alternatively, you may use the low-resolution (R=536) solar spectrum in FITS format found at the \href{https://britastro.org/specdb/data.phpto}{BAA website} to compare to your solar spectrum. Click the ``PLOT" button to see what the plot should look like. You will have to scale the data to your solar spectrum plot. Make sure to quantify the agreement of your spectrum and the true solar spectrum.
+
+Plot how the root mean squared of the noise scales with exposure times, and confirm that your results make sense for white noise. We expect you to use the strategies you have learned in EAX to properly quantify and analyze the noise and spectral agreement in your data.
+
+Characterize the change of spectral slope between different conditions assuming that it can be described as a simpler power law ($F_{sky1}/F_{sky2}=\alpha \lambda^\beta$) (i.e. fit a power law to the resulting graph).
+
+You should also try to estimate the temperature of the Sun and analyze any errors in the result.
+
+
+
+
+\begin{itemize}
+    \item This is a new experiment as of February 2026. Your feedback is incredibly important to us in refining this new experiment! On the last day of the experiment please fill out the \href{\ExperimentEvaluation}{\textbf{Experiment Evaluation}}. Please also feel free to tell course staff any additional comments you have.
+\end{itemize}
+
+\newpage
+
+\begin{appendix}
+    
+\appendix
+
+\section{Sample code for .fits conversion}
+\label{sec:fitsconversioncode}
+
+The following function converts \textit{*.raw} to \textit{*.fits}:
+
+
+\begin{lstlisting}[language=Python]
+    
+def raw_to_fits(raw_file,tint=1, shape=(1080,1440), destination=None, ADC_bits = 12, simu_artifacts = False):
+    """
+    Converts a .raw file to a FITS formatted image
+    raw_file : The file path of the raw image
+    shape : A list or tuple with (# of rows, # of columns) for the image
+    destination : an alternate destination/filename for the FITS image
+       (default is to replace the .raw extension and save in the same folder)
+    """
+    # try:
+    #     tint = float(raw_file.split("us.raw")[0].split("_")[-1])/1e6
+    # except ValueError:
+    #     print(f"Warning: Could not extract exposure time from filename: {raw_file}. Using a default of 1 second.")
+    #     tint = 1.0
+   
+    # Get shape of image
+    nrows, ncols = shape
+    # Open raw file
+    with open(raw_file, 'rb') as raw:
+        raw_img = raw.read()
+    # Check file size / format
+    filesize = len(raw_img)
+    if filesize == nrows*ncols: # 8-bit
+        size = 'B'
+        file_bits = 8
+    elif filesize == nrows*ncols*2: # 16-bit
+        size = 'H'
+        file_bits = 16
+    else: # No size match
+        raise ValueError("The image shape provided does not match the length of the file")
+    # Format binary string
+    fmt = f"<{nrows*ncols}{size}"
+    # Convert byte string to numpy array
+    byte_array = np.array(struct.unpack(fmt, raw_img)).reshape(nrows, ncols)
+    if file_bits > ADC_bits:
+        byte_array = byte_array/2**(file_bits-ADC_bits)
+
+    if simu_artifacts:
+        ny,nx = byte_array.shape
+
+        # Adding dark
+        dark_current = 1.25 #ADU/s
+        byte_array += dark_current*tint
+       
+
+        # multiplying flat
+        x_grid,y_grid = np.meshgrid(np.arange(nx),np.arange(ny))
+        flat_field = np.exp(-0.5*((x_grid - nx//2)**2/(3*nx)**2+(y_grid - ny//2)**2/(3*ny)**2))
+        byte_array *= flat_field
+
+        state = np.random.get_state()
+        np.random.seed(0)
+
+        # adding hot pixels
+        hot_pix_indices = np.random.randint(0, high=nx*ny-1, size=int(0.01*nx*ny))
+        hot_pix_indices = np.unravel_index(hot_pix_indices, (ny,nx))
+        byte_array[hot_pix_indices] *= tint*np.clip(30*np.random.randn(int(0.01*nx*ny)),dark_current,2**ADC_bits)
+
+        # adding cold pixels
+        cold_pix_indices = np.random.randint(0, high=nx*ny-1, size=int(0.01*nx*ny))
+        cold_pix_indices = np.unravel_index(cold_pix_indices, (ny,nx))
+        byte_array[cold_pix_indices] *= np.random.uniform(0,0.5,size=int(0.01*nx*ny))
+
+        np.random.set_state(state)
+
+        # Adding bias
+        byte_array += 64
+
+        # adding readnoise
+        readnoise = 3 #ADU
+        byte_array += readnoise*np.random.randn(ny,nx)
+
+        byte_array = np.clip(byte_array,0,2**ADC_bits)
+    print(tint)
+    # FITS file name
+    if destination is None:
+        fits_file = raw_file.replace('.raw', '.fits')
+    else:
+        fits_file = destination
+    if simu_artifacts:
+        fits_file = fits_file.replace(".fits", "_simu.fits")
+    # Save as FITS
+    hdu = fits.PrimaryHDU(byte_array)
+    hdu.writeto(fits_file,overwrite=True)
+\end{lstlisting}
+\newpage
+\textbf{A sample usage of the function with the \href{https://realpython.com/ref/stdlib/glob/}{glob} Python package is shown below. Note that the tint value corresponds to the exposure length in seconds. You may also need to modify a few parameters.}
+
+\begin{lstlisting}[language=Python]
+    #2 second exposure
+mydir =r'C:\Users\Documents\Hg_1999997us_*.raw' # This is the path to your raw images
+
+for filename in glob(mydir):
+    if len(glob(filename.replace(".raw",".fits"))) >= 1:
+        continue
+    print(filename)
+    # try both (width, height) and (height, width) for the shape keyword in case the image is funky with stripes.
+    #raw_to_fits(filename, shape=(1536,2048))
+    raw_to_fits(filename,tint=1999997e-6, shape=(1080,1440))
+#     raw_to_fits(filename, shape=(1240,1616))
+\end{lstlisting}
+
+
+
+
+\end{appendix}
+
+\end{document}

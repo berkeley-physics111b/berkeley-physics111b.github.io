@@ -1,0 +1,284 @@
+
+\documentclass{../lab}
+\usepackage{comment}
+
+\labacronym{TOM}
+\labtitle{Muon Tomography}
+
+%\newcommand{\ofOpticsTutorial}{http://experimentationlab.berkeley.edu/sites/default/files/QIE/fundamental-Optics.pdf}
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+
+\section{Muon Tomography (TOM) Description}
+
+\begin{enumerate}
+    \item \textbf{Note that there is NO eating or drinking in the 111-Lab anywhere, except in rooms 282 \& 286 LeConte on the bench with the BLUE stripe around it.} Thank you -- the Staff.
+
+\end{enumerate}
+
+In this experiment, we explore muon tomography - the idea that we can use muon count rates to reconstruct an image of a region of interest. You will begin by calibrating your muon detectors to understand what muon pulses look like and coincidence counting, and then bring your detectors out around campus to image a building. You will also observe how different materials attenuate muons and how other background effects (like the Earth's geomagnetic field) affect count rates. In so doing, you will be introduced to the cross-disciplinary concept of tomography and the algorithms and statistics used for image reconstruction from cross-sections. You will also explore the fields of particle physics and cosmic ray physics, and see the ways muon tomography can be applied in a variety of other fields. \textbf{As of 9/14/26, this manual is a draft manual subject to revision. If you are doing this experiment, you should discuss questions/suggestions with staff.}
+
+\begin{enumerate}
+    \item Pre-requisites: MUO (or instructor permission)
+
+    \item Days Allotted for the Experiment: 6
+
+    \item Consecutive days: Yes
+
+\end{enumerate}
+
+
+This lab will be graded 20\% on theory, 20\% on technique, and 60\% on analysis. For more information, see the \href{\AdvancedLabSyllabus}{\textbf{Advanced Lab Syllabus}}.
+
+Comments: E-mail \href{\MailLabManager}{\textbf{Winthrop Williams}}
+
+Last updated 9/14/26 by Auden Young.
+
+Science is always a collaborative endeavor! Many thanks to the Nuclear Engineering department for donating the portable detectors, to Aegean Dela Cruz and Jack Reddick for extensive assistance developing and testing this experiment in Spring 2026, and to Marty Boren for designing and building a custom cart for the lab.
+
+\noindent\textbf{Suggested Reading:}
+
+\begin{enumerate}
+    \item Alvarez et al., \href{https://www2.lns.mit.edu/fisherp/AlvarezPyramids.pdf}{Search for Hidden Chambers in the Pyramids} and Alvarez, \href{https://drive.google.com/file/d/1A4hww35SFvV6_HgJBxH6QwkU2P4GFEW0/view?usp=sharing}{A Proposal to ``X-Ray'' the Pyramids to Search for Presently Unknown Chambers} - the original proposal that got the whole field started, as well as a summary after the fact. Very readable as it was directed both at physicists and archaeologists!
+    \item \href{https://www.sciencedirect.com/science/article/pii/S0146641020300156}{\textit{Applications of Cosmic Ray Muons}} - an excellent review article that covers all aspects of this experiment in a modern fashion. It is lengthy, but you should read the majority of this paper.
+    \item B. Rossi, ``\href{https://drive.google.com/file/d/1tFUQJkkIA-OwbRkS-L1pOJuPoD6z67KY/view?usp=drive_link}{\textbf{Interpretation of Cosmic-Ray Phenomena}}'', Rev. Mod. Phys. \textbf{20}, 537 (1948).\emph{Gives the cosmic ray flux at sea level. Figure 6 on p. 545 is important for your calculations.}
+    \item Groom et al., Particle Data Group, \href{https://pdg.lbl.gov/2014/AtomicNuclearProperties/adndt.pdf}{Muon Stopping Power and Range Tables, 10 MeV—100 TeV} - very useful reference on stopping power of different materials.
+    \item Kak \& Slaney, \href{https://www.slaney.org/pct/pct-toc.html}{Principles of Computerized Tomographic Imaging} - a textbook going over the technical details of tomographic image reconstruction. Begin with Chapter 3.
+    \item \href{https://github.com/MaximeLagrange/muograph/tree/main/tutorials}{Muograph tutorials} - Python package with some tomographic reconstruction algorithms intended for muon tomography that has some Jupyter notebook tutorials; a potentially useful starting point. There are many other open source/free tools available online for tomographic image reconstruction (some for other fields/types of tomography, but which still can be useful) which you should investigate.
+    \item \href{https://geant4-userdoc.web.cern.ch/UsersGuides/IntroductionToGeant4/html/index.html}{Introduction to Geant4} - introduction document from CERN on using Geant4, code to simulate cosmic ray showers and how they interact with our detectors and similar. The CERN website also has documentation on the use of ROOT.
+    \item 111B MUO lab manual - further details on muons themselves; useful especially for the first experiments you will do characterizing the detectors.
+    \item Proceurer et al., \href{https://pmc.ncbi.nlm.nih.gov/articles/PMC9981702/}{Precise characterization of a corridor-shaped structure in Khufu’s Pyramid by observation of cosmic-ray muons} - in 2023, muon tomography discovered a hidden chamber in one of the other pyramids - this is the paper about it!
+\end{enumerate}
+
+%More \hyperref[sec:References]{References}
+
+You should keep a laboratory notebook. The notebook should contain a detailed record of everything that was done and how/why it was done, as well as all of the data and analysis, and plenty of how/why entries. This will aid you when you write your report. Note that nobody has ever thought to themselves `I have written too much in my lab notebook!' whereas everyone, at some point or another, has bemoaned the converse.
+
+\section{Objectives}
+
+\begin{itemize}
+    \item Understand muon tomography and radiography and their applications to a variety of fields
+
+    \item Perform calibrations of particle detectors using experimental tests and simulations
+
+    \item Learn to use simulators like GEANT4 and ROOT common in particle physics
+
+    \item Practice designing experiments informed by statistical and feasibility constraints
+
+    \item Create graphical reconstructions from numerical datasets and understand techniques common in tomography for data analysis
+
+\end{itemize}
+
+\section{Muon Tomography (TOM) Pictures}
+
+Coming soon to theaters near you.
+
+\section{Introduction}
+
+Tomography as a general term refers to the process of reconstructing a 3D image using many 2D sections (or, more generally, reconstructing a higher dimensional image/state from a few `snapshots'/cross-sections). There are many contexts in which this idea is used ranging from medicine to oceanography to nuclear physics, and many ways in which it is done ranging from using x-rays to nuclear magnetic moments\footnote{Explore the NMR lab for more details.} to seismic waves. The MRI and the CT scan (historically the CAT scan) are maybe two of the most classic examples of tomography in practice.
+
+However, many methods of tomography require complex equipment, radiation that can be harmful in large doses, or both. And what if we are trying to image something large, like an active volcano,\footnote{Not a hypothetical example! Geologists want to use muon tomography to see how full magma chambers are, to potentially help predict eruptions.} or one of the Great Pyramids? The attenuation of most radiation sources is simply too significant to image such large structures.
+
+In the 1960s, there was a burning question about the Great Pyramids of Giza. One of the pyramids, the Pyramid of Khafre, was not known to have any hidden chambers, and had far less in it then the Pyramids of Menkaure and Khufu. One would think that Khafre would wish to one-up his fellow pharaohs, but how to search for the hidden chambers? Physicist Luis Alvarez\footnote{Who also notably won the Nobel Prize for his discovery of resonant states using the bubble chamber, and with his son Walter Alvarez came up with the asteroid impact theory for dinosaur extinction.} suggested using muons to probe the pyramids: set detectors up at the base, look at the count rate in all directions, compare with predictions based on if the pyramid had no hidden chambers vs. if it did, and come to a conclusion - effectively, as he put it, ``x-ray'' the pyramids. He took data through the 1960s and concluded there were no hidden chambers. A group using the same approach found a hidden chamber in Khufu's pyramid in 2023! In this lab, we will use the same strategy to image the august and myriad hidden chambers of Evans Hall.
+
+\subsection{Muons and cosmic rays}
+
+Why is the muon such a good choice for imaging structures? First, they have a very high abundance - a couple muons have passed right through you in the time it took you to read this sentence. Second, they have high penetrating power, due to the combination of their relativistic lifetime and small stopping power. Together, these mean that they are ubiquitous for detection, and can penetrate most structures that we could be interested in imaging.
+
+\subsubsection{Muon details}
+Muons are particles that have a mass over 200 times that of the electron. Muon decay is of great importance in the study of weak interactions, one of the fundamental forces in nature. The value of the muon lifetime is one of the most precisely known constants, and is currently measured with a precision of a few parts per million. Low-energy muons are primarily created from decays of particles produced in the interactions of high-energy cosmic-rays with the earth's atmosphere. Eighty percent of the cosmic rays at sea level are muons, positively or negatively charged. They have a mean lifetime of a few microseconds.
+
+They decay by the following processes:
+\begin{equation}
+\label{eq:Decay1}
+    \mu^-\rightarrow e^-+\bar{\nu}_e+\nu_\mu
+\end{equation}
+and
+\begin{equation}
+\label{eq:Decay2}
+    \mu^+\rightarrow e^++\nu_e+\bar{\nu}_\mu
+\end{equation}
+By the CPT theorem, the lifetimes of the negative and positive muons in \emph{vacuum} (i.e. due to reactions \eqref{eq:Decay1} and \eqref{eq:Decay2}) are equal. However, in matter, negative muons, when brought to rest in the close neighborhood of some nucleus (Z,A) a muonic atom is formed with the muon orbiting in the K-shell. The negative muon in the muonic atom can either decay as shown in reaction \eqref{eq:Decay2}, or it can disappear through the competing reaction:
+\begin{equation}
+\label{eq:Reaction3}
+    \mu^- + p \rightarrow \nu_{\mu}+n
+\end{equation}
+where $p$ and $n$ are the proton and neutron respectively.
+The rate of the muon-capture process \eqref{eq:Reaction3} depends strongly on the charge Z of the nucleus which captures the muon. In muonic carbon atoms, the rate of the muon capture \eqref{eq:Reaction3} is about 10\% the decay rate in \eqref{eq:Decay2}.
+
+Most of the muons that are incident on the detector pass straight through it. Only the lowest energy particles come to rest within the scintillating liquid itself.
+
+\subsubsection{East-west effect}
+
+Due to the Earth's geomagnetic field, there is a preferred trajectory for incoming cosmic rays to our detector (see Figure \ref{fig:eastwest}). This asymmetry can be described as
+
+\begin{equation}
+    A = \frac{\Phi_W - \Phi_E}{\Phi_W + \Phi_E}
+\end{equation}
+
+This is also dependent on the zenith angle (angle of the Sun).
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.5\linewidth]{images/eastwest.png}
+    \caption{Diagram of east-west effect, from \href{https://www.inr.ac.ru/~school/lectures/Petrova.pdf}{Petrova, 2019.}}
+    \label{fig:eastwest}
+\end{figure}
+
+This effect, as discussed in \href{https://www.sciencedirect.com/science/article/pii/S0375947403012818}{The East-West effect of the muon charge ratio at energies relevant to the atmospheric neutrino anomaly}, has interesting consequences for understanding the ratio of positive to negative muons, and therefore for understanding atmospheric neutrino flux. It's also a directly observable example of how the Earth, atmosphere, and space weather affect muon flux.
+
+%\subsubsection{Air showers}
+
+%also discuss shower simulation etc
+
+\subsection{Image reconstruction}
+When we collect our data, we will obtain projections - effectively, the result of several line integrals through the object we are imaging - and attempt to construct a 3D (or 2D) image from them. (Roughly, a 2D image reconstruction is radiography, while a 3D image reconstruction is tomography - think of an x-ray vs. an MRI. We will not dwell extensively on the distinction here.) The exact algorithm you use will be one you discuss with staff as this lab is being developed, but likely it will rely on the Fourier Slice Theorem, and will likely be the filtered backprojection algorithm - see Chapter 3 of Kak \& Slaney. %add details/confirm
+
+As one might gather, this is a somewhat computationally and statistically intensive lab. We encourage you to review the EAX, consult the references, refer to some of the starter code provided, and ask questions of staff as you work through your analysis process.
+
+\section{Equipment}
+
+\begin{itemize}
+    \item Two photomultiplier tubes (PMTs)
+    \item Two Stanford Research Systems  \href{https://drive.google.com/file/d/102ZDUKkjeEjn9zsKbq845126XYzioNHp/view?usp=drive_link}{\textbf{PS325}} High Voltage Power Supply
+    \item Two mineral oil scintillators: ``Bra'' (1'×1'×1') and ``Ket" (4"×1'×1')
+    \item \href{https://digilent.com/shop/analog-discovery-3/}{Digilent Analog Discovery 3 (AD3)} for data acquisition
+    \item Custom cart with arms for adjusting angular position of `Ket' detector relative to `Bra' detector
+\end{itemize}
+
+\subsection{Photomultiplier tubes (PMTs)}
+
+A photomultiplier tube (PMT) is a detector that converts single photons into large pulses of electric current by successive multiplying stages (Figure \ref{fig:PhotomultiplierTube}).
+
+\begin{figure}[h]
+    \centering
+    \href{http://experimentationlab.berkeley.edu/sites/default/files/images/MUOimage056.gif}{\includegraphics[width=0.4\linewidth]{../MUO/images/MUOimage056.png}}
+    \caption{Schematic of a photomultiplier tube}
+    \label{fig:PhotomultiplierTube}
+\end{figure}
+
+\subsection{Cart}
+
+In this experiment, you will be wheeling a cart of equipment around to several locations. (If you have concerns about this physical requirement, please speak with an instructor.) The equipment itself achieves the physics trifecta of being heavy/bulky, delicate, and expensive. \textbf{As such, it's very important you supervise the cart at all times when it is out of the 111 lab.} This may mean waiting with the cart for an hour or more while collecting data - we recommend bringing something else to do while waiting. It is also important you check with a GSI or instructor when you remove the cart from the lab and when you return it to the lab, and that you have a way to quickly communicate with instructional staff in case of any problems (e.g. Slack, email) - instructional staff will largely not be able to go with you for data collection. The cart should not be taken to any locations other than those suggested in this manual without express permission from an instructor.
+
+%When you bring the cart back, make sure you plug the battery pack in to charge overnight, including at the end of your experiment slot as a courtesy to the next group.
+
+\subsection{Software}
+
+This lab uses custom software written in Python that uses the AD3 as the data acquisition device. It has several functions.
+
+First, the `Signal Viewer' tab allows you to view traces on both channels as well as the \textit{product} of the two traces. Here, you can finetune your settings for the first and second trigger levels for each channel, and get a sense of what your coincidence and stoppage thresholds should be.
+
+Second, the `Muon Lifetime' tab will allow you to repeat a smaller version of the muon lifetime experiment in order to understand any differences between the detectors, confirm your coincidence and stoppage thresholds, and confirm our fundamental assumption that using the product of the two traces is an effective way to check for coincidence counts.
+
+Third, the `Muon Tomography' tab will allow you to save count rate data at different angles of your detector.
+
+As of 9/14/26, the software is still being finalized; this section will be updated soon.
+
+\section{Experiments}
+
+Your report should have discussions and explanations of the data obtained in the following experiments. Note that several of these experiments require overnight data runs, and there are also several days where you will need to take hours worth of data with the cart out of the lab. You should read through all experiment sections and plan out on which nights/days you will collect which data sets to avoid any unpleasant surprises! In particular, the very first day in the lab should be used completing the majority of Section \ref{sec:characterization} and setting up an overnight run so that you can complete the coincidence detection threshold checkpoint at the beginning of the following day.
+
+\subsection{Detector characterization}
+\label{sec:characterization}
+In this section you will begin characterizing your detector using a muon lifetime measurement much like in the MUO experiment. Your data will be worse, since the tanks are much smaller, but the goal here is to characterize what muon pulses look like in each detector. You should be able to use this to confirm your trigger settings for the top tank (`Ket'), compare the relative amplitudes of the pulses in the two tanks, and set your trigger for coincidence detection. You should also be able to use this to confirm that our fundamental assumption (triggering on the product of the traces allows us to do coincidence detection) is reasonable. 
+
+First, use the `Signal Viewer' tab in the Python software to see what pulses look like in both the top and bottom tanks. What might a reasonable trigger threshold for the first and second pulse on the top tank? On the bottom tank? You should also start thinking about what the product of the first and second pulses looks like, and therefore what a reasonable coincidence threshold looks like. 
+
+\checkpoint{Pulse thresholds}{Call over an instructor or GSI and explain your understanding of the six different thresholds/triggers in this experiment (first and second pulse for top and bottom tank, coincidence threshold, and stoppage threshold). Which are hardware trigger(s), and which are software trigger(s)? Why does the distinction matter? Which are dependent on each other, and how will we determine reasonable values for each? Show that your starter values for these thresholds produce reasonable looking pulses.}
+
+However, we need to be confident that we're basing this decision of the coincidence threshold off of actual muons, while still getting as much data as possible - our tanks aren't big, so we'll need to do everything we can to maximize data collection.\footnote{Why is setting trigger thresholds too low a bad idea? Hint: think about device deadtime.}
+
+To get this data, you should set up an overnight run (or longer) using the `Muon Lifetime' tab in the Python software. Use the first and second triggers for the top and bottom tank that you determined above. After this long run, you should be able see what the amplitude distribution was for pulses which fit the muon lifetime exponential decay curve in the top and the bottom tank, and based on this, confirm what your coincidence detection threshold should be. \textbf{We recommend writing the code to do your analysis in advance so that you can run it quickly as soon as you get the data at the beginning of lab.}
+
+\checkpoint{Coincidence detection threshold}{Call over an instructor or GSI and show them your estimated muon lifetimes from the top and bottom tank, your amplitude distributions from the top and bottom tank, and based on these, your determined coincidence detection threshold.}
+
+You should use the thresholds you've determined above for the rest of your tests below (or, if you change them, be very clear about where and why you did so).
+
+\subsection{Material absorption}
+
+Before gallivanting around campus, let's understand how different materials affect our muon count rate. Later, we'll use our two detectors to constrain the solid angle of the path that muons we detect are following, but first, we'll use our two detectors to sandwich a material and learn something about it. (This is similar to the process of muon radiography, which is used in a variety of applications including security.\footnote{For example, by placing muon detectors on either side of a shipping container, higher than expected densities that may correspond to radioactive materials can be detected.})
+
+%\subsubsection{Known materials}
+
+Measure the difference in count rate and therefore the absorption coefficients of the materials (lead, concrete) provided. \textbf{Always wear gloves when handling the lead bricks, and do not touch anything else with the gloves.}\footnote{Please ask for assistance if you need help moving anything heavy!} (Make sure to account for varying thicknesses of separating material.) Compare with air. You may want to do an overnight run for one or two of these materials in order to get a better dataset.
+
+Use this to revise your estimates from the prelab for count differences between different floors of buildings, and therefore the length of time you'll need in order to obtain statistically significant differences.
+
+\checkpoint{Material absorption coefficients}{Show a GSI or instructor your calculated material absorption coefficients for air, lead, and concrete. Explain how this affects your measurement plans.}
+
+%\subsubsection{Mystery box}
+%(prob not high enough resolution for this :( - check)
+
+%Using what you have learned in the previous sections, map the mystery box and determine its likely contents and the distribution of the contents.
+
+%\checkpoint{Mystery box plan}{Check with an instructor or GSI to check your experimental plan for determining the contents of the mystery box before proceeding with it.}
+
+\subsection{Muon tomography}
+
+In this section you will look at the varying count rate at different elevations and from different directions - muon tomography!
+
+\subsubsection{Getting started}
+
+Begin by taking a brief test run in lab at 90$^\circ$ (i.e., vertical). This will perform both as a baseline measurement and ensure that you understand the apparatus and software before taking it around campus. Does the count rate match your predictions in the pre-lab and your data from the previous set of experiments? Now take a brief run at 0$^\circ$ (i.e., horizontal). What is the difference between a coincidence and a stoppage at this angle? How different are the count rates? When you feel comfortable with the software, you are ready to go out with the cart. \textbf{As a reminder, you must check in with a member of the staff every time you leave and return with the cart,} and ensure you have a communication method set up for if/when you have questions.
+
+\checkpoint{Coincidence vs. stoppage}{Explain to a GSI or instructor the difference between a coincidence and a stoppage, which thresholds from earlier are relevant, and which angles are relevant for each.}
+
+%Air shower? (in lab)
+
+\subsubsection{Height dependence}
+
+We will begin by focusing on the muon count rate dependence on altitude. This is a useful starting point for a few reasons. First, mechanically, we don't need to worry about angles yet, which is convenient, and don't need to do much work to reconstruct an image since we're working in 1D, which is nice for confirming that our apparatus is working nicely. Second, and more importantly perhaps, we only need to worry about coincidences, not stoppages - the muons can't make it all the way through Earth and come up from below, so we don't need to do anything to directionally distinguish between muons that enter `Ket' first and those that enter `Bra' first - they will always enter `Ket' first if we're measuring vertically.
+
+%Different heights (evans/etcheverry/campanile)
+
+We recommend using the floors of Evans Hall, as this is nearby, tall, has many intermediate floors, and the floors have easily accessible outlets. If you have an alternative location you'd like to explore, confirm with a professor first.
+
+%\checkpoint{Count rate difference.}{Call over an instructor or GSI and show them } % this should be the midlab
+
+You should also use the ratio you obtain to confirm the time dilation factor predicted by special relativity.
+
+\subsubsection{Angular dependence and tomography}
+
+We've investigated vertical dependence, but not angular dependence. Use the cart's movable arms (and the fact that the whole cart rotates) to take measurements at at least three (ideally five) different angles (make sure you are consistent with how you describe/label units and are clear about this in your lab report). We recommend doing this at the basement floor of Evans Hall since the different angular directions have drastically different densities of material. You will use this for a two dimensional reconstruction of a slice of Evans Hall.\footnote{If you have an alternate location, you may propose this to a professor for approval. Make sure you consider the same questions for this location, as well as whether an outlet is present to power the equipment!} Some notes:
+
+\begin{itemize}
+    \item Will you need to use coincidences or stoppages? Does this change from vertical counts, and if so, why?
+    \item How long will your runs need to be? How many runs do you need to take?
+    \item What can introduce error - things that appear like count rate differences due to the angle you set, but are from another source? How can you minimize this?
+    \item What is the smallest change in density you can detect? What size `feature' can you see, and is the Evans Hall basement a reasonable choice to see something interesting?
+    \item How many positions would you need to take these measurements from in order to construct a basic 3D model of Evans Hall? Discuss with a staff member whether you have time to perform this.
+\end{itemize}
+
+%Different directions (basement evans hall? kreysig library?)
+
+\checkpoint{Angular dependence plan}{Discuss with a GSI or instructor your plan for data collection for creating a two dimensional reconstruction of Evans Hall. Summarize your answers to the above questions. Explain which angles you will be taking data at and when.}
+
+\subsection{East-west effect}
+
+This experiment is likely best done as two overnight runs so it doesn't take up time where you could be taking the cart out of the lab to collect data.
+
+The goal of this section of the experiment is to observe the east-west effect (see background above). Take two runs, one with the detector pointed to the east (you may wish to use the compass on your phone) and one with the detector pointed to the west. You must do this in a region where there is relatively similar amounts of obstruction in both directions. Does the lab have any problems in this regard? Why or why not? Do you need to use coincidences or stoppages? Analyze your results and explain whether you have observed the east-west effect.
+
+Optional: also explore how your count rates might be affected by time of day, the Earth's position in its orbit, and similar.
+
+\section{Analysis}
+
+You should perform the following, along with answering the questions posed above:
+
+\begin{itemize}
+    \item Simulation of how cosmic ray showers interact with our detectors in order to understand expected count rates, etc.
+    \item Analysis of error involved with angular resolution, number of counts/length of run, and images obtained.
+    \item Reconstruction of 2D/3D image of Evans Hall, with discussion of methodology.
+\end{itemize}
+
+(See the references for helpful resources; discuss questions/ideas with staff as this section is still in development.)
+
+\begin{itemize}
+    \item This is a new experiment as of September 2026. Your feedback is incredibly important to us in refining this new experiment! On the last day of the experiment please fill out the \href{\ExperimentEvaluation}{\textbf{Experiment Evaluation}}. Please also feel free to tell course staff any additional comments you have.
+\end{itemize}
+\end{document}

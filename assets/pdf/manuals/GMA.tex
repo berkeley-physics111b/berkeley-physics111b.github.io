@@ -1,0 +1,502 @@
+\documentclass{../lab}
+\usepackage[section]{placeins}
+\labacronym{GMA}
+\labtitle{Gamma Ray Spectroscopy}
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+
+\vspace{1em}
+
+\href{http://experimentationlab.berkeley.edu/sites/default/files/images/DetectorCalibration.pdf}{\textbf{DetectorCalibration.pdf}}
+
+\section{Gamma Ray Description (GMA)}
+
+\begin{enumerate}
+    \item \textbf{Note that there is NO eating or drinking in the 111-Lab anywhere, except in rooms 282 \& 286 LeConte on the bench with the BLUE stripe around it.} Thank You the Staff.
+\end{enumerate}
+
+The purpose of this experiment is to study some properties of the gamma ray. First, this lab will walk you through some tests to show you how the equipment is affected by your settings. You will then use the gamma rays from some known sources to calibrate your detector, and verify the inverse-square law. Finally, you will make some measurements that will allow you to calculate the mass attenuation coefficients for several materials at several energies.
+
+The experiment offers a good acquaintance with a number of important devices, including a pulse height analyzer, scintillator and photomultiplier tube (PMT). It is well suited for data analysis with a computer.
+
+The gamma rays enter a NaI(Tl) scintillator crystal, which converts them into many lower-energy photons. These photons travel through the crystal to the photocathode of a photomultiplier tube, where they are converted into electrons by means of the photoelectric effect. The photoelectrons are sent through a series of electrodes where the number of electrons is multiplied. At the anode, a pulse of current is produced.
+
+The number of lower energy photons produced in the scintillator is proportional to the deposited energy of the incident gamma ray, and the number of electrons produced is proportional to the number of photons incident on the photocathode. Therefore, the pulse height of the signal from the photomultiplier tube is proportional to the energy of the incident gamma ray. A pulse height analyzer is used to display the spectrum of pulses from the photomultiplier tube.
+
+\begin{enumerate}
+    \item Pre-requisites: None
+
+    \item Days Allotted for the Experiment: 6
+
+\end{enumerate}
+
+\textbf{All pages in this lab. Note To print Full Lab Write-up click on each link below and print separately}
+
+I. Gamma-ray Spectroscopy
+
+This lab will be graded 20\% on theory, 40\% on technique, and 40\% on analysis. For more information, see the \href{\AdvancedLabSyllabus}{\textbf{Advanced Lab Syllabus}}.
+
+Comments: E-mail \href{\MailLabManager}{\textbf{Dr Winthrop Williams}}. Last revised 6/4/26 by Auden Young.
+
+\section{Gamma-Ray Spectroscopy Photos}
+\begin{figure}[H]
+\captionsetup{justification=centering}
+\minipage[t]{0.33\textwidth}
+  \href{http://experimentationlab.berkeley.edu/sites/default/files/images/Gma_t1.jpg}{\includegraphics[width=\linewidth,keepaspectratio]{images/Gma_t1.jpg}}
+  \caption{Gamma Ray Apparatus \\ \href{http://experimentationlab.berkeley.edu/sites/default/files/images/Gma_t1.jpg}{Click here to see larger picture}}
+  \label{fig:Apparatus}
+\endminipage\hfill
+\minipage[t]{0.33\textwidth}
+  \href{http://experimentationlab.berkeley.edu/sites/default/files/images/GMA_Pig_3536-Lg.jpg}{\includegraphics[width=\linewidth,keepaspectratio]{images/GMA_Pig_3536-Lg.jpg}}
+  \caption{Lead Pig where source is placed \\
+  \href{http://experimentationlab.berkeley.edu/sites/default/files/images/GMA_Pig_3536-Lg.jpg}{Click here to see larger picture}}
+  \label{fig:LeadPig}
+\endminipage\hfill
+\minipage[t]{0.33\textwidth}
+  \href{http://experimentationlab.berkeley.edu/sites/default/files/images/GMA_Layout_3537-Lg.jpg}{\includegraphics[width=\linewidth,keepaspectratio]{images/GMA_Layout_3537-Lg.jpg}}
+  \caption{Pig \& Collimator where source is placed \\ \href{http://experimentationlab.berkeley.edu/sites/default/files/images/GMA_Layout_3537-Lg.jpg}{Click here to see larger picture}}\label{fig:PigCollimator}
+\endminipage
+\end{figure}
+
+\begin{figure}[H]
+\captionsetup{justification=centering}
+\minipage[t]{0.33\textwidth}
+  \href{http://experimentationlab.berkeley.edu/sites/default/files/images/GMA_Layout_3538-Lg.jpg}{\includegraphics[width=\linewidth,keepaspectratio]{images/GMA_Layout_3538-Lg.jpg}}
+  \caption{Collimator moved in place \\ \href{http://experimentationlab.berkeley.edu/sites/default/files/images/GMA_Layout_3538-Lg.jpg}{Click here to see larger picture}}
+  \label{fig:CollimatorMovedIn}
+\endminipage\hfill
+\minipage[t]{0.33\textwidth}
+  \href{http://experimentationlab.berkeley.edu/sites/default/files/images/GMA_PMT_3519-Lg.jpg}{\includegraphics[width=\linewidth,keepaspectratio]{images/GMA_PMT_3519-Lg.jpg}}
+  \caption{PMT on Cart \& source Lead Pig Setup \\
+  \href{http://experimentationlab.berkeley.edu/sites/default/files/images/GMA_PMT_3519-Lg.jpg}{Click here to see larger picture}}
+  \label{fig:PMT}
+\endminipage\hfill
+\minipage[t]{0.33\textwidth}
+  \href{http://experimentationlab.berkeley.edu/sites/default/files/images/GMA_Equip_3518-Lg.jpg}{\includegraphics[width=\linewidth,keepaspectratio]{images/GMA_Equip_3518-Lg.jpg}}
+  \caption{Gamma Ray Equipment \\ \href{http://experimentationlab.berkeley.edu/sites/default/files/images/GMA_Equip_3518-Lg.jpg}{Click here to see larger picture}}\label{fig:Equipment}
+\endminipage
+\end{figure}
+
+\begin{figure}[H]
+\captionsetup{justification=centering}
+\minipage[t]{0.33\textwidth}
+  \href{http://experimentationlab.berkeley.edu/sites/default/files/images/GMAimagegeigercounter.jpg}{\includegraphics[width=\linewidth,keepaspectratio]{images/GMAimagegeigercounter.jpg}}
+  \caption{The Geiger Counter \\ \href{http://experimentationlab.berkeley.edu/sites/default/files/images/GMAimagegeigercounter.jpg}{Click here to see larger picture}}
+  \label{fig:GMAgeiger}
+\endminipage\hfill
+\minipage[t]{0.33\textwidth}
+  \href{http://experimentationlab.berkeley.edu/sites/default/files/images/GMAimage_Base_and_PMT.png}{\includegraphics[width=\linewidth,keepaspectratio]{images/GMAimage_Base_and_PMT.png}}
+  \caption{Photomultiplier tube and its base\\
+  \href{http://experimentationlab.berkeley.edu/sites/default/files/images/GMAimage_Base_and_PMT.png}{Click here to see larger picture}}
+  \label{fig:PMTandBase}
+\endminipage\hfill
+\minipage[t]{0.33\textwidth}
+  \includegraphics[width=\linewidth,keepaspectratio]{images/empty.png}
+\endminipage
+\end{figure}
+
+\section{Before the 1st Day of Lab and Standard Operating Procedures for the Gamma-Ray Experiment}
+
+\signatures \hyperlink{Variable High-Voltage Supply}{1} \hyperlink{Change of Pulses}{2} \hyperlink{Parameters}{3} \hyperlink{Back-Scatter and Compton Edge Signals}{4} \hyperlink{Intensity Formula}{5} 
+
+\begin{enumerate}
+    \item \emph{\textbf{Note: In order to view the private Youtube videos hosted by the university, you must be signed into your berkeley.edu Google account.}} \\
+    View the \href{http://youtu.be/cZGMngx-6yE}{\textbf{Gamma Ray Video}}. The equipment for this lab has changed over the years making the last part of the video inconsistent with the procedure on this lab but it is nonetheless useful for understanding how the set-up works.
+
+    \item View the \href{http://youtu.be/KHxtzF5pZZM}{\textbf{\textbf{Radiation Safety Video}}} After watching the video in the 111-Lab, get a pink Radiation Safety form from a 111-Lab staff person. Fill it out \& sign the form for getting a \textbf{Radiation Ring}.
+
+    \item Now complete the \href{http://experimentationlab.berkeley.edu/RadiationSafety}{\textbf{Radiation Safety Training}}. \textbf{After completion of Training turn in all forms to Winthrop Williams.}
+
+    \item \signatures \hyperlink{Variable High Voltage Supply}{ 1}  \hyperlink{Change of Pulses}{ 2} \hyperlink{Parameters}{ 3} \hyperlink{Back-Scatter and Compton Edge Signals}{ 4} \hyperlink{Intensity Formula}{ 5}
+
+    \item View the \href{http://youtu.be/jR54387Wd6c}{\textbf{Introduction to Error Analysis video}} and \href{http://experimentationlab.berkeley.edu/EAX}{\textbf{\textbf{Error Analysis Notes}}}.
+
+    \item Also view \href{http://youtu.be/lQKLakISoBA}{\textbf{Light Sources and Detectors}} video.
+
+    \item Read the Standard Operating Procedures (SOP) for this lab before starting \href{http://experimentationlab.berkeley.edu/sites/default/files/images/SOP\_3271\_Cs-137\_Na-22\_Co-60\_Mn-54\_Am-241\_Fe-55\_2014.pdf}{\textbf{SOP\_3271\_Cs-137\_Na-22\_Co-60\_Mn-54\_Am-241\_Fe-55\_2014}}.
+
+    \item Last day of the experiment please fill out the \href{\ExperimentEvaluation}{\textbf{Experiment Evaluation}}
+
+\end{enumerate}
+
+\noindent\textbf{Suggested Reading:}
+\begin{enumerate}
+
+     \item Knoll, G.F. \emph{Radiation Detection and Measurement}. Wiley, 1979.
+    \begin{enumerate}
+
+        \item        \href{https://drive.google.com/file/d/1e9749PeXTsMDctZA9YjtGe7nKMj6gj-e/view?usp=drive_link}{\textbf{Ch.1 Radiation Sources}}
+    
+        \item
+        \href{https://drive.google.com/file/d/1OVyNDtPH2b4DAmpoF-W8SDDqO96Ps6Gr/view?usp=drive_link}{\textbf{Ch.2 Radiation Interactions}}
+
+        \item
+        \href{https://drive.google.com/file/d/1slm-rP1zll9ptP1PwxVsSA_lrpf3UMl_/view?usp=drive_link}{\textbf{Ch.3 General Properties of Radiation Detectors}}
+
+        \item        \href{https://drive.google.com/file/d/1e9749PeXTsMDctZA9YjtGe7nKMj6gj-e/view?usp=drive_link}{\textbf{Ch.9 Photomultiplier Tubes}}
+        
+        \item        \href{https://drive.google.com/file/d/1hL2bp21Cg0m2iJ34S5yGEmVo5298FAvh/view?usp=drive_link}{\textbf{Ch.10 Radiation Spectroscopy with Scintillators}}
+
+        \end{enumerate}
+
+    \item Harshaw Scintillation Phosphors
+    \begin{enumerate}
+        
+        \item        \href{https://drive.google.com/file/d/1gfpUQ791fxsCu9Hr39XFgO7hGKz3agLJ/view?usp=drive_link}{\textbf{Harshaw Scintillators}} (NaI Crystal Information)
+
+    \end{enumerate}
+    
+    \item RCA Photomultiplier Tube
+    \begin{enumerate}
+        
+        \item 6810A        \href{https://drive.google.com/file/d/1iAtx9ldggR1MaUwRghCeHqJyUHIAPnxo/view?usp=drive_link}{\textbf{Datasheet}}
+
+        \item
+        \href{https://drive.google.com/file/d/1nuelDqhdO-MvjZOrWZEEvHxdeYYSY05h/view?usp=drive_link}{\textbf{Manual}}
+
+    \end{enumerate}
+    
+\end{enumerate}
+
+\noindent More \hyperref[sec:References]{References}
+
+You should keep a laboratory notebook. The notebook should contain a detailed record of everything that was done and how/why it was done, as well as all of the data and analysis, also with plenty of how/why entries. This will aid you when you write your report.
+
+\section{Objectives}
+
+\begin{itemize}
+    \item Learn what real experimental physics is about
+
+    \item Learn the synergy between experimental and theoretical work
+
+    \item Learn to use pieces of equipment that are commonly used in research
+
+    \item Learn how measurements are performed, analyzed, and interpreted.
+
+    \item Learn how to present your work and results
+
+    \item Learn problem solving strategies
+
+    \item Learn how to manage and organize your time
+
+    \item Learn about gamma ray spectroscopy using doped sodium iodide scintillator
+
+    \item Thorough understanding on how the photo multiplier (PMT) works, and how it is used with the %CANBERRA 
+    TC248 amplifier.
+
+    \item You should also gain a well-developed understanding on how the pulse height analyzer works.
+
+    \begin{itemize}
+        \item Formation of the peaks on the spectrum
+
+        \item Identify sources that cause the peaks to spread wider.
+
+        \item Learn how to calibrate the PHA.
+
+    \end{itemize}
+
+    \item Measure the spectra of various radioactive sources.
+
+    \item Verify the inverse square law for radiation.
+
+    \item Determine the absolute intensity of the $^{137}$Cs source.
+
+    \item Determine the mass attenuation coefficients of several materials at several energies.
+
+    \item Learn how to operate the Digital Delay Operator.
+
+\end{itemize}
+
+\section{Introduction}
+
+The measurement of energy levels of atomic, molecular, and nuclear systems constitutes a large part of experimental physics. This experiment examines gamma rays, which come from transitions between nuclear energy levels, with an emphasis on their interaction with matter. This experiment is a little different from most in the 111 Laboratory in that a lot of what you do will be oriented towards learning about the equipment and its capabilities, rather than striving to achieve some experimental result. It is important that before you start to use the tools you understand their purpose in this lab. Stopping and thinking about what it is that you're trying to accomplish by using a particular tool can save you a lot of valuable time.
+
+\section{Apparatus}
+
+\begin{enumerate}
+    
+    \item \href{https://drive.google.com/file/d/1Hf_LmTA6Bq4PDPHpI3Ux3wmfe61OZqrJ/view?usp=drive_link}{\textbf{ORTEC 905-4 Scintillation Detector}} with \href{https://drive.google.com/file/d/1w2nM4xpDyLj5RCMfyUWVf7PMapEULrlQ/view?usp=drive_link}{\textbf{ORTEC 266 Photomultiplier Base}}
+    
+    \item Stanford Research Systems  \href{https://drive.google.com/file/d/102ZDUKkjeEjn9zsKbq845126XYzioNHp/view?usp=drive_link}{\textbf{PS325}} High Voltage Power Supply
+
+    %\item Canberra
+    %\href{https://drive.google.com/file/d/1BgbR-Eh-zUkoTRZ_waJc_k6rryq2mjbY/view?usp=drive_link}{\textbf{Spectroscopy Amplifier model 816}}
+
+    \item Tennelec \href{https://groups.frib.msu.edu/nscl_library/manuals/tennelec/TC248.pdf}{\textbf{TC 248 Fast/Slow amplifier}}
+
+    \item Stanford Research Systems  \href{https://drive.google.com/file/d/1PNLeiZvP4k50RJv1V8cbh_L-T2n2zmKE/view?usp=drive_link}{\textbf{DG645}} Digital Delay Generator
+
+    %\item National Instruments
+    %\href{https://drive.google.com/file/d/1I44-O7KDUj7fn40Q_kS3U8oLBFfBRmvX/view?usp=drive_link}{\textbf{NI-5124 Digitizer Card}} (Used for digital Soft Scope and Pulse Height Analyzer)
+
+    \item Digilent \href{https://digilent.com/shop/analog-discovery-studio/}{\textbf{Analog Discovery Studio}} or ADS (used for digital scope and pulse height analyzer measurements)
+
+    \item Tektronix Oscilloscope
+
+\end{enumerate}
+
+\subsection{Safety}
+
+\textbf{Remember the lead bricks are heavy, at least 30 to 50 pounds each. If it is knocked off the bench and falls onto someone's foot it will smash it to pieces.} Do not balance the bricks on an edge, ever.
+
+You must wear a radiation ring when you are working with the gamma-ray apparatus. You should also always wear vinyl gloves when handling the radioactive sources, but remove and \textbf{discard} them when adjusting the equipment or you will defeat the purpose. The sources are located in a lead container, and this should be kept closed. Keep the sources in their plastic bags. When you use the sources, put the clamps on the bags, not on the source itself inside the bag. Any rupture of the source package will cause leakage of radioactive materials - very low-level radiation and not a serious health hazard, yet it will require discarding the source and a decontamination of the bench area or wherever the source has been.
+
+Do not stack the lead bricks on the lab bench - it would be very dangerous to do so. They are quite heavy and the kinetic energy they would gain from a one-meter fall is more than that enough to shatter a human toe (we know this from direct experience). In addition, you will find experimentally that some of the gamma rays can Compton scatter off these bricks and contribute to the scattering portion of your spectra.
+
+
+\textbf{Gloves:}
+\begin{enumerate}
+    \item Wear a pair of nitrile gloves before you touching any radioactive sample or any container that has radioactive sources inside.
+    
+    \item To prevent any potential contamination from leakage, do not wear gloves while touching any experimental device, such as the high voltage power source, the oscilloscope, the lab computer mouse or the keyboard once you have already touched the radioactive sample.
+\end{enumerate}
+
+\textbf{Geiger Counter:}
+\begin{enumerate}
+    \item At the end of each experiment day, use the Geiger counter (See Figure~\ref{fig:GMAgeiger}) to check the radioactive level around the area of GMA experiment as well as your body.
+    
+    \item Report any suspiciously high intensity of radiation to a GSI, Professor, or Win as soon as possible.
+\end{enumerate}
+
+\subsection{Radioactive sources}
+
+The radioactive sources are in plastic bottles with the radioactive material embedded in epoxy. The original activity and date are on the label of the bottle. The sources emit radiation in all directions. To use a source, hang the bottle by grasping its top with a clamp so that the source is at the same height as the center of the detector.
+
+The following are the radioactive sources used in this experiment.
+
+\begin{center}
+    \begin{tabular}{l|l|l}
+        Source     & Energy (MeV) & Half-life \\\hline
+        $^{22}$Na  &  0.511, 1.28 & 2.6 years \\\hline
+        $^{137}$Cs &  0.6616      & 30 years  \\\hline
+        $^{60}$Co  &  1.17, 1.33  & 5.2 years \\\hline
+        $^{54}$Mn  &  0.84        & 312 days
+    \end{tabular}
+\end{center}
+
+\subsection{Detection}
+The gamma rays in this experiment are detected with a thallium-doped sodium iodide [NaI(Tl)] crystal (3.0`` in diameter and 3'' in height: verify these dimensions) mounted on a PMT (See specs: \href{https://drive.google.com/file/d/1Hf_LmTA6Bq4PDPHpI3Ux3wmfe61OZqrJ/view?usp=drive_link}{\textbf{ORTEC Scintillation Detector}} model 905-4: 2.00 @ 0.5 MeV and 1.30 @ 2.0 MeV; 3M3/3X with \href{https://drive.google.com/file/d/1w2nM4xpDyLj5RCMfyUWVf7PMapEULrlQ/view?usp=drive_link}{\textbf{ORTEC 266 Photomultiplier base}}). \textbf{The maximum voltage supplied to the PMT is +800 Volt DC}. This crystal emits photons in the visible range when struck by gamma rays, and is hence called a ``scintillating'' crystal. These visible photons are detected and amplified by the photomultiplier tube (PMT), which consists of a photocathode, a focusing electrode, and 10 or more dynodes that multiply the number of electrons striking at each dynode. The PMT then outputs a pulse of electrical current with an amplitude proportional to the energy of the incident gamma ray. This pulse is further amplified with an external amplifier and then fed into one of the Digilent Analog Digital Studio (ADS) oscilloscope channels (yes, the same device we used in 111A!). %NI-5124 Pulse Height Analyzer.
+A chain of resistors typically located in a plug-in tube base assembly biases the anode and dynodes. Complete assemblies including the scintillator and PMT are available. 
+
+The Pulse Height Analyzer (PHA) refers to a Python script which has two measurement tabs. First, there is a pulse viewer, which is effectively a scope, so that you can test different acquisition parameters quickly and view the pulses. You will check the signals out of the pre-amplifier using this view and use this to set the trigger level and sample frequency. Second, there is a pulse height histogram, which acquires pulses and displays the resulting spectrum (which you can also save to a .csv file). % combination of WaveForms (which reads the pulses out of the ADS) which can be accessed via the shortcut on the desktop and a live histogram view that you can access via the `Live Histogram' shortcut on the desktop. You will check the signals out of the pre-amplifier using the WaveForms oscilloscope view and use this to set the trigger level, sample frequency, and then import a simple script which will save the data to a .csv file which is then accessed in the `Live Histogram' app so you can view the spectra.
+
+%The Pulse Height Analyzer (PHA) is a Python program which controls the ADS - you can run it from the `GMA Microscope' shortcut on the desktop, and view the resulting data files using the `Data Browser' shortcut on the desktop. The PHA is based on ScopeFoundry (a package developed up at LBNL for writing apps to control hardware) as well as some separate packages used for controlling the ADS (similar to the code you used in Lab 10 of 111A). You first check the signals out of the pre-amplifier using the `read\_scope` measurement tab, using `N' to set the number of data points you'd like to collect. %LabView program, \textbf{``PHA-5124.exe''}, using the National Instruments NI-5124 Digitizer Card. National Instruments donated this card to us for the Physics 111-Lab. You first check the signals out of the pre-amplifier with the \textbf{Soft Scope program} using the \href{https://drive.google.com/file/d/1I44-O7KDUj7fn40Q_kS3U8oLBFfBRmvX/view?usp=drive_link}{\textbf{NI-5124}} Card. 
+When using the Live Histogram portion of the PHA, pulses of varying amplitudes (the min and max are controlled by your settings in the Live Histogram view) are sampled into 1024 increments (or whatever you enter into the `bin number' setting in the Live Histogram view). When a pulse representing a detected gamma ray is received, the program determines its amplitude and puts it into the correct channel (bin). Because the amplitude expressed as a voltage is proportional to the energy of the incoming gamma ray (a fact you should explain in your report), the accumulated counts form a distribution called an energy spectrum on the screen - the number of gamma rays that have been detected in each energy bin. You can also see the number of data points you have collected so far as a sort of progress check. See Section \ref{sec:software} for more details on using the software.
+
+\checkpoint{Variable High--Voltage Supply}{What is the role of the variable high voltage and how does it affect the amplitude of the signal from the photomultiplier tube as observed with the separate oscilloscope pre-amplification?}
+
+\subsection{Using the software}
+\label{sec:software}
+
+We recommend beginning with the pulse viewer tab (see Figure \ref{fig:pulseviewer}. Here, you will set the trigger to the desired level - below this, pulses will be discarded as noise (you should choose this value based on the pulses you observe on the Tektronix scope). Should you trigger on a rising or falling edge? Should you invert your signal? You should also select the appropriate sampling rate (you should again choose this value based on the pulses you observe on the Tektronix scope). Run the measurement - do the pulses look how you expect/the same as on the Tektronix scope? Note that the range (volts/div) that you set controls both the maximum voltage you can see as well as the resolution (i.e., the smallest voltages you can distinguish between). Check the ADS manual and select a reasonable range setting based on this. What will happen if you select too high of a range setting? Too low?
+
+Once you have determined the correct parameters to acquire reasonable pulses, you can move to the histogram tab (see Figure \ref{fig:histogramviewer}). Here, you will copy over your final signal acquisition parameters (trigger level, sampling frequency, etc.) from the pulse viewer tab. You should also save the data to a .csv file - name the file something which informs you about the type of data you are saving, and make sure you change the file name between runs! When you run the measurement, you can watch the spectrum build up in real time. You may also modify live the number of bins, the min value, and the max value (though there may be some lag in your ability to update these parameters, especially as you get to many thousands of counts). Once you have recorded sufficient data, you may close the software and use the .csv file of data for your own further analysis. You will also note that the .csv file actually has two columns - one which saves the pulse height data, and one that saves the timestamp. You can use this to calculate count rate and similar. This can be a helpful tool for assessing the legitimacy of your data - worth discussing briefly in your report.
+
+%There are two portions to the software - WaveForms, which you should be familiar with from 111A, and a live histogram viewer so you can watch the spectra build up from the scope.
+
+%In WaveForms (see Figure \ref{fig:waveformslogging}), open the oscilloscope and view Channel 1. You will set the trigger to the desired level - below this, pulses will be discarded as noise (you should choose this value based on the pulses you observe on the Tektronix scope). In the time drop down, select the appropriate sampling rate (you should again choose this value based on the pulses you observe on the Tektronix scope).
+
+%Next, open the `Logging' tab, and set the `Execute' setting to `Each triggered acquisition'. Set the `Maximum' to some relatively high value - say 10000. On the Desktop, there is a shortcut to the script you should paste into the WaveForms script box. Modify the file name to something which informs you about the type of data you're saving. When you are ready to begin recording data, hit `Run' in the top left.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{images/GMA_pulse_viewer.png}
+    \caption{Image of pulse viewer.}
+    \label{fig:pulseviewer}
+\end{figure}
+
+%After you have begun the measurement, you can watch the spectra build up in real time by using the `Live Histogram' shortcut from the desktop (see Figure \ref{fig:histogramviewer}). Select the file you are saving data to. Then set the number of bins, the min value, and the max value. The histogram and the number of data points you have acquired will update as the pulses are recorded (there may be some lag, especially as you get to many thousands of counts). Once you have recorded sufficient data, close the histogram viewer and use the .csv file of data for your own further analysis.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.7\linewidth]{images/GMA_histogram_viewer.png}
+    \caption{Live view of the pulse height spectra.}
+    \label{fig:histogramviewer}
+\end{figure}
+
+\section{Initial Setup}
+
+\begin{enumerate}
+    \item Before turning on the SRS High Voltage Power Supply, you need to make sure that the polarity is set to positive, and that the High Voltage line is connected to the PMT (this should already be the case). The polarity may be set using a flat-head screw-driver on the back of the unit. The groove aligns with the chosen setting, and should already point to positive. There should be a red BNC cable running from the back of the power supply to the \textbf{POS HV} input at the PMT base. Before powering on the power supply, make sure that the black High Voltage switch is set to \textbf{OFF/RESET}. Now, power on the power supply. You first need to set the power supply to provide 780 V. The word \textbf{SET} should be backlit by a green LED, allowing you to adjust the power supply potential. Above it, the smallest LED screen should read 780 (V). If it does not, type 780 and click \textbf{ENTER}. Once set, this will be our starting point. If you are sure that everything is connected properly, turn on the High Voltage using the \textbf{High Voltage} switch. The word \textbf{ON} should now be back-lit with a red LED. To have stable operation, it is better to leave the high-voltage power supply running during the period that you sign up for the experiment. Remember that a High Voltage supply such as this one may need up to 15 min of warm-up time before the potential stabilizes, therefore it is a good idea to let it run for some time before taking data. If there is a problem with this power supply, alert the staff; there are spares of the same type. %There is an older HV power supply available (Fluke 415B) if necessary.
+    
+    \begin{figure}[h]
+        \centering
+        \href{http://experimentationlab.berkeley.edu/sites/default/files/images/250px-HV-SRS-PSU.jpg}{\includegraphics[width=0.6\linewidth]{images/250px-HV-SRS-PSU.jpg}}
+        \caption{SRS Power Supply}
+        \label{fig:250px-HV-SRS-PSU}
+    \end{figure}
+
+    \item Place the $^{137}$Cs source into the circular lead pig \href{http://experimentationlab.berkeley.edu/sites/default/files/images/GMA_Pig_3536-Lg.jpg}{\textbf{(see picture Figure~\ref{fig:LeadPig} above)}} 20 to 25 cm away from the detector with lead collimator in front of the source. Make sure that the collimator assembly is in place as shown in \href{http://experimentationlab.berkeley.edu/sites/default/files/images/GMA_Layout_3537-Lg.jpg}{\textbf{Figure~\ref{fig:PigCollimator}}} \href{http://experimentationlab.berkeley.edu/sites/default/files/images/GMA_Layout_3538-Lg.jpg}{\textbf{\& Figure~\ref{fig:CollimatorMovedIn} above.}} Look at the output of the PMT on a fast scope (Tektronix type), then connect it to Channel 1 of the ADS oscilloscope and look at it with the pulse viewer measurement tab. %``Soft Scope program using the Digitizer NI-5124. 
+    To match impedance, use a 50-ohm terminator on a BNC ''tee" going into the Tektronix scope (but \textbf{not} the ADS scope input). Look for a faint signal about 0.5 $\mu$sec wide and -50mV high (see Figure~\ref{fig:250px-GMAimage003}). You may have to play with the triggering on the Tektronix to get this, and possibly turn up the trace intensity and shield the screen from glare. In the pulse viewer, you'll have to set the sampling rate appropriately, and may have to play with the triggering.%You'll have to play with the triggering to get this, and you'll probably have to turn up the trace intensity and shield the screen from glare. 
+    Each trace of this signal is the electron pulse coming from the PMT that represents a gamma ray striking the detector. The signal is blurred because of many negative pulses with different amplitudes coming from the PMT.
+
+    \begin{figure}[h]
+        \centering
+        \href{http://experimentationlab.berkeley.edu/sites/default/files/images/250px-GMAimage003.gif}{\includegraphics[width=0.5\linewidth]{images/250px-GMAimage003.png}}
+        \caption{Scope picture of trace: PMT Output, $^{137}$Cs Source Scope: 50 mV/div; 0.5 $\mu$sec/div.}
+        \label{fig:250px-GMAimage003}
+    \end{figure}
+
+    \item The amplifier, %CANBERRA AMPLIFIER (amp), \href{http://experimentationlab.berkeley.edu/sites/default/files/images/GMA_Equip_3518-Lg.jpg}
+    {\textbf{located in the equipment rack (Figure~\ref{fig:Equipment} above)}}, amplifies the small pulses from the PMT to a sufficiently large one necessary for the PHA program to run well (technically, it can see the pulses without the amplifier - why does the amplifier help? explain in your report). Feed the output of the PMT into the amp (you don't need a terminator here). Set the INPUT switch to NEG (since the PMT output are negative pulses), and %the MODE switch to UNI 
+    connect the output to the coax connector labeled UNI (since the pulses are unipolar - that is, they are entirely negative as opposed to a signal that has positive as well as negative parts). Look at the output of the amp (without a terminator) on the Tektronix and in the pulse viewer; you should see a positive pulse about 1 $\mu$sec wide followed by a negative pulse that is of no interest (see Figure~\ref{fig:250px-GMAimage004}). Watch the effects of varying the gain controls. %, it's recommended to start with %FINE GAIN at 2.5 and COARSE GAIN AT 4. a COARSE GAIN of 100. 
+    \textbf{Set the gain to produce a pulse that does not have a flat top} (what does a flat top indicate?).
+
+    \begin{figure}[h]
+        \centering
+        \href{http://experimentationlab.berkeley.edu/sites/default/files/images/250px-GMAimage004.gif}{\includegraphics[width=0.5\linewidth]{images/250px-GMAimage004.png}}
+        \caption{Amplifier Output Scope: 2 V/div; 1 $\mu$sec/div}
+        \label{fig:250px-GMAimage004}
+    \end{figure}
+
+    If you have trouble with this unit, there should be a 472A Spectroscopy Amplifier in storage which can perform the same task. You should report the problem of the amplifier to the staff, and they will provide you with a different amplifier.
+
+\end{enumerate}
+
+\section{Main Procedure}
+
+\begin{enumerate}
+    \item Make sure you have completed the steps in the previous section and are observing pulses on the Tektronix scope before starting this section.
+    \item The PHA program is explained in Section \ref{sec:software}. For this experiment we use the \href{https://digilent.com/shop/analog-discovery-studio/}{Digilent ADS}. %National Instruments Digitizer Card \href{https://drive.google.com/file/d/1I44-O7KDUj7fn40Q_kS3U8oLBFfBRmvX/view?usp=drive_link}{\textbf{NI-5124}}.
+    \begin{enumerate}
+        \item To start, plug the output of the amp into Channel 1 of the ADS (which is connected to the computer via USB). Then, run a pulse height measurement following the software instructions above. Using a \textbf{$^{60}$Co source}, for example, you should see a spectrum similar to Figure~\ref{fig:350px-CO-60_Spectrum}. (You can also use the saved .csv file for your own analysis; again, see instructions above - all plots in your report should be generated by you from the .csv file instead of copied from the live viewer software.)
+
+        \begin{figure}[h]
+            \centering
+            \href{http://experimentationlab.berkeley.edu/sites/default/files/images/350px-CO-60_Spectrum.png}{\includegraphics[width=0.5\linewidth]{images/350px-CO-60_Spectrum.png}}
+            \caption{PHA display. Counts vs Energy of $^{60}$Co. (From older version of software.)}
+            \label{fig:350px-CO-60_Spectrum}
+        \end{figure}
+
+    \checkpoint{Width of a photopeak}{For a given radioactive sample (in a bottle), the emitted gamma rays are mono-energetic. What is the reason that we observe the peaks with finite width in the Pulse Height analyzer instead of delta functions?}
+
+        \item There are several adjustments you should experiment with in the program. The first is the threshold, which sets the voltage below which peaks will be ignored as noise (to set it properly, look at the pulse viewer with a lower trigger and see what peak heights look like). Setting it too low will cause the program to trigger on noise and overload the program (this said, the ADS is a good piece of equipment - you can err on the side of a lower trigger value). %The other adjustments you should experiment with are the LLD on the Control Tab in the program: this sets the Lower Level Discriminator so that the PHA will ignore pulses with amplitudes below the setting. This way the system doesn't spend its time with unwanted pulses like low-level noise. To set it properly look at the Soft Scope program display. Setting the LLD too low will allow the program to trigger on noise, and overload the program. 
+        Set the threshold at a reasonable level that is above the noise level, but below the level of the physical processes that you are interested in. You may find that you still have some noise causing your spectrum to look distorted and this could be due to a couple of factors. Try thinking about the PMT and what are some of the variables that can contribute to non-linearity in it (this should give you hints on what should be adjusted).
+
+        \item After setting the noise threshold, stop any measurements you may have started, change your source back to $^{137}$Cs and start a pulse height analyzer measurement again. You should see one peak start to form in the middle of the display, along with a ``mess'' forming to its left. The peak corresponds to the 0.662 MeV $^{137}$Cs gamma rays; what are the peaks to its left? It may be useful to try thinking about what determines the height of the peaks on the graph. Press `Stop' in the histogram viewer to stop the accumulation of counts when the peak is reasonably well formed (\~ 10-15 min should give a respectable spectrum). %See Figure~\ref{fig:250px-GMAimage004}.
+
+        \item After collecting a data set and saving it to a file you can use a computer with Python or some other program to do further analysis.
+
+    \end{enumerate}
+
+    \item \textbf{Remember the maximum voltage is +800 VDC.} Measure the relative gain of the photomultiplier tube as a function of high voltage using the photopeak of the Cs source. The purpose of this exercise is to gain familiarity with the gain of a photomultiplier. It is not an examination of the non-linearity of the gain curve. To do this, vary the high voltage to the PMT using the knobs on the 3kV High Voltage power supply only, and watch to see where the Cs peak moves. Because the peak channel number is equivalent to some pulse height, by recording the peak channel number at each voltage we can determine the relative gain as a function of the PMT high voltage. Start at around +400 volts, and stop at about +800 volts (change the high voltage by 10 volts at a time) to determine the relation between gain and high voltage. \textbf{Do not exceed 800V.} Plot the results. Explain the plot, particularly the behavior at the higher (more positive) voltage settings. Then, make another plot to show that the gain is related to the applied high voltage as a power law (see the section on photomultiplier tubes in Knoll \href{https://drive.google.com/file/d/1QlRsQWBkbyqGFFVmDlOfvCZZXB-VXkUy/view?usp=drive_link}{\textbf{Ch. 9}}).
+
+    \item To examine the capabilities and linearity of the amplifier, use the SRS DG645 Digital Delay Pulse Generator (PG) to simulate the detected pulses that you saw coming from the PMT in step 1 (instructions on how to do this are below). To make the PG's pulses as small as those from the PMT, connect the Pulse Gen to the \emph{dB} attenuator (a small box with a row of toggle switches that selects the attenuation). Use a BNC tee to send the attenuated output of the Pulse Generator to the input of the amplifier as well as to the Tektronix scope - once again you need a BNC tee and 50 ohm terminator on the scope-input to match impedance (Make sure you are not using the PMT OUTPUT signal but rather the signal from the Digital Delay Generator). Set the Pulse Generator such that the pulse width is approximately the same as that of the pulses from the PMT (this will be explained below). To get you started with the DG645, set it up as follows:
+    \begin{enumerate}
+        \item Set the Delay Generator to trigger internally at 8.5kHz. To do this:
+        \begin{enumerate}
+            \item Use the up / down arrows in TRIG MODE to select INT
+
+            \item Type in 8500 and press ENTER. The display should read ``trg 8 500. 000 000'' and the LED next to Hz should be lit.
+
+        \end{enumerate}
+
+        \item Set the generator to create a 1 $\mu$s pulse on channel AB right as the trigger fires. To do this:
+        \begin{enumerate}
+            \item Use the left / right arrows under EDGE to select the rising edge of the AB pulse. The green LED just to the left of ``AB'' should be lit.
+
+            \item Type 0 and click $\mu$s (this is the down arrow under MODIFY). The display should read ``A = 0 + 000. 000 000 000 000'' with the ``sec'' LED lit.
+
+            \item Now select the falling edge of the AB pulse. The green LED just to the right of ``AB'' should be lit.
+
+            \item Type 1 and click $\mu$s. The display should ready ``b = A + 000. 000 001 000 000''.
+
+        \end{enumerate}
+
+        \item Now you need to adjust the pulse to have negative polarity. To do so, set the offset of the AB pulse to -0.5, the amplitude to 0.5V, and the polarity to negative. To do this:
+        \begin{enumerate}
+            \item With the AB pulse still selected (rising or falling edge), click LEVEL until the screen reads ``Ab offset'' (the rising edge LED should be lit). Type -0.5 and press ENTER.
+
+            \item Press LEVEL until the screen reads ``step''. Type 0.5 and click ENTER.
+
+            \item Press LEVEL until the screen reads ``Ab Polarity'' and use the modify arrows to set it to ``neg''.
+
+        \end{enumerate}
+
+        \item The AB output of the Delay Generator should now be outputting a 1$\mu$s negative polarity pulse at a rate of 8.5kHz. Don't forget to use the 50 ohm terminator to view the pulse on the oscilloscope.
+
+        \item The Delay Generator is an \textit{excellent} piece of equipment with a wonderful manual - if you have further questions about its operation or setup, please read the manual, available online and also linked below.
+
+    \end{enumerate}
+
+    %this paragraph needs to be clarified
+    \item Now choose an amp gain setting, and vary the amplitude of your input pulses and record the corresponding peak channels. Do this for at least three gain settings and determine whether the amp is linear for each. (Be careful not to set the Pulse Gen Repetition Rate so high that it overwhelms the PHA - you can check and make sure pulses are distinguishable using the pulse viewer.) We want to examine the behavior of the amplifier when the signal begins to cause the amplifier to hit the rails. We will do this using the SRS DG645 Digital Delay Pulse Generator and the settings you used above. Hook the pulse generator to the attenuator, then to the amplifier, then to the ADS oscilloscope (channel 1). Begin by setting the attenuator to 20 dB and using a higher gain setting, a little above what you found was reasonable in previous steps. Start collecting data with the live histogram viewer. You should see a sharp peak a little below 2 and nothing else. The amplifier should still be linear at this pulse height, but if the signal gets much larger the amplifier will begin to distort the signal. Turn the amplifier gain up higher, set the attenuator to 10 dB, and collect a new set of data. Do you see a double peak in the spectrum? Initially this might appear to be a reflection from the attenuator, but the problem gets worse at lower attenuation. To examine this more closely, look at the pulse shapes in the pulse viewer. Notice the almost square shape of the wave. This is caused by the amplifier clipping the top of the waveform. Once again set the attenuation to 20 dB and examine the shape of the wave. With the attenuation at 6 dB, find the amplification that preserves the shape of the waveform. Verify that the amplification settings you found produces a single peak on the PHA spectrum. Try increasing the amplification to verify you do indeed get a second peak. Why is the software registering two peaks when the amplifier clips? Why does increasing the sample rate in the pulse viewer/histogram viewer seem to ``fix'' the problem? How does clipping the amplifier impact your peak width and how does that impact your error?%set CH0 range to 10V, the sample rate to 6Mhz and gain0 to 1.5. Set the amplifiers gain to 16 for coarse and the finite gain to 2.5. Set the attenuator to 20db. Start collecting data. You should see a sharp peak a little below 2 and nothing else (you can zoom in by turning off the x-axis auto scaling and changing the lower and upper x-axis values by hand). The amplifier should still be linear at this pulse height, but if the signal gets much larger the amplifier will begin to distort the signal. Turn auto scaling back on, the amplifier's gain to 32 and the attenuator to 10 and collect a new set of data in PHA. Do you see a double peak? Initially this might appear to be a reflection from the attenuator, but the problem gets worse at lower attenuation. To examine this more closely we'll use the SCOPE Soft Front Panel. Close out PHA completely and open up SCOPE Soft. Notice the almost square shape of the wave. This is caused by the amplifier clipping the top of the waveform. Once again set the attenuation to 20 and examine the shape of the wave. With the attenuation at 6db, find the amplification that preserves the shape of the waveform. Close out the SCOPE Soft and open up PHA. Using the PHA settings mentioned above once again verify that the amplification settings you found produces a single peak on the data collection. Try increasing the amplification to verify you do indeed get a second peak. Why is the software registering two peaks when the amplifier clips? Why does increasing the sample rate seem to ``fix'' the problem. How does clipping the amplifier impact your peak width and how does that impact your error?
+
+    \item Also look at the effects of varying the repetition rate of the Pulse Gen: do the counts under the peak increase as you expect? As you increase the repetition rate, you may begin to see a phenomenon called pileup. This is when a pulse comes along before the electronics have finished processing the previous pulse. The lesson to learn here is that if you place the source too close to the NaI detector, your spectrum will be skewed due to pile up. (This is related to the \textit{deadtime} of the electronics - based on tests with the pulse generator, what would you estimate the deadtime of the ADS to be? Discuss in your report.)
+    
+    \checkpoint{Parameters}{Show your knowledge of several parameters you have set. How do their affect the output data? For example, what is the role of the fine gain, and coarse gain and how do they affect the shape and position of the PHA plot (Counts vs. Energy)?}
+    
+    \item Choose a high voltage somewhere near the middle of the range and an amp gain setting in the linear region such that you are utilizing the full scale of the PHA; that is, the highest energy gamma ray (which comes not from the $^{137}$Cs but from the $^{22}$Na source) should appear near the end of your spectrum, not in the middle. You should set the trigger level high enough that the spectrum is not overrun with noise, but low enough that you are able to resolve the X-ray peak. (In your spectra, you should identify this peak and explain its origin.) Then obtain a spectrum for each source listed above (you should obtain at least ~10,000 data points per run, about 10-20 minutes). You should also obtain a spectra with no source in the pig, so that you can identify any background/noise effects for subtraction. (What will you need to do for consistency when you perform subtraction?)
+    \begin{enumerate}
+        \item Determine carefully the peak channels and the full width at half-maximum (FWHM) of the peaks in the spectra, and then calculate the resolution at the energy of each peak. Compare your measurement with the theoretical line width for each gamma ray. \textbf{Remember that you need to estimate the uncertainty in each of your spectra. No measurement is a measurement without an accompanying error.}
+
+        \item Also compute the 180$^\circ$ back-scatter and Compton edge energies of the gamma ray(s) for each source, and compare to the observed spectra. See the book by Knoll for a description of what the plot should look like.
+        
+        \checkpoint{Back-Scatter and Compton Edge Signals}{How can you attenuate the signals of back-scatter and Compton edge gamma ray(s)? Describe how you recognize them from the graph. Identify the X-ray peak and explain its origins.}
+        
+
+        \item The PHA should have saved all of your data to the files you specified. You may use Python or whatever software you prefer to re-plot the data, perform background subtraction, and do peak-fitting.
+
+        \item Once you have determined the best combination of High Voltage and Gain Settings, keep these settings fixed. Eventually, you should calibrate your voltage axis using the \emph{known} energy values. If you vary your settings, your energy calibration can change drastically.
+
+    \end{enumerate}
+
+    \item Verify the inverse square law for radiation using one of the radioactive sources on the cart with the PMT \href{http://experimentationlab.berkeley.edu/sites/default/files/images/GMA_PMT_3519-Lg.jpg}{\textbf{See picture Figure~\ref{fig:PMT} above}}. *\textbf{Remember}* putting the source closer than 25 cm to the detector will skew your spectrum. For a given detector with a fixed size and gain, how does the rate of data collection vary with distance from the source?
+
+    \item Compute the absolute intensity of the $^{137}$Cs source using the published values of the NaI efficiency. The NaI crystal must not be near or enclosed by lead shielding for this measurement. Subtract the background. To reduce background, support the source with a low-mass stand. Use $I_\textrm{measured} = I_\textrm{absolute} (n(E)\frac{\Delta\Omega}{4\pi})$ where $n(E)$ is the intrinsic efficiency and the quantity in brackets is the product of $n$ and the solid angle. The intrinsic efficiency is given in the NaI Crystal Information for a distance of $d$ = 30 cm.
+    
+    \checkpoint{Intensity Formula}{Interpret the aforementioned intensity formula and explain how the distance \emph{d} as well as the size of detector matter when you take measurement.}
+    
+
+    \begin{figure}[h]
+        \centering
+        \href{http://experimentationlab.berkeley.edu/sites/default/files/images/GMAimage007.gif}{\includegraphics[width=0.8\linewidth]{images/GMAimage007.png}} \\ The solid angle diagram
+        \label{fig:GMAimage007}
+    \end{figure}
+
+    \item \begin{enumerate}
+        \item Use the $^{22}$Na and $^{137}$Cs sources and several sheets/blocks of different thickness to measure the \emph{mass attenuation coefficient}, in cm$^2$/gm, of Al, Cu, and Pb (see Knoll \href{https://drive.google.com/file/d/1OVyNDtPH2b4DAmpoF-W8SDDqO96Ps6Gr/view?usp=drive_link}{\textbf{Ch. 2}} as a reference). Compare the results to the accepted values. Think about doing background subtraction, and be sure to include some discussion of uncertainties.
+
+        \item When measuring the mass attenuation coefficients it is important to have proper geometry. Your source, collimators, absorber, and detector must all be in a line. The source should be placed on this line so that the greatest intensity of gamma-rays will go toward the detector, not toward the ceiling, table, computer, etc.
+
+        \item There should be two lead bricks with holes in them at the apparatus. Use these bricks as collimators (see Figure~\ref{fig:GMAimage008} below). The first collimator passes only photons that strike the absorber nearly perpendicular to its face. The second collimator is needed to absorb the gamma rays that have undergone small angle scattering from the absorber. If the angle is small enough these gamma rays might enter the detector and be counted as unaffected gamma rays. It is possible for gamma rays that are scattered by the collimators to reach the detector, but these are of such low energies that they do not affect your results significantly.
+
+        %\item Last day of the experiment please fill out the \href{\ExperimentEvaluation}{\textbf{Experiment Evaluation}}
+
+    \end{enumerate}
+
+\end{enumerate}
+
+\section{Gamma Layout}
+
+\begin{figure}[h]
+    \centering
+    \href{http://experimentationlab.berkeley.edu/sites/default/files/images/GMAimage008.gif}{\includegraphics[width=0.7\linewidth]{images/GMAimage008.png}}
+    \caption{A diagram of Gamma-ray Spectroscopy}
+    \label{fig:GMAimage008}
+\end{figure}
+
+\section{References}
+\label{sec:References}
+
+\begin{enumerate}
+    \item \href{http://www.webelements.com}{\textbf{Web Elements Period Table of Elements}}
+
+    \item E. Segre, ``\href{https://drive.google.com/file/d/1OEWPggCYC7qlHG2dqvx14lR95Qbx-yOm/view?usp=drive_link}{\textbf{Appendix A: Scattering from a Fixed Center of Force}}.'' \emph{Nuclei and Particles}, Second Edition, WA Benjamin Inc. London (1977).
+    
+    \item Y. Yoshizawa, ``\href{https://drive.google.com/file/d/135YuieQsc88Iu5VaKTRbhwuVIIH8iUFo/view?usp=drive_link}{\textbf{Beta and Gamma Ray Spectroscopy of $^{137}$Cs,}}'' Nucl. Phys. {\textbf 5}, 122 (1958). \#QC770.N8
+    
+    \item Canberra Counter/Timer 1772 \href{https://drive.google.com/file/d/1x71VQ6Z8jm2gjv1pLQHUOzLaIu8dvqIA/view?usp=drive_link}{\textbf{Manual}}
+    
+    \item SRS DG645 Digital Delay Generator  \href{https://drive.google.com/file/d/1PNLeiZvP4k50RJv1V8cbh_L-T2n2zmKE/view?usp=drive_link}{\textbf{Manual}}
+    
+    \item R. D. Evans, \href{https://drive.google.com/file/d/1dHgK8gXV5EruHZoahXIMxdXk2cJ6jTod/view?usp=drive_link}{\textbf{The Atomic Nucleus}}. McGraw Hill (1972).
+    
+    \item RCA 6810A Photomultiplier Tube \href{https://drive.google.com/file/d/1iAtx9ldggR1MaUwRghCeHqJyUHIAPnxo/view?usp=drive_link}{\textbf{Datasheet}}
+\end{enumerate}
+
+\end{document}
