@@ -4,22 +4,6 @@ order: 9
 summary: "Making sense of the units and specifications on the MV5753 red LED data sheet."
 ---
 
-Source: <http://experimentationlab.berkeley.edu/node/100>
-
-**All pages in this lab**
-
-1.  [Low Light Signal Measurements](http://experimentationlab.berkeley.edu/LLS)
-2.  [Introduction to Equipment (LLS)](IntroductiontoEquipment.md)
-3.  [Introduction to Noise](IntroductiontoNoise.md)
-4.  [Measuring the Light Signal from a Diode](LightSignal.md)
-5.  [Appendix A: SR760 FFT Interface Program](LLS-Appendix-A-SR760-FFT-Interface-Program.md)
-6.  [Appendix B: SR830 Lock-In Interface Program](LLS-Appendix-B-SR830-Lock-In-Interface-Program.md)
-7.  [Appendix C: the Remote Control Box](LLS-Appendix-C-the-Remote-Control-Box.md)
-8.  [Appendix D: the Phase Sensitive (Lock-In) Detector](LLS-Appendix-D-the-Phase-Sensitive-Lock-In-Detector.md)
-9.  **Appendix E: Interpreting the Data Sheet for the LED** and [Photodiode Data Sheet](LLS-Diode-data-sheets.md)
-
------
-
 # Interpreting the Data Sheet for the LED
 
 The data sheet for the LEDs may seem a little mysterious if you're not used to the units being used. The red LED that we are using has the model number MV5753.[Diode Data Sheet](http://physics111.lib.berkeley.edu/Physics111/Reprints/LLS/MV5753_LLS-2.pdf)

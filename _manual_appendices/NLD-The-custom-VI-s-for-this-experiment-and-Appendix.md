@@ -4,20 +4,6 @@ order: 3
 summary: "Descriptions of the custom LabView VIs for the quadratic and Henon maps, bifurcation diagrams and PN junction data."
 ---
 
-Source: <http://experimentationlab.berkeley.edu/node/103>
-
-Pages of this lab. 
-
------
-
-I. [Non-Linear Dynamics and Chaos](http://experimentationlab.berkeley.edu/NLD)
-
-II. [Experiment and Procedure](NLD-Experiment-and-Procedure.md)
-
-III. **The custom VI's for this experiment & Appendix**
-
------
-
 **Contents**
 
   - [1 The Custom VI's for this experiment](#the-custom-vis-for-this-experiment)

@@ -4,8 +4,6 @@ order: 4
 summary: "Sample ROOT macros for analysing the muon calibration and decay data."
 ---
 
-Source: <http://experimentationlab.berkeley.edu/node/90>
-
 Here we give some examples for how to analyze the Muon Decay data in ROOT. ROOT is a data analysis package, specifically designed for processing large datasets, advanced statistical analysis and fitting. It uses C++ as internal interpreted macro language, so if you have programmed in C, C++, or C\#, it should be straightforward to learn ROOT. For more information on ROOT, including tutorials, User's Guide, or to download the executable for Linux, MacOS, or Windows, visit <http://root.cern.ch>
 
 ## Calibration Analysis

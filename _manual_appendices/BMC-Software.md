@@ -4,20 +4,6 @@ order: 4
 summary: "How the Brownian motion software captures images, finds and tracks particles, and computes the statistics, plus ideas for improving it."
 ---
 
-Source: <http://experimentationlab.berkeley.edu/node/85>
-
-**Print all pages for full lab write-up**
-
-I. [Brownian Motion in Cells](http://experimentationlab.berkeley.edu/BMC)
-
-II. [Simulating Brownian Motion](http://experimentationlab.berkeley.edu/node/83)
-
-III. [Experimental Procedures](BMC-Experimental-Procedures.md)
-
-**IV. BMC Software**
-
------
-
 **Contents**
 
   - [1 Introduction to the Software](#introduction-to-the-software)

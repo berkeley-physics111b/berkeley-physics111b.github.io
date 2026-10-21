@@ -4,8 +4,6 @@ order: 4
 summary: "Background on handling optics, lenses, mirrors, spectrometers, gratings, interferometers, lasers and polarisation optics for the optics-based labs."
 ---
 
-Source: <http://experimentationlab.berkeley.edu/OpticsTutorial>
-
 An understanding of optics and optical instruments is required for the following experiments: [Atomic Physics](http://experimentationlab.berkeley.edu/ATM), [Atom Trapping](http://experimentationlab.berkeley.edu/MOT), [CO2 Laser](http://experimentationlab.berkeley.edu/CO2), [Quantum Interference & Entanglement](http://experimentationlab.berkeley.edu/QIE), and [Nonlinear Spectroscopy and Magneto-Optics](http://experimentationlab.berkeley.edu/MNO). In each case, the text by Melissinos is an excellent exposition for specific instruments. The best general reference is Jenkins and White, *Fundamentals of Optics*, although any current optics book is of help, including some at the sophomore physics level.
 
 **Contents**

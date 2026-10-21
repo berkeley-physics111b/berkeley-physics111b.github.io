@@ -4,18 +4,6 @@ order: 2
 summary: "Proof of the Van der Pauw theorem for measuring the resistivity of an arbitrarily shaped sample."
 ---
 
-Source: <http://experimentationlab.berkeley.edu/node/105>
-
-**All pages in this lab**
-
-I. [Hall Effect in Semiconductor](http://experimentationlab.berkeley.edu/SHE)
-
-II. **Van Der Pauw Theorem**
-
-III. [Instrument Manuals](SHE-Instrument-Manuals.md)
-
------
-
 The Van Der Pauw theorem permits calculation of the sample's resistivity, regardless of the shape of the sample, provided electrical contacts are at (or near) the sample's periphery. The proof show here applies to contacts on the periphery of one half of an infinite plane, however it can be shown via conformal mapping that it is true for contacts on the periphery of an arbitrary finite shape as well. (Hall coefficient calculation does not rely on this theorem, but rather on the fact that all current traversing the sample from, say, contact A to contact C must pass between the other two contacts, across which the hall voltage is measured. – Can you see why?)
 
 Proof of the Van Der Pauw Theorem

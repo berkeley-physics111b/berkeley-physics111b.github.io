@@ -4,18 +4,6 @@ order: 3
 summary: "Operating instructions for the Keithley 2400 SourceMeter, Keithley 6514 electrometer, LakeShore 330 temperature controller and LakeShore 450 gaussmeter."
 ---
 
-Source: <http://experimentationlab.berkeley.edu/node/106>
-
-**All pages in this lab**
-
-I. [Hall Effect in Semiconductor](http://experimentationlab.berkeley.edu/SHE)
-
-II. [Van Der Pauw Theorem](SHE-Van-Der-Pauw-Theorem.md)
-
-III. **Instrument Manuals**
-
------
-
 **(Note: These are generic manuals for various instruments, not specific instructions for using them in the Semiconductor Hall Effect experiment.)**
 
 For the Full Manuals goto the \[[Physics111 Library Site](http://physics111.lib.berkeley.edu/Physics111/)\]

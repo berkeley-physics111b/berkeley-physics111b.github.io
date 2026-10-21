@@ -4,22 +4,6 @@ order: 8
 summary: "How a phase-sensitive lock-in detector works and why it recovers small signals buried in noise."
 ---
 
-Source: <http://experimentationlab.berkeley.edu/node/99>
-
-**All pages in this lab**
-
-1.  [Low Light Signal Measurements](http://experimentationlab.berkeley.edu/LLS)
-2.  [Introduction to Equipment (LLS)](IntroductiontoEquipment.md)
-3.  [Introduction to Noise](IntroductiontoNoise.md)
-4.  [Measuring the Light Signal from a Diode](LightSignal.md)
-5.  [Appendix A: SR760 FFT Interface Program](LLS-Appendix-A-SR760-FFT-Interface-Program.md)
-6.  [Appendix B: SR830 Lock-In Interface Program](LLS-Appendix-B-SR830-Lock-In-Interface-Program.md)
-7.  [Appendix C: the Remote Control Box](LLS-Appendix-C-the-Remote-Control-Box.md)
-8.  **Appendix D: the Phase Sensitive (Lock-In) Detector**
-9.  [Appendix E: Interpreting the Data Sheet for the LED](LLS-Appendix-E-Interpreting-the-Data-Sheet-for-the-LED.md) and [Photodiode Data Sheet](LLS-Diode-data-sheets.md)
-
------
-
 *Originally written/prepared by J. Stoltenberg and O.E. Vilches, University of Washington, September, 1995. Revised for use in the 111 Labs in September 1997.*
 
 # Recommended reading:

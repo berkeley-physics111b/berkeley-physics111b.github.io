@@ -4,22 +4,6 @@ order: 5
 summary: "Guide to the controls and displays of the LowLight SR760 FFT interface program."
 ---
 
-Source: <http://experimentationlab.berkeley.edu/node/96>
-
-**All pages in this lab**
-
-1.  [Low Light Signal Measurements](http://experimentationlab.berkeley.edu/LLS)
-2.  [Introduction to Equipment (LLS)](IntroductiontoEquipment.md)
-3.  [Introduction to Noise](IntroductiontoNoise.md)
-4.  [Measuring the Light Signal from a Diode](LightSignal.md)
-5.  **Appendix A: SR760 FFT Interface Program**
-6.  [Appendix B: SR830 Lock-In Interface Program](LLS-Appendix-B-SR830-Lock-In-Interface-Program.md)
-7.  [Appendix C: the Remote Control Box](LLS-Appendix-C-the-Remote-Control-Box.md)
-8.  [Appendix D: the Phase Sensitive (Lock-In) Detector](LLS-Appendix-D-the-Phase-Sensitive-Lock-In-Detector.md)
-9.  [Appendix E: Interpreting the Data Sheet for the LED](LLS-Appendix-E-Interpreting-the-Data-Sheet-for-the-LED.md) and [Photodiode Data Sheet](LLS-Diode-data-sheets.md)
-
------
-
 **Contents**
 
   - [1 Appendix A: Instructions for LowLight SR760 FFT Interface Program](#appendix-a-instructions-for-lowlight-sr760-fft-interface-program)

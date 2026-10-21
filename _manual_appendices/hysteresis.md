@@ -4,8 +4,6 @@ order: 1
 summary: "Magnetic domains, domain walls and the hysteresis loop in ferromagnetic materials."
 ---
 
-Source: <http://experimentationlab.berkeley.edu/hysteresis>
-
 **This article is referenced by multiple labs, including [Hall Effect in a Plasma](http://experimentationlab.berkeley.edu/HAL), [Beta Ray Spectroscopy](http://experimentationlab.berkeley.edu/BRA), and [Hall Effect in Semiconductor.](http://experimentationlab.berkeley.edu/SHE)**
 
 In ferromagnetic materials, microscopic regions are separated into into domains. Within each domain, all the atoms have their magnetic moments aligned in one direction. Adjacent domains have their magnetic moments pointing in random directions with respect to their neighboring domains . A large scale sum of their magnetic moments is nearly zero, and the material produces only a small external macroscopic magnetic field.

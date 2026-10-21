@@ -4,8 +4,6 @@ order: 1
 summary: "Default front-panel settings for the SR570 current preamplifier."
 ---
 
-Source: <http://experimentationlab.berkeley.edu/defaultsettings>
-
 **Default setting s for SR570 current pre-amp**
 
 1.  Bias = off

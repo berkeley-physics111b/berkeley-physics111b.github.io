@@ -4,8 +4,6 @@ order: 3
 summary: "Setting up the DG645 delay generator to calibrate the timing and efficiency of the muon lifetime electronics."
 ---
 
-Source: <http://experimentationlab.berkeley.edu/node/91>
-
 # Calibration Procedure for Electronics on Muon Lifetime
 
 In this section we set up the SRS DG645 Digital Delay Generator for testing the efficiency of our digitizer. The DG645 may be thought of as a function generator which is specifically designed to generate very precise, synchronized pulses. You should first take a look at the manual of this device and briefly familiarize yourself with its capabilities. Quantitatively, to what precision is the timing of the pulses guaranteed by the manufacturer? Is it good enough for our purposes? The manual for this generator may be found [online](http://www.thinksrs.com/downloads/PDFs/Manuals/DG645m.pdf).

@@ -4,14 +4,6 @@ order: 2
 summary: "Deriving the decaying exponential distribution from first principles and applying it to particle decay rates."
 ---
 
-Source: <http://experimentationlab.berkeley.edu/node/86>
-
-**All pages in this lab**
-
-  - [Muon Lifetime Lab Manual](http://experimentationlab.berkeley.edu/sites/default/files/writeups/MUO.pdf)
-  - **Exponential Probability Distributions**
-  - [LabView Programs Controlling NI Digitizer](http://experimentationlab.berkeley.edu/node/88)
-
 **Jump to**
 
 1.  [Decaying Exponential](#decaying-exponential)

@@ -4,20 +4,6 @@ order: 2
 summary: "The LabView apparatus and procedures for exploring maps, Liapunov exponents, the PN junction circuit, the bouncing ball and information dimension."
 ---
 
-Source: <http://experimentationlab.berkeley.edu/node/102>
-
-Pages of this lab. 
-
------
-
-I. [Non-Linear Dynamics and Chaos](http://experimentationlab.berkeley.edu/NLD)
-
-II. **Experiment and Procedure**
-
-III. [The custom VI's for this experiment & Appendix](NLD-The-custom-VI-s-for-this-experiment-and-Appendix.md)
-
------
-
 **Contents**
 
   - [1 The Experiment Apparatus](#the-experiment-apparatus)

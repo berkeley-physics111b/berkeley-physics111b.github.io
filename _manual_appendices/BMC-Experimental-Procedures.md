@@ -4,20 +4,6 @@ order: 3
 summary: "Using the Axiovert 200 microscope, preparing bead suspensions and onion slides, and tracking particles in viscous fluids and living cells."
 ---
 
-Source: <http://experimentationlab.berkeley.edu/node/84>
-
-**All pages in this lab**
-
-I. [Brownian Motion in Cells](http://experimentationlab.berkeley.edu/BMC)
-
-II. [Simulating Brownian Motion](http://experimentationlab.berkeley.edu/node/83)
-
-**III. Experimental Procedures**
-
-IV. [BMC Software](BMC-Software.md)
-
------
-
 **Contents**
 
   - [1 Microscope How-To](#microscope-how-to)

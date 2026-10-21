@@ -4,22 +4,6 @@ order: 7
 summary: "Using the remote box to control the chopper, LEDs and halogen lamp from the lab station."
 ---
 
-Source: <http://experimentationlab.berkeley.edu/node/98>
-
-**All pages in this lab**
-
-1.  [Low Light Signal Measurements](http://experimentationlab.berkeley.edu/LLS)
-2.  [Introduction to Equipment (LLS)](IntroductiontoEquipment.md)
-3.  [Introduction to Noise](IntroductiontoNoise.md)
-4.  [Measuring the Light Signal from a Diode](LightSignal.md)
-5.  [Appendix A: SR760 FFT Interface Program](LLS-Appendix-A-SR760-FFT-Interface-Program.md)
-6.  [Appendix B: SR830 Lock-In Interface Program](LLS-Appendix-B-SR830-Lock-In-Interface-Program.md)
-7.  **Appendix C: the Remote Control Box**
-8.  [Appendix D: the Phase Sensitive (Lock-In) Detector](LLS-Appendix-D-the-Phase-Sensitive-Lock-In-Detector.md)
-9.  [Appendix E: Interpreting the Data Sheet for the LED](LLS-Appendix-E-Interpreting-the-Data-Sheet-for-the-LED.md) and [Photodiode Data Sheet](LLS-Diode-data-sheets.md)
-
------
-
 # Appendix C: The Remote Control Box
 
 The box in the corner of the room contains the SR540 Chopper Control, a set of LEDs and a halogen lamp. To make life easier for you, all of these things may be controlled remotely from the LowLight lab station using the controller box, pictured below:

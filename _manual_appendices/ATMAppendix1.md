@@ -4,14 +4,6 @@ order: 3
 summary: "Operating the AM-505 monochromator: slit widths, the wavelength counter, manual and motor scanning, and the diverter mirror."
 ---
 
-Source: <http://experimentationlab.berkeley.edu/ATMAppendix1>
-
-I. [Atomic Physics](http://experimentationlab.berkeley.edu/ATM)
-
-III. **Appendix I: ARC Model AM-505 Atmospheric Monochromator**
-
-IV. [Optics Tutorial](OpticsTutorial.md)
-
 # APPENDIX I
 
 Full Manual [0.5 meter Monochrometer](http://physics111.lib.berkeley.edu/Physics111/Reprints/ATM/ARC%20Model%20AM505%20scanning%20monochromator.pdf) discusses the monochromator, PMT, Gratings, and shows the unit diagrams.
