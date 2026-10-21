@@ -9,6 +9,8 @@
         {% assign s = site.safety | sort: 'order' %}
         {% include dropdown.html label="Safety" url="/safety/" overview="Safety Overview" items=s %}
         <li><a href="{{ '/manuals/' | relative_url }}">Manuals</a></li>
+        {% assign ma = site.manual_appendices | sort: 'order' %}
+        {% include dropdown.html label="Manual Appendices" url="/appendices/" items=ma %}
         {% assign d = site.documentation | sort: 'order' %}
         {% assign ar = site.archive | sort: 'order' %}
         <li class="has-dropdown">

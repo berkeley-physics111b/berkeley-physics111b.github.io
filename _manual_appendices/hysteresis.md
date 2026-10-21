@@ -1,0 +1,19 @@
+---
+title: "Hysteresis"
+order: 1
+summary: "Magnetic domains, domain walls and the hysteresis loop in ferromagnetic materials."
+---
+
+Source: <http://experimentationlab.berkeley.edu/hysteresis>
+
+**This article is referenced by multiple labs, including [Hall Effect in a Plasma](http://experimentationlab.berkeley.edu/HAL), [Beta Ray Spectroscopy](http://experimentationlab.berkeley.edu/BRA), and [Hall Effect in Semiconductor.](http://experimentationlab.berkeley.edu/SHE)**
+
+In ferromagnetic materials, microscopic regions are separated into into domains. Within each domain, all the atoms have their magnetic moments aligned in one direction. Adjacent domains have their magnetic moments pointing in random directions with respect to their neighboring domains . A large scale sum of their magnetic moments is nearly zero, and the material produces only a small external macroscopic magnetic field.
+
+Domains are separated from each other by "domain walls" which are 100 to 1000 atoms wide. Within the boundary of a domain wall, the individual atomic magnetic moments change directions from that existing within one domain, to the direction existing within the adjacent domain. When an external magnetic field is applied to the ferromagnetic material, the walls move and the domains with magnetization in the direction of the field increase in size and become macroscopic at the expense of adjacent domains that get smaller and disappear. The combined external field and the field of the ferromagnetic material can be orders of magnitude larger than the external field alone, when all the domains are aligned. This external field is generally supplied by a current-carrying coil wound around the ferromagnetic material.
+
+The degree of magnetization as measured by the size of the domains is non-linearly proportional to the applied external magnetic field. Also, for a given external field, the magnetization of the material depends on the past history of the magnetization. For example, start from zero large scale magnetization, and zero external field; increase the external field to any particular value and then reduce it back to zero. The magnetization does NOT return to zero, but remains at some finite value. A reverse external field must be applied to bring the magnetization to zero. The magnetization lags behind the applied field. This effect is known as hysteresis.
+
+The typical but exaggerated hysteresis behavior of a ferromagnetic material is shown in the figure below, where the magnetic induction **B** is plotted vs. the magnetic field intensity **H**, which is directly proportional to the current in the surrounding coil. The horizontal axis could equally well be labeled \`\`I" instead of \`\`H". The "0" is the non-magnetized or demagnetized state (B=0, I=0) which can be reached by applying an alternating current and slowly reducing its amplitude to zero. As the current increases from the demagnetized state, the B value lags behind what one might expect and follows the curve to (a') and toward saturation at (a). With large variations in I, the behavior follows a major loop (abcdefa...); while for small variations in I, the behavior follows a minor loop (a'b'c'd'e'f'a'...) or (a'b'a'...) if the current I never becomes negative. Certain points of a hysteresis loop have names: B<sub>r</sub> is the *remanent value* at I = 0 after the material is saturated at (a.) H<sub>c</sub> is the *coercive field* or the *coercivity* ( i.e. the H or I required to reduce B to zero).
+
+![HALimage01](img/HALimage01_hysteresis.gif)

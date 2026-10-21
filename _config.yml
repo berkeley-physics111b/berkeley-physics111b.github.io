@@ -19,6 +19,9 @@ collections:
   archive:
     output: true
     permalink: /documentation/archive/:name/
+  manual_appendices:
+    output: true
+    permalink: /appendices/:path/
 
 defaults:
   - scope: {path: ""}
@@ -31,5 +34,7 @@ defaults:
     values: {layout: page, section: about}
   - scope: {path: "", type: archive}
     values: {layout: page, section: documentation}
+  - scope: {path: "", type: manual_appendices}
+    values: {layout: page}
 
 exclude: [README.md]
