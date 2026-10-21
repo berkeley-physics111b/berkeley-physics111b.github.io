@@ -282,7 +282,7 @@ One generally obtains this fit through Linear Least Squares. One should beware h
 
 After performing the mathematical analysis one finds that to fit a data set x vs. y with just a slope (y-intercept = 0) the formula is as follows (note that boldface implies that these are vector quantities)
 
-Slope = $\frac{{x} \cdot {y}}{|{x}|^2}$
+Slope = $\frac{x \cdot y}{|{x}|^2}$
 
 # Improving the Software
 
