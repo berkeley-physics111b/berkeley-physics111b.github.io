@@ -22,31 +22,31 @@ The key to recovering successfully the desired signal from a noisy composite, is
 
 Before discussing how a phase sensitive detector works, it is useful to describe a typical application. In the LowLight experiment, we are trying to measure the intensity of the light emitted by an LED in the presence of room lights and sunlight. To do this, we chop the light from the LED at a frequency f<sub>m</sub>with a chopper wheel (see diagram below). Across the room is a photodiode (a transducer\!) which converts light intensity into a current. In this way, the light from the LED, room lights, and sun are converted into a current signal, which is ultimately sent into a phase sensitive detector. The phase sensitive detector then takes this signal and discards the part that is not at frequency f<sub>m</sub>, thus recovering the signal from the LED (assuming that none of the other light sources also had frequency components at frequency f<sub>m</sub>)
 
-![Figure 1](_manual_appendices/img/LLS75_LLS-Appendix-D-the-Phase-Sensitive-Lock-In-Detector.gif)
+![Figure 1](/appendices/img/LLS75_LLS-Appendix-D-the-Phase-Sensitive-Lock-In-Detector.gif)
 
 How does the lock-in know to detect the part of the input signal at frequency f<sub>m</sub> and reject all other frequencies? By virtue of a second input signal, also at frequency f<sub>m</sub>, applied to the Reference input of the lock-in. In the LowLight experiment, the reference signal comes from the device that chops the LED signal. At the end of the signal detection and conditioning process, the lock-in output is a DC voltage proportional to the amplitude of the component of the input signal at f<sub>m</sub>., multiplied by the cosine of the phase angle $\phi$ between this signal and the reference signal. The origin of this $\cos {\phi}$ factor will become clear in the discussion of how the phase sensitive detector works. One last detail: there is some noise on the lock-in output-you can never get away from it completely\! From what has been said so far about the phase sensitive detector, you might think that it does its job by first filtering out all signals except the one of interest at frequency f<sub>m</sub>, and then rectifying (converting AC to DC\_ the filtered signal to produce a steady DC output. In practice this arrangement doesn't work very well, It is difficult to construct a filter which passes only a narrow range of frequencies, and it is difficult to keep a filter tuned exactly to the frequency of interest. The phase sensitive detector makes an elegant end run around these problems by reversing the order: it first rectifies the signal and then filters it. Let's see how this is done.
 
-![LLS78](_manual_appendices/img/LLS78_LLS-Appendix-D-the-Phase-Sensitive-Lock-In-Detector.gif)
+![LLS78](/appendices/img/LLS78_LLS-Appendix-D-the-Phase-Sensitive-Lock-In-Detector.gif)
 
 Figure 2: Basics of a Phase Sensitive Detector
 
 ***Figure 2*** shows the guts of a basic phase sensitive detector. The switch is designed so that is spends an equal amount of time in each position. If the switch changes from lower to upper positions just as the input sine wave crosses from negative to positive, the signal at point A will be as shown in ***Figure 3***, trace 3 (trace 1 is the input signal, trace 2 is the reference signal, and trace 4 is the signal at A smoothed out by the low-pass filter). If the time constant $\tau$ (=*RC* ) of the low pass filter is much greater than the period of this signal $\frac{1}{f_m}$, the filter output will be a smooth DC voltage (*see ''***Figure 3''***, trace 4* ).
 
-![LLS82](_manual_appendices/img/LLS82_LLS-Appendix-D-the-Phase-Sensitive-Lock-In-Detector.gif)
+![LLS82](/appendices/img/LLS82_LLS-Appendix-D-the-Phase-Sensitive-Lock-In-Detector.gif)
 
 Figure 3
 
   - Figure 3: $\phi=0^\circ$
   - Trace 1: Input Signal; Trace 2: Reference Signal; Trace 3: Rectified Input Signal; Trace 4: Rectified Signal after the Low Pass Filter at B (as shown in Figure 2). Note the ripple in the voltage.
 
-![LLS83](_manual_appendices/img/LLS83_LLS-Appendix-D-the-Phase-Sensitive-Lock-In-Detector.gif)
+![LLS83](/appendices/img/LLS83_LLS-Appendix-D-the-Phase-Sensitive-Lock-In-Detector.gif)
 
 Figure 4
 
   - Figure 4: $\phi=90^\circ$
   - Trace 1: Input Signal; Trace 2: Reference Signal; Trace 3: Voltage at A (as shown in Figure 1); Trace 4: Voltage at B (as shown in Figure 2).
 
-![LLS84](_manual_appendices/img/LLS84_LLS-Appendix-D-the-Phase-Sensitive-Lock-In-Detector.gif)
+![LLS84](/appendices/img/LLS84_LLS-Appendix-D-the-Phase-Sensitive-Lock-In-Detector.gif)
 
 Figure 5
 
