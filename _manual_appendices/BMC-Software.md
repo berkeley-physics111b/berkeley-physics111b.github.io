@@ -111,7 +111,7 @@ The final project of the program is called BrownianApplication. This consists of
 
 The software runs three processes separately to when taking data from the camera for analysis. Initially, none of the processes are active; they must be turned on. The three processes are the camera capturing images, the BlobFinder determining which pixels are actually particles, and the ParticleTracker, which does the actual particle tracking.
 
-![BMCPTFlowchart](img/BMCPTFlowchart_BMC-Software.png)
+![BMCPTFlowchart](_manual_appendices/img/BMCPTFlowchart_BMC-Software.png)
 
 This is a flowchart showing modules in RealTime Particle Tracker program
 
@@ -206,7 +206,7 @@ Initially, we need to decide how bright a dot needs to be before it is called a 
 
 We then rescale the image to account for this choice so that minimum brightness corresponds exactly to neutral gray while anything brighter than it is considered a potential particle and everything dimmer is excluded. This explains why, when you increase the "ZScore Threshold" parameter, the post-processing image appears to become dimmer. As you require a higher deviation from the mean, only the brightest pixels are displayed above the neutral gray level.
 
-![Thresholding\_Process](img/Thresholding_Process_BMC-Software.jpg)
+![Thresholding\_Process](_manual_appendices/img/Thresholding_Process_BMC-Software.jpg)
 
 Three images showing the effects of rescaling the brightness to correspond with our brightness requirement. From left to right, Average Subtracted Image (from above), Rescaled Image, Black/White version of Rescaled Image. The third image shows exactly which points are above medium gray and will be constituted into the final blobs
 
@@ -216,13 +216,13 @@ Now that we have found all of the particles in an image, we need to connect them
 
 If our particles are moving slowly and are well spaced then this problem is simple, we simply choose the particles that are closest to each other and pair them up.
 
-![ParticlePairingSimple](img/ParticlePairingSimple_BMC-Software.jpg)
+![ParticlePairingSimple](_manual_appendices/img/ParticlePairingSimple_BMC-Software.jpg)
 
 Particles from two different images plotted. Blue O's correspond to one set, Green O's correspond to the next one. The lines in between represent the best possible pairing.
 
 However, if are particles are densely packed and they have moved around quite a bit, we may run into more complex situations. In these cases it is necessary to look at and optimize the whole system. In the example below the two closest particle pairs (in the center) grab each other and afterwards the two particles at the ends have no other choice but to pair up over a very long distance. A much more reasonable matching is presented on the right where, even though some of the distances have increased, the system as a whole is much better.
 
-![ParticlePairingGlobalDemo](img/ParticlePairingGlobalDemo_BMC-Software.jpg)
+![ParticlePairingGlobalDemo](_manual_appendices/img/ParticlePairingGlobalDemo_BMC-Software.jpg)
 
 In this case, our "closest neighbor" approach (left) has failed while a global optimization method (right) produces a much more believable matching.
 
@@ -232,7 +232,7 @@ In the case above, where we have three particles in each frame, there are 3\! (3
 
 The solution is to break up our system into little disjoint families, each of which can benefit from a semi-global solution. Most of the time the particles in the image are positioned so that they can be separated in this way and we can form subgroups. To illustrate, consider the ten particle system plotted below
 
-![ParticlePairingClusterDemo](img/ParticlePairingClusterDemo_BMC-Software.jpg)
+![ParticlePairingClusterDemo](_manual_appendices/img/ParticlePairingClusterDemo_BMC-Software.jpg)
 
 A system of 10 particles showing all possible particle interactions with lines. On the right we show the same 10 particles but this time broken up into discrete families. Note how much simpler the system looks.
 
@@ -258,7 +258,7 @@ or in words. The slope of the Time vs. Displacement Squared graph should be four
 
 We can easily extract both Displacement Squared and time from our data and come up with nice plots that look something like
 
-![DisplacementSquaredvsTime](img/DisplacementSquaredvsTime_BMC-Software.jpg)
+![DisplacementSquaredvsTime](_manual_appendices/img/DisplacementSquaredvsTime_BMC-Software.jpg)
 
 Displacement Squared vs. Time with a linear fit superimposed. Note the roughly linear relationship which corresponds to theory.
 
@@ -290,7 +290,7 @@ $\textrm{AverageImage}_{t=\textrm{now}} = \textrm{NewImageFromCamera}_{t=\textrm
 
 So that the Average image is mostly what it was before, but takes in a little bit of the current image from the camera. This allows it to slowly update itself (5% per frame) of any new long term artifacts that have come about. Any information that stays static for roughly 20 frames will incorporate itself into the Average Frame while anything moving around only gets very lightly added to the average before it disappears again. This has the effect that non-moving information seems to "Fade Away" from what we see in the post-processed image with a half-life of roughly 20 frames. This is perfectly equivalent to a time series low pass filter that one could build using a capacitor and linear circuits. This choice of ours is not the only way. It is very easy to insert your own averaging method. You can alter this aspect of the program by going to the file, BlobFinder.cs, looking in the function FindBlobsFast, and searching for the commented line "//Average Frame Created Here." There are already two choices of Averaging methods to choose from, the Exponential Smoothing discussed above and also a simpler method which simply subtracts the last image from the current one. This method has much better response but results in a less predictable and noisier end result.
 
-![Averaging\_Process](img/Averaging_Process_BMC-Software.jpg)
+![Averaging\_Process](_manual_appendices/img/Averaging_Process_BMC-Software.jpg)
 
 Example images from an onion cell. From left to right, Original Image, Average Image, Original Image with Average Subtracted. Note how removing the average leaves us with only the information that we want, the little dots that are moving around, while large static information such as the cell walls and large organelles have been removed
 
