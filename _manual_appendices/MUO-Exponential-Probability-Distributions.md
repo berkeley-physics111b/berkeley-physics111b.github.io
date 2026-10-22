@@ -58,4 +58,4 @@ $\frac{d}{dt}e^{-\lambda t}=\frac{d}{dt}\int_t^{\infty}D(t')\, dt'$ gives $-\lam
 
 ## **Links to Error Analysis Resources**
 
-For Error Analysis, refer to:[ Error Analysis Exercise](http://experimentationlab.berkeley.edu/EAX)
+For Error Analysis, refer to:[ Error Analysis Exercise](https://berkeley-physics111b.github.io/EAX)
