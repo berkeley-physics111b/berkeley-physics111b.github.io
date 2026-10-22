@@ -48,7 +48,7 @@ Here is a sample macro to process the calibration data (see [MUO- Calibration of
 
 Graphical output of this macro is shown below. The last plot shows the exponential fit to the dt distribution.
 
-![MUO\_muCalibRaw\_c1](_manual_appendices/img/MUO_muCalibRaw_c1_MUO-Analysis-in-ROOT.gif)![MUO\_muCalibRaw\_c2](_manual_appendices/img/MUO_muCalibRaw_c2_MUO-Analysis-in-ROOT.gif)![MUO\_muCalibRaw\_c3](_manual_appendices/img/MUO_muCalibRaw_c3_MUO-Analysis-in-ROOT.gif)
+![MUO\_muCalibRaw\_c1](/appendices/img/MUO_muCalibRaw_c1_MUO-Analysis-in-ROOT.gif)![MUO\_muCalibRaw\_c2](/appendices/img/MUO_muCalibRaw_c2_MUO-Analysis-in-ROOT.gif)![MUO\_muCalibRaw\_c3](/appendices/img/MUO_muCalibRaw_c3_MUO-Analysis-in-ROOT.gif)
 
 ## Muon Data Analysis
 
@@ -123,4 +123,4 @@ Here is a sample macro to analyze the raw muon decay data. You can save the code
 
     }
 
-![MUO\_muAnalysisRaw\_c1](_manual_appendices/img/MUO_muAnalysisRaw_c1_MUO-Analysis-in-ROOT.gif)![MUO\_muAnalysisRaw\_c2](_manual_appendices/img/MUO_muAnalysisRaw_c2_MUO-Analysis-in-ROOT.gif)![MUO\_muAnalysisRaw\_c3](_manual_appendices/img/MUO_muAnalysisRaw_c3_MUO-Analysis-in-ROOT.gif)![MUO\_muAnalysisRaw\_c4](_manual_appendices/img/MUO_muAnalysisRaw_c4_MUO-Analysis-in-ROOT.gif)
+![MUO\_muAnalysisRaw\_c1](/appendices/img/MUO_muAnalysisRaw_c1_MUO-Analysis-in-ROOT.gif)![MUO\_muAnalysisRaw\_c2](/appendices/img/MUO_muAnalysisRaw_c2_MUO-Analysis-in-ROOT.gif)![MUO\_muAnalysisRaw\_c3](/appendices/img/MUO_muAnalysisRaw_c3_MUO-Analysis-in-ROOT.gif)![MUO\_muAnalysisRaw\_c4](/appendices/img/MUO_muAnalysisRaw_c4_MUO-Analysis-in-ROOT.gif)
