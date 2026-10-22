@@ -33,20 +33,20 @@ QuadBifr.VI Calculates the bifurcation diagram for the quadratic map.
 
 This VI permits you to explore the Bifurcation diagram of the quadratic map. You can change the parameters to reveal the fine detail at the onset of chaos.
 
-![Nldimage138](img/Nldimage138_NLD-The-custom-VI-s-for-this-experiment-and-Appendix.gif)
+![Nldimage138](_manual_appendices/img/Nldimage138_NLD-The-custom-VI-s-for-this-experiment-and-Appendix.gif)
 
 ## Henon Bifur
 
-![Nldimage139](img/Nldimage139_NLD-The-custom-VI-s-for-this-experiment-and-Appendix.gif)
+![Nldimage139](_manual_appendices/img/Nldimage139_NLD-The-custom-VI-s-for-this-experiment-and-Appendix.gif)
 
 ## PN Bifur
 
-![Nldimage140](img/Nldimage140_NLD-The-custom-VI-s-for-this-experiment-and-Appendix.gif)
+![Nldimage140](_manual_appendices/img/Nldimage140_NLD-The-custom-VI-s-for-this-experiment-and-Appendix.gif)
 
 # Appendix A: Cobweb analyzer for the quadratic map. (Cobweb2.vi)
 
-![Nldimage141](img/Nldimage141_NLD-The-custom-VI-s-for-this-experiment-and-Appendix.gif)
+![Nldimage141](_manual_appendices/img/Nldimage141_NLD-The-custom-VI-s-for-this-experiment-and-Appendix.gif)
 
 # Appendix B: Liapunov exponent VI (liapunov2.vi)
 
-![Nldimage142](img/Nldimage142_NLD-The-custom-VI-s-for-this-experiment-and-Appendix.jpg)
+![Nldimage142](_manual_appendices/img/Nldimage142_NLD-The-custom-VI-s-for-this-experiment-and-Appendix.jpg)
