@@ -71,15 +71,15 @@ When run, there are three basic windows. 
 </colgroup>
 <tbody>
 <tr class="odd">
-<td><img src="img/Passthrough2_BMC-Software.JPG" alt="Passthrough2" />
+<td><img src="_manual_appendices/img/Passthrough2_BMC-Software.JPG" alt="Passthrough2" />
 <p>This is the PassThu Window. It shows on the screen exactly what the camera picks up from the microscope.</p></td>
 <td> </td>
 <td> </td>
-<td><img src="img/Control_Window_BMC-Software.JPG" alt="Control_Window" />
+<td><img src="_manual_appendices/img/Control_Window_BMC-Software.JPG" alt="Control_Window" />
 <p>This the Control Window. It contains various user controls to observe the camera on the computer.</p></td>
 <td> </td>
 <td> </td>
-<td><img src="img/Pre_and_Post_Processing_BMC-Software.JPG" alt="Pre_and_Post_Processing" />
+<td><img src="_manual_appendices/img/Pre_and_Post_Processing_BMC-Software.JPG" alt="Pre_and_Post_Processing" />
 <p>This is the Images Window. It displays the raw and processed image in the top and bottom boxes respectively.</p></td>
 </tr>
 </tbody>
