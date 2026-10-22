@@ -12,7 +12,7 @@ To determine the typical power output of the MV5753, we use the typical value of
 
 So what's a *cd*? It's a unit called the *candella* (or *candle*, used loosly). One *candela* is equal to a $\large \frac{lumen}{Steradian}$, where a *lumen* is a unit of power. However, the conversion factor between *lumens* and *Watts* is a function of the wavelength of the light being discussed. For historical reasons, light intensity was measured with the eyeball and recorded in $\large \frac{lumens}{Steradian}$ (basically they didn't have photodiodes way back when. Why they continue to use this unit is a mystery to me). So to convert between the *lumen* and the *Watt*, we need to know the response of the human eye. The French have a "standard eyeball" curve, shown below (it's reproduced from *the General Instrument Catalog of Optoelectronic Products (1980)*).
 
-![alt text](_manual_appendices/img/LLS102_LLS-Appendix-E-Interpreting-the-Data-Sheet-for-the-LED.gif)
+![alt text](/appendices/img/LLS102_LLS-Appendix-E-Interpreting-the-Data-Sheet-for-the-LED.gif)
 
 Here's a sample conversion. Say we're talking about the MV5020, which emits (the minimum according to the data sheet) of radiation at 660 *nm*. Looking at the "eyeball" curve, we see that at this wavelength, one *Watt* is equivalent to 41.4 *lumens*. So to express the power of the MV5020 in *lumens*, we just crank out the math:
 
