@@ -32,9 +32,9 @@ summary: "Using the Axiovert 200 microscope, preparing bead suspensions and onio
 </colgroup>
 <tbody>
 <tr class="odd">
-<td><img src="_manual_appendices/img/BMC_Station319_BMC-Experimental-Procedures.jpg" alt="BMC_Station319" />
+<td><img src="/appendices/img/BMC_Station319_BMC-Experimental-Procedures.jpg" alt="BMC_Station319" />
 <p>The BMC Station</p></td>
-<td><img src="_manual_appendices/img/Setup2_BMC-Experimental-Procedures.jpg" alt="Setup2" />
+<td><img src="/appendices/img/Setup2_BMC-Experimental-Procedures.jpg" alt="Setup2" />
 <p>Block Diagram</p></td>
 </tr>
 </tbody>
@@ -152,15 +152,15 @@ Now that we have a proper vial of viscous bead solution made up we need to trans
 </colgroup>
 <tbody>
 <tr class="odd">
-<td><img src="_manual_appendices/img/BIO_image14_BMC-Experimental-Procedures.jpg" alt="BIO_image14" />
+<td><img src="/appendices/img/BIO_image14_BMC-Experimental-Procedures.jpg" alt="BIO_image14" />
 <p>Place hand on position number (1) then gently tilt back top of microscope</p></td>
-<td><img src="_manual_appendices/img/BIO_image13_BMC-Experimental-Procedures.jpg" alt="BIO_image13" />
+<td><img src="/appendices/img/BIO_image13_BMC-Experimental-Procedures.jpg" alt="BIO_image13" />
 <p>Putting a Slide on the Microscope Stage</p></td>
 </tr>
 <tr class="even">
-<td><img src="_manual_appendices/img/BIO_image15_BMC-Experimental-Procedures.jpg" alt="BIO_image15" />
+<td><img src="/appendices/img/BIO_image15_BMC-Experimental-Procedures.jpg" alt="BIO_image15" />
 <p>Place microscope slide between the arrows shown above</p></td>
-<td><img src="_manual_appendices/img/BIO_image16_BMC-Experimental-Procedures.jpg" alt="BIO_image16" />
+<td><img src="/appendices/img/BIO_image16_BMC-Experimental-Procedures.jpg" alt="BIO_image16" />
 <p>Slide installed onto microscope stage</p></td>
 </tr>
 </tbody>
@@ -168,7 +168,7 @@ Now that we have a proper vial of viscous bead solution made up we need to trans
 
 <a id="schematic-axiovert-200"></a>
 
-![Microscope](_manual_appendices/img/Microscope_BMC-Experimental-Procedures.png)
+![Microscope](/appendices/img/Microscope_BMC-Experimental-Procedures.png)
 
 Schematic of Axiovert 200 Microscope
 
@@ -178,7 +178,7 @@ Microscope images look best when properly illuminated. The procedure developed b
 
 As shown in [Figure 4](#microscope-figures), there are two irises in the illumination path of the microscope. The one on top (closest to the light source) is called the field iris. The condenser iris is a little farther down. The adjustments for both irises are highlighted in [Figure 2](#microscope-figures). The condenser iris adjustment is located at the edge of the turret disk near the bottom of the condenser. You will adjust both of these irises to achieve the best image.
 
-![Condenser\_Tilt\_Back\_0771](_manual_appendices/img/Condenser_Tilt_Back_0771_BMC-Experimental-Procedures.jpg)
+![Condenser\_Tilt\_Back\_0771](/appendices/img/Condenser_Tilt_Back_0771_BMC-Experimental-Procedures.jpg)
 
 Figure 4: Picture of Field Iris, Condenser Turret, and Condenser Iris Adjustment
 
@@ -210,7 +210,7 @@ It is necessary to go through this adjustment procedure every time you change ob
 
 ## Adjusting the field and condenser irises
 
-![Iris](_manual_appendices/img/Iris_BMC-Experimental-Procedures.jpg)
+![Iris](/appendices/img/Iris_BMC-Experimental-Procedures.jpg)
 
 Fig. 5. Adjusting the irises
 
@@ -248,7 +248,7 @@ Do not skip this step. The microscope must be focused on a sample to properly se
 </colgroup>
 <tbody>
 <tr class="odd">
-<td><img src="_manual_appendices/img/Darkfield_BMC-Experimental-Procedures.jpg" alt="Darkfield" />
+<td><img src="/appendices/img/Darkfield_BMC-Experimental-Procedures.jpg" alt="Darkfield" />
 <p>Fig. 6. Principle of dark-field illumination. all the illuminating light is rejected, and light scattered by the sample is collected by the objective</p></td>
 </tr>
 </tbody>
@@ -265,7 +265,7 @@ Dark field illumination allows for observation of small particles under the micr
   - Adjust the condenser slightly up or down to obtain an even, dark background. If you properly set Köhler illumination, the required adjustment should be very small.
   - You should see something similar to [Fig. 7](#microscope-figures).
 
-![Test\_0\_frame\_18](_manual_appendices/img/Test_0_frame_18_BMC-Experimental-Procedures.gif)
+![Test\_0\_frame\_18](/appendices/img/Test_0_frame_18_BMC-Experimental-Procedures.gif)
 
 Figure 7: Darkfield image of single 100 nm diameter gold nanoparticles
 
@@ -332,13 +332,13 @@ This should conclude Part I of the experiment
 </colgroup>
 <tbody>
 <tr class="odd">
-<td><img src="_manual_appendices/img/Onioncellpicture1_BMC-Experimental-Procedures.jpg" alt="Onioncellpicture1" />
+<td><img src="/appendices/img/Onioncellpicture1_BMC-Experimental-Procedures.jpg" alt="Onioncellpicture1" />
 <p>Objective 3 (40X magnification) image of an onion cell. The red square is enlarged in the next picture. The onion's cells possess an interesting property which is that the particles tend to use the cell walls like highways, and tend to travel along these walls (although they will not solely be traveling down the cell walls</p>
-<p><img src="_manual_appendices/img/Onioncellpicture3_BMC-Experimental-Procedures.jpg" alt="Onioncellpicture3" /></p>
+<p><img src="/appendices/img/Onioncellpicture3_BMC-Experimental-Procedures.jpg" alt="Onioncellpicture3" /></p>
 <p>Objective 2 dark-field image of the onion cell. The intracellular particles are now white dots</p></td>
-<td><p><img src="_manual_appendices/img/Onioncellpicture2_BMC-Experimental-Procedures.jpg" alt="Onioncellpicture2" /></p>
+<td><p><img src="/appendices/img/Onioncellpicture2_BMC-Experimental-Procedures.jpg" alt="Onioncellpicture2" /></p>
 <p>Bright-field image magnified image. The red circles with arrows indicate the particles that are traveling down the cell wall</p>
-<p><img src="_manual_appendices/img/Onioncellpicture4_BMC-Experimental-Procedures.jpg" alt="Onioncellpicture4" /></p>
+<p><img src="/appendices/img/Onioncellpicture4_BMC-Experimental-Procedures.jpg" alt="Onioncellpicture4" /></p>
 <p>Dark-field zoomed-in image of the onion cell. The red circles with arrows indicate the particles (now appearing as bright white dots) that are traveling down the cell wall.</p></td>
 </tr>
 </tbody>
