@@ -85,7 +85,7 @@ This experiment is mostly qualitative. You're basically going look at the $\frac
 5.  Connect a cable to INPUT A of SR760. Grab the cable and place your thumb over the end. Hold on until the data have been taken.
 
 6.  Your data should look like ***Figure 1***. Does this follow a $\frac{1}{f^{\alpha}}$ spectrum? Note that the vertical axis is a log scale. Why does the spectrum seem to diverge at **f = 0 Hz?**  
-    ![LLSimage019](img/LLSimage019_IntroductiontoNoise.gif)
+    ![LLSimage019](_manual_appendices/img/LLSimage019_IntroductiontoNoise.gif)
 
     Figure 1
 
@@ -120,7 +120,7 @@ AC voltages from nearby electronics create stray capacitive effects. Careful des
 
 Estimate the minimum stray capacitance, $C_{min}$,needed to induce a 1 *m*V<sub>rms</sub> voltage across a 1 M$\Omega$ resistor from a 120 V<sub>rms</sub> power line (*f* = 60 Hz). *Hint: Use the model below:*
 
-![LLSimage022](img/LLSimage022_IntroductiontoNoise.gif)
+![LLSimage022](_manual_appendices/img/LLSimage022_IntroductiontoNoise.gif)
 
 Figure 2
 
@@ -168,12 +168,12 @@ This experiment is almost completely qualitative. You'll look at some Microphoni
 2.  Since you'll be providing the Microphonic action (i.e. shaking the cable), you probably won't need to look at the frequency spectrum above 100 Hz-unless you're a super-duper tambourine player. So set the SPAN to 97.5 Hz using the ***Interface*** program. Also turn LINEAR AVERAGING off, if it is on (you'll want to track the happenings in real time, as the frequency of your shaking will probably vary a little).
 
 3.  Hook up a coaxial cable to INPUT A and let it cable hang still. Using the ***Interface*** program, take a set of data points. Look at the spectrum. You should see something as in ***Figure 3***. Note the $\frac{1}{f}$ and capacitive noise. Include a copy of these data in your lab write-up.  
-    ![LLSimage025](img/LLSimage025_IntroductiontoNoise.gif)
+    ![LLSimage025](_manual_appendices/img/LLSimage025_IntroductiontoNoise.gif)
 
     Figure 3: Without Shaking the Cable
 
 4.  Now shake the cable at a semi-constant frequency (*Note: you don't have to go crazy. You're not trying to kill snakes or anything. Just shake it gently*). **Comment on what happens on the FFT screen.** Using the ***Interface*** program, take a set of data while shaking the cable. Your data should look something like ***Figure 4***.  
-    ![LLSimage026](img/LLSimage026_IntroductiontoNoise.gif)
+    ![LLSimage026](_manual_appendices/img/LLSimage026_IntroductiontoNoise.gif)
 
     Figure 4: Shaking the Cable
 
@@ -272,7 +272,7 @@ In this experiment, you will use the SR830 Lock-In to measure Johnson noise and 
     2.  **Some of your data are zero**. Perhaps you need to reduce the TOTAL NUMBER OF DATA POINTS below 1200.
 
     3.  **The data look very "spiky". WHY IS THIS A PROBLEM (this is a question for you to answer)?** The SAMPLE RATE is probably too low. Increase it. Your data should look rather rounded and contain as many "periods" as possible. See ***Figure 5.***  
-        ![LLSimage040](img/LLSimage040_IntroductiontoNoise.gif)
+        ![LLSimage040](_manual_appendices/img/LLSimage040_IntroductiontoNoise.gif)
 
         Figure 5: The data aren't "spiky" and have quite a few "periods"
 
