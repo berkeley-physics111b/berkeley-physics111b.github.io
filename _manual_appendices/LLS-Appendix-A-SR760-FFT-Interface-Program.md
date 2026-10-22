@@ -18,7 +18,7 @@ summary: "Guide to the controls and displays of the LowLight SR760 FFT interface
 
 # Appendix A: Instructions for LowLight SR760 FFT Interface Program
 
-![alt text](img/LLS65_LLS-Appendix-A-SR760-FFT-Interface-Program.jpg)
+![alt text](_manual_appendices/img/LLS65_LLS-Appendix-A-SR760-FFT-Interface-Program.jpg)
 
 Shown above is a screen capture of the SR760 Interface Program. Following are descriptions of the various controls and displays grouped according to their location on the front panel.
 
