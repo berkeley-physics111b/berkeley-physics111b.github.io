@@ -10,7 +10,7 @@ Proof of the Van Der Pauw Theorem
 
 Let a sample be infinite in all directions. Then apply a current 2*i* to a point M (see figure A1).
 
-![Sheimage104](img/Sheimage104_SHE-Van-Der-Pauw-Theorem.gif)
+![Sheimage104](_manual_appendices/img/Sheimage104_SHE-Van-Der-Pauw-Theorem.gif)
 
 **Figure A-1: infinite sample with a point M**
 
@@ -26,13 +26,13 @@ The potential difference between any two point O and P lying on a straight line 
 
 $V_P-V_O=\int_{P}^O E\cdot dr=\frac{\rho i}{\pi d}\int_{O}^P\frac{dr}{r}=-\frac{\rho i}{\pi d}ln(\frac{a+b+c}{a+b})$ (A-3)
 
-![Sheimage108](img/Sheimage108_SHE-Van-Der-Pauw-Theorem.gif)
+![Sheimage108](_manual_appendices/img/Sheimage108_SHE-Van-Der-Pauw-Theorem.gif)
 
 **Figure A-2: Current applied to sample points on a line**
 
 No current flows perpendicular to the line MOP. Therefore, the result is also valid if a part of the sample at one side of this line is omitted yielding a haft plane. Also halve the current from 2*i* to *i* (Figure A-3):
 
-![Sheimage109](img/Sheimage109_SHE-Van-Der-Pauw-Theorem.gif)
+![Sheimage109](_manual_appendices/img/Sheimage109_SHE-Van-Der-Pauw-Theorem.gif)
 
 **Figure A-3: Semi-infinite sample with half the current applied**
 
@@ -44,7 +44,7 @@ or
 
 $\frac{(a+b+c)b}{(a+b)(b+c)}=exp(\frac{-\pi d}{\rho}R_{MN,OP})$ (A-5)
 
-![Sheimage112](img/Sheimage112_SHE-Van-Der-Pauw-Theorem.gif)
+![Sheimage112](_manual_appendices/img/Sheimage112_SHE-Van-Der-Pauw-Theorem.gif)
 
 **Figure A-4: A sample with four points on a line**
 
