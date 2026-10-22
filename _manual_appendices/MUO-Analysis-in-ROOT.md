@@ -8,7 +8,7 @@ Here we give some examples for how to analyze the Muon Decay data in ROOT. ROOT 
 
 ## Calibration Analysis
 
-Here is a sample macro to process the calibration data (see [MUO- Calibration of Electronics](http://experimentationlab.berkeley.edu/MUO)). You can save the code into an ascii file (e.g. muCalibRaw.C) and execute it with .x muCalibRaw.C . Or, cut-n-paste commands between {} brackets into the ROOT command-line prompt.
+Here is a sample macro to process the calibration data (see [MUO- Calibration of Electronics](https://berkeley-physics111b.github.io/MUO)). You can save the code into an ascii file (e.g. muCalibRaw.C) and execute it with .x muCalibRaw.C . Or, cut-n-paste commands between {} brackets into the ROOT command-line prompt.
 
     //
     // Sample ROOT macro to analyze the time calibration data
@@ -48,7 +48,7 @@ Here is a sample macro to process the calibration data (see [MUO- Calibration of
 
 Graphical output of this macro is shown below. The last plot shows the exponential fit to the dt distribution.
 
-![MUO\_muCalibRaw\_c1](_manual_appendices/img/MUO_muCalibRaw_c1_MUO-Analysis-in-ROOT.gif)![MUO\_muCalibRaw\_c2](_manual_appendices/img/MUO_muCalibRaw_c2_MUO-Analysis-in-ROOT.gif)![MUO\_muCalibRaw\_c3](_manual_appendices/img/MUO_muCalibRaw_c3_MUO-Analysis-in-ROOT.gif)
+![MUO\_muCalibRaw\_c1](img/MUO_muCalibRaw_c1_MUO-Analysis-in-ROOT.gif)![MUO\_muCalibRaw\_c2](img/MUO_muCalibRaw_c2_MUO-Analysis-in-ROOT.gif)![MUO\_muCalibRaw\_c3](img/MUO_muCalibRaw_c3_MUO-Analysis-in-ROOT.gif)
 
 ## Muon Data Analysis
 
@@ -123,4 +123,4 @@ Here is a sample macro to analyze the raw muon decay data. You can save the code
 
     }
 
-![MUO\_muAnalysisRaw\_c1](_manual_appendices/img/MUO_muAnalysisRaw_c1_MUO-Analysis-in-ROOT.gif)![MUO\_muAnalysisRaw\_c2](_manual_appendices/img/MUO_muAnalysisRaw_c2_MUO-Analysis-in-ROOT.gif)![MUO\_muAnalysisRaw\_c3](_manual_appendices/img/MUO_muAnalysisRaw_c3_MUO-Analysis-in-ROOT.gif)![MUO\_muAnalysisRaw\_c4](_manual_appendices/img/MUO_muAnalysisRaw_c4_MUO-Analysis-in-ROOT.gif)
+![MUO\_muAnalysisRaw\_c1](img/MUO_muAnalysisRaw_c1_MUO-Analysis-in-ROOT.gif)![MUO\_muAnalysisRaw\_c2](img/MUO_muAnalysisRaw_c2_MUO-Analysis-in-ROOT.gif)![MUO\_muAnalysisRaw\_c3](img/MUO_muAnalysisRaw_c3_MUO-Analysis-in-ROOT.gif)![MUO\_muAnalysisRaw\_c4](img/MUO_muAnalysisRaw_c4_MUO-Analysis-in-ROOT.gif)
