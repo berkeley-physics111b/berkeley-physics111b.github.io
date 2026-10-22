@@ -264,7 +264,7 @@ Displacement Squared vs. Time with a linear fit superimposed. Note the roughly l
 
 One generally obtains this fit through Linear Least Squares. One should beware however that most canned linfit algorithms fit to two parameters, the slope and a y-intercept while in our case the y-intercept should be set to zero (we certainly start at zero displacement). This added two-parameter freedom can upset our results and so ideally we want to perform a modified linear least squares which allows for only freedom in the slope. Linear Least Squares is fairly easy to understand with a good background in linear algebra. A good explanation of how it works can be found here [\[1\]](http://en.wikipedia.org/wiki/Linear_least_squares) \[Linear Least Squares\] also see the
 
-[MatLab Fitting Scripts](http://experimentationlab.berkeley.edu/matlabfitting)
+[MatLab Fitting Scripts](https://berkeley-physics111b.github.io/matlabfitting)
 
 After performing the mathematical analysis one finds that to fit a data set x vs. y with just a slope (y-intercept = 0) the formula is as follows (note that boldface implies that these are vector quantities)
 
