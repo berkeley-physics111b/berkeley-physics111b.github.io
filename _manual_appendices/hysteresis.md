@@ -4,7 +4,7 @@ order: 1
 summary: "Magnetic domains, domain walls and the hysteresis loop in ferromagnetic materials."
 ---
 
-**This article is referenced by multiple labs, including [Hall Effect in a Plasma](http://experimentationlab.berkeley.edu/HAL), [Beta Ray Spectroscopy](http://experimentationlab.berkeley.edu/BRA), and [Hall Effect in Semiconductor.](http://experimentationlab.berkeley.edu/SHE)**
+**This article is referenced by multiple labs, including [Hall Effect in a Plasma](https://berkeley-physics111b.github.io/HAL), [Beta Ray Spectroscopy](https://berkeley-physics111b.github.io/BRA), and [Hall Effect in Semiconductor.](https://berkeley-physics111b.github.io/SHE)**
 
 In ferromagnetic materials, microscopic regions are separated into into domains. Within each domain, all the atoms have their magnetic moments aligned in one direction. Adjacent domains have their magnetic moments pointing in random directions with respect to their neighboring domains . A large scale sum of their magnetic moments is nearly zero, and the material produces only a small external macroscopic magnetic field.
 
@@ -14,4 +14,4 @@ The degree of magnetization as measured by the size of the domains is non-linear
 
 The typical but exaggerated hysteresis behavior of a ferromagnetic material is shown in the figure below, where the magnetic induction **B** is plotted vs. the magnetic field intensity **H**, which is directly proportional to the current in the surrounding coil. The horizontal axis could equally well be labeled \`\`I" instead of \`\`H". The "0" is the non-magnetized or demagnetized state (B=0, I=0) which can be reached by applying an alternating current and slowly reducing its amplitude to zero. As the current increases from the demagnetized state, the B value lags behind what one might expect and follows the curve to (a') and toward saturation at (a). With large variations in I, the behavior follows a major loop (abcdefa...); while for small variations in I, the behavior follows a minor loop (a'b'c'd'e'f'a'...) or (a'b'a'...) if the current I never becomes negative. Certain points of a hysteresis loop have names: B<sub>r</sub> is the *remanent value* at I = 0 after the material is saturated at (a.) H<sub>c</sub> is the *coercive field* or the *coercivity* ( i.e. the H or I required to reduce B to zero).
 
-![HALimage01](_manual_appendices/img/HALimage01_hysteresis.gif)
+![HALimage01](img/HALimage01_hysteresis.gif)
