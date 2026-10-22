@@ -25,7 +25,7 @@ LabView is a graphical programming environment designed to facilitate lab-instru
 
 Most of the non-linear circuits you will examine in this lab are driven, so the computer is set up to modify a driving voltage, by using its DAC to attenuate a function-generator, and measure the circuit's response (see Figure 11). Because you won't be starting with the real systems, the details of the equipment and connections are deferred to section 4.5, where they should make more sense.
 
-![Nldimage066](img/Nldimage066_NLD-Experiment-and-Procedure.gif) **Figure 11:** *Simplified block diagram.*
+![Nldimage066](_manual_appendices/img/Nldimage066_NLD-Experiment-and-Procedure.gif) **Figure 11:** *Simplified block diagram.*
 
 # Procedures
 
@@ -45,7 +45,7 @@ Before starting LabView, create a directory for yourself under C:/USERS/(your di
 
 Once you're ready to begin, start LabView from the Windows Start menu. Your first assignment is to make a simple VI. Investigate sampling by putting a *waveform graph* and a *waveform chart* on the front panel. These are located under **Functions-**F which can be accessed by right clicking in an exmpty space in "Block Diagram".(in the same way the **Controls** can be accessed by right clicking in an empty space in "Front Panel".
 
-![Nldimage067](img/Nldimage067_NLD-Experiment-and-Procedure.jpg) **Figure 12:** *Pop-up help while inserting VI components.*
+![Nldimage067](_manual_appendices/img/Nldimage067_NLD-Experiment-and-Procedure.jpg) **Figure 12:** *Pop-up help while inserting VI components.*
 
 Find out what the difference is so that you will know which one to use. Then put: a *data-acquisition module*; a *power-spectrum module*; an *index array module*; and a *numerical constant* on the diagram. You'll find the *data-acquisition* *module,* which is called *AI Waveform Scan.vi*, located as in Figure 12. Here's where to find these modules:
 
@@ -57,7 +57,7 @@ Find out what the difference is so that you will know which one to use. Then put
 
 Notice that the index array module you found has one input which is black and does not match the one in Figure 13. To modify it, first right click on the "AI Wave" and go to select type change it to "Scaled Array". Then get the wire tool and wire up the Array input to the output of the AI Wave. The first input will change from black to outline after you add a constant to the second input of the Array. These changes are necessary because the "AI Wave" module spits out a 2-dimensional array of numbers including a column of voltage values and a column of indices, while we only want a 1-dimensional array of voltage values. Wire up the modules as shown in Figure 13. What module is missing? where should it be wired to? One of the \[DBL\]'s will turn into a \[SGL\] after you make some connections. Make sure you know which inputs and outputs to connect on the modules.
 
-![PowerSpectrumvi](img/PowerSpectrumvi_NLD-Experiment-and-Procedure.png) **Figure 13:** *Connections for the simple sampling VI that you will make.*
+![PowerSpectrumvi](_manual_appendices/img/PowerSpectrumvi_NLD-Experiment-and-Procedure.png) **Figure 13:** *Connections for the simple sampling VI that you will make.*
 
 The module labeled "AI WAVE" samples the voltage signal connected to the computer at a fixed rate (default 1kHz), and returns an array of numbers that represent the voltage levels at successive intervals. That is, if the sample rate is $f_s$, then the sample period $\tau=1/f_s$, and the AI WAVE VI returns an array that is $\{V(0),V(\tau),V(2\tau),\ldots,V((n-1)\tau)\}$, where n is the number of points.
 
@@ -67,7 +67,7 @@ Your two graphs should display the time-series of the signal (it should look lik
 
 The Fourier transform of a sine wave is a delta-function (loosely speaking, a peak). To better see the harmonic content, set the Y axis of the DFT graph to a logarithmic scale, accomplished by right-clicking on the graph in edit mode and selecting y-axis formatting. Why do you see *two* peaks in the DFT and not one? Now change the frequency. Vary it between 100 and 10,000 Hz. See if you can explain what's happening.
 
-![Nldimage069](img/Nldimage069_NLD-Experiment-and-Procedure.gif)
+![Nldimage069](_manual_appendices/img/Nldimage069_NLD-Experiment-and-Procedure.gif)
 
 **Figure 14:** *The graph-axes tool-palette*
 
@@ -83,13 +83,13 @@ Multi-dimensional differential equations are hard to study. If they are insolubl
 
 To familiarize yourself with 1-d maps, you will write a "cob-web" analyzer VI that shows the progress of iterations of the quadratic map (See Figure 15). Be sure to at least glance at §10.2 Ref. 1, to get an idea of what's going on.
 
-![Nldimage070](img/Nldimage070_NLD-Experiment-and-Procedure.jpg) **Figure 15:** *Cob web analyzer shows the effect of repeatedly applying the quadratic map to the initial value x=0.94. It settles into a fixed point at about x=0.65*
+![Nldimage070](_manual_appendices/img/Nldimage070_NLD-Experiment-and-Procedure.jpg) **Figure 15:** *Cob web analyzer shows the effect of repeatedly applying the quadratic map to the initial value x=0.94. It settles into a fixed point at about x=0.65*
 
 The graph displays three plots. The downward parabola is the quadratic map $f(x)=rx(1-x)$. The straight line is *g(x) = x*, and the stair-step or "cobweb" is the effect of successively applying the quadratic map to the initial point, x =0.94 . The recipe for producing the cobweb is as follows: Begin with the initial point $x_0$, follow a vertical line up to $f(x_0)$, follow a horizontal line over to the line y =x, you are now at the x-coordinate $f(x_0)$, proceed vertically to the graph of the quadratic map. You are now at the y-coordinate $f(f(x_0))$ Each time you move vertically to *f*, you have performed a further iteration of the map. Continuing in this way you can explore the long-term behavior of the map as you vary the initial condition and the chaotic parameter.
 
 Making this VI yourself will teach you about arrays, or lists of numbers, in LabView. If you haven't programmed in a computer language before, you should know that each number in an array is indexed starting from 0 to N-1. Here's the part of the cobweb VI that produces the graphs of *f* and *g* (Figure 16).
 
-![Nldimage082](img/Nldimage082_NLD-Experiment-and-Procedure.gif) **Figure 16: Section of the cob web VI**
+![Nldimage082](_manual_appendices/img/Nldimage082_NLD-Experiment-and-Procedure.gif) **Figure 16: Section of the cob web VI**
 
 The big square is a for-loop that gets executed 100 times (the constant 100 wired to N). Each time through the loop the variable *i* increases by 1 (*i* starts at zero and goes through *(N-1)*). The quotient $\frac{i}{N}$ is calculated and assembled into an array, which we shall call $x_i$, at the right border of the loop. The function $f(x_i)$ is computed and also accumulated. The array is accumulated by means of the "indexing" feature at the border of the loop. Whenever you connect a wire from the inside to the outside of a loop a border node is formed to control how the data flows. Pop-up on the node to enable "indexing" and the result of each iteration will be assembled into an array. Leave indexing off and only the single number that was calculated last will be passed on.
 
@@ -121,7 +121,7 @@ Sensitive dependence on initial conditions is one of the defining features of ch
 
 As previously mentioned, the Liapunov exponents of multi-dimensional systems are the average eigenvalues of the Jacobian matrix of the system (see also Theiler eq's 4-7). So rather than solving an eigenvalue problem on a multi-dimensional system, it's easier to start with a one-dimensional map. The Liapunov exponent for a 1-d map is given by (Ref. 1, p367). Following example 10.5.3 in Ref. 1, write a VI to calculate the Liapunov exponent of the quadratic map as a function of its chaotic parameter . You will probably find it useful to know that the inputs to LabView's arithmetic operators are *polymorphic*. For example you can wire an array and a constant to the "add" function and the result is a new array whose elements are the old array with the constant added to each of them. Most of the math functions work this way for instance the log function can take an array of numbers and produce an array of logarithms of the numbers (see Figure 17). You will make use of quad.vi again.
 
-![Nldimage106](img/Nldimage106_NLD-Experiment-and-Procedure.gif) **Figure 17:** *LabView functions can take arrays as inputs, producing arrays of results.* ![Nldimage107](img/Nldimage107_NLD-Experiment-and-Procedure.gif) **Figure 18:** *Liapunov exponent VI.*
+![Nldimage106](_manual_appendices/img/Nldimage106_NLD-Experiment-and-Procedure.gif) **Figure 17:** *LabView functions can take arrays as inputs, producing arrays of results.* ![Nldimage107](_manual_appendices/img/Nldimage107_NLD-Experiment-and-Procedure.gif) **Figure 18:** *Liapunov exponent VI.*
 
 The front panel of your finished VI should look something like Figure 18. After you look at the algorithm in Ref. 1, make another block diagram of what you'll want to do and then try it in LabView. You'll probably find a FOR loop helpful. If you find yourself spending more than an hour or so on it, you should look at the solution in the appendix. When you have your working VI, explore the area around r=3.57 especially. What happens when λ---\>0 Use your observations to approximate Feigenbaum's ratio δ. Ref.1 suggests 10,000 iterations, but this is a bit excessive, not to mention time consuming. Make sure to have lots of different values for r, the chaotic parameter. Experiment to see what gives you good graphs.
 
@@ -129,7 +129,7 @@ The front panel of your finished VI should look something like Figure 18. After 
 
 Before proceeding to real-time NLD systems, you will take some time to run the simulation VI, NLSIM.VI. Open NLSIM.VI. This VI (Figure19) allows you to display the time-series, return-map and power spectrum of a variety of signals. As in all the VI's, press control-H and move the mouse pointer over the elements of the screen to get specific information on how to use the program.
 
-![Nldimage109](img/Nldimage109_NLD-Experiment-and-Procedure.gif) **Figure 19:** *The simulation VI.*
+![Nldimage109](_manual_appendices/img/Nldimage109_NLD-Experiment-and-Procedure.gif) **Figure 19:** *The simulation VI.*
 
 Start the VI, select the cosine function, and focus your attention to the return map. Many dynamical systems are described by a cosine function, for example the simple harmonic oscillator of a mass on a spring: $x(t)=A\cos {(\sqrt{\frac{\kappa}{m}}t)}$. What are the axes of the phase space of this system? What is the shape of the paths in phase space for this system? Is it similar to what you see in the return map? What effect does changing the sample rate have on the shape of the trajectory? When you increase the sample rate, why does the return map narrow around the line y=x? What happens if the sample rate is a multiple of the frequency of the cosine? Now try the function $\cos {(\omega_1t)}+\cos {(\omega_2t)}+a\cos {(\omega_1t)}\cos {(\omega_2t)}$. The return map for this function is more complicated: When *a* is zero, it's a two-dimensional uncoupled harmonic oscillator and its trajectories are confined to a torus in phase space (c.f. Ref. 1, §8.6). What conditions are necessary for the return-map to show a projection of a torus and not a cycloid? Be sure to explain what you're seeing in the Time Domain and Frequency Domain. Is it chaotic?
 
@@ -141,11 +141,11 @@ Take a look at the Henon Map. Play with the non-linear parameter between 0 and a
 
 Now we're ready to proceed to real-time continuous systems. At present there are two driven NLD systems at the experiment station: The bouncing ball circuit and the PN-junction. For both these driven systems, the basic set-up is the same: The computer controls the driving amplitude and measures the system's response. Both circuits, as well as most of the supporting electronics are located behind the large panel marked "Nonlinear Dynamics Laboratory."(see fig. 20)
 
-![Nldimage115](img/Nldimage115_NLD-Experiment-and-Procedure.gif) **Figure 20:** *The Physics 111-Lab Nonlinear Dynamics Laboratory Panel.*
+![Nldimage115](_manual_appendices/img/Nldimage115_NLD-Experiment-and-Procedure.gif) **Figure 20:** *The Physics 111-Lab Nonlinear Dynamics Laboratory Panel.*
 
 The drive oscillator is an Stanford Research System Model DS345. It is fed into the external reference pin $\large V_{ref}$ of the DAC on the computer. Recall from your basic electronics experience that when you set a DAC to a specific level, e.g. *j* out of a maximum of *N*, the DAC outputs a voltage equal to $\large V_{DAC}=V_{ref}\frac {j}{N}$. Thus, if $\large V_{ref}$ is a sine-wave varying in time, the DAC outputs a sine wave of attenuated amplitude. The computer modified sine-wave is then fed to the NLD system under study. The NLD system's response is sent to the ADC input of the computer where it can be sampled either synchronously or asynchronously with respect to the driving frequency. When sampling is performed asynchronously, an internal timebase (not shown) is used. Synchronous sampling is achieved by a "strober," which sends TTL pulses to the EXTERNAL TRIGGER pin of the ADC whenever the drive signal achieves a certain phase (adjustable as "Pulse delay" on the NLD box) in its cycle. The sine-wave is also connected (via the square-wave converter on the NLD box) to the computer's timer pin (labeled GATE0) for computer measurement of the drive frequency.
 
-![Nldimage120](img/Nldimage120_NLD-Experiment-and-Procedure.png) **Figure 21:** *Connecting the scope to see the phase portrait of the PN-junction.*
+![Nldimage120](_manual_appendices/img/Nldimage120_NLD-Experiment-and-Procedure.png) **Figure 21:** *Connecting the scope to see the phase portrait of the PN-junction.*
 
 Turn on the system with the switch located at the top of the rack.
 
@@ -165,7 +165,7 @@ The scope highlights sections of the plot according to the STROBE PHASE CONTROLL
 
 Now let's include the computer. All of the connections to the computer are made through a single box, called the *Computer Interface Box* (*fig. 22*).
 
-![Nldimage126](img/Nldimage126_NLD-Experiment-and-Procedure.gif) **Figure 22:** *The connections on the computer interface box*
+![Nldimage126](_manual_appendices/img/Nldimage126_NLD-Experiment-and-Procedure.gif) **Figure 22:** *The connections on the computer interface box*
 
 Disconnect the SRS DS345 from V<sub>in</sub> and make the following connections, in addition to looking at figure 23.
 
@@ -177,11 +177,11 @@ Disconnect the SRS DS345 from V<sub>in</sub> and make the following connections,
   - "SINE INPUT" switch set to --------------------------------Off
   - set the switch below AUX in/out to "INT"
 
-![Nldimage127](img/Nldimage127_NLD-Experiment-and-Procedure.png) **Figure 23:** *Connections for computer sampling of the PN-junction.*
+![Nldimage127](_manual_appendices/img/Nldimage127_NLD-Experiment-and-Procedure.png) **Figure 23:** *Connections for computer sampling of the PN-junction.*
 
 Start LabView and load NLDGEN. You should see a display similar to Figure 24.
 
-![Nldimage128](img/Nldimage128_NLD-Experiment-and-Procedure.gif) **Figure 24:** *NLDGEN.VI (similar to pnjunc1.vi)- For sampling real-time driven NLD systems*
+![Nldimage128](_manual_appendices/img/Nldimage128_NLD-Experiment-and-Procedure.gif) **Figure 24:** *NLDGEN.VI (similar to pnjunc1.vi)- For sampling real-time driven NLD systems*
 
 This VI controls the drive amplitude, collects a sample of data points, and presents three different views of the response: a time-series, Fourier power spectrum, and return-map. We suggest you use \~30kHz for the sampling rate. The more points you take in your sample, the better your DFT resolution will be, but the longer the computer will take to calculate and display. So to start, select 256 points. **You should make sure that the product of "Number of points per value of V" and "\#" of points" does not exceed 2<sup>31</sup> - 1. ** Vary the drive amplitude and estimate Feigenbaum's ratio based on the system's bifurcation points. Compare the return map to the picture you see on the scope. There are two other features of this VI: You can save the data to a file, and send the data to a subroutine that calculates information dimension. We'll discuss these options later.
 
@@ -191,7 +191,7 @@ Before moving on, open up pnbifur.vi, which will allow you to view the bifurcati
 
 Let's now turn our attention to the bouncing ball circuit (BB).
 
-![Nldimage130](img/Nldimage130_NLD-Experiment-and-Procedure.png) **Figure 25:** *Connections for Bouncing Ball Circuit.*
+![Nldimage130](_manual_appendices/img/Nldimage130_NLD-Experiment-and-Procedure.png) **Figure 25:** *Connections for Bouncing Ball Circuit.*
 
   - Connect the SRS DS345 "FUNCTION" output to the "DRIVE IN" on the panel.
   - Connect BOUNCING BALL "OUT 1" to the Tek 2225 scope CH 1.
@@ -201,7 +201,7 @@ Set the DS345 to \~50Hz and \~15V peak-to-peak (just turn the knob to about half
 
 Now we're ready to hook up the computer. Make/check the following connections, referring to fig. 26:
 
-![Nldimage131](img/Nldimage131_NLD-Experiment-and-Procedure.png) **Figure 26:** *Connections for Bouncing Ball Circuit to the computer.*
+![Nldimage131](_manual_appendices/img/Nldimage131_NLD-Experiment-and-Procedure.png) **Figure 26:** *Connections for Bouncing Ball Circuit to the computer.*
 
   - Disconnect the PN-JUNCTION V<sub>in</sub> from COMPUTER DAC0
 
@@ -221,7 +221,7 @@ What is fundamentally different about the chaotic behavior of the bouncing ball 
 
 ## Information dimension
 
-![Nldimage133](img/Nldimage133_NLD-Experiment-and-Procedure.gif)
+![Nldimage133](_manual_appendices/img/Nldimage133_NLD-Experiment-and-Procedure.gif)
 
 **Figure 27:** *Data from the Quadratic map,* analyzed by the information-dimension VI.
 
