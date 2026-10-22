@@ -168,7 +168,7 @@ Now that we have a proper vial of viscous bead solution made up we need to trans
 
 <a id="schematic-axiovert-200"></a>
 
-![Microscope](img/Microscope_BMC-Experimental-Procedures.png)
+![Microscope](_manual_appendices/img/Microscope_BMC-Experimental-Procedures.png)
 
 Schematic of Axiovert 200 Microscope
 
@@ -178,7 +178,7 @@ Microscope images look best when properly illuminated. The procedure developed b
 
 As shown in [Figure 4](#microscope-figures), there are two irises in the illumination path of the microscope. The one on top (closest to the light source) is called the field iris. The condenser iris is a little farther down. The adjustments for both irises are highlighted in [Figure 2](#microscope-figures). The condenser iris adjustment is located at the edge of the turret disk near the bottom of the condenser. You will adjust both of these irises to achieve the best image.
 
-![Condenser\_Tilt\_Back\_0771](img/Condenser_Tilt_Back_0771_BMC-Experimental-Procedures.jpg)
+![Condenser\_Tilt\_Back\_0771](_manual_appendices/img/Condenser_Tilt_Back_0771_BMC-Experimental-Procedures.jpg)
 
 Figure 4: Picture of Field Iris, Condenser Turret, and Condenser Iris Adjustment
 
@@ -210,7 +210,7 @@ It is necessary to go through this adjustment procedure every time you change ob
 
 ## Adjusting the field and condenser irises
 
-![Iris](img/Iris_BMC-Experimental-Procedures.jpg)
+![Iris](_manual_appendices/img/Iris_BMC-Experimental-Procedures.jpg)
 
 Fig. 5. Adjusting the irises
 
@@ -265,7 +265,7 @@ Dark field illumination allows for observation of small particles under the micr
   - Adjust the condenser slightly up or down to obtain an even, dark background. If you properly set Köhler illumination, the required adjustment should be very small.
   - You should see something similar to [Fig. 7](#microscope-figures).
 
-![Test\_0\_frame\_18](img/Test_0_frame_18_BMC-Experimental-Procedures.gif)
+![Test\_0\_frame\_18](_manual_appendices/img/Test_0_frame_18_BMC-Experimental-Procedures.gif)
 
 Figure 7: Darkfield image of single 100 nm diameter gold nanoparticles
 
