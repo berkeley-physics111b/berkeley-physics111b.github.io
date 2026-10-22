@@ -158,7 +158,7 @@ Now you're going to learn to use the interface software for the Lock-In. You'll 
 7.  Press \[ START \] (The computer should start taking data).
 8.  A second or two after the program begins acquiring data, change the amplitude of the input sine wave to 0.02 V<sub>pp</sub>. To do this quickly, input the new value for the amplitude on the function generator before you start the run, but wait to press the units button (i.e. \[ Hz/V<sub>pp</sub>\] ) until you're ready (the function generator won't make any changes until everything's specified). The following figure shows what the output of the program might look like.
 
-![alt text](img/LLSimage013_IntroductiontoEquipment.jpg)
+![alt text](_manual_appendices/img/LLSimage013_IntroductiontoEquipment.jpg)
 
 1.  When the program has plotted the data, you may see a typical "RC" decay. **From the graph, determine the time constant of the lock-in.** Hint: using the cursor feature of the Interface program. To move the cursor, use the buttons that are in the shape of a rhombus.
     1.  Note: the data are plotted as a *(signal value)* vs. *(data point number)* and **not** *(signal value)* vs. *(time)*. However, it is easy to convert from a bin number to a time-each bin represents a time interval of $\frac{1}{Sample Rate}$.
