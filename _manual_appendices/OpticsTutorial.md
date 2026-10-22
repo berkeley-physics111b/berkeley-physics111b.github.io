@@ -48,25 +48,25 @@ We need a lens when we want to form an image of an object. Note: The correct si
 
 **Positive** lenses can form **real images**, as in a camera.
 
-![symbols for the different lenses](_manual_appendices/img/HOLimage009_OpticsTutorial.gif)
+![symbols for the different lenses](/appendices/img/HOLimage009_OpticsTutorial.gif)
 
 A lens has a **focal length**, which can be found by forming an image of a distant object, such as the sun, and measuring the distance from the lens to the image. The **focal plane** is a plane perpendicular to the axis and placed at the focal length away from the lens. Off axis objects are focused on the focal plane.
 
-![focal length of a lens](_manual_appendices/img/HOLimage010_OpticsTutorial.gif)
+![focal length of a lens](/appendices/img/HOLimage010_OpticsTutorial.gif)
 
 The ratio of the focal length to the diameter of the lens is a measure of how "fast" the lens is, which can be thought of as how much light the lens collects. For example, a lens 50 mm in diameter with a focal length of 250 mm is called an "f five lens", or to have an **f-number** of five, written f/5.
 
-![relationship between object and image](_manual_appendices/img/HOLimage011_OpticsTutorial.gif)
+![relationship between object and image](/appendices/img/HOLimage011_OpticsTutorial.gif)
 
 The relationship between focal length, **object distance** (*o*), and **image distance** (*i*) is given by 1/*o* + 1/*i* = 1/*f*. To form a real image, *o* must be greater than *f*. A real image is inverted, upside down, when compared to the object. The ratio of object size to image size is *i*/*o*. The smallest distance between object and image is 4*f* - four times the focal length.
 
 The quality of the image - how accurately it represents the object - depends on the type of lens and on its *f/*number. A simple single element lens suffers from **spherical aberration**. Light passing through the outer zone (near the outer edge) of the lens has a shorter focal length than light passing through the central zone or portion of the lens. As a consequence, the image is fuzzy when a large *f/*number **single element** lens is used to form an image.
 
-![spherical aberration](_manual_appendices/img/HOLimage012_OpticsTutorial.gif)
+![spherical aberration](/appendices/img/HOLimage012_OpticsTutorial.gif)
 
 A single element lens also suffers from **chromatic aberration**. Different colors of light have different focal lengths - blue the shortest, red the longest. Every image has a colored halo around it, although often it is not noticeable.
 
-![chromatic aberration](_manual_appendices/img/HOLimage013_OpticsTutorial.gif)
+![chromatic aberration](/appendices/img/HOLimage013_OpticsTutorial.gif)
 
 An **achromatic doublet** lens has two elements cemented together, one a positive lens and the other a negative lens. The chromatic aberration is almost completely corrected for, and at the same time spherical aberration is reduced nearly to zero. Whenever possible, use achromatic doublets.
 
@@ -76,7 +76,7 @@ The drawings illustrate how a lens might be used. Calculate in advance where a l
 
 Optically speaking, mirrors and lenses are interchangeable. Take any given positive lens, split it in half, coat the flat surface with a reflecting material, and you have the equivalent of a **concave mirror**. The focusing properties are the same, the equation 1/*o* + 1/*i* = 1/*f* is the same. The light path is the same except that it is folded. BUT, a mirror has spherical aberration, which is not easily correctible, and it has no chromatic aberration (an important advantage)
 
-![mirror](_manual_appendices/img/HOLimage014_OpticsTutorial.gif)
+![mirror](/appendices/img/HOLimage014_OpticsTutorial.gif)
 
 ## Spectrometers
 
@@ -84,11 +84,11 @@ A spectrometer is used to discover what frequencies or wavelengths are present i
 
 For example, white light incident on a prism is dispersed at different angles according to the wavelengths present in the radiation, as illustrated. A single ray is deviated according to wavenumber, with red deviated the least and violet the most in the visible spectrum.
 
-![dispersion of light by a prism](_manual_appendices/img/HOLimage015_OpticsTutorial.gif)
+![dispersion of light by a prism](/appendices/img/HOLimage015_OpticsTutorial.gif)
 
 When a wavefront rather than a ray is incident on the prism, the dispersed wavefronts overlap, so an optical system is necessary to separate the dispersed wavenumbers. A useful optical system has an entrance slit, and forms an image of this slit at the output, where we can put a photographic film or a scanning detector.
 
-![optical system with a prism](_manual_appendices/img/HOLimage016_OpticsTutorial.gif)
+![optical system with a prism](/appendices/img/HOLimage016_OpticsTutorial.gif)
 
 For a very small entrance slit, the width of the exit slit (the image of the entrance slit) is dependent on the width of the wavefront rather than on the width of the slit, because of diffraction. It's like a single slit diffraction pattern, where the angular half-width of the pattern is given by $ \sin{\theta}=\frac{d}{\lambda} $. The physical width of the diffraction pattern of the slit is given by $ f \cdot \theta $.
 
@@ -102,13 +102,13 @@ In several of our 111 laboratory experiments we need to disperse a beam of light
 
 The grating disperses the light according to wavelength, with red light dispersed the most and violet the least. The **grating equation** is $ m\cdot\lambda=d\cdot\sin{\theta} $. We customarily use gratings in the first order.
 
-![beam path of a diffraction grating](_manual_appendices/img/HOLimage017_OpticsTutorial.gif)
+![beam path of a diffraction grating](/appendices/img/HOLimage017_OpticsTutorial.gif)
 
 When a diffraction grating is placed in the system shown, the central image of the slit (*m* = 0 at $ \theta $ = 0) remains unchanged from the "no grating" condition, but now other slit images are formed at angles corresponding to different wavelengths of light according to the grating equation.
 
 We assume you learned about diffraction gratings in Physics 7. To refresh your memory and increase your knowledge and understanding, refer to Jenkins and White, *Fundamentals of Optics*. However, most gratings are reflection rather than transmission gratings. The optical system is shown below. Remember that mirrors are like lenses except that they fold the light path.
 
-![transmission and reflection gratings](_manual_appendices/img/HOLimage018_OpticsTutorial.gif)
+![transmission and reflection gratings](/appendices/img/HOLimage018_OpticsTutorial.gif)
 
 When analyzing a spectrum, we want to know what wavelengths are present and their relative intensities. The smallest wavelength separation we can observe is characterized by the **resolving power** *R*, which is written as $ R=\frac{\lambda}{\triangle\lambda}=mN=\frac{W\sin\theta}{\lambda} $. *N* is the number of grooves in the grating (width of grating $ W=N\times \mbox{groove spacing} $). A 3 cm wide grating with 600 grooves/mm when used at an angle of 10 degrees in the first order to view the green line of mercury at 546.1 nm has a resolving power of *R* = 90 000.
 
@@ -128,7 +128,7 @@ An interferometer takes the entire wavefront and splits off one or more copies o
 
 A **Michelson interferometer** splits the incoming wavefront into two wavefronts of equal amplitudes and then causes them to interfere.
 
-![Michelson interferometer](_manual_appendices/img/HOLimage019_OpticsTutorial.gif)
+![Michelson interferometer](/appendices/img/HOLimage019_OpticsTutorial.gif)
 
 With the optics as shown, the source can be of any size. The first lens can be omitted. At the image plane a series of rings is formed, each of a different order of interference given by $ m\lambda=2t\cos{\theta} $. At the center of the pattern $ m=\frac{2t}{\lambda} $, and m gets smaller as $ \theta $ gets larger (out from the center of the pattern). When one mirror is displaced or moved, the rings grow from the center when the path length is increased, and collapse into the center when the path is decreased. When the entrance aperture is circular and of a size to cover only one ring, the detector output is a cosine curve as the path difference is changed. This cosine-curve output, one for each frequency in the incoming light, is called the **interferogram**. To get the spectrum, the Fourier transform of the interferogram must be calculated. The resolving power is given by $ R=\frac{2t}{\lambda} $, and the resolution or resolving limit is given by 1/2t in cm<sup>-1</sup>. An interferometer with a mirror travel of 10 cm has a resolving limit of 0.05 cm<sup>-1</sup>, and a resolving power of 300 000 for a wavelength of about 700 nm.
 
@@ -138,7 +138,7 @@ With a laser as a source of light, there is no need for either of the lenses, si
 
 A **Fabry-Perot interferometer** consists of two plane-parallel reflecting surfaces spaced a distance $ t $ apart. Here, the wavefront is divided as in the Michelson interferometer, but into many wavefronts whose amplitudes are steadily decreasing with each division (due to reflection at the surfaces). Instead of a two-beam interference problem, there is an N-beam interference.
 
-![Fabry-Perot interferometer](_manual_appendices/img/HOLimage020_OpticsTutorial.gif)
+![Fabry-Perot interferometer](/appendices/img/HOLimage020_OpticsTutorial.gif)
 
 For example, when each plate has a reflectance of R = 0.9 (90% of the light is reflected, 10% transmitted), the effective number of interfering beams is N = 30. The resolving power is $ \frac{2Nt}{\lambda} $, which is N times the resolving power of a Michelson interferometer. For example, with a spacing of 1 cm and a reflectance of 0.9, a Fabry-Perot interferometer has a resolution for the mercury green line of 1 100 000, or a resolving limit of 0.017 cm<sup>-1</sup>.
 
