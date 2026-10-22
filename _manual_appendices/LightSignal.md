@@ -19,7 +19,7 @@ We are now ready to apply what we have learned. Our goal is to measure the light
 
 How should we go about taking such a measurement? We learned that if we can modulate our light source at a known frequency, we can use the SR830 Lock-In to recover any signal at that frequency. To do just this, we chop our light signal with a chopper wheel. In essence, we are turning our D.C. signal into an oscillating signal. In a typical setting, the chopper wheel slits are much larger than the light source-making a square wave. In this experiment, however, the chopper slits are just about the same size as the LED, so that we'll be stuck with something closer to a triangular wave. See **Figure 1**:
 
-![LLSimage044](_manual_appendices/img/LLSimage044_LightSignal.gif)
+![LLSimage044](/appendices/img/LLSimage044_LightSignal.gif)
 
 Figure 1
 
@@ -27,7 +27,7 @@ Using this technique, we can recover the LED signal even though there may be a l
 
 # Block Diagram I
 
-![LLSimage045](_manual_appendices/img/LLSimage045_LightSignal.gif)
+![LLSimage045](/appendices/img/LLSimage045_LightSignal.gif)
 
 Figure 2: Block Diagram 1
 
@@ -101,7 +101,7 @@ where C depends only on the power output of the LED, $\theta$ is the angle liste
 
 Shown in ***Figure 3*** is the actual radiation profile of the LED and the $\cos^2{\theta}$ approximation (as a function of the angle $\theta$). Note that using this approximation, we will be *overestimating* the actual power output of the diode, as the area contained in the approximate distribution is larger than that contained in the actual profile. **About how much of an error do you estimate that this approximation will introduce to our measurement?**
 
-![Figure 3](_manual_appendices/img/Diode_Distribution_LightSignal.png)
+![Figure 3](/appendices/img/Diode_Distribution_LightSignal.png)
 
 Now, we can find the exact form of C by noting that the total power output of the diode, P, satisfies
 
