@@ -15,7 +15,7 @@ summary: "Guide to the controls and displays of the LowLight SR830 lock-in inter
 
 # Instructions for LLS SR830 Lock-In Interface Program
 
-![alt text](_manual_appendices/img/LLS13_LLS-Appendix-B-SR830-Lock-In-Interface-Program.jpg)
+![alt text](/appendices/img/LLS13_LLS-Appendix-B-SR830-Lock-In-Interface-Program.jpg)
 
 Shown above is a screen capture of the SR830 Interface Program. Following are descriptions of the various controls and displays grouped according to their location on the front panel.
 
