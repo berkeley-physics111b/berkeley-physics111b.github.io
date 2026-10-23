@@ -385,7 +385,7 @@ The bias level of an image can be measured by taking dark frames with very short
 
 To collect dark frames, open the AmScope software on the desktop. Select the camera “MU043M‑FL.” Under “Capture \& Resolution,” adjust the exposure time and click “Snap” to acquire a single frame. Save each image as a \textit{.raw} file.
 
-Collect a stack of five dark frames at six different exposure times. For each image, examine the pixel-value distribution by flattening the array and plotting a histogram of the resulting values. Next, combine the five dark frames at each exposure time into a single master image. You may do this using NumPy arrays or \href{ https://ccdproc.readthedocs.io/en/latest/api/ccdproc.ImageFileCollection.html}{ccdproc ImageFileCollection}.
+Collect a stack of five dark frames at six different exposure times. For each image, examine the pixel-value distribution by flattening the array and plotting a histogram of the resulting values. Next, combine the five dark frames at each exposure time into a single master image. You may do this using NumPy arrays or \href{https://ccdproc.readthedocs.io/en/latest/api/ccdproc.ImageFileCollection.html}{ccdproc ImageFileCollection}.
 Then calculate the mean pixel value for each master image and plot these means as a function of exposure time. Also compute the mean signal and the error on the mean to estimate the bias level. Be sure to include some long exposures (10 seconds, 30 seconds), as the dark current in CMOS detectors is often very low.
 
 \emph{Note, if you have been running your camera for a while, it will heat up. Many detector properties are temperature dependent. Beware.} Investigate this effect using the provided temperature sensor (it is connected to a multimeter).
