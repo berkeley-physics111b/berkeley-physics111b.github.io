@@ -1,0 +1,12 @@
+Dry reed relay
+
+ W172DIP-21* Figure 16;  Contact configure=2 FORM C, DPDT     Coil Volts =5 or 6 Coil Ohms =46 
+   * with diode clamping internal
+
+W172DIP-31   Figure 9; Contact configure= 1 FORM C, SPDT Coil Volts= 5 or 6; Coil Ohms=200 
+
+
+
+
+
+
