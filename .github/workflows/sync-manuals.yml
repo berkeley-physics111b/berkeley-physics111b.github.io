@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       acronyms:
-        description: "Acronyms to sync, comma or space separated (e.g. ABC, DEF, GHI)"
+        description: "Acronyms to sync, comma or space separated (e.g. ABC, DEF, GHI), or ALL"
         required: true
         type: string
 
@@ -49,6 +49,15 @@ jobs:
           mkdir -p _release
           tag=$(gh release view --repo "$SOURCE_REPO" --json tagName -q .tagName)
           echo "tag=$tag" >> "$GITHUB_OUTPUT"
+
+          # Expand ALL into every XYZ.pdf in the release (skips *_Signatures.pdf)
+          if [ "$(echo "$ACRONYMS" | tr -d '[:space:]' | tr '[:lower:]' '[:upper:]')" = "ALL" ]; then
+            ACRONYMS=$(gh release view "$tag" --repo "$SOURCE_REPO" --json assets -q '.assets[].name' \
+              | grep -E '^[A-Za-z0-9]+\.pdf$' | sed 's/\.pdf$//' | tr '\n' ' ')
+            echo "ALL resolved to: $ACRONYMS"
+          fi
+          echo "acronyms=$ACRONYMS" >> "$GITHUB_OUTPUT"
+
           args=()
           for a in $(echo "$ACRONYMS" | tr ',' ' ' | tr '[:lower:]' '[:upper:]'); do
             args+=(--pattern "${a}.pdf" --pattern "${a}_Signatures.pdf")
@@ -58,7 +67,7 @@ jobs:
 
       - name: Copy files and update manuals.yml
         env:
-          ACRONYMS: ${{ inputs.acronyms }}
+          ACRONYMS: ${{ steps.release.outputs.acronyms }}
           SOURCE_DIR: _source
           RELEASE_DIR: _release
           RELEASE_TAG: ${{ steps.release.outputs.tag }}
