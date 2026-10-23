@@ -1,0 +1,1027 @@
+\documentclass{../lab}
+\usepackage{sidecap}
+\usepackage{amssymb}
+\usepackage{comment}
+\usepackage{changepage}
+\usepackage{physics}
+\usepackage{listings}
+\usepackage{verbatim}
+\usepackage{textcomp}
+
+\labacronym{QIP}
+\labtitle{Quantum Information Processing with the IBM Quantum Experience}
+
+\newcommand{\Ca}{\ensuremath{^{40}{\rm Ca}^+\,}}
+\newcommand{\twopi}{\ensuremath{2\pi \times}}
+
+\newcommand{\murm}{%
+  \ifmmode
+    \mathchoice
+        {\hbox{\normalsize\textmu}}
+        {\hbox{\normalsize\textmu}}
+        {\hbox{\scriptsize\textmu}}
+        {\hbox{\tiny\textmu}}%
+  \else
+    \textmu
+  \fi
+}
+\newcommand{\micrometer}{\murm{\rm m}\xspace}
+\newcommand{\microsecond}{\murm{\rm s}\xspace}
+% \newcommand{\url}[1]{}
+% \newcommand{\urlprefix}{}
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+
+\section{Quantum Information Processing with the IBM Quantum Experience Description}
+
+\begin{itemize}
+    \item Pre-requisites: Physics 137A
+    \item Programming experience in Python is highly recommended
+
+    \item Days Allotted for the Experiment: 6
+
+\end{itemize}
+
+\textbf{Not that it is relevant, but: There is absolutely NO eating or drinking in the 111-Lab anywhere, except in rooms 282 \& 286 LeConte on the bench with the BLUE stripe around it.} Thank You, the Staff.
+
+This lab will be graded ??\% on theory, ??\% on technique, and ??\% on analysis.
+
+Comments: E-mail \href{\MailWinWilliams}{\textbf{Winthrop Williams}}
+
+
+\section{Quantum Information with the IBM Quantum Experience Pictures}
+
+\section{Before the 1st Day of Lab}
+
+\signatures \hyperlink{???}{1} \hyperlink{???}{2} \hyperlink{???}{3} \hyperlink{???}{4} \hyperlink{???}{5} 
+
+\begin{enumerate}
+    \item Read the references \cite{Knill2002}, ...???? 
+    
+    \item Go to the \href{https://quantum-computing.ibm.com/}{website} of the IBM quantum experience. Familiarize yourself with the environment and get an account.
+    \item Install python3 including qiskit, numpy and matplotlib. In addition, install jupyter notebook on your computer. You will need this software to access and program the IBM quantum experience. If you have trouble with installing or accessing any of these tools, please contact the teaching staff.
+    \item Last day of the experiment please fill out the QIP  \href{\ExperimentEvaluation}{\textbf{Experiment Evaluation}}
+
+\end{enumerate}
+
+You should keep a laboratory notebook. The notebook should contain a detailed record of everything that was done and how/why it was done, as well as all of the data and analysis, also with plenty of how/why entries. This will aid you when you write your report.
+
+%Other References [\href{http://physics111.lib.berkeley.edu/Physics111/Reprints/QIE/QIE\_index.html}{\textbf{Physics 111 Library Site}}]
+
+\section{Objectives}
+
+\begin{itemize}
+    \item Learn about the basics of quantum information processing
+    \item Learn "everything" about the dynamics of a quantum mechanical two-level system
+    \item Learn about how to control quantum computers
+    \item Learn about noise in quantum mechanics and in particular in quantum computers
+\end{itemize}
+
+\section{Introduction}
+\label{sec:Introduction}
+Quantum computers promise to harnesses entanglement and the superposition principle of quantum mechanics to accomplish computational tasks difficult to perform on classical computers. The basic idea is to extend the idea of a bits to a quantum bits allowing for superpositions of 0's and 1's. Thus, one can find the memory (or even the program) in a quantum computer in multiple states at the same time. Loosely speaking the superposition principle allows quantum computers to explore many realizations simultaneously and thus to solve certain problems faster than their classical counterparts. Consider, for instance, a function $f(x)$ which returns a single bit depending on its input $x$ also a single bit, i.e. $x\in\{1,0\}$. There exist four different functions, $f_0(x)=0$, $f_1(x)=1$, $f_2(x)=x$, and $f_3(x)={\rm NOT} x$. We define now as a goal to decide whether the function $f_i(x)$ is constant or not. In a classical setting, we need to call the unknown function $f_i(x)$ at least twice to find out whether the function is constant or not. However, if we use a quantum computer, we can call the function with the argument in a superposition $x=(\ket{0}+\ket{1})/\sqrt{2}$ and---simplistically speaking---evaluate the difference. This is the essence of the Deutsch-Josza algorithm \cite{}. This improvement by a factor of two may not sound like much, but the advantages become much evident when the Deutsch-Josza algorithm is generalized to more bits, i.e. the Bernstein-Vazirani algorithm \cite{}. 
+Other notable quantum algorithms are Shor's factoring algorithm for integers \cite{} promising an exponential speed-up as compared to all known factoring algorithms and Grover's search algorithm of unstructured data bases
+yielding a quadratic speedup with the number of elements in the data base\cite{}. In recent years, researchers have also found a number of other applications such as solving for the ground state of the molecules or condensed matter problems by emulating the corresponding Hamiltonians. 
+
+With these applications in mind, researchers have been trying to establish technologies to implement quantum computers. For this, we must direct our attention first on how the quantum information is encoded, or in other words, what is the physical representation of a qubit?
+A qubit is a two-state system such as a spin-1/2. When measured we can find the system either in spin-up or in spin-down. To use quantum information language we either find the system either in the $\ket{0}$ or $\ket{1}$ state, i.e. $\ket{\Psi_{\rm qubit}}=\alpha \ket{0}+\beta \ket{1}$. From this general definition it is clear that qubits can take a variety of physical forms, for instance: 
+\begin{itemize}
+    \item The spin of a single electrons, for instance, confined in a quantum dot, on superfluid Helium, or in a trap.
+    \item The polarization of photons.
+    \item Two states in an ion confined in an ion trap.
+    \item Two states of a neutral atom held with optical tweezers. 
+    \item The direction of a current in superconducting circuits.
+    \item Your favorate two-level system.
+\end{itemize}
+For a brief overview over these technologies see also \cite{Ladd2010}. 
+Now that we have the qubits, we need to think about how to execute the computations. Thinking about how classical computers work, we come up with the following tasks: (1) Initialize the qubits, (2) perform operations on the register, i.e. execute the algorithm, and (3) read out the result. The challenge will be to execute arbitrary operations while keeping the quantum information, i.e. the superpositions, intact. The fundamental challenge is that we need to control  the qubits, that is we need to interact with them, but at the same time we are (and nobody else is) not allowed to learn anything about their state before read-out. Otherwise we would measure them and thus loose the quantum information and thus our parallelization advantage. More formally, we require that decoherence due to noise is much smaller than the speed with which we run the algorithm. Goal of this laboratory will be ...
+
+Point to good resources here. 
+
+\section{Background}
+\subsection{Qubits and entanglement}
+As discussed above the most general state of a qubit is
+\begin{equation}\label{eq:qubit-state}
+     \ket{\Psi_{\rm qubit}}=\alpha \ket{0}+\beta \ket{1}=e^{i\gamma}(\cos{\frac{\theta}{2}} |0\rangle +
+e^{i\varphi}\sin{\frac{\theta}{2}} |1\rangle) \, .
+\end{equation}
+
+- Qubits and unitary operations, entanglement
+- size of the Hilbert space
+\subsection{The Bloch sphere}
+%- A spin-1/2 system in a magnetic field and the Bloch sphere
+ 
+It is difficult to observe the overall
+phase $\gamma$ in Eq.~\ref{eq:qubit-state} as only the modulus of a wave function can be measured. Therefore, the two angles, $\theta$ and $\phi$,
+remain to parametrize the quantum state of a qubit. Thus, we are tempted to visualize the state as a point on a sphere of unit radius and we will identify the state in Eq.~\ref{eq:qubit-state} with the unit vector
+\begin{equation}\label{eq:bloch-vector}
+\vec{R}=\left(\begin{array}{c}\cos\varphi \sin\theta \\ \sin\varphi \sin\theta
+\\ \cos\theta
+\end{array}
+\right)\:.
+\end{equation} 
+
+\begin{SCfigure}%[htb!]
+\includegraphics[width=0.5\textwidth]{images/Bloch_Sphere.png}
+\caption{\label{fig:BlochSphere} The quantum state of a qubit can be visualized as a point on the Bloch Sphere. Image unaltered taken from \url{https://commons.wikimedia.org/wiki/File:Bloch_sphere.svg}, Smite-Meister / CC BY-SA (https://creativecommons.org/licenses/by-sa/3.0). }
+\end{SCfigure}
+
+The main reason why the Bloch sphere is so important as it allows us to intuitively grasp nearly all  physics of the dynamics of a qubit. In particular, we can think of the Bloch vector as the direction the spin of a spin-1/2 system such as an electron. We can see now, for instance, immediately what happens if we measure the spin projectively along the $z$ axis, or along the $x$ axis, or along any other axis for that matter. We "just" project the vector along the axis we want to measure and square its result (try whether you can confirm this statement from Eqs.~\ref{eq:bloch-vector} and \ref{eq:qubit-state}).
+Further, we can get an idea from the Bloch sphere which operations on a qubit are allowed. In particular, all transformations taking a valid qubit state to another will be allowed, i.e. we can rotate the qubit around a particular axis. How could we implement such operations physically? Again for an electron the Bloch picture provides a simple answer. All we have to do is to apply a magnetic field along the chosen axis for a given amount of time corresponding to the angle we would like to rotate the spin. Consider for instance , the electron initialized at the northpole of the Bloch sphere, i.e. in the $\ket{0}\equiv\ket{\,\uparrow}$ state, which we would like to rotate around the $y$ axis. A magnetic field along the $y$ lets the electron spin precess around the $y$ axis, first transforming the $\ket{0}$ state to $(\ket{0}+\ket{1})/sqrt{2}$ and then to the  $\ket{1}$ state. 
+
+The Bloch picture, however, is not perfect.
+You may have noticed that the angle $\theta$ in Eq.~\ref{eq:qubit-state} is divided by 2. Thus, a rotation of $\ket{0}$ around the $y$ axis by $\theta=2\pi$ will yield $-\ket{0}$, but in the Bloch picture the state returns to its original state $\ket{0}$. A question you may wonder now is whether this has any (observable) consequences, after all only the modulus of the wavefunction amplitudes is relevant for the measurement result. Towards the end of this laboratory you may decide to explore this question with the IBM quantum experience. 
+
+
+\subsection{Josephson junction based qubits}
+In this laboratory we will use the IBM quantum experience, a quantum computer which uses qubits formed from superconducting circuits and Josephson junctions. Here we will not be able to describe the inner workings of these qubits (see ??? for a good introduction), but rather make a few conceptional remarks. The general idea is to design a circuit with as little dissipation as possible to maintain quantum coherence. Consider for instance a resonator made from a capacitance $C$ in parallel with an inductance $L$. If we cool this system to sufficiently low temperatures, the quantized nature of this harmonic oscillator will become important. In superconducting based quantum computers, the resonance frequency of the resonator will be of order $\omega = 2\pi\times 5$~GHz. Thus, if we cool the system well below the temperature such that $k_{\rm B} T \ll \hbar \omega$ ($k_{\rm B}$ is the Boltzmann constant), the system will eventually relax to the ground state of the resonator. Thus we have initialized the system already in a well-defined (=pure) quantum state, i.e. the $\ket{0}$-state. 
+
+insert here a picture of a JJ-junction in parallel with a capacitor???
+
+We have now one problem left on our way to construct a quantum bit. This problem becomes apparent when we consider how to manipulate this quantum system to obtain the $\ket{1}$ state. For this we must give the system some energy. That is to say we will need to perform work on it. The most effective method is to apply electromagnetic radiation in resonance with the $LC$ oscillator, i.e. of frequency $\omega$. Thus, the resonator can absorb quanta of energy $\hbar \omega$, i.e. be placed in some superposition of the form $\alpha \ket{0} + \beta \ket{1}$. However, further irradiation will be able to also excite the state $\ket{1}$ further to the $\ket{2}$ state, before all of the initial population of the $\ket{0}$ has been excited. More precisely, in analogy to appendix ???, one can see that the effect of resonant microwave radiation in the interaction picture can be described by the interaction Hamiltonian $H_{\rm MW}=\hbar \Omega/2 (\hat{a}+ \hat{a}^\dagger)= \hbar \Omega/2 \hat(x)$, where $\Omega$ is the so-called Rabi frequency, $\hat{a}$ and $\hat{a}^\dagger$ the annihiliation and creation operators, respectively, and $\hat{x}$ is the analog to the position operator, i.e. one of the canonic variables of the oscillator, for instance, the current. Thus, we can directly see that we will continue to create larger and larger excitations, populating more and more states, and never returning to the original ground state when perfectly on resonance. How do we escape from this dilemma? 
+
+The root of our problem is the harmonicity of the resonator, i.e. if the microwave field would become non-resonant once the resonator is excited the problem will go away. Motivated by this we introduce a non-linear element. This non-linear element in superconducting qubits is a Josephson junction. Following Ref.~\cite{}, we ??? ..... . This nonlinearity leads to a non-uninque splitting between the various energy eigenstates of the oscillator. Thus, the  transition frequency between the $\ket{1}$ and $\ket{2}$ states may be signinficantly lower than that between the $\ket{0}$ and $\ket{1}$. In other words,  the drive  initially resonant with the $\ket{0}\leftrightarrow\ket{1}$ transition will become non-resonant if the (nonlinear) resonator is excited from the $\ket{0}$ to the $\ket{1}$ state and excitation to higher lying states is strongly suppressed.  As a consequence we have restricted all dynamics to $\{\ket{0},\ket{1}\}$ manifold, i.e. a two-level system. Next we will discuss the dynamics of such a two-level system.   
+
+\subsection{Basic experimental procedures}
+
+
+\subsection{Control of two-level systems using microwave fields}
+In this section, we will give an overview of how to solve for the dynamics of a single qubit (the full derivation can be found in Appendix A). We will focus on a two-level system, such as an atom or a Josephson junction qubit irradiated by linearly polarized light. The derivation uses a couple of useful tricks connecting back to the Bloch picture and the behavior of a charged spin-1/2 system in a magnetic field. 
+
+We will start by writing down the Hamilton operator for our two-level system. It is convenient to use the energy eigenbasis of the unperturbed qubit. That is if the qubit is placed in these states, it stays there and acquires only a phase with respect to the other qubit state. Those will be the $\ket{0}$ and $\ket{1}$ states (or spin up/down). Thus, the energy of the system will be given by\begin{equation}
+    \hat{H}_{\rm qubit}=\frac{\hbar \omega}{2} (\braket{0}{0}-\braket{1}{1}) = \frac{\hbar \omega}{2} \hat{\sigma}_z\:,
+\end{equation}where we have introduce the Pauli operator along the $z$ axis.
+We note that according to the  Schr\"odinger equation, $i\hbar\delta_t\ket{\Psi(t)}=\hat{H}\ket{\Psi(t)}$, we have the time evolution $\ket{0}\rightarrow e^{-i\omega t/2}\ket{0}$ and $\ket{1}\rightarrow e^{i\omega t/2}\ket{1}$, i.e. the energy difference between the two states is indeed $\hbar \omega$. In order to drive transitions between the two energy eigenstates, we consider now an electromagnetic radiation field at frequency $\omega_{\rm rad}\approx\omega$ coupling those two states via the Hamiltonian $\hat{H}_{\rm rad}=\hbar \Omega  \cos{(\omega_{\rm rf}t+\varphi)}(\braket{0}{1} + \braket{1}{0})$. Intuitively, this Hamiltonian connects the two energy eigenstates to each other with strength $\Omega$ which will turn out to be the Rabi frequency with which the population oscillates between the two states if $\omega_{\rm rad}=\omega$, i.e. we drive the system exactly on resonance. 
+
+Thus, the total Hamiltonian of the system is now: 
+\begin{equation}
+    \hat{H}=\hat{H}_{\rm qubit}+\hat{H}_{\rm rad}=\frac{\hbar \omega}{2} \hat{\sigma}_z + {\hbar \Omega}\cos{(\omega_{\rm rad}t+\varphi)} \hat{\sigma}_x\:.
+\end{equation}
+Mathematically, the corresponding Schr\"odinger equation can be solved exact for circular polarization, i.e. $\hat{H}_{\rm rad}=\cos{(\omega_{\rm rad}t+\varphi)} \hat{\sigma}_x + \sin{(\omega_{\rm rad}t+\varphi)} \hat{\sigma}_y$, or by making the approximation $\Omega\ll \omega$. The solutions can be obtained either straightforwardly by solving the differential equation or by using a basis transformation as done in Appendix A. The main trick used in Appendix A is to transform into a frame in which the interaction term $\hat{H}_{\rm}$ becomes time-independent. This will then allow for straightforward integration of the Schr\"odinger equation, i.e. using that $\ket{\Psi(t)}=e^{-i\hat{H}t/\hbar}\ket{\Psi(0)}$ if the Hamiltonian is not time-dependent. 
+
+
+This whole procedure, carried out in Appendix A, can be understood again in the Bloch sphere picture. Before we do this, it is useful to think about the following: consider a classical magnetic moment pointing along a (strong) constant magnetic field. What (weak and time dependent) magnetic field  do you need to apply to flip the magnetic moment by 180 degree? 
+
+The probably, easiest way to figure this is out is to think about a magnetic moment aligned with the strong field and to consider an additional weak field. What happens if that weak field tips the magnetic moment. How does the weak field need to evolve in time in order to continue tipping the magnetic moment still precessing around the strong field?
+
+Anyway, back to quantum mechanics: first we consider the resonant case of a charged spin-1/2 system with magnetic momen $\mu$ in a strong magnetic field $B_z$. Thus, guided by our classical intuition, we transform into a frame rotating with $\omega_{\rm rad}=\omega = \mu B_z/\hbar$ which because of resonance matches exactly the free precession frequency of the spin. This means that the qubit state has no time evolution. It is as if there is no magnetic background field anymore, i.e. in the rotating frame $B'_z=0$ (quantities in the rotating frame will have a "$'$"). However, if we switch on a circularly polarized coupling field 
+\begin{equation}\label{eq:circular-drive}
+B(t)=B_x\cos(\omega_{\rm rad}) + B_y\sin(\omega_{\rm rad})\:,
+\end{equation}it rotates also with the same frequency as the qubit, i.e. in the rotating frame its orientation is constant (for linear polarized radiation remember that we discarded the so-called counter rotating term). 
+The spin will now start precessing around the axis defined by the coupling field with Rabi frequency $\Omega=\mu B'_{\rm rad}/\hbar$ (remember $B'_z=0$).
+The situation is only slightly more complicated if $\omega \neq \omega_{\rm rad}$, i.e. the electromagnetic field is not quite resonant. In this, case the bare qubit has in the rotating frame still some time evolution
+with frequency $\Delta=\omega_{\rm rad}-\omega$, i.e. $B'_z=\hbar \Delta /\mu$. 
+Thus, the spin precesses around the axis given by $(B'_{\rm rad},0,B'_z)$, 
+i.e. $(\Omega, 0, \Delta)$, with effective Rabi frequency $\sqrt{\Omega^2+\Delta^2}$.
+Note also that we assumed that the initial axis of the 
+radiation field coincides with the $x$ axis. How would we change the rotation axis in the rotating frame? Going back to
+Eq.~\ref{eq:circular-drive}, we see that all we have to do is to shift the phase of the drive. This will be key to later understand Ramsey measurements and the various single-qubit operations. 
+
+We will now summarize the key results from Appendix A formally. First, we  assume that the qubit is initialized in the $\ket{0}$ state. When driven on resonance, i.e. $\omega=\omega_{\rm rad}$, the qubit will oscillate between the $\ket{0}$ and $\ket{1}$ state, that is the probability $P_{\ket{1}}=|\braket{\Psi(t)_{\rm qubit}}{1}|^2$ to find the qubit in $\ket{1}$ will evolve as
+\begin{equation}
+    P_{\ket{1}} = \sin\Omega t\:.
+\end{equation}
+In the literature this behavior is also known 
+as Rabi flopping with Rabi frequency $\Omega$. If we introduce a detuning $\Delta=\omega-\omega_{\rm rad}$, we find that the population exchange is not complete anymore, but that the Rabi flopping speeds up
+\begin{equation}
+    P_{\ket{1}} = \frac{\Omega^2}{\Omega^2+\Delta^2}\sin\left(\sqrt{\Omega^2+\Delta^2} t\right) \:.
+\end{equation}
+For quantum computing, we are also interested in how the operations act on a quantum state $\alpha \ket{0}+\beta \ket{1}$, Thus,  we need to write out the corresponding unitary transformations from the solutions in Appendix A. Introducing the rotation angle $\theta=\Omega t$, we find: 
+\begin{eqnarray}\label{eq:rotationx}
+R_x(\theta)=e^{i\frac{\theta}{2}\sigma_x}=&\cos\frac{\theta}{2}I +
+i\sin\frac{\theta}{2}\sigma_x=&\left( \begin{array}{cc}
+\cos\frac{\theta}{2} & i\sin\frac{\theta}{2}\\ i\sin\frac{\theta}{2} &
+\cos\frac{\theta}{2}\\
+\end{array}\right)\\
+R_y(\theta)=e^{i\frac{\theta}{2}\sigma_y}=&\cos\frac{\theta}{2}I + \label{eq:rotationy}
+i\sin\frac{\theta}{2}\sigma_y=&\left( \begin{array}{cc}
+\cos\frac{\theta}{2} & \sin\frac{\theta}{2}\\ -\sin\frac{\theta}{2} &
+\cos\frac{\theta}{2}\\
+\end{array}\right)\\
+R_z(\theta)=e^{i\frac{\theta}{2}\sigma_z}=&\cos\frac{\theta}{2}I + \label{eq:rotationz}
+i\sin\frac{\theta}{2}\sigma_z=&\left( \begin{array}{cc}
+e^{i\theta/2} & 0\\0 & e^{-i\theta/2} \\
+\end{array}\right)
+\end{eqnarray}
+where the Pauli operators/matricies $\sigma_i$ are defined as follows:
+\begin{equation}
+\sigma_x=\left(
+\begin{array}{cc}
+ 0 & 1 \\ 1 & 0
+\end{array}
+\right),
+\sigma_y=\left(
+\begin{array}{cc}
+ 0 & -i \\ i & 0
+\end{array}
+\right),
+\sigma_z=\left(
+\begin{array}{cc}
+ 1 & 0 \\ 0 & -1
+\end{array}
+\right).
+\end{equation}
+
+
+
+\begin{figure}[htb!]
+\begin{minipage}{0.48\textwidth}
+\begin{center}
+\includegraphics[width=0.8\textwidth]{images/blochRotateX.png}
+\end{center}
+\end{minipage}
+\begin{minipage}{0.48\textwidth}
+\begin{center}
+\includegraphics[width=0.8\textwidth]{images/blochRotateY.png}
+\end{center}
+\end{minipage}
+\caption{Rotation around the X and the Y axis visualized on the Bloch-sphere.}
+\label{XandYgate}
+\end{figure}
+
+There is actually a more general and compact way by writing this as: 
+\begin{equation}
+R(\theta,\hat{n})=\exp\left(\frac{i}{\hbar} \vec{\sigma}\cdot\vec{n} \:{\theta}\right)=\left( \begin{array}{cc} \cos\left(\frac{\theta}{2}\right)+i n_z \sin\left(\frac{\theta}{2}\right) & (i n_x +n_y)\sin\left(\frac{\theta}{2}\right)\\ (i n_x -n_y)\sin\left(\frac{\theta}{2}\right) & \cos\left(\frac{\theta}{2}\right)-i n_z \sin\left(\frac{\theta}{2}\right)\end{array}\right) \label{eq:arbitrary-rotation}
+\end{equation}, where $\vec{n}$ is a unit vector describing the (arbitrary) rotation axis and $\vec{\sigma}\cdot\vec{n}=n_x\sigma_x+n_y\sigma_y+n_z\sigma_z$. Note that we used a different convention than what is typically used in physics, i.e. the solution to the Schr\"odinger equation would usually be $\exp(-i\hat{H}t)$, so it may be more natural to write is as $\exp\left(-\frac{i}{\hbar} \vec{\sigma}\cdot\vec{n} \:{\theta}\right)$.
+This is the most general operation we can perform an a qubit. 
+
+Choosing $\theta = \pi/2$, we obtain now the specific important gates: 
+\begin{equation}
+(\pi/2)_x=\frac{1}{\sqrt{2}}\left(
+\begin{array}{rr}
+ 1 & i \\ i & 1
+\end{array}
+\right), 
+(\pi/2)_x=\frac{1}{\sqrt{2}}=\left(
+\begin{array}{rr}
+ 1 & 1 \\ -1 & 1
+\end{array}
+\right),
+\end{equation}
+which resemble the so-called Hadamard
+operation, $\frac{2}{\sqrt{2}}
+\begin{pmatrix}1 &1 \\ 1 & -1
+\end{pmatrix}$ used by Computer Scientists. Note that the Hadamard operation has determinant -1 and can thus not be a result of a physical operation $\exp(-i\hat{H}t)$ with determinant 1.  Finally, we also have the diagonal $z$-gate $(\pi/4)_z={\rm diag}(e^{i\pi/4} e^{-i\pi/2})$, which applies a relative phase shift of $\pi/2$ between the two logical eigenstates.  
+
+Something to think about: 
+\begin{itemize}
+\item What angle $\theta$ does one need to choose to perform the identity operation? What happens for $\theta=2\pi$?
+\item Can one construct a rotation around the $z$ axis from the $(\pi/2)_x$ and $(\pi/2)_y$ gates?
+\end{itemize}
+
+\section{Describing noise using the density matrix formalism}
+
+find some good reference???
+
+\section{Multi-qubit systems and Bell states}
+
+\subsection{Overview of the IBM quantum experience environment}
+
+needs to be done ???
+
+
+-qiskit
+-https://arxiv.org/pdf/1809.03452.pdf
+
+\section{Experimentation}
+\subsection{Getting started} 
+In this lab you will study the dynamics of a single qubit as well as perform some basic experiments on one of IBM's multi-qubit machines. For this you will need to have python3 and preferably jupyter notebook installed. Specific packages for python we will need are qiskit (a frame work to control quantum computers), numpy and matplotlib. You should have installed these packages already before the lab and made yourself familiar with the IBM quantum experience ecosystem. 
+
+Before beginning experimentation, we first observe that  we will be working with a single quantum system, i.e. when we measure it we will get only one piece of information, i.e. on which eigenstate of the measurement operator we have projected the system. By convention, we usually measure in the logical basis which typically coincides with the energy eigenbasis. In most cases, we also choose the $z$ axis in this direction, i.e. the qubit Hamiltonian (without interactions) is proportional to $\hat{\sigma_z}=\ketbra{0}{0}-\ketbra{1}{1})$, i.e. we will ask whether the system is in the $\ket{0}$ or the $\ket{1}$. In order to find the expectation value, we will need to repeat the same experiment multiple times, typically between 100 and 1000 times. Thus a typical experiment has the flow indicated in Fig.~\ref{fig:measurement-flow}. 
+\begin{figure}[htb!]
+\begin{center}
+\includegraphics[width=0.6\textwidth]{images/measurement-flow.png}
+\end{center}
+\caption{\label{fig:measurement-flow}Flow of a typical quantum computing experiment. }
+\end{figure}
+
+\subsection{Getting familiar with the our qubit}
+The IBM quantum experiences provides access to a multitude of quantum processors and simulators (so-called backends). Most of them provide an additional layer of abstraction in form of quantum gates and do not allow for low-level programming. In this lab, however, we want to understand the physics and thus need direct hardware access, such as setting the frequency, phase and amplitude of the microwave pulses controlling the qubit. The hardware backend we will use for the majority of our work is called 'ibmq\_armonk'. While this backend is capable of processing our pulses, it uses only a single Josephson junction qubit. Thus we will need to use a different one once we transition to multi-qubit operations. Since jobs submitted to a queue for the hardware backends may not be executed directly (a typical wait time for completion of a job is two to five minutes for the ibmq\_armonk backend), we recommend also using a simulated backend which simulates the behavior of qubits on our own computer. We recommend to use as the simulation backend 'open\_pulse' provided by the 'Aer' package. The open\_pulse backend can be programmed very similarly to the ibmq\_armonk backend, but there are some important differences. We note that open\_pulse does not support changing the frequency of the drive field during a single job (there are plans to add this feature in the near future). In addition, we also found no way to specify imperfections, i.e. decoherence. Still, the open\_pulse backend allows us to test our programming fast, helps us to check our understanding and make predictions for our experimental parts.
+
+We will start now with programming our simulation backend. Goal will be study the dynamics of the qubit when irradiated with resonant microwaves at a constant amplitude for a given amount of time. For this, we will need to configure the backend, 
+
+
+To begin we suggest to do part 1 of the tutorial provided by IBM: \url{https://qiskit.org/textbook/ch-quantum-hardware/calibrating-qubits-openpulse.html}. You can do this either within their online environment using a web-browser or use a copy of the notebook provided by the 111B lab here: \url{???}. Make sure that you go through the tutorial step-by-step and that you understand what is done and how it is accomplished. Do not get hung up at details of the implementation yet, focus more on the concepts. Later when you will do you own experiments you can always go back and look up the details exactly how things are implemented. 
+
+One important part you will need to understand later is how to construct the actual program at the pulse level. For this it may be helpful to read Sec.~II of \url{https://arxiv.org/pdf/2004.06755.pdf}.
+
+
+
+\subsection{Controlling the qubit}
+First we are going to verify some basic dynamics of the qubit. This understanding will be useful to construct the actual quantum gates, i.e. rotations around specific axes and rotation angles. As you may have noticed it takes a few minutes to receive the result from the actual qubit, so we will first test with a simulation backend, called "pulse\_simulator" from the "Aer" package. After testing and debugging our code we will then run it on the real machine. To make the test meaningful, we will need to write code which allows use to easily switch between simulation and execution on the real system. The code snippets provided do this by providing cells which perform the necessary reconfiguration. All other code can stay the same. Note that you will need to execute the pulse sequence assembly as well as the actual submission of the pulse sequence after switching. The reason is that the measurement pulses for the simulator and the actual qubit differ. We also note that the provided code is far from elegant. So please feel free to improve on it and share your suggestions with us.  
+
+So lets get started. The probably simplest is to drive the qubit directly on resonance. In contrast to the IBM tutorial we will use constant amplitude pulses and scan the time for which the drive is applied. The example code (notebook 'Getting-started-Rabi-flops.ipynb') doing this can be found here \url{}. Before reviewing the code run it. You should find that the qubit oscillates between states $\ket{0}$ and $\ket{1}$ sinusoidally as a function of the pulse length. Vary the amplitude of the pulse (variable \verb|drive_amp|) and observe what changes. 
+
+After running a few simulations, run it now on the real system. Note that we can use the automatic calibration values for the qubit frequency, \verb|qubit_lo_freq|, so we do not need to repeat the frequency calibration performed in the tutorial. 
+
+Questions:
+\begin{itemize}\item
+What is the value for the Rabi frequency for drive strength \verb|drive_amp = 0.9|? What is the time required to perform a rotation around an axis in the $x,y$ plane. 
+\item Is interesting to observe how reproducible the qubit parameters, such as its frequency and Rabi frequency for a given drive strength are, i.e. log the value for each run on the real machine to get a feel for how frequent recalibrations are necessary. 
+\end{itemize}
+Note that in your write-up to the lab you will not need to present all data. Only include the most important plots (as a guide your report should not exceed 20 pages, quality before quantity!)
+
+
+Next we want to understand what happens if we drive the qubit non-resonantly. Switch back to the simulation mode and change the value of \verb|qubit_lo_freq| (the qubit local oscillator frequency) in the function call \verb|assemble| from the estimated qubit frequency by a certain amount. 
+
+Question:
+\begin{itemize}
+    \item What size should this detuning have. For making a guess try to think about the relevant scales of the dynamics. Hints: There are (at least) two ways of how to come up with an estimate. The first is rather abstract and is to inspect the relevant Hamiltonian. The second is to think about the spectrum of a time varying signal lasting for a given amount of time.  
+\end{itemize}
+
+Before delving into more quantum information related concepts, we will study the spectrum of the qubit. Often the goal of a spectroscopic measurement is to determine the resonance condition (for instance an atomic transition frequency) as precisely as possible. For this an excitation pulse is send to the system and its response is recorded. Goal of this part of the lab is to understand how the relevant pulse parameters (strength and length) influence how precisely the resonant frequency can be extracted. What are your expectations. Would you rather choose a small strength to get precise results or a long interrogation time?
+
+Write a program recording the qubit excitation probability as a function of the frequency. Try out various parameter combinations on the simulator before choosing (wisely) a few sets to run on the real system to demonstrate how to perform the spectroscopy best. 
+
+Question:
+\begin{itemize}
+    \item Can you explain the shape of the resulting spectra?
+\end{itemize}
+
+\subsection{Rotating the qubit around various axes and Ramsey spectroscopy}
+So far we have varied the frequency, strength, and length of the excitation pulse. However, there is another parameter hidden in the excitation pulse. This is the phase of the excitation. So how does the phase of the excitation affect results? Give it a try? To vary the phase all we have to do is apply a complex phase $\varphi$ to the amplitude supplied to the drive pulse in the \verb|assemble| statement, i.e. we call it with \verb|drive_amp np.exp(1j*relative_phase*np.pi| instead of with \verb|drive_amp|. 
+
+So what is this phase doing? Is it relevant at all? For this it may be helpful to use an analogy from a driven (classical) harmonic oscillator. Consider two tones driving a harmonic oscillator initially at rest (corresponding to the qubit being prepared in an energy eigenstate) with two different phases. Both drives will excited the oscillator by exactly the same amount. However imagine that we first apply one drive tone and then the second tone with its phase shifted by $\pi$. The second tone will deexcite the oscillator all the way to rest (think about a swing and pushing in sync or out of sync). From this observation, we conjecture that the effect of the phase may become relevant if we have two excitation pulses with a different (relative) phase. 
+
+In order to explore this, we will have to add a second pulse before the measurement pulse. Write a program and try it. We suggest that you set the length of the first pulse such that the system creates a superposition of the $\ket{0}$ and $\ket{1}$ states and then scan the phase of the second pulse. You may also investigate the time-dynamics. 
+
+Questions:
+\begin{itemize}
+    \item Explain the observations using the Bloch sphere. 
+    \item 
+    What is the unitary operation a resonant drive with phase $\varphi$ implements. 
+\end{itemize}
+
+Consider now the case of two short $\pi/2$-pulses (they rotate the system half-way between the north and south pole of the Bloch sphere) in phase, however, detuned from the qubit frequency by some amount $\Delta$ and delayed from each other by some time $\tau \ll t_{\pi/2}$. Study the dynamics as a function of the detuning and delay, both on the simulator and the real system. 
+Questions:
+\begin{itemize}
+\item Explain the dynamics in the Bloch sphere picture and demonstrate how it is useful for spectroscopy. \item What happens if the delay becomes very long (lets say 50-100~\textmu{s}) on the real system. Can you exlpain your observations? Note that you will need to adjust your detuning. Alternatively, you can vary the phase for a constant delay and observe the resulting fringes. 
+\end{itemize}
+
+Finally, we have nearly all understanding in place to perform an arbitrary unitary operation on our qubit. Describe how you would implement a rotation around the $x$, $y$, and $z$ axis.   
+
+\subsection{Quantifying the fundamental noise
+properties of the qubit}
+In the previous section, you likely encountered that noise limits the controlability of the qubit. In particular, if noise has a long time to disturb the quantum states, we expect that the actual qubit dynamics will deviate from the idealized one. Typically, we distinguish two types of noise sources. The first type of noise transfers population between the energy eigenstates. An example are noisy fields with spectral components near the qubit frequency) or so-called relaxation processes where the qubit looses energy to the environment. The second noise source affects the qubit frequency or the local oscillators. This disturbs the phase relation between the driving field and the state of the qubit. We can think of it as introducing some random detuning $\Delta$. In quantum information, we borrow the language from NMR and call the former noise process a $T_1$ process, where $T_1$ characterizes the time it takes for the population to change. For a spontaneous decay it would is the time constant in the exponential process. The second noise process refers to pure dephasing of the qubit and the associated time constant is $T_\varphi$. Measuring $T_\varphi$ directly is difficult as the phase coherence is also affected by $T_1$ processes, i.e. as the qubit changes its energy eigenstate due to uncontrolled interactions it also looses its phase coherence. Thus, we introduce the $T_2^*$ process which is a combination of $T_1$ and $T_\varphi$ according to $1/T_2^*=1/(2T_1)+1/T_\varphi$.
+
+Measure $T_1$ and $T_2^*$ for the qubit of the real system. Extract $T_\varphi$. 
+Question:
+\begin{itemize}
+\item How many single-qubit operations cane one hope to perform before the qubit has decohered?
+\end{itemize}
+Finally, we turn to the last single-qubit exercise. The previous estimates for the qubit phase coherence are somewhat pessimistic. In particular, it may be that the qubit frequency itself is stable, but that we just calibrated the qubit frequency wrongly or too long ago. "Long ago" in this context can really mean a few milliseconds ago. Indeed, in practice it turns out that the qubit frequency is actually quite stable on short times, but fluctuates on the second, minute or hour time scale. Since qubit frequency determination takes order of seconds, we can not directly take advantage of this short term stability. 
+
+However, there is a trick to utilize it. Consider for instance an experiment where we create a superposition state $(\ket{0}+i\ket{1})/\sqrt{2}$. In the rotating frame, the phase of the state will evolve as $(\ket{0}+ie^{i\delta\Delta t}\ket{1})/\sqrt{2}$ where $\delta\Delta$ is a slowly fluctuating detuning $\Delta$ constant during one repetition (shot) of the experiment. What if we could switch the roles of  $\ket{0}$ and $\ket{1}$ in the middle of the experimental sequence, i.e. at $t=T_{1/2}$? Then the state $(\ket{0}+ie^{i\delta\Delta T_{1/2}}\ket{1})/\sqrt{2}$,  would become $(\ket{1}+ie^{i\delta\Delta T_{1/2}}\ket{0})/\sqrt{2}$ and after evolving for another time $T_{1/2}$ we would arrive at $(e^{i\delta\Delta T_{1/2}}\ket{0}+ie^{i\delta\Delta T_{1/2}}\ket{1})/\sqrt{2}=e^{i\delta\Delta T_{1/2}}(\ket{0}+i\ket{1})/\sqrt{2}$. Program a sequence implementing this dynamics and extract the so-called $T_2$ of the qubit. 
+\subsection{Multi-qubit states}
+Bell states, GHZ states, the -1 of the SU(2), Deutsch-Josza or other algorithms
+\subsection{Optional}
+- explore the speed limit with various pulse shapes
+- noise sources due to control field fluctuations
+
+\section{Appendix A: solving for the time-dynamics of a two-level system interacting with an electromagnetic drive field}
+
+\subsection{Overview}
+\subsubsection{Overview of solving for the dynamics of a two-level system interacting with an electromagnetic field}
+
+\subsubsection{???}
+
+To find the appropriate rotating frame, we first divide the cosine into two parts such that the interaction Hamiltonian now reads $\hat{H}_{\rm rad}=(e^{i(\omega_{\rm rad}t+\varphi)} + e^{-i(\omega_{\rm rad}t-\varphi)} ) + \hbar \Omega/2 (\braket{0}{1} + \braket{1}{0})$. We now transform into a new frame where one of the terms has no time dependency while the other term has the oscillatory behavior $e^{i(\omega_{\rm rad}+\omega)t}$. This is accomplished by the unitary operator ????. Under the assumption $|\omega_{\rm rad} - \omega|\ll\Omega$, we can now neglect this term, i.e. this term is far-off resonant, and end up with a time-independent Schr\"odinger equation which can be solved by exponentiating the Hamiltonian according to $\ket{\Psi(t)}=e^{-i\hat{H'}t/\hbar}$.
+
+Note that for a circularly polarized field, the interaction Hamiltonian $\hat{H}_{\rm rad}$ already has the form ..... Thus the procedure is this case exact. Further assuming resonance, we observe that the system precesses around the applied interaction Hamiltonian in this frame. This leads to the interpretation that the frame is co-rotating with the field. 
+
+
+\begin{enumerate}
+
+
+
+\item The aim of this problem set is to understand the dynamics of a spin-1/2 system in its full glory. Note that formally a spin-1/2 system and a qubit are equivalent, hence, all what you will discover in this problem set will carry over to single qubits.  
+
+		Consider an electron spin (spin 1/2, magnetic moment $g\mu_{\rm B}$) interacting with a strong magnetic field $\vec{B_0}=(0,0,B_z)$ in 
+		the $z$ direction as well as with a much weaker magnetic field 
+		$\vec{B}_{\rm rf}=(B_1 \cos \omega_{\rm rf} t$, $B_1 \sin \omega_{\rm rf} t$, 0) 
+		rotating in the $x,y$ plane with speed $\omega_{\rm rf}$. 
+		We are interested in understanding the spin's time evolution and how it can 
+		be manipulated.  
+	\begin{enumerate}
+		\item What is the corresponding Hamiltonian and Schr\"odinger equation in its explicit matrix formulation in the $\ket{\pm z}$ basis? 
+	
+		
+
+Solution: We plug in the Pauli matrices to find the Hamiltonian in matrix form:
+\begin{align*}
+	H = & \frac{\mu_B}{2} \vec{\sigma} \cdot \vec{B} \\
+	= & \frac{\mu_B}{2} \bigg[ 
+	\begin{pmatrix}
+		0 & B_1 \cos(\omega_\text{rf} t) \\
+		 B_1 \cos(\omega_\text{rf} t) & 0
+	\end{pmatrix} 
+	\\
+	&~~~~~~~~~~~~~~~~~~ +
+	\begin{pmatrix}
+		0 & - i B_1 \sin(\omega_\text{rf} t) \\
+		i B_1 \sin(\omega_\text{rf} t) & 0
+	\end{pmatrix}
+	\\
+	&~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ +
+	\begin{pmatrix}
+		B_z & 0 \\
+		0 & - B_z
+	\end{pmatrix}
+	\bigg]
+	\\
+	= & 
+	\frac{\mu_B}{2}
+	\begin{pmatrix}
+		B_z & B_1 \cos(\omega_\text{rf} t) - i B_1 \sin(\omega_\text{rf} t) \\
+		 B_1 \cos(\omega_\text{rf} t) + i B_1 \sin(\omega_\text{rf} t)& -B_z
+	\end{pmatrix} 
+	~.
+\end{align*}
+To write the matrix form of the Schrodinger equation, we'll need to write the state $\ket{\psi} = a \ket{\uparrow} + b\ket{\downarrow}$ as a two component spinor. Let us define
+\begin{align*}
+	\ket{\uparrow} =& 
+	\begin{pmatrix}
+		1	\\
+		0
+	\end{pmatrix}
+	~, \\
+	\ket{\downarrow} =& 
+	\begin{pmatrix}
+		0	\\
+		1
+	\end{pmatrix}
+	~,
+\end{align*}
+and hence the state $\ket{\psi} = a \ket{\downarrow} + b\ket{\uparrow}$ can be written as 
+\begin{align*}
+	\ket{\psi} = 
+	\begin{pmatrix}
+		a \\
+		b
+	\end{pmatrix}~.
+\end{align*}
+Hence the Schrodinger equation is (note we work in units such that $\hbar = 1$)
+\begin{align*}
+	i \frac{\partial}{\partial t} \ket{\psi} =& H \ket{\psi} \\
+	i \frac{\partial}{\partial t} 
+	\begin{pmatrix}
+		a \\
+		b
+	\end{pmatrix}
+	=& 
+	\frac{\mu_B}{2}
+	\begin{pmatrix}
+		B_z & B_1 \cos(\omega_\text{rf} t) - i B_1 \sin(\omega_\text{rf} t) \\
+		 B_1 \cos(\omega_\text{rf} t) + i B_1 \sin(\omega_\text{rf} t)& -B_z
+	\end{pmatrix}
+	\begin{pmatrix}
+		a \\
+		b
+	\end{pmatrix}~.
+\end{align*}
+	
+		\item At this point, we could solve the differential equation directly, however, to build intuition and to help with future more complicated scenarios, we will now use a trick and transform 
+			into a rotating frame such that the Hamiltonian becomes time-independent. The transformation is motivated by the 
+			observation that for classically evolving magnetic moment we could apply a basis 
+			transformation such that the rotating frame
+			magnetic field becomes stationary. That is
+			we would expect that the spin of an electron in the $\ket{+x}$-state
+			whose spin points in the direction of the rotating magnetic
+		        field $\vec{B}_{\rm rf}$ at $t=0$ would
+			always be align*ed with
+			$\vec{B}_{\rm rf}$ simplifying the problem considerably. 
+					~\newline
+			First we are going to understand how the Schr\"odinger equation changes under a general basis transformation.
+			Consider a general basis transformation such that $\ket{\Psi}_{\rm rot} = V\ket{\Psi}_{\rm lab}$ with
+			$V$ describing the basis transformation from the laboratory frame to the rotating frame.
+			Show that in the new basis, we can rewrite the Schr\"odinger equation in the same form just with a modified
+			Hamiltonian $H_{\rm rot}=V H_{\rm lab}V^{-1}-i\hbar V\partial_t V^{-1}$. 
+			{1}
+			
+			Solution: Starting from the Schrodinger equation in the lab frame, $i \frac{\partial}{\partial t} \ket{\psi}_\text{lab} = H_\text{lab} \ket{\psi}_\text{lab}$, we substitute in $\ket{\psi}_\text{lab} = V \ket{\psi}_\text{rot}$. We then reorganize the terms until it looks like the Schrodinger equation again, but with a different Hamiltonian.
+\begin{align*}
+	i\hbar \frac{\partial}{\partial t} \ket{\psi}_\text{lab} =& H_\text{lab} \ket{\psi}_\text{lab} \\
+	i\hbar \frac{\partial}{\partial t} \left(V \ket{\psi}_\text{rot}\right) =& H_\text{lab} V \ket{\psi}_\text{rot} \\
+	i\hbar \left(\frac{\partial}{\partial t} V \right) \ket{\psi}_\text{rot} +  i\hbar V \frac{\partial}{\partial t} \ket{\psi}_\text{rot} =& H_\text{lab} V \ket{\psi}_\text{rot} \\
+	i\hbar \frac{\partial}{\partial t} \ket{\psi}_\text{rot} =& V^{-1} H_\text{lab} V \ket{\psi}_\text{rot} - i\hbar V^{-1}\left(\frac{\partial}{\partial t} V \right) \ket{\psi}_\text{rot} \\
+	i\hbar \frac{\partial}{\partial t} \ket{\psi}_\text{rot} =& \left( V^{-1} H_\text{lab} V - i\hbar V^{-1}\frac{\partial}{\partial t} V \right) \ket{\psi}_\text{rot}~. 
+\end{align*}
+This is the Schrodinger equation with Hamiltonian $H_\text{rot} \equiv V^{-1} H_\text{lab} V - i\hbar V^{-1}\frac{\partial}{\partial t} V $.
+
+		\item Considering the simplified Hamiltonian where 
+			we have only the magnetic field along
+			along the $z$-axis $\vec{B_0}=(0,0,B_z)$, we expect that the states $\ket{+z}e^{-i\frac{\omega_0 t }{2}}$ and 
+			$\ket{-z} e^{+i\frac{\omega_0 t }{2}}$ receive at most a phase factor 
+		        when transforming into a frame rotating around the quantization axis, i.e the $z$~axis. Hence we guess that
+			the basis transformation $V$
+			into the rotating frame is diagonal in the $\ket{\pm z}$ basis.
+
+			Considering the simplified (constant) Hamiltonian, find $U$ such that the corresponding energy eigenstates $\ket{\pm z}_{\rm rot}$
+			become time independent.  
+			Defining $\ket{\pm x}_{\rm rot}=\frac{1}{\sqrt{2}}(\ket{+z}_{\rm rot}\pm\ket{-z}_{\rm rot})$, what is the time dependency of the $\ket{\pm x}_{\rm rot}$ states?
+			What is the time dependence of the $\ket{+x}_{\rm lab}$ and $\ket{-x}_{\rm lab}$ states defined in the laboratory frame as expressed in the 
+			rotating basis. Does this make sense in view of the notion that we transformed into a rotating frame? What is the new  simplified Hamiltonian operator in the rotating frame? Note that it should lead to vanishing time evolution, i.e. to a time evolution operator $U(t)=\mathbb{I}$. Note also that its interpretation as an energy of the system may not hold anymore.
+			{2}
+			
+			Solution: Given the magnetic field $\vec{B}_0 = (0,0,B_z)$, the states $\ket{\uparrow}_\text{lab}$ and $\ket{\downarrow}_\text{lab}$ each have a (different) time dependent phase factor. Their spinor form is
+\begin{align*}
+	\ket{\uparrow}_\text{lab} =& 
+	\begin{pmatrix}
+		 e^{-i \frac{\mu B_z}{2}t}\\
+		 0
+	\end{pmatrix}_\text{lab}~,	
+	\\
+	\ket{\downarrow}_\text{lab} =& 
+	\begin{pmatrix}
+		0 \\
+		 e^{i \frac{\mu B_z}{2}t}
+	\end{pmatrix}_\text{lab}~.	
+\end{align*}
+Linear combinations of them will therefore depend on time -- this is why the $\ket{+}_\text{lab}$ state changes with time. We define an operator $V$ that is diagonal in the logical eigenbasis and has the following properties
+\begin{align*}
+	\begin{pmatrix}
+		 e^{-i \frac{\mu B_z}{2}t}\\
+		 0
+	\end{pmatrix}_\text{lab}
+	=& V 
+	\begin{pmatrix}
+		 1\\
+		 0
+	\end{pmatrix}_\text{rot}~, \\
+	\begin{pmatrix}
+		0 \\
+		 e^{i \frac{\mu B_z}{2}t}
+	\end{pmatrix}_\text{lab}
+	=& V 
+	\begin{pmatrix}
+		 0\\
+		 1
+	\end{pmatrix}_\text{rot}~.
+\end{align*}
+This fully specifies that $V$ is
+\begin{align*}
+	V = 
+	\begin{pmatrix}
+		e^{-i \frac{\mu B_z}{2}t} & 0 \\
+		0 & e^{i \frac{\mu B_z}{2}t}
+	\end{pmatrix}~.
+\end{align*}
+Because $\ket{\uparrow}_\text{rot}$ and $\ket{\downarrow}_\text{rot}$ are both completely time-independent, their linear combinations are also time-independent. E.g. the $\ket{\pm}_\text{rot}$ states are time independent. Our physical intuition tells us that the $\ket{\pm}_\text{lab}$ states in the new basis should appear to be rotating in the direction opposite to how the new frame rotates with respect to the lab frame. The $\ket{+}_\text{lab}$ state is defined as
+\begin{align*}
+	\ket{+}_\text{lab} =&
+	\frac{1}{\sqrt{2}}
+	\begin{pmatrix}
+		1 \\
+		1	
+	\end{pmatrix}_\text{lab}~.
+\end{align*}
+In the new frame, this state is 
+\begin{align*}
+	V^{-1} \ket{+}_\text{lab} =& 
+	\frac{1}{\sqrt{2}}
+	\begin{pmatrix}
+		e^{i \frac{\mu B_z}{2}t} & 0 \\
+		0 & e^{-i \frac{\mu B_z}{2}t}
+	\end{pmatrix}
+	\begin{pmatrix}
+		1 \\
+		1	
+	\end{pmatrix}_\text{lab} \\
+	=&
+	\frac{1}{\sqrt{2}}
+	\begin{pmatrix}
+		e^{i \frac{\mu B_z}{2}t} \\
+		e^{-i \frac{\mu B_z}{2}t}	
+	\end{pmatrix}_\text{rot}~. 
+\end{align*}
+The story is similar for $\ket{-}_\text{lab}$. This makes sense in view of the notion that we have transformed to a rotating frame: this state indeed appears to rotate in the direction opposite to how the new frame rotates with respect to the lab frame. That is, in the new frame, this $\ket{+}_\text{lab}$ state rotates in a left-handed manner around the Bloch sphere (meaning if one points the thumb of her left hand in the direction of the $\begin{pmatrix} 1 \\ 0 \end{pmatrix}$ spinor, then her fingers curl in the direction that the state rotates). In contrast, in the lab frame if we started with the state $\ket{+}_\text{lab}$ at $t = 0$, the state would evolve in a right-handed manner around the Bloch sphere.  
+
+\vspace{3mm}
+
+The new Hamiltonian operator is 
+\begin{align*}
+	H_\text{rot} =& V^{-1} H_\text{lab} V - i V^{-1}\frac{\partial}{\partial t} V \\
+	=& \begin{pmatrix}
+		e^{i \frac{\mu B_z}{2}t} & 0 \\
+		0 & e^{-i \frac{\mu B_z}{2}t}
+	\end{pmatrix}
+	\begin{pmatrix}
+		\frac{\mu_B}{2} B_z & 0 \\
+		0 & -\frac{\mu_B}{2} B_z
+	\end{pmatrix}
+	\begin{pmatrix}
+		e^{-i \frac{\mu B_z}{2}t} & 0 \\
+		0 & e^{i \frac{\mu B_z}{2}t}
+	\end{pmatrix} \\
+	&- i 
+	\begin{pmatrix}
+		e^{i \frac{\mu B_z}{2}t} & 0 \\
+		0 & e^{-i \frac{\mu B_z}{2}t}
+	\end{pmatrix}
+	\begin{pmatrix}
+		(-i \frac{\mu B_z}{2}) e^{-i \frac{\mu B_z}{2}t} & 0 \\
+		0 &(i \frac{\mu B_z}{2}) e^{i \frac{\mu B_z}{2}t}
+	\end{pmatrix} \\
+	=& 
+	\begin{pmatrix}
+		\frac{\mu}{2} B_z & 0 \\
+		0 & -\frac{\mu}{2} B_z
+	\end{pmatrix}
+	-
+	\begin{pmatrix}
+		\frac{\mu}{2} B_z & 0 \\
+		0 & -\frac{\mu}{2} B_z
+	\end{pmatrix} \\
+	=& 
+	\begin{pmatrix}
+		0 & 0 \\
+		0 & 0
+	\end{pmatrix}
+	~.
+\end{align*}
+The Hamiltonian is the zero matrix. This makes sense -- no states evolve with time in this frame!
+			
+			
+		\item We now consider also the circularily polarized field $\vec{B}_{\rm rf}$ resonant with the transition between
+		        the $\ket{\pm z}$ states, i.e. 
+			$\hbar\omega_{\rm rf}=g\mu_{B} B_z=:\hbar \omega_{\rm 0}$. What is the Hamiltonian when writing it in 
+			the basis you found in (c)?  What is the significance
+			of the off-diagonal terms in the Hamiltonian?
+			{2} 
+			
+			This Hamiltonian in the lab frame is:
+\begin{align*}
+	H_\text{lab} = 
+	\begin{pmatrix}
+		\frac{\hbar\omega_\text{0}}{2} & B_1 \cos(\omega_\text{0} t) - i B_1 \sin(\omega_\text{0} t) \\
+		 B_1 \cos(\omega_\text{0} t) + i B_1 \sin(\omega_\text{0} t)& -\frac{\hbar\omega_\text{0}}{2}
+	\end{pmatrix}~. 
+\end{align*}
+We transform this to the new (rotating) frame:
+    $$
+	H_\text{rot} = V^{-1} H_\text{lab} V - i\hbar V^{-1}\frac{\partial}{\partial t} V$$
+	\begin{adjustwidth}{-50pt}{100pt}
+	\begin{align*}
+	=& \begin{pmatrix}
+		e^{i \frac{\omega_\text{0}}{2}t} & 0 \\
+		0 & e^{-i \frac{\omega_\text{0}}{2}t}
+	\end{pmatrix}
+	\begin{pmatrix}
+		\frac{\hbar\omega_\text{0}}{2} & \mu B_1 \cos(\omega_\text{0} t) - i \mu B_1 \sin(\omega_\text{0} t) \\
+		 \mu B_1 \cos(\omega_\text{0} t) + i \mu B_1 \sin(\omega_\text{0} t)& - \frac{\hbar\omega_\text{0}}{2}
+	\end{pmatrix}
+	\begin{pmatrix}
+		e^{-i \frac{\omega_\text{L}}{2}t} & 0 \\
+		0 & e^{i \frac{\omega_\text{0}}{2}t}
+	\end{pmatrix} \\
+	&- i \hbar
+	\begin{pmatrix}
+		e^{i \frac{\omega_\text{0}}{2}t} & 0 \\
+		0 & e^{-i \frac{\omega_\text{0}}{2}t}
+	\end{pmatrix}
+	\begin{pmatrix}
+		(-i \frac{\omega_\text{0}}{2}) e^{-i \frac{\omega_\text{0}}{2}t} & 0 \\
+		0 &(i \frac{\omega_\text{0}}{2}) e^{i \frac{\omega_\text{0}}{2}t}
+	\end{pmatrix} \\
+	=& 
+	\begin{pmatrix}
+		\frac{\hbar\omega_\text{0}}{2} & e^{i \omega_\text{0}t} \left(  \mu B_1 \cos(\omega_\text{0} t) - i\mu B_1 \sin(\omega_\text{0} t) \right) \\
+		 e^{i \omega_\text{0}t} \left( \mu B_1 \cos(\omega_\text{0} t) + i \mu B_1 \sin(\omega_\text{0} t) \right) & - \frac{\hbar\omega_\text{0}}{2} 
+	\end{pmatrix}
+	-
+	\begin{pmatrix}
+		\frac{\hbar\omega_\text{0}}{2} & 0 \\
+		0 & -\frac{\hbar\omega_\text{0}}{2}
+	\end{pmatrix} \\
+	\end{align*}
+    \end{adjustwidth}
+    $
+	= 
+	\begin{pmatrix}
+		0 & e^{i \omega_\text{0}t} \left(  \mu B_1 \cos(\omega_\text{0} t) - i \mu B_1 	\sin(\omega_\text{0} t) \right) \\
+		 e^{-i \omega_\text{0}t} \left( \mu B_1 \cos(\omega_\text{0} t) + i \mu B_1 \sin(\omega_\text{0} t) \right) & 0
+	\end{pmatrix} \\
+	= \mu B_1
+	\begin{pmatrix}
+		0 & 1 \\
+		 1 & 0
+	\end{pmatrix}
+	$
+	\\
+
+
+This Hamiltonian is generating a rotation about the $x$-axis (we can compute the time evolution explicitly, or simply see that it's the exact Hamiltonian we would get from a magnetic field in the $x$ direction). This is exactly as expected. Recall the situation in the lab frame: The magnetic field in the $z$-direction rotated the Bloch sphere in a right-handed way (i.e. point the thumb of your right hand along the direction $\begin{pmatrix} 1 \\ 0 \end{pmatrix}$, then your fingers curl in the direction that the magnetic field is causing states on the sphere to rotate). Meanwhile, the "weaker" magnetic field in the $x,y$ direction caused states to rotate around an axis that itself was rotating in a right-handed way around the $z$-axis. We changed to a frame that rotated with both of these rotations. This had the effect of keeping the axis of rotation of the weaker magnetic field in a fixed direction.
+			
+		\item Next, consider that we may not be resonant, i.e. we have \mbox{$\omega_{\rm rf}-\omega_{\rm 0}=\delta \neq 0$}. There are two natural choices for a rotating frame defined by the two frequencies in our problem. 
+		        What is the Hamiltonian in both bases? What is their interpretation? In which basis does the Hamiltonian remain time independent. 
+			{2}
+			
+		Solution: Let's set $\hbar$ to 1 for now and insert the $\hbar$'s back in at the end if necessary. The Hamiltonian in the lab frame is:
+\begin{align*}
+	H_\text{lab} = 
+	\begin{pmatrix}
+		\frac{\omega_\text{0}}{2} & B_1 \cos(\omega_\text{rf} t) - i B_1 \sin(\omega_\text{rf} t) \\
+		 B_1 \cos(\omega_\text{rf} t) + i B_1 \sin(\omega_\text{rf} t)& -\frac{\omega_\text{0}}{2}
+	\end{pmatrix}~. 
+\end{align*}
+If we still used the frame that rotated with frequency $\omega_L$, then in the new (rotating) frame it becomes:
+$$H_\text{rot,0} = V^{-1} H_\text{lab} V - i V^{-1}\frac{\partial}{\partial t} V $$
+	\begin{adjustwidth}{-50pt}{-50pt}
+	\begin{align*}
+	=& \begin{pmatrix}
+		e^{i \frac{\omega_\text{0}}{2}t} & 0 \\
+		0 & e^{-i \frac{\omega_\text{0}}{2}t}
+	\end{pmatrix}
+	\begin{pmatrix}
+		\frac{\omega_\text{0}}{2} & \mu B_1 \cos(\omega_\text{rf} t) - i \mu B_1 \sin(\omega_\text{rf} t) \\
+		 \mu B_1 \cos(\omega_\text{rf} t) + i \mu B_1 \sin(\omega_\text{rf} t)& - \frac{\omega_\text{0}}{2}
+	\end{pmatrix}
+	\begin{pmatrix}
+		e^{-i \frac{\omega_\text{0}}{2}t} & 0 \\
+		0 & e^{i \frac{\omega_\text{0}}{2}t}
+	\end{pmatrix} \\
+	&- i 
+	\begin{pmatrix}
+		e^{i \frac{\omega_\text{0}}{2}t} & 0 \\
+		0 & e^{-i \frac{\omega_\text{0}}{2}t}
+	\end{pmatrix}
+	\begin{pmatrix}
+		(-i \frac{\omega_\text{0}}{2}) e^{-i \frac{\omega_\text{0}}{2}t} & 0 \\
+		0 &(i \frac{\omega_\text{0}}{2}) e^{i \frac{\omega_\text{0}}{2}t}
+	\end{pmatrix} \\
+	=& 
+	\begin{pmatrix}
+		\frac{\omega_\text{0}}{2} & e^{i \omega_\text{0}t} \left(\mu B_1 \cos(\omega_\text{rf} t) - i\mu B_1 \sin(\omega_\text{rf} t) \right) \\
+		 e^{-i \omega_\text{0}t} \left( \mu B_1 \cos(\omega_\text{rf} t) + i \mu B_1 \sin(\omega_\text{rf} t) \right) & -\frac{\omega_\text{0}}{2} 
+	\end{pmatrix}
+	-
+	\begin{pmatrix}
+		\frac{\omega_\text{0}}{2} & 0 \\
+		0 & \frac{-\omega_\text{0}}{2}
+	\end{pmatrix} \\
+	=& 
+	\begin{pmatrix}
+		0 & e^{i \omega_\text{0}t} \left(  \mu B_1 \cos(\omega_\text{rf} t) - i \mu B_1 	\sin(\omega_\text{rf} t) \right) \\
+		 e^{-i \omega_\text{0}t} \left( \mu B_1 \cos(\omega_\text{rf} t) + i \mu B_1 \sin(\omega_\text{rf} t) \right) & 0
+	\end{pmatrix} \\
+	=& \mu B_1
+	\begin{pmatrix}
+		0 & e^{i \delta t} \\
+		 e^{- i \delta t} & 0
+	\end{pmatrix} 
+	~.
+\end{align*}
+
+This Hamiltonian is roughly the same as the one we had before, but now the magnetic field in the $x,y$ plane is itself rotating in a left-handed manner with frequency $\delta$. Another natural frame is the one that rotates with frequency $\omega_\text{rf}$. We transform to this frame with basically the same $V$, but with $\omega_\text{0}$ replaced by $\omega_\text{rf}$:
+\end{adjustwidth}
+\begin{adjustwidth}{-50pt}{-50pt}
+$H_\text{rot,rf} = V_\text{rf}^{-1} H_\text{lab} V_\text{rf} - i V_\text{rf}^{-1}\frac{\partial}{\partial t} V_\text{rf}$
+\begin{align*}
+	=& \begin{pmatrix}
+		e^{i \frac{\omega_\text{rf}}{2}t} & 0 \\
+		0 & e^{-i \frac{\omega_\text{rf}}{2}t}
+	\end{pmatrix}
+	\begin{pmatrix}
+		\frac{\omega_\text{0}}{2} & \mu B_1 \cos(\omega_\text{rf} t) - i \mu B_1 \sin(\omega_\text{rf} t) \\
+		 \mu B_1 \cos(\omega_\text{rf} t) + i \mu B_1 \sin(\omega_\text{rf} t)& - \frac{\omega_\text{0}}{2}
+	\end{pmatrix}
+	\begin{pmatrix}
+		e^{-i \frac{\omega_\text{rf}}{2}t} & 0 \\
+		0 & e^{i \frac{\omega_\text{rf}}{2}t}
+	\end{pmatrix} \\
+	&- i 
+	\begin{pmatrix}
+		e^{i \frac{\omega_\text{rf}}{2}t} & 0 \\
+		0 & e^{-i \frac{\omega_\text{rf}}{2}t}
+	\end{pmatrix}
+	\begin{pmatrix}
+		(-i \frac{\omega_\text{rf}}{2}) e^{-i \frac{\omega_\text{rf}}{2}t} & 0 \\
+		0 &(i \frac{\omega_\text{rf}}{2}) e^{i \frac{\omega_\text{rf}}{2}t}
+	\end{pmatrix} \\
+	=& 
+	\begin{pmatrix}
+		\frac{\omega_\text{0}}{2} & e^{i \omega_\text{rf}t} \left(\mu B_1 \cos(\omega_\text{rf} t) - i\mu B_1 \sin(\omega_\text{rf} t) \right) \\
+		 e^{-i \omega_\text{rf}t} \left( \mu B_1 \cos(\omega_\text{rf} t) + i \mu B_1 \sin(\omega_\text{rf} t) \right) & -\frac{\omega_\text{0}}{2} 
+	\end{pmatrix}
+	-
+	\begin{pmatrix}
+		\frac{\omega_\text{rf}}{2} & 0 \\
+		0 & \frac{-\omega_\text{rf}}{2}
+	\end{pmatrix} \\
+	=& 
+	\begin{pmatrix}
+		-\frac{\delta}{2} & e^{i \omega_\text{rf}t} \left(  \mu B_1 \cos(\omega_\text{rf} t) - i \mu B_1 	\sin(\omega_\text{rf} t) \right) \\
+		 e^{-i \omega_\text{rf}t} \left( \mu B_1 \cos(\omega_\text{rf} t) + i \mu B_1 \sin(\omega_\text{rf} t) \right) & \frac{\delta}{2}
+	\end{pmatrix} \\
+	=&
+	\begin{pmatrix}
+		- \frac{\delta}{2} & \mu B_1 \\
+		\mu B_1 & \frac{\delta}{2}
+	\end{pmatrix} 
+	~.
+\end{align*}
+In this frame, the $xy$ magnetic field stays fixed along the $x-axis$ (we see this from the fact that the off diagonal terms are fixed at $\mu B$. However, it is like there's a small magnetic field pointing in the $- z$ direction that rotates states around the $z-axis$ (in a left-handed manner) with frequency $\delta$. One might prefer to use $H_\text{rot,0}$, because while the axis of rotation is shifting slightly with $t$, we nonetheless only have to worry about one axis of rotation. On the other hand, $H_\text{rot,rf}$ is time-independent, which is a very nice feature!
+\end{adjustwidth}
+		
+		
+			
+		\item Experimentally, it is simpler to apply a linearly polarized field\break
+			$\vec{B}_{\rm rf}={(B_1 \cos \omega_{\rm rf} t, 0 , 0)}$ 
+			rather than the rotating (circularily polarized) field assumed above. How does this change the 
+			time independent Hamiltonian you obtained in (e). Assuming $|\vec{B}_{\rm rf}|\ll|\vec{B}_0|$ and $\delta \ll\{\omega_0,\omega_{\rm rf}\}$, 
+			identify fast oscillating terms. Convince yourself that we can neglect them. 
+			Using this approximation, how  are your previous results affected? 
+			Note: this is the so-called rotating wave approximation, or short RWA.
+			{1}
+			
+			Solution: The Hamiltonian in the rotating frame is now given as:
+\begin{align*}
+	H_\text{rot,rf} =& V_\text{rf}^{-1} H_\text{lab} V_\text{rf} - i V_\text{rf}^{-1}\frac{\partial}{\partial t} V_\text{rf} \\
+	=& \begin{pmatrix}
+		e^{i \frac{\omega_\text{rf}}{2}t} & 0 \\
+		0 & e^{-i \frac{\omega_\text{rf}}{2}t}
+	\end{pmatrix}
+	\begin{pmatrix}
+		\frac{\omega_\text{0}}{2} & \mu B_1 \cos(\omega_\text{rf} t) \\
+		 \mu B_1 \cos(\omega_\text{rf} t)& - \frac{\omega_\text{0}}{2}
+	\end{pmatrix}
+	\begin{pmatrix}
+		e^{-i \frac{\omega_\text{rf}}{2}t} & 0 \\
+		0 & e^{i \frac{\omega_\text{rf}}{2}t}
+	\end{pmatrix} \\
+	&- i 
+	\begin{pmatrix}
+		e^{i \frac{\omega_\text{rf}}{2}t} & 0 \\
+		0 & e^{-i \frac{\omega_\text{rf}}{2}t}
+	\end{pmatrix}
+	\begin{pmatrix}
+		(-i \frac{\omega_\text{rf}}{2}) e^{-i \frac{\omega_\text{rf}}{2}t} & 0 \\
+		0 &(i \frac{\omega_\text{rf}}{2}) e^{i \frac{\omega_\text{rf}}{2}t}
+	\end{pmatrix} \\
+	=& 
+	\begin{pmatrix}
+		\frac{\omega_\text{0}}{2} & e^{i \omega_\text{rf}t} \mu B_1 \cos(\omega_\text{rf} t) \\
+		 e^{-i \omega_\text{rf}t} \mu B_1 \cos(\omega_\text{rf} t) & -\frac{\omega_\text{0}}{2} 
+	\end{pmatrix}
+	-
+	\begin{pmatrix}
+		\frac{\omega_\text{rf}}{2} & 0 \\
+		0 & \frac{-\omega_\text{rf}}{2}
+	\end{pmatrix} \\
+	=& 
+	\begin{pmatrix}
+		-\frac{\delta}{2} & \frac{\mu B_1}{2}  e^{i \omega_\text{rf}t} \left( e^{i \omega_\text{rf} t} + e^{-i \omega_\text{rf} t}  \right) \\
+		  \frac{\mu B_1}{2} e^{-i \omega_\text{rf}t} \left( e^{i \omega_\text{rf} t} + e^{-i \omega_\text{rf} t}  \right)  & \frac{\delta}{2}
+	\end{pmatrix} \\
+	=&
+	\begin{pmatrix}
+		- \frac{\delta}{2} & \frac{\mu B_1}{2}(1 + e^{2 i \omega_\text{rf}t}) \\
+		\frac{\mu B_1}{2}(1 + e^{-2 i \omega_\text{rf} t}) & \frac{\delta}{2}
+	\end{pmatrix} \\
+	=& 
+	\begin{pmatrix}
+		- \frac{\delta}{2} & \frac{\mu B_1}{2} \\
+		\frac{\mu B_1}{2} & \frac{\delta}{2}
+	\end{pmatrix} 
+	+ 
+	\begin{pmatrix}
+		0 & \frac{\mu B_1}{2}e^{2 i \omega_\text{rf}t} \\
+		\frac{\mu B_1}{2}e^{-2 i \omega_\text{rf} t} & 0
+	\end{pmatrix}
+	~.
+\end{align*}
+We consider $\omega_\text{rf} \approx \omega_\text{0}$, such that $\delta$ is very small. Given that $|\vec{B}_\text{rf}| \ll |\vec{B}_0|$, then the terms $e^{2 i \omega_\text{rf} t}$ are oscillating much faster than anything else in the problem. In the last line, we wrote these terms as a separate matrix contribution to the Hamiltonian. We can convince ourselves that this term can be dropped by considering the time-averaged effect of this Hamiltonian, averaged over a time $t = \frac{1}{2 \omega_\text{rf}}$. This is a very small time compared to the frequency of rotation about this axis, $\mu B_1$. Hence in one period $T = 2 \omega_\text{rf}$, states will rotate slightly in one direction, and then slightly back in exactly the opposite direction a small time later. A more careful demonstration of this fact could come from integrating the effect of this part of the Hamiltonian over one period $T = 2 \omega_\text{rf}$. For now, we will drop these terms to give ourselves the Hamiltonian
+\begin{align*}
+	H_\text{rot,rf}
+	\approx
+	\begin{pmatrix}
+		- \frac{\delta}{2} & \frac{\mu B_1}{2} \\
+		\frac{\mu B_1}{2} & \frac{\delta}{2}
+	\end{pmatrix} 
+	~.
+\end{align*}
+This is the same form as the time-independent Hamiltonian we had from a circularly-polarized field in the previous part!
+			
+			
+\begin{comment}			
+		\item Using a linearly polarized electromagnetic field, give a set of parameters, i.e. 
+			time $t$ and frequency $\omega_{\rm rf}$, to implement the swap  $\ket{+z} \leftrightarrow \ket{-z}$. Note that this may be interpreted as a NOT operation, $U_{\rm {\rm NOT}}$ when we would define $\ket{+z}$ be a logical $0$, i.e. $\ket{0}$ and $\ket{-z}$ be a logical 1, i.e. $\ket{1}$. 
+			What set of parameters yields a transformation $U_{\rm \sqrt{\rm NOT}}$ such that $U_{\rm \sqrt{\rm NOT}}^2=U_{\rm {\rm NOT}}$? What state will you create when applying $U_{\rm {\rm NOT}}$ to $\ket{+z}$?
+			{2} 
+	\end{comment}
+		
+		\item Starting in the $\ket{+z}_{\rm lab}$-state, find the time $t_{0}$ for which you need to apply the linearly polarized electromagnetic radiation such that in the rotating frame 
+			you create the state\begin{equation} \label{eq:bloch}
+			\cos\frac{\theta}{2}\ket{+z}_{\rm rot}+\sin\frac{\theta}{2}e^{i\varphi}\ket{-z}_{\rm rot},\nonumber
+			\end{equation} i.e. 
+			a general qubit state. Assume that  at $t=0$ you have initialized the system in $\ket{+z}_{\rm lab}$ and that the drive is on resonance, i.e. $\delta=0$. Note that you may use a slightly more generalized r.f.-field $\vec{B}_{\rm rf}=
+			(B_1\cos (\omega_{\rm rf} t+ \varphi),0 , 0)$.  
+			{1}
+			
+			Solution: If we repeat the above procedure with $\vec{B}_{\rm rf}=
+			(B_1\cos (\omega_{\rm rf} t+ \varphi),0 , 0)$ and set $\delta = 0$, the Hamiltonian in the rotating frame is given by:
+\begin{align*}
+	H_\text{rf} =& 
+	\begin{pmatrix}
+		0 & \frac{\hbar\mu B_1}{2} e^{-i\varphi}\\
+		\frac{\hbar\mu B_1}{2} e^{i\varphi} & 0
+	\end{pmatrix}~.
+\end{align*}
+
+We can see that this can be written as
+
+$$H_{rf}=\mu B_1 (\cos \varphi S_x +\sin \varphi S_y).$$
+
+So time evolution is a rotation about the axis $(\cos\varphi,\sin\varphi,0)$ by an angle of $\theta=\mu B_1 t$.
+
+We will obtain an arbitrary qubit state by picking an axis of rotation with $\varphi$, and then rotating about that axis for some time $T$ until we have reached the desired state. Now, if we want $\phi$ (the phase in the state) to take on some particular value, like $\pi/3$, we pick a $\varphi$ that is orthogonal to the line with that angle in the $xy$ plane. For example, the axis given by $\varphi = \pi / 3 + \pi / 2 = 5 \pi / 6$ is orthogonal to the axis given by $\phi / 3$. Then we achieve the desired state by rotating about this axis by an angle $\theta$. A rotation by an angle $\theta$ on the Bloch sphere is given by evolving with our Hamiltonian by a time $t_0$ given by $ t_0  = \theta / \mu B_1$.
+\\
+\\
+You can convince yourself that this is the correct form of $t_0$ from physical intuition. If we crank up the interaction strength of the state with the magnetic field, either by increasing $\mu$ or increasing $B_1$, then the state will rotate faster, and thus $t_0$ will decrease. If we increase $\theta$, we naturally expect $t_0$  to increase. Finally, by dimensional analysis, we see that $\theta / \mu B_1$ has units of 1/frequency = time.
+
+
+
+    \item 
+        Choose a time $t_{0}$ such that for $\delta=0$ you create the state $\ket{-z}_{\rm rot}$. Plot the probability that you would find the spin being excited from the $\ket{+z}_{\rm lab}$ state to the $\ket{-z}_{\rm lab}$ state as a function of the detuning $\delta/\Omega$ where we define the so-called Rabi frequency as $\Omega=g \mu_{\rm B}B_{\rm rf}/\hbar$.
+{1}
+
+Solution: From part (g), we have $t_0 = \theta / \mu B_1$. For the $\ket{-z}_{rot}$ state, we have $\theta = \pi$, so $$t_0 = \pi / \mu B_1.$$
+
+As the evolution is rotation about the axis $(\cos\varphi,\sin\varphi,0)$ by an angle of $\theta=\mu B_1 t$, which means that the value of $\theta$ on the Bloch sphere with also be $\theta=\mu B_1 t$, the probability to be in $\ket{-z}$ is $\sin^2\frac{\mu B_1 t}{2}$. Rotation about the z axis does not affect this. The plot is below:
+
+%\includegraphics{7hplot.pdf}
+
+%\includegraphics[width=\textwidth]{plot_P_detuning.png}
+
+\item Choose the time for state evolution to be $t_0/2$ and a detuning of $\delta =0$. What state will the system be in after the corresponding time evolution?
+		        Sketch (or plot) the trajectory of the state evolution from the $\ket{+z}_{\rm lab}$ to
+		        the corresponding state. For this parametrize the state in terms of Eq.~\ref{eq:bloch} with the angles $\theta$ and $\varphi$ and plot where you end up on the unit-sphere. Note that this is the so-called Bloch sphere representation. 
+			Do this first for the rotating frame and then try the same for the laboratory frame. 
+			{1}
+
+Solution: This is still a rotation about the axis $(\cos\varphi,\sin\varphi,0)$ by an angle of $\theta=\mu B_1 t$. But the final state has $t=\frac {t_0} 2$. So $\theta = \frac \pi 2$ and $\phi=\varphi-\frac \pi 2$.
+
+The rotating frame will rotate much faster than the state rotates down as $B_z\gg B_1$, so the states look like:
+
+%\includegraphics[scale = 0.72]{7iplot.pdf}
+
+		\item Finally, going back to (e), express the Hamiltonian in the rotating basis in the $\ket{\pm z}_{\rm rot}$ basis for the generalized r.f.-drive $\vec{B}_{\rm rm}=
+			(B_1 \cos (\omega_{\rm rf} t+ \varphi),0 , 0)$ in terms of the 
+		        raising and lowering matrices $\sigma_\pm=\sigma_x\pm i \sigma_y$ as well as $\sigma_z$.
+			{1}
+			
+			Solution: In the basis rotating with frequency $\omega_\text{rf}$, we can write the Hamiltonian as
+\begin{align*}
+	H_\text{rf} =& 
+	\begin{pmatrix}
+		-\frac{\delta}{2} & \frac{\mu B_1}{2} e^{-i\varphi}\\
+		\frac{\mu B_1}{2} e^{i\varphi} & \frac{\delta}{2}
+	\end{pmatrix} \\
+	=& 
+	\begin{pmatrix}
+		-\frac{\delta}{2} & \frac{\mu B_1}{2} (\cos\varphi - i \sin\varphi)\\
+		\frac{\mu B_1}{2} (\cos\varphi + i \sin\varphi) & \frac{\delta}{2}
+	\end{pmatrix} \\
+	=& 
+	-\frac{\delta}{2} \sigma_z + \frac{\mu B_1}{2} \cos(\varphi) \sigma_x + \frac{\mu B_1}{2} \sin(\varphi) \sigma_y \\
+	=& 
+	-\frac{\delta}{2} \sigma_z + \frac{\mu B_1}{4} \cos(\varphi) (\sigma_+ + \sigma_-) - i \frac{\mu B_1}{4} \sin(\varphi) (\sigma_+ - \sigma_-) \\
+	=& -\frac{\delta}{2} \sigma_z + \frac{\mu B_1}{2} e^{-i \varphi} \sigma_+  + \frac{\mu B_1}{2}e^{i \varphi} \sigma_-~.
+\end{align*}
+
+Another way of seeing this would be to note the matrix forms of $\sigma_+$ and $\sigma_-$:
+\begin{align*}
+	\sigma_+ =& 
+		\begin{pmatrix}
+			0 & 1 \\
+			0 & 0
+		\end{pmatrix}~, \\
+	\sigma_- =&
+		\begin{pmatrix}
+			0 & 0 \\
+			1 & 0
+		\end{pmatrix}~.
+\end{align*}
+
+The solution is then clearly
+$H_{\text{rf}} =  -\frac{\delta}{2} \sigma_z + \frac{\mu B_1}{2} e^{-i \varphi} \sigma_+  + \frac{\mu B_1}{2}e^{i \varphi} \sigma_-$
+
+
+\end{enumerate}
+\end{enumerate}
+
+
+\begin{thebibliography}{}
+\label{sec:References}
+    \bibitem{Knill2002} E. Knill, R. Laflamme, H. Barnum, D. Dalvit, J. Dziarmaga, J. Gubernatis, L. Gurvits, G. Ortiz, L. Viola, W.H. Zurek,
+    	arXiv:quant-ph/0207171, \url{https://arxiv.org/abs/quant-ph/0207171}
+
+\bibitem{Ladd2010} Ladd, T. D., Jelezko, F., Laflamme, R., Nakamura, Y., Monroe, C., \& O’Brien, J. L. (2010). Quantum computers. Nature, 464(7285), 45–53. https://doi.org/10.1038/nature08812    
+    
+\end{thebibliography}
+
+\end{document}

@@ -116,3 +116,8 @@
   slug: TOM
   pdf: TOM.pdf
   sheets: TOM_Signatures.pdf
+- title: QIP
+  description: TODO
+  slug: QIP
+  pdf: QIP.pdf
+  sheets: QIP_Signatures.pdf

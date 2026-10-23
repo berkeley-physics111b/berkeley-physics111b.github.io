@@ -5,7 +5,7 @@
 \labacronym{TOM}
 \labtitle{Muon Tomography}
 
-%\newcommand{\ofOpticsTutorial}{http://experimentationlab.berkeley.edu/sites/default/files/QIE/fundamental-Optics.pdf}
+%\newcommand{\ofOpticsTutorial}{https://berkeley-physics111b.github.io/assets/pdf/oldwebsitestructure/QIE/fundamental-Optics.pdf}
 
 \begin{document}
 
@@ -16,27 +16,35 @@
 \section{Muon Tomography (TOM) Description}
 
 \begin{enumerate}
-    \item \textbf{Note that there is NO eating or drinking in the 111-Lab anywhere, except in rooms 282 \& 286 LeConte on the bench with the BLUE stripe around it.} Thank you -- the Staff.
+    \item \textbf{Note that there is NO eating or drinking in the 111-Lab anywhere, except in rooms 282 \& 286 Physics North on the bench with the BLUE stripe around it.} Thank you -- the Staff.
 
 \end{enumerate}
 
-In this experiment, we explore muon tomography - the idea that we can use muon count rates to reconstruct an image of a region of interest. You will begin by calibrating your muon detectors to understand what muon pulses look like and coincidence counting, and then bring your detectors out around campus to image a building. You will also observe how different materials attenuate muons and how other background effects (like the Earth's geomagnetic field) affect count rates. In so doing, you will be introduced to the cross-disciplinary concept of tomography and the algorithms and statistics used for image reconstruction from cross-sections. You will also explore the fields of particle physics and cosmic ray physics, and see the ways muon tomography can be applied in a variety of other fields. \textbf{As of 9/14/26, this manual is a draft manual subject to revision. If you are doing this experiment, you should discuss questions/suggestions with staff.}
+In this experiment, we explore muon tomography - the idea that we can use muon count rates to reconstruct an image of a region of interest. You will begin by calibrating your muon detectors to understand what muon pulses look like and coincidence counting, and then bring your detectors out around campus to image a building. You will also observe how different materials attenuate muons and how other background effects (like the Earth's geomagnetic field) affect count rates. In so doing, you will be introduced to the cross-disciplinary concept of tomography and the algorithms and statistics used for image reconstruction from cross-sections. You will also explore the fields of particle physics and cosmic ray physics, and see the ways muon tomography can be applied in a variety of other fields.
 
 \begin{enumerate}
     \item Pre-requisites: MUO (or instructor permission)
 
-    \item Days Allotted for the Experiment: 6
+    \item Days Allotted for the Experiment: 8
 
     \item Consecutive days: Yes
 
 \end{enumerate}
 
 
-This lab will be graded 20\% on theory, 20\% on technique, and 60\% on analysis. For more information, see the \href{\AdvancedLabSyllabus}{\textbf{Advanced Lab Syllabus}}.
+This lab will be graded 20\% on theory, 30\% on technique, and 50\% on analysis.
 
 Comments: E-mail \href{\MailLabManager}{\textbf{Winthrop Williams}}
 
-Last updated 9/14/26 by Auden Young.
+Last updated 10/21/26 by Auden Young.
+
+%TODO:
+% image reconstruction section - muon tomography algorithm? what kind of software do we need to provide? how do they pick what measurements to do? (i.e. number of locations & angles at each)
+% detail about figuring out resolution of detector/how repeated overlapping measurements improve resolution - add resolution stuff to analysis
+% check for any sections that mention 'discussing with staff bc it's still in development' and update
+% add section to introduction/background on simulating air showers/maybe analysis section? maybe put in MUO?
+% update everything to ask for 3D reconstruction
+% time dilation factor in SR in introduction/background section since it's something they confirm in height dependence section; make a checkpoint?
 
 Science is always a collaborative endeavor! Many thanks to the Nuclear Engineering department for donating the portable detectors, to Aegean Dela Cruz and Jack Reddick for extensive assistance developing and testing this experiment in Spring 2026, and to Marty Boren for designing and building a custom cart for the lab.
 
@@ -71,15 +79,32 @@ You should keep a laboratory notebook. The notebook should contain a detailed re
 
     \item Create graphical reconstructions from numerical datasets and understand techniques common in tomography for data analysis
 
+    \item Explore particle physics and space weather
+
 \end{itemize}
 
 \section{Muon Tomography (TOM) Pictures}
 
-Coming soon to theaters near you.
+\noindent
+\begin{figure}[H]
+\captionsetup{justification=centering}
+\minipage[t]{0.45\linewidth}
+  \includegraphics[width=\linewidth,keepaspectratio]{images/cart_exterior.jpeg}
+  \caption{Muon tomography (TOM) experiment.}
+  \label{fig:cartexterior}
+\endminipage\hfill
+\minipage[t]{0.45\linewidth}
+  \includegraphics[width=\linewidth,keepaspectratio]{images/cart_interior.jpeg}
+  \caption{Interior of cart for TOM.}
+  \label{fig:cartinterior}
+\endminipage\hfill
+
+\end{figure}
 
 \section{Introduction}
 
 Tomography as a general term refers to the process of reconstructing a 3D image using many 2D sections (or, more generally, reconstructing a higher dimensional image/state from a few `snapshots'/cross-sections). There are many contexts in which this idea is used ranging from medicine to oceanography to nuclear physics, and many ways in which it is done ranging from using x-rays to nuclear magnetic moments\footnote{Explore the NMR lab for more details.} to seismic waves. The MRI and the CT scan (historically the CAT scan) are maybe two of the most classic examples of tomography in practice.
+%test comment
 
 However, many methods of tomography require complex equipment, radiation that can be harmful in large doses, or both. And what if we are trying to image something large, like an active volcano,\footnote{Not a hypothetical example! Geologists want to use muon tomography to see how full magma chambers are, to potentially help predict eruptions.} or one of the Great Pyramids? The attenuation of most radiation sources is simply too significant to image such large structures.
 
@@ -112,6 +137,10 @@ The rate of the muon-capture process \eqref{eq:Reaction3} depends strongly on th
 
 Most of the muons that are incident on the detector pass straight through it. Only the lowest energy particles come to rest within the scintillating liquid itself.
 
+%\subsubsection{Relativistic time dilation}
+
+%...
+
 \subsubsection{East-west effect}
 
 Due to the Earth's geomagnetic field, there is a preferred trajectory for incoming cosmic rays to our detector (see Figure \ref{fig:eastwest}). This asymmetry can be described as
@@ -136,7 +165,7 @@ This effect, as discussed in \href{https://www.sciencedirect.com/science/article
 %also discuss shower simulation etc
 
 \subsection{Image reconstruction}
-When we collect our data, we will obtain projections - effectively, the result of several line integrals through the object we are imaging - and attempt to construct a 3D (or 2D) image from them. (Roughly, a 2D image reconstruction is radiography, while a 3D image reconstruction is tomography - think of an x-ray vs. an MRI. We will not dwell extensively on the distinction here.) The exact algorithm you use will be one you discuss with staff as this lab is being developed, but likely it will rely on the Fourier Slice Theorem, and will likely be the filtered backprojection algorithm - see Chapter 3 of Kak \& Slaney. %add details/confirm
+When we collect our data, we will obtain projections - effectively, the result of several line integrals through the object we are imaging - and attempt to construct a 3D (or 2D) image from them. (Roughly, a 2D image reconstruction is radiography, while a 3D image reconstruction is tomography - think of an x-ray vs. an MRI. We will not dwell extensively on the distinction here.) The exact algorithm you use will be one you discuss with staff as this lab is being finalized, but likely it will rely on the Fourier Slice Theorem, and will likely be the filtered backprojection algorithm - see Chapter 3 of Kak \& Slaney. %add details/confirm
 
 As one might gather, this is a somewhat computationally and statistically intensive lab. We encourage you to review the EAX, consult the references, refer to some of the starter code provided, and ask questions of staff as you work through your analysis process.
 
@@ -148,6 +177,7 @@ As one might gather, this is a somewhat computationally and statistically intens
     \item Two mineral oil scintillators: ``Bra'' (1'×1'×1') and ``Ket" (4"×1'×1')
     \item \href{https://digilent.com/shop/analog-discovery-3/}{Digilent Analog Discovery 3 (AD3)} for data acquisition
     \item Custom cart with arms for adjusting angular position of `Ket' detector relative to `Bra' detector
+    \item Laptop - as of 10/21/26, CalNet login not set up; password is 8362clio. Please create a folder to save your data in so that it stays organized.
 \end{itemize}
 
 \subsection{Photomultiplier tubes (PMTs)}
@@ -156,28 +186,162 @@ A photomultiplier tube (PMT) is a detector that converts single photons into lar
 
 \begin{figure}[h]
     \centering
-    \href{http://experimentationlab.berkeley.edu/sites/default/files/images/MUOimage056.gif}{\includegraphics[width=0.4\linewidth]{../MUO/images/MUOimage056.png}}
+    \href{https://berkeley-physics111b.github.io/assets/pdf/oldwebsitestructure/images/MUOimage056.gif}{\includegraphics[width=0.4\linewidth]{../MUO/images/MUOimage056.png}}
     \caption{Schematic of a photomultiplier tube}
     \label{fig:PhotomultiplierTube}
 \end{figure}
 
 \subsection{Cart}
 
-In this experiment, you will be wheeling a cart of equipment around to several locations. (If you have concerns about this physical requirement, please speak with an instructor.) The equipment itself achieves the physics trifecta of being heavy/bulky, delicate, and expensive. \textbf{As such, it's very important you supervise the cart at all times when it is out of the 111 lab.} This may mean waiting with the cart for an hour or more while collecting data - we recommend bringing something else to do while waiting. It is also important you check with a GSI or instructor when you remove the cart from the lab and when you return it to the lab, and that you have a way to quickly communicate with instructional staff in case of any problems (e.g. Slack, email) - instructional staff will largely not be able to go with you for data collection. The cart should not be taken to any locations other than those suggested in this manual without express permission from an instructor.
+In this experiment, you will be wheeling a cart of equipment around to several locations. (If you have concerns about this physical requirement, please speak with an instructor.) The equipment itself achieves the physics trifecta of being heavy/bulky, delicate, and expensive. \textbf{As such, it's very important you supervise the cart at all times when it is out of the 111 lab.} This may mean waiting with the cart for an hour or more while collecting data - we recommend bringing something else to do while waiting \footnote{If you are looking for something to do that is still muon-related, check out the official ATLAS experiment coloring book \href{https://cds.cern.ch/record/2963775/files/ATLAS\%20Experiment\%20Colouring\%20Book\%20-\%20Upgrade\%20Edition\%20(A4).pdf}{here}.}. It is also important you check with a GSI or instructor when you remove the cart from the lab and when you return it to the lab, and that you have a way to quickly communicate with instructional staff in case of any problems (e.g. Slack, email) - instructional staff will largely not be able to go with you for data collection. The cart should not be taken to any locations other than those suggested in this manual without express permission from an instructor.
+
+You will need to position the top detector (`Ket') relative to the bottom detector (`Bra') to achieve a fixed angle. This is done by using the provided metal rods and inserting them into the (unthreaded) holes in base of the mechanism (see Figures \ref{fig:lockmechanism}, \ref{fig:45deglocked}, \ref{fig:90deglocked}). When you move the cart, you should also be careful to track the angle of the cart relative to the floor (if you are taking measurements which require the full $180^\circ$) and the distance between measurement points when you do your tomography scan using the provided protractor and tape measure.\footnote{As an aside, the floor tiles in most campus buildings are a standard 1 sq. ft.}
+
+\noindent
+\begin{figure}[H]
+\captionsetup{justification=centering}
+\minipage[t]{0.3\linewidth}
+  \includegraphics[width=\linewidth,keepaspectratio]{images/locking_mechanism_holes.jpeg}
+  \caption{Holes for locking mechanism.}
+  \label{fig:lockmechanism}
+\endminipage\hfill
+\minipage[t]{0.3\linewidth}
+  \includegraphics[width=\linewidth,keepaspectratio]{images/locked_45deg.jpeg}
+  \caption{Top detector (`Ket') locked at 45$^\circ$.}
+  \label{fig:45deglocked}
+\endminipage\hfill
+\minipage[t]{0.3\linewidth}
+  \includegraphics[width=\linewidth,keepaspectratio]{images/locked_90deg.jpeg}
+  \caption{Top detector (`Ket') locked at 90$^\circ$.}
+  \label{fig:90deglocked}
+\endminipage\hfill
+
+\end{figure}
 
 %When you bring the cart back, make sure you plug the battery pack in to charge overnight, including at the end of your experiment slot as a courtesy to the next group.
+
+For overnight runs for the east-west effect in particular, you may use the GSI office to store the cart - ask a staff member to be let in.
 
 \subsection{Software}
 
 This lab uses custom software written in Python that uses the AD3 as the data acquisition device. It has several functions.
 
-First, the `Signal Viewer' tab allows you to view traces on both channels as well as the \textit{product} of the two traces. Here, you can finetune your settings for the first and second trigger levels for each channel, and get a sense of what your coincidence and stoppage thresholds should be.
+First, the `Signal Viewer' tab (see Figure \ref{fig:signalviewersoftware}) allows you to view traces on both channels as well as the \textit{product} of the two traces. Here, you can finetune your settings for the first and second trigger levels for each channel, and get a sense of what your coincidence and stoppage thresholds should be.
 
-Second, the `Muon Lifetime' tab will allow you to repeat a smaller version of the muon lifetime experiment in order to understand any differences between the detectors, confirm your coincidence and stoppage thresholds, and confirm our fundamental assumption that using the product of the two traces is an effective way to check for coincidence counts.
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.7\linewidth]{images/signalviewer_software.png}
+    \caption{Signal Viewer tab of software.}
+    \label{fig:signalviewersoftware}
+\end{figure}
 
-Third, the `Muon Tomography' tab will allow you to save count rate data at different angles of your detector.
+Second, the `Muon Lifetime' tab (see Figure \ref{fig:muonlifetimesoftware}) will allow you to repeat a smaller version of the muon lifetime experiment in order to understand any differences between the detectors, confirm your coincidence and stoppage thresholds, and confirm our fundamental assumption that using the product of the two traces is an effective way to check for coincidence counts.
 
-As of 9/14/26, the software is still being finalized; this section will be updated soon.
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.7\linewidth]{images/muonlifetime_software.png}
+    \caption{Muon lifetime tab of software.}
+    \label{fig:muonlifetimesoftware}
+\end{figure}
+
+Third, the `Muon Tomography' tab (see Figure \ref{fig:tomographysoftware}) will allow you to save count rate data at different angles of your detector.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.7\linewidth]{images/tomography_software.png}
+    \caption{Muon tomography tab of software.}
+    \label{fig:tomographysoftware}
+\end{figure}
+
+Further details below.
+
+\subsubsection{View signals}
+
+The View Signals tab of the Muon Detection Program has several main settings, many of which carry over to the Live Histogram tab. There are three main categories of setting: channel-specific (both for channel 0 and channel 1), signal processing, and acquisition. Working from the bottom up on the side bar, the acquisition settings/controls are:
+
+\begin{itemize}
+    \item \textbf{Sample rate (Hz)} - leave at 100 MHz - the sampling rate of the AD3 scope.
+    \item \textbf{HW trigger channel (0 or 1)} - select which channel of the AD3 to trigger on.
+    \item \textbf{Connect/disconnect} - Connect and disconnect to the AD3. When moving between tabs, you'll need to disconnect on one tab and then reconnect on the other.
+    \item \textbf{Start/stop/clear} - Start, stop, and reset a measurement.
+\end{itemize}
+
+This also has a small status panel indicating if there is an active measurement, any errors in connecting, etc. The signal processing settings are:
+
+\begin{itemize}
+    \item \textbf{Low pass cutoff (Hz)} - the program passes a received signal through a low pass filter in order to reduce noise. This sets the high-frequency cutoff for that filter.
+    \item \textbf{Window start after trig ($\mu$s)} - Once the trigger is activated, we wish to ignore any pulses that occur shortly after, since they may simply be noise or part of the first pulse, as opposed to a muon decay event. This control allows the user to define how long this ignore period should last. This control should be large enough to ignore this noise, but not so large as to ignore a significant portion of the actual muon decay events.
+    \item \textbf{Window stop after trig ($\mu$s) }- determines the length of the record (counting from the trigger), i.e. the maximum difference between the trigger and the second pulse. The triggering event is set to be at 1 $\mu$s of the way through each record, so that the digitizer can see pulses just before the trigger and so that some of the extra pretrigger data the AD3 automatically collects is discarded and doesn't affect processing speed.\footnote{There are some downsides to this - there were a lot of choices made in the code about how to minimize deadtime and how to quickly process incoming records. Something worth thinking about and discussing with staff if you have questions!} After this time has passed, the program analyzes the collected data for pulses, and then returns to listening for the next trigger event. This control should be just large enough to encompass a large majority of decay events.\footnote{If it is longer, this increases deadtime.}
+    \item \textbf{Holdoff ($\mu$s)} - The amount of time after a pulse/trigger to wait before looking to see if there is another trigger. If this is zero, the same pulse may count as multiple trigger events.
+    \item \textbf{Max traces to display} - how many traces to view at a given time.
+\end{itemize}
+
+The channel specific settings have a panel for both channel 0 and channel 1, with a checkbox to enable channel 1. Think carefully about what you expect to be the same or different across the channels! Also recall that the hardware itself can only trigger on one channel, so only one of the `first triggers' is actually a \textit{hardware} trigger and the other is a \textit{software} trigger (what does this mean, and how does it impact the experiment?). The channel specific settings are:
+
+\begin{itemize}
+    \item \textbf{First trigger level (V)} - the signal amplitude required for the trigger to be activated (looking for the first pulse).
+    \item \textbf{Second trigger level (V) }- upon passing the first trigger level, the record is searched to see if a second pulse within the window defined in the signal processing settings exists which has an amplitude greater than this threshold (looking for the second decay pulse).
+    \item \textbf{Expected pulses (1 or 2)} - Once the program has identified all of the peaks existing on the most recently received signal, it must determine whether or not these pulses represent a muon decay event. The event is registered as a true muon decay event only if the number of pulses on Channel 0 and on Channel 1 match exactly with the specified \textbf{expected pulses}. 
+    There are four suggested use cases: [CH0 = 2, CH1 = 0]: This signifies a muon which entered the detector connected to channel 0, and then decayed in that same detector at a time at least as long as defined by \textbf{Pulse 2 delay}, but no longer than \textbf{Range}. Since there are only two pulses on this channel and no pulses on the other channel, we are convinced that another muon did not interfere with the measurement. For this setting, the user should set the trigger on Channel 0. [CH0 = 0, CH1 = 2]: Same as above, only for the detector connected to channel 1. For this case, the user should set the trigger on Channel 1. [CH0 = 1, CH1 = 2]: This represents a muon event in which a muon is first detected in one detector, but then it is detected in and decays in another detector, and no other pulses are recorded. It is suggested that for this case, the HW trigger channel is set to the channel which is connected to the detector which is on top, since more likely than not, we expect the muon to come from the above the surface of the Earth, and not below. [CH0 = 2, CH1 = 2]: This is a way to do a muon lifetime measurement in both channels, where each detector is effectively treated completely separately.
+    \item \textbf{Voltage range (V p-p)} - This sets the voltage range of the AD3, and in so doing, effectively sets its resolution. See the AD3 manual for details. This value should be just large enough to encompass the amplitude of any received pulse.
+    \item \textbf{Attenuation} - In order for the trigger to operate successfully (rising edge is assumed) a positive signal with respect to ground is expected on both channels. However, the incoming signal from the experiment may be negative, which would crash the program. Set the attenuation to -1.0 to invert the channel's signal, or to 1.0 to not invert it. Use the oscilloscope to check the signal polarity if you are not sure.
+\end{itemize}
+
+There is also a status panel that indicates how many events have been observed (i.e., records that passed the first trigger level) and how many counts/`passing triggers' there are (i.e., pulses that passed both the first and second trigger level).
+
+Both programs initiate a record acquisition by the digitizer and, once the voltage exceeds the trigger threshold, retrieve voltage waveform data for both channels, incrementing the \textbf{events read (first trig)} count in the status panel by one. The programs remove the voltage offset by averaging the voltages of the first 200 samples of the record, all of which should occur before the triggering event, and subtracting that voltage from all the voltage waveform data. The programs then search for up to two pulses below (for -1.0 attenuation) or above (for 1.0 attenuation) the \textbf{Channel 0(1) first trigger,} which you set. This threshold is relative to the offset, not ground. The first pulse will correspond to the muon entering the scintillating material within the tank and the second to its decay. The time difference between the first and second pulses has to be less than the \textbf{window stop after trig}, which you set, and greater than the \textbf{window start after trig,} which you set. The range is simply a measure of how long the program will wait between pulses before moving on to the next signal. The pulse 2 delay is there in order to ignore any noise generated after the first signal that may pass the trigger level. Typically 1 microsecond is enough breathing time. You can specify how many pulses in each channel is required for the data to be written to disk; in our case we are looking for two events (i.e. the incident and the decay). The \textbf{passing triggers} is incremented if exactly that number is found in each channel. Whether or not the output condition is satisfied, the process repeats with the next data record.
+
+The \textbf{View Signals} tab also displays the product of the two pulses so that you can get a sense of what your coincidence threshold should be.
+
+It is important to note that in the program \textbf{View Signals}, after clicking \textbf{Start Acquisition}, the program continues to acquire records from the amplifier and searches them for the specified pulses until you click \textbf{Stop Acquisition}. This program graphs the \textbf{Raw signals} acquired by the digitizer, the \textbf{Signal with offset removed} and the \textbf{Filtered signal} for each enabled channel.
+
+\subsubsection{Live Histogram}
+
+Once you have determined the optimal settings for the program controls using the \textbf{Signal Viewer} tab, the next portion of the lab deals with the\textbf{Muon Lifetime} tab which measures the pulse height and width in addition to time.
+
+There are a few additional settings on top of the ones for the \textbf{View Signal} tab, described below:
+
+\begin{itemize}
+    \item \textbf{Histogram bins} - Set the number of bins to use in the histogram. This is for viewing convenience as you are performing data collection; you should be exporting the csv of data and performing your own analysis/constructing your own histogram for your report.
+    \item \textbf{Export csv} - At any point you can export a csv of all the data collected to that point. However, it's not strictly necessary if you set a peak-data log path (below) before beginning your run (strongly recommended).
+    \item \textbf{Set peak-data log path} - This allows you to set a file name to save data to at the beginning. The program automatically logs data at periodic intervals so that even if the computer crashes, your data up to that point is not lost.
+    \item \textbf{Save all charged particles} - For one of the investigation options - saves data for all records that pass the first trigger, whether or not they pass the second trigger (indicates whether or not the second trigger is passed for each record).
+    \item \textbf{Save raw traces to csv} - For one of the investigation options - saves the raw trace/record data to a separate csv (the path you set above with `\_raw\_trace' appended), with the regular record statistics (pulse height, FWHM, time, etc) goint to the path you set above. Do \textit{not} select this for long runs without discussing with a staff member - you will end up with an entirely too large file and may crash the computer.
+    \item \textbf{Rate (Hz)} - additional status indicator indicating the average count rate.
+\end{itemize}
+
+When you click start, the program begins searching for pulses according to the conditions you set, just like in the \textbf{Signal Viewer} tab. When an output condition is satisfied (i.e. exactly the specified number of pulses is found in each channel, up to the maximum of 2), the program writes out a record with the following values: timestamp, whether or not it passed both triggers (relevant for the `save all charged particles' option), time, amplitude, and width of four pulses: 1st pulse in Channel 0, 2nd pulse in Channel 0, 1st pulse in Channel 1, 2nd pulse in Channel 1, time between pulses in Channel 0, time between pulses in Channel 1, and time between first pulse across channels. If a given pulse is not found in the record (or some value is not relevant, e.g. if channel 1 is not being used), the time, amplitude, and width are assigned zero values. \textbf{IMPORTANT FOR DATA ANALYSIS:} It is the values saved in this .csv file that you will be working with in the analysis of this lab. This is the file that you should be uploading to Python, MatLab, or ROOT as it will have all the information about the signals received from the PMT.
+
+As the program runs, it updates a histogram of decay events, where the x-axis specifies the time between the two registered pulses. If everything is working correctly, this should mimic the muon lifetime decay curve.
+
+The program also measures the amplitude and the full-width-half-max of each peak from the signal out of the filter, and plots these on histograms as well (which you should also regenerate yourself). \textbf{It will be important to use this data to get a sense of your $dy$ for setting your coincidence threshold.} The filter removes a lot of the noise, so the amplitude and width information are more accurately measured with a filter. Timing information is more accurately measured before the signal is filtered.
+
+Finally, the program also measures count rate over time, displaying both an average value in the status panel and a histogram updated over the course of the run, which is used in some of the options for the final investigation. You should also look in general for anomalies in this count rate and whether that might affect your data.
+
+\subsubsection{Muon Tomography}
+
+The key distinction between the software for this lab and the muon lifetime lab (MUO) is that whereas in MUO you are largely considering channels separately, in this lab you are focusing on whether the channels see a pulse at the same time (coincidence) and if so, whether the muon decays in one of the channels (stoppage). Because there are limitations on the timing resolution of the AD3 and the muons are moving fast enough that it is hard to resolve the time between them passing through the first and second detector, we use a trick: we take the product of the two pulses. As you'll see in the prelab, the amplitude of the resulting pulse is dependent on $dy = y_1 - y_2$, where $y_1,y_2$ are the heights of the two pulses, and $dt = t_1 - t_2$, where $t_1, t_2$ are the arrival times of the two pulses. By figuring out the distribution of $dy$ and setting a minimum amplitude for the product pulse (referred to here on out as the `coincidence threshold' - note that this is a \textit{software} trigger, not a hardware trigger!) we then bound our $dt$ between the two pulses. To search for a stoppage, we search for a coincidence and then look for a decay pulse as normal - but we only look for the decay pulse in the second detector (the muon can't decay twice!). Thus, when we refer to the `stoppage threshold', we really mean the second trigger threshold on the second channel.
+
+The muon tomography tab has a slightly different subset of settings, though they are all related to the settings you have adjusted before. Going through the sidebar, the top section for hardware settings includes:
+
+\begin{itemize}
+    \item \textbf{HW trigger channel (0 or 1)} - select which channel of the AD3 to trigger on.
+    \item \textbf{Stoppage channel (0 or 1)} - which channel you are looking for stoppages in - generally should be `Bra', the larger detector (why?).
+    \item \textbf{HW trigger level (V)} - this is effectively the first trigger level, which controls whether the software looks for a coincidence/stoppage at all.
+    \item \textbf{Sample rate (Hz)}, \textbf{Voltage range (V p-p)}, \textbf{Attenuation} - As above.
+\end{itemize}
+
+The signal processing settings are all as in the other tabs. The main differences are in the software trigger section, where you set the:
+
+\begin{itemize}
+    \item \textbf{Coincidence threshold (V$^2$)} - the minimum threshold for the product of the two pulses to consider the pulses as a coincidence. You should decide this based on your prelab and the muon lifetime data you take.
+    \item \textbf{Stoppage threshold (V)} - the minimum threshold for the height of the second decay pulse in one of the channels. This is the same as the second trigger level above, just only checked in the stoppage channel you select. This is what checks whether a coincidence pulse is also a stoppage.
+    \item \textbf{Save (stoppages only, all data)} - select whether you want to save only stoppages or all data (coincidences and stoppages). The produced .csv file will indicate whether a recorded pulse was a coincidence or stoppage.
+\end{itemize}
+
+In the data saving section, everything is the same as in the other tabs except for the \textbf{Integration time (min)}, which is used to calculate the average coincidence and stoppage rates on display and set the bin size for the count rate histogram.
+
+The tab displays the average coincidence and stoppage rates, the rates over the time of the run, the total number of coincidences and stoppages, and one of the recent acquired traces (as a sanity check for your settings as you begin the run). You should recalculate/replot most of these values yourselves; the .csv file that is saved will simply contain a record of the coincidences/stoppages seen and data about these pulses.
 
 \section{Experiments}
 
@@ -195,28 +359,11 @@ However, we need to be confident that we're basing this decision of the coincide
 
 To get this data, you should set up an overnight run (or longer) using the `Muon Lifetime' tab in the Python software. Use the first and second triggers for the top and bottom tank that you determined above. After this long run, you should be able see what the amplitude distribution was for pulses which fit the muon lifetime exponential decay curve in the top and the bottom tank, and based on this, confirm what your coincidence detection threshold should be. \textbf{We recommend writing the code to do your analysis in advance so that you can run it quickly as soon as you get the data at the beginning of lab.}
 
+Remember the idea here is that if we look at the heights for the pulses in each tank, we can generate a distribution for $dy$, the difference between pulse heights. How can you use this with the plot from your prelab to select a coincidence threshold? How does your choice set the amount of error in your measurements? Note that your coincidence detection threshold may be different in practice than this theoretical value due to noise/other effects - how does this change the error? 
+
 \checkpoint{Coincidence detection threshold}{Call over an instructor or GSI and show them your estimated muon lifetimes from the top and bottom tank, your amplitude distributions from the top and bottom tank, and based on these, your determined coincidence detection threshold.}
 
 You should use the thresholds you've determined above for the rest of your tests below (or, if you change them, be very clear about where and why you did so).
-
-\subsection{Material absorption}
-
-Before gallivanting around campus, let's understand how different materials affect our muon count rate. Later, we'll use our two detectors to constrain the solid angle of the path that muons we detect are following, but first, we'll use our two detectors to sandwich a material and learn something about it. (This is similar to the process of muon radiography, which is used in a variety of applications including security.\footnote{For example, by placing muon detectors on either side of a shipping container, higher than expected densities that may correspond to radioactive materials can be detected.})
-
-%\subsubsection{Known materials}
-
-Measure the difference in count rate and therefore the absorption coefficients of the materials (lead, concrete) provided. \textbf{Always wear gloves when handling the lead bricks, and do not touch anything else with the gloves.}\footnote{Please ask for assistance if you need help moving anything heavy!} (Make sure to account for varying thicknesses of separating material.) Compare with air. You may want to do an overnight run for one or two of these materials in order to get a better dataset.
-
-Use this to revise your estimates from the prelab for count differences between different floors of buildings, and therefore the length of time you'll need in order to obtain statistically significant differences.
-
-\checkpoint{Material absorption coefficients}{Show a GSI or instructor your calculated material absorption coefficients for air, lead, and concrete. Explain how this affects your measurement plans.}
-
-%\subsubsection{Mystery box}
-%(prob not high enough resolution for this :( - check)
-
-%Using what you have learned in the previous sections, map the mystery box and determine its likely contents and the distribution of the contents.
-
-%\checkpoint{Mystery box plan}{Check with an instructor or GSI to check your experimental plan for determining the contents of the mystery box before proceeding with it.}
 
 \subsection{Muon tomography}
 
@@ -238,13 +385,13 @@ We will begin by focusing on the muon count rate dependence on altitude. This is
 
 We recommend using the floors of Evans Hall, as this is nearby, tall, has many intermediate floors, and the floors have easily accessible outlets. If you have an alternative location you'd like to explore, confirm with a professor first.
 
-%\checkpoint{Count rate difference.}{Call over an instructor or GSI and show them } % this should be the midlab
+\checkpoint{Vertical count rate.}{Call over an instructor or GSI and show them your plot of count rate vs. altitude for several floors of Evans Hall (or approved alternative location), with appropriate fit line and error bars. Is it consistent with expectations?}
 
-You should also use the ratio you obtain to confirm the time dilation factor predicted by special relativity.
+You should also use the ratio you obtain to confirm the time dilation factor predicted by special relativity, and discuss this result in your report.
 
 \subsubsection{Angular dependence and tomography}
 
-We've investigated vertical dependence, but not angular dependence. Use the cart's movable arms (and the fact that the whole cart rotates) to take measurements at at least three (ideally five) different angles (make sure you are consistent with how you describe/label units and are clear about this in your lab report). We recommend doing this at the basement floor of Evans Hall since the different angular directions have drastically different densities of material. You will use this for a two dimensional reconstruction of a slice of Evans Hall.\footnote{If you have an alternate location, you may propose this to a professor for approval. Make sure you consider the same questions for this location, as well as whether an outlet is present to power the equipment!} Some notes:
+We've investigated vertical dependence, but not angular dependence. Use the cart's movable arms (and the fact that the whole cart rotates) to take measurements at at least three (ideally five) different angles (make sure you are consistent with how you describe/label units and are clear about this in your lab report). We recommend doing this at the basement floor of Evans Hall or Cory Hall since the different angular directions have drastically different densities of material. You will use this for a three dimensional reconstruction of Evans Hall or Cory Hall.\footnote{If you have an alternate location, you may propose this to a professor for approval. Make sure you consider the same questions for this location, as well as whether an outlet is present to power the equipment!} Some notes:
 
 \begin{itemize}
     \item Will you need to use coincidences or stoppages? Does this change from vertical counts, and if so, why?
@@ -254,9 +401,34 @@ We've investigated vertical dependence, but not angular dependence. Use the cart
     \item How many positions would you need to take these measurements from in order to construct a basic 3D model of Evans Hall? Discuss with a staff member whether you have time to perform this.
 \end{itemize}
 
-%Different directions (basement evans hall? kreysig library?)
+Make sure you keep track of the angle of the cart and the distance between the points you choose to take measurements from! A tape measure and protractor are provided.
 
-\checkpoint{Angular dependence plan}{Discuss with a GSI or instructor your plan for data collection for creating a two dimensional reconstruction of Evans Hall. Summarize your answers to the above questions. Explain which angles you will be taking data at and when.}
+%Different directions (basement evans hall? kreysig library? cory hall)
+
+%\checkpoint{Angular dependence plan}{Discuss with a GSI or instructor your plan for data collection for creating a two dimensional reconstruction of Evans Hall. Summarize your answers to the above questions. Explain which angles you will be taking data at and when.}
+
+\subsection{Material absorption}
+
+We have lots of data from gallivanting around campus, but let's take a step back to understand how different materials affect our muon count rate. Before, we used our two detectors to constrain the solid angle of the path that muons we detect are following, but now, we'll use our two detectors to sandwich a material and learn something about it. (This is similar to the process of muon radiography, which is used in a variety of applications including security.\footnote{For example, by placing muon detectors on either side of a shipping container, higher than expected densities that may correspond to radioactive materials can be detected.})
+
+%\subsubsection{Known materials}
+
+\textbf{Note: as of 10/13/26, the concrete is not available; use lead for now.}
+
+Measure the difference in count rate and therefore the absorption coefficients of the materials (lead, concrete) provided. \textbf{Always wear gloves when handling the lead bricks, and do not touch anything else with the gloves.}\footnote{Please ask for assistance if you need help moving anything heavy!} Lead bricks are located under the OPT-1 station; make sure to choose three bricks that are a consistent size. (Make sure to account for varying thicknesses of separating material.) Compare with air. You may want to do an overnight run for one or two of these materials (particularly the concrete) in order to get a better dataset.
+
+%Use this to revise your estimates from the prelab for count differences between different floors of buildings, and therefore the length of time you'll need in order to obtain statistically significant differences.
+
+Is this data in agreement with your vertical count rate data?
+
+\checkpoint{Material absorption coefficients}{Show a GSI or instructor your calculated material absorption coefficients for air, lead, and concrete. Explain whether this is consistent with your vertical count rate measurements.}
+
+%\subsubsection{Mystery box}
+%(prob not high enough resolution for this :( - check)
+
+%Using what you have learned in the previous sections, map the mystery box and determine its likely contents and the distribution of the contents.
+
+%\checkpoint{Mystery box plan}{Check with an instructor or GSI to check your experimental plan for determining the contents of the mystery box before proceeding with it.}
 
 \subsection{East-west effect}
 
@@ -271,9 +443,9 @@ Optional: also explore how your count rates might be affected by time of day, th
 You should perform the following, along with answering the questions posed above:
 
 \begin{itemize}
-    \item Simulation of how cosmic ray showers interact with our detectors in order to understand expected count rates, etc.
+    %\item Simulation of how cosmic ray showers interact with our detectors in order to understand expected count rates, etc.
     \item Analysis of error involved with angular resolution, number of counts/length of run, and images obtained.
-    \item Reconstruction of 2D/3D image of Evans Hall, with discussion of methodology.
+    \item Reconstruction of 3D image of Evans or Cory Hall, with discussion of methodology.
 \end{itemize}
 
 (See the references for helpful resources; discuss questions/ideas with staff as this section is still in development.)

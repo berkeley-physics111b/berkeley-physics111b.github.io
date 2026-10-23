@@ -4,8 +4,8 @@
 \labacronym{SHE}
 \labtitle{Hall Effect in Semiconductor}
 
-%\newcommand{\VanDerPauwTheorem}{http://experimentationlab.berkeley.edu/node/105}
-%\newcommand{\CryogenicLiquids}{http://experimentationlab.berkeley.edu/sites/default/files/images/77cryogenic.pdf}
+%\newcommand{\VanDerPauwTheorem}{https://berkeley-physics111b.github.io/appendices/SHE-Van-Der-Pauw-Theorem/}
+%\newcommand{\CryogenicLiquids}{https://berkeley-physics111b.github.io/assets/pdf/oldwebsitestructure/images/77cryogenic.pdf}
 %\newcommand{\E.HallerArticle}{http://physics111.lib.berkeley.edu/Physics111/Reprints/SHE/24-Haller.pdf}
 %\newcommand{\Solids}{http://physics111.lib.berkeley.edu/Physics111/Reprints/SHE/Halliday_Resnick/Ch.\%2046\%20Conduction\%20of\%20electricity\%20in\%20solids.pdf}
 
@@ -24,7 +24,7 @@ Last updated 2026-01-11 by Samara Steinfeld
 
 \end{enumerate}
 
-In general the Hall effect refers to the fact that a voltage can develop in a direction transverse to the current flow in a system of charged particles in a magnetic field, owing to the \href{http://experimentationlab.berkeley.edu/sites/default/files/Lorentz\%20force.pdf}{\textbf{Lorentz force}} $q(\mathbf{v} \times \mathbf{B})$.
+In general the Hall effect refers to the fact that a voltage can develop in a direction transverse to the current flow in a system of charged particles in a magnetic field, owing to the \href{https://berkeley-physics111b.github.io/assets/pdf/oldwebsitestructure/Lorentz\%20force.pdf}{\textbf{Lorentz force}} $q(\mathbf{v} \times \mathbf{B})$.
 
 The electrical resistance of conductors and non-conductors is relatively easy to describe conceptually and mathematically, and experiments illustrating these properties are easy to do. We are all familiar with Ohm's law, and with using dielectrics as insulators. The temperature dependence is nothing unusual. Semiconductors fall in between these two extremes, and their properties require some knowledge of condensed matter physics. The Hall effect illustrates the Lorentz force $\mathbf{v} \times \mathbf{B}$. In this experiment you will measure the resistivity and the Hall coefficient as functions of the temperature, for an Al-doped germanium crystal. You will then determine the concentration of the free carrier. When a current is passed through a sample in the x-direction the Lorentz force acting on the electric charges moving in a magnetic field \textbf{B} (in Z) displaces some carriers in the y-direction. This causes an internal electric field $\mathbf{E}_{H}$ which cancels the Lorentz force in the equilibrium case. You will use the Van der Pauw method of measuring a sample of arbitrary shape using the computer running LabView to acquire these data. The temperature range of this experiment is 300K to 77K to 400K.
 
@@ -39,12 +39,12 @@ The electrical resistance of conductors and non-conductors is relatively easy to
 \begin{enumerate}
     \item \textbf{Hall Effect in Semiconductor}
 
-    \item \href{http://experimentationlab.berkeley.edu/node/105}{\textbf{Van Der Pauw Theorem}}
+    \item \href{https://berkeley-physics111b.github.io/appendices/SHE-Van-Der-Pauw-Theorem/}{\textbf{Van Der Pauw Theorem}}
     
-    \item \href{http://experimentationlab.berkeley.edu/node/106}{\textbf{Instrument Manuals}}
+    \item \href{https://berkeley-physics111b.github.io/appendices/SHE-Instrument-Manuals/}{\textbf{Instrument Manuals}}
 \end{enumerate}
 
-This lab will be graded 30\% on theory, 20\% on technique, and 50\% on analysis. For more information, see the \href{http://experimentationlab.berkeley.edu/syllabus}{\textbf{Advanced Lab Syllabus.}}
+This lab will be graded 30\% on theory, 20\% on technique, and 50\% on analysis.
 
 Comments: E-mail \href{\MailLabManager}{\textbf{Dr Winthrop Williams}}
 
@@ -58,36 +58,36 @@ This manual is intended to provide a general guidance for the lab. It is not des
 \begin{figure}[H]
 \captionsetup{justification=centering}
 \minipage[t]{0.307\linewidth}
-  \href{http://experimentationlab.berkeley.edu/sites/default/files/images/SHE_3541_Crop.jpg}{\includegraphics[width=\linewidth,keepaspectratio]{images/SHE_3541_Crop.jpg}}
-  \caption{Hall Effect in a Semiconductor Experiment \\ \href{http://experimentationlab.berkeley.edu/sites/default/files/images/SHE_3541_Crop.jpg}{Click here to see larger picture}}
+  \href{https://berkeley-physics111b.github.io/assets/pdf/oldwebsitestructure/images/SHE_3541_Crop.jpg}{\includegraphics[width=\linewidth,keepaspectratio]{images/SHE_3541_Crop.jpg}}
+  \caption{Hall Effect in a Semiconductor Experiment \\ \href{https://berkeley-physics111b.github.io/assets/pdf/oldwebsitestructure/images/SHE_3541_Crop.jpg}{Click here to see larger picture}}
   \label{fig:SHE_3541_Crop.jpg}
 \endminipage\hfill
 \minipage[t]{0.166\linewidth}
-  \href{http://experimentationlab.berkeley.edu/sites/default/files/images/SHE_Electronics_3546_Crop.jpg}{\includegraphics[width=\linewidth,keepaspectratio]{images/SHE_Electronics_3546_Crop.jpg}}
+  \href{https://berkeley-physics111b.github.io/assets/pdf/oldwebsitestructure/images/SHE_Electronics_3546_Crop.jpg}{\includegraphics[width=\linewidth,keepaspectratio]{images/SHE_Electronics_3546_Crop.jpg}}
   \caption{Experiment Electronics \\
-  \href{http://experimentationlab.berkeley.edu/sites/default/files/images/SHE_Electronics_3546_Crop.jpg}{Click here to see larger picture}}
+  \href{https://berkeley-physics111b.github.io/assets/pdf/oldwebsitestructure/images/SHE_Electronics_3546_Crop.jpg}{Click here to see larger picture}}
   \label{fig:SHE_Electronics_3546_Crop.jpg}
 \endminipage\hfill
 \minipage[t]{0.288\linewidth}
-  \href{http://experimentationlab.berkeley.edu/sites/default/files/images/SHE_Mag_Pwr_Crop_3547.jpg}{\includegraphics[width=\linewidth,keepaspectratio]{images/SHE_Mag_Pwr_Crop_3547.jpg}}
-  \caption{Magnet Power Supply \& Vacuum Pump with Transfer LN-2 Dewar \\ \href{http://experimentationlab.berkeley.edu/sites/default/files/images/SHE_Mag_Pwr_Crop_3547.jpg}{Click here to see larger picture}}\label{fig:SHE_Mag_Pwr_Crop_3547.jpg}
+  \href{https://berkeley-physics111b.github.io/assets/pdf/oldwebsitestructure/images/SHE_Mag_Pwr_Crop_3547.jpg}{\includegraphics[width=\linewidth,keepaspectratio]{images/SHE_Mag_Pwr_Crop_3547.jpg}}
+  \caption{Magnet Power Supply \& Vacuum Pump with Transfer LN-2 Dewar \\ \href{https://berkeley-physics111b.github.io/assets/pdf/oldwebsitestructure/images/SHE_Mag_Pwr_Crop_3547.jpg}{Click here to see larger picture}}\label{fig:SHE_Mag_Pwr_Crop_3547.jpg}
 \endminipage\hfill
 \minipage[t]{0.219\linewidth}
-  \href{http://experimentationlab.berkeley.edu/sites/default/files/images/Chamber_Front_3304.jpg}{\includegraphics[width=\linewidth,keepaspectratio]{images/Chamber_Front_3304.jpg}}
-  \caption{Chamber Front in Magnet \\ \href{http://experimentationlab.berkeley.edu/sites/default/files/images/Chamber_Front_3304.jpg}{Click here to see larger picture}}\label{fig:Chamber_Front_3304.jpg}
+  \href{https://berkeley-physics111b.github.io/assets/pdf/oldwebsitestructure/images/Chamber_Front_3304.jpg}{\includegraphics[width=\linewidth,keepaspectratio]{images/Chamber_Front_3304.jpg}}
+  \caption{Chamber Front in Magnet \\ \href{https://berkeley-physics111b.github.io/assets/pdf/oldwebsitestructure/images/Chamber_Front_3304.jpg}{Click here to see larger picture}}\label{fig:Chamber_Front_3304.jpg}
 \endminipage
 \end{figure}
 
 \begin{figure}[H]
 \captionsetup{justification=centering}
 \minipage[t]{0.33\linewidth}
-  \href{http://experimentationlab.berkeley.edu/sites/default/files/images/SHEimageFrontPanel.jpg}{\includegraphics[width=\linewidth,keepaspectratio]{images/SHEimageFrontPanel.jpg}}
-  \caption{The Gold Box which is operating\\ \href{http://experimentationlab.berkeley.edu/sites/default/files/images/SHEimageFrontPanel.jpg}{Click here to see larger picture}}
+  \href{https://berkeley-physics111b.github.io/assets/pdf/oldwebsitestructure/images/SHEimageFrontPanel.jpg}{\includegraphics[width=\linewidth,keepaspectratio]{images/SHEimageFrontPanel.jpg}}
+  \caption{The Gold Box which is operating\\ \href{https://berkeley-physics111b.github.io/assets/pdf/oldwebsitestructure/images/SHEimageFrontPanel.jpg}{Click here to see larger picture}}
   \label{fig:GoldBox.jpg}
 \endminipage\hfill
 \minipage[t]{0.33\linewidth}
-  \href{http://experimentationlab.berkeley.edu/sites/default/files/images/SHEimageGaussProbe.jpg}{\includegraphics[width=\linewidth,keepaspectratio]{images/SHEimageGaussProbe.jpg}}
-  \caption{Gauss Probe Close-up\\ \href{http://experimentationlab.berkeley.edu/sites/default/files/images/SHEimageGaussProbe.jpg}{Click here to see larger picture}}\label{fig:GaussProbe.jpg}
+  \href{https://berkeley-physics111b.github.io/assets/pdf/oldwebsitestructure/images/SHEimageGaussProbe.jpg}{\includegraphics[width=\linewidth,keepaspectratio]{images/SHEimageGaussProbe.jpg}}
+  \caption{Gauss Probe Close-up\\ \href{https://berkeley-physics111b.github.io/assets/pdf/oldwebsitestructure/images/SHEimageGaussProbe.jpg}{Click here to see larger picture}}\label{fig:GaussProbe.jpg}
 \endminipage\hfill
 \minipage[t]{0.33\linewidth}
   \includegraphics[width=\linewidth,keepaspectratio]{images/empty.png}
@@ -97,22 +97,22 @@ This manual is intended to provide a general guidance for the lab. It is not des
 \begin{figure}[H]
 \captionsetup{justification=centering}
 \minipage[t]{0.219\linewidth}
-  \href{http://experimentationlab.berkeley.edu/sites/default/files/images/Magnet_Backside_Polepieces_Crop_3307.jpg}{\includegraphics[width=\linewidth,keepaspectratio]{images/Magnet_Backside_Polepieces_Crop_3307.jpg}}
-  \caption{Chamber Backside in Magnet \\ \href{http://experimentationlab.berkeley.edu/sites/default/files/images/Magnet_Backside_Polepieces_Crop_3307.jpg}{Click here to see larger picture}}
+  \href{https://berkeley-physics111b.github.io/assets/pdf/oldwebsitestructure/images/Magnet_Backside_Polepieces_Crop_3307.jpg}{\includegraphics[width=\linewidth,keepaspectratio]{images/Magnet_Backside_Polepieces_Crop_3307.jpg}}
+  \caption{Chamber Backside in Magnet \\ \href{https://berkeley-physics111b.github.io/assets/pdf/oldwebsitestructure/images/Magnet_Backside_Polepieces_Crop_3307.jpg}{Click here to see larger picture}}
   \label{fig:Magnet_Backside_Polepieces_Crop_3307.jpg}
 \endminipage\hfill
 \minipage[t]{0.160\linewidth}
-  \href{http://experimentationlab.berkeley.edu/sites/default/files/images/SHE_LN-2_Crop_3542.jpg}{\includegraphics[width=\linewidth,keepaspectratio]{images/SHE_LN-2_Crop_3542.jpg}}
+  \href{https://berkeley-physics111b.github.io/assets/pdf/oldwebsitestructure/images/SHE_LN-2_Crop_3542.jpg}{\includegraphics[width=\linewidth,keepaspectratio]{images/SHE_LN-2_Crop_3542.jpg}}
   \caption{Liquid Nitrogen Tank \\
-  \href{http://experimentationlab.berkeley.edu/sites/default/files/images/SHE_LN-2_Crop_3542.jpg.jpg}{Click here to see larger picture}}
+  \href{https://berkeley-physics111b.github.io/assets/pdf/oldwebsitestructure/images/SHE_LN-2_Crop_3542.jpg.jpg}{Click here to see larger picture}}
   \label{fig:SHE_LN-2_Crop_3542.jpg}
 \endminipage\hfill
 \minipage[t]{0.308\linewidth}
-  \href{http://experimentationlab.berkeley.edu/sites/default/files/images/SHE_Water_Crop_3544.jpg}{\includegraphics[width=\linewidth,keepaspectratio]{images/SHE_Water_Crop_3544.jpg}}
-  \caption{Water Control valves and interlock box \\ \href{http://experimentationlab.berkeley.edu/sites/default/files/images/SHE_Water_Crop_3544.jpg}{Click here to see larger picture}}\label{fig:SHE_Water_Crop_3544.jpg}
+  \href{https://berkeley-physics111b.github.io/assets/pdf/oldwebsitestructure/images/SHE_Water_Crop_3544.jpg}{\includegraphics[width=\linewidth,keepaspectratio]{images/SHE_Water_Crop_3544.jpg}}
+  \caption{Water Control valves and interlock box \\ \href{https://berkeley-physics111b.github.io/assets/pdf/oldwebsitestructure/images/SHE_Water_Crop_3544.jpg}{Click here to see larger picture}}\label{fig:SHE_Water_Crop_3544.jpg}
 \endminipage\hfill
 \minipage[t]{0.294\linewidth}
-  \href{http://experimentationlab.berkeley.edu/sites/default/files/upimages/5_eye-wear-face.jpg}{\includegraphics[width=\linewidth,keepaspectratio]{images/5_eye-wear-face.jpg}} 
+  \href{https://berkeley-physics111b.github.io/assets/pdf/oldwebsitestructure/upimages/5_eye-wear-face.jpg}{\includegraphics[width=\linewidth,keepaspectratio]{images/5_eye-wear-face.jpg}} 
   
   \textbf{Wear Your Eye Safety Glasses \\ Liquid Helium danger}
   \label{fig:5_eye-wear-face.jpg}
@@ -127,7 +127,7 @@ This manual is intended to provide a general guidance for the lab. It is not des
     \item \emph{\textbf{Note: In order to view the private Youtube videos hosted by the university, you must be signed into your berkeley.edu Google account.}}\\
     View the \href{http://youtu.be/7JYq1rRl6Xk}{\textbf{Hall Effect In a Semiconductor Video}}.
 
-    \item Read before handling of Cryogenics: Read the Cryogenic Liquids information from the campus Environmental Health and Safety (EH\&S) department \href{http://experimentationlab.berkeley.edu/sites/default/files/images/77cryogenic.pdf}{\textbf{Cryogenic Liquids}}.
+    \item Read before handling of Cryogenics: Read the Cryogenic Liquids information from the campus Environmental Health and Safety (EH\&S) department \href{https://berkeley-physics111b.github.io/assets/pdf/oldwebsitestructure/images/77cryogenic.pdf}{\textbf{Cryogenic Liquids}}.
 
     \item Before beginning the experiment, both members of your group must complete the appropriate training through UC Berkeley's Learning Center. Click on the \href{https://ucpath.berkeley.edu/uc-learning-center-lms} {\textbf{Learning Center link}}. Click on the blue box ``UC Learning Center (LMS)''. Log in with your CALNET login and password (should be the same you use for BCourses). When your Learning Center dashboard finishes loading, enter ``EHS 109'' into the search bar. Click on the EHS 109 course and click ``start''. When you've completed the course, take a screen shot of your completion certificate. Show this to a GSI or instructor with your pre-lab checkoffs.
 
@@ -143,7 +143,7 @@ This manual is intended to provide a general guidance for the lab. It is not des
 
 %     \item A short description of the Hall Effect. \href{https://drive.google.com/file/d/1aaxKBCAtrejprBYuUYWViohH6TsHiIo8/view?usp=drive_link}{\textbf{E. Haller Article}}
 
-%     \item ``Proof of the Van Der Pauw Theorem'' \href{http://experimentationlab.berkeley.edu/node/105}{\textbf{\textbf{Van Der Pauw Theorem}}}
+%     \item ``Proof of the Van Der Pauw Theorem'' \href{https://berkeley-physics111b.github.io/appendices/SHE-Van-Der-Pauw-Theorem/}{\textbf{\textbf{Van Der Pauw Theorem}}}
 
 %     \item \href{https://drive.google.com/file/d/1tisFCjo3m3rmWQDQSPz5t88OU2G4YqMj/view?usp=drive_link}{\textbf{Four Wire Measurements}}
 
@@ -194,7 +194,7 @@ This is a type of impure semiconductor that has been ``doped'' in order to enhan
 
 \textbf{Hall coefficient}
 
-is a parameter that measures the magnitude of the Hall Effect in the sample. It has units of $\Omega$m/Tesla. (Contrast this with \emph{\textbf{resistivity}}, which has units of $\Omega$m.) The Hall coefficient is defined as $R_{H} = E/JB $  where $E$, $J$, and $B$ are the magnitudes of the electric field, the current density, and the magnetic field, respectively (It should be noted that in our experimental setup these three vectors are mutually perpendicular). A table of various element's resistivity and respective Hall Coefficient can be found in this \href{http://experimentationlab.berkeley.edu/sites/default/files/SHE/tableforRH.png}{\textbf{link}}.
+is a parameter that measures the magnitude of the Hall Effect in the sample. It has units of $\Omega$m/Tesla. (Contrast this with \emph{\textbf{resistivity}}, which has units of $\Omega$m.) The Hall coefficient is defined as $R_{H} = E/JB $  where $E$, $J$, and $B$ are the magnitudes of the electric field, the current density, and the magnetic field, respectively (It should be noted that in our experimental setup these three vectors are mutually perpendicular). A table of various element's resistivity and respective Hall Coefficient can be found in this \href{https://berkeley-physics111b.github.io/assets/pdf/oldwebsitestructure/SHE/tableforRH.png}{\textbf{link}}.
 
 \textbf{Hall effect}
 
@@ -276,9 +276,9 @@ Recall some simple concepts from the quantum description of an isolated atom. El
 
 \begin{figure}[h]
     \centering
-    \href{http://experimentationlab.berkeley.edu/sites/default/files/images/SHEimage016.gif}{\includegraphics[width=0.25\linewidth,keepaspectratio]{images/SHEimage016.png}}
-    \href{http://experimentationlab.berkeley.edu/sites/default/files/images/SHEimage017.gif}{\includegraphics[width=0.25\linewidth,keepaspectratio]{images/SHEimage017.png}}
-    \href{http://experimentationlab.berkeley.edu/sites/default/files/images/SHEimage018.gif}{\includegraphics[width=0.25\linewidth,keepaspectratio]{images/SHEimage018.png}}
+    \href{https://berkeley-physics111b.github.io/assets/pdf/oldwebsitestructure/images/SHEimage016.gif}{\includegraphics[width=0.25\linewidth,keepaspectratio]{images/SHEimage016.png}}
+    \href{https://berkeley-physics111b.github.io/assets/pdf/oldwebsitestructure/images/SHEimage017.gif}{\includegraphics[width=0.25\linewidth,keepaspectratio]{images/SHEimage017.png}}
+    \href{https://berkeley-physics111b.github.io/assets/pdf/oldwebsitestructure/images/SHEimage018.gif}{\includegraphics[width=0.25\linewidth,keepaspectratio]{images/SHEimage018.png}}
     \caption{Energy-band diagrams for A) Conductor, B) Insulator, C) Intrinsic Semiconductor. The dark shaded gray parts correspond to the filled states. The lightly shaded gray parts corresponded to unoccupied states. $E_{F}$ is the Fermi energy and $E_{g}$ is the band gap energy.}
     \label{fig:EnergyBandDiagrams}
 \end{figure}
@@ -295,8 +295,8 @@ Furthermore, the small energy gap makes the electronic properties of a semicondu
 
 \begin{figure}[h]
     \centering
-    \href{http://experimentationlab.berkeley.edu/sites/default/files/images/SHEimage023.gif}{\includegraphics[width=0.33\linewidth,keepaspectratio]{images/SHEimage023.png}}
-    \href{http://experimentationlab.berkeley.edu/sites/default/files/images/SHEimage024.gif}{\includegraphics[width=0.33\linewidth,keepaspectratio]{images/SHEimage024.png}}
+    \href{https://berkeley-physics111b.github.io/assets/pdf/oldwebsitestructure/images/SHEimage023.gif}{\includegraphics[width=0.33\linewidth,keepaspectratio]{images/SHEimage023.png}}
+    \href{https://berkeley-physics111b.github.io/assets/pdf/oldwebsitestructure/images/SHEimage024.gif}{\includegraphics[width=0.33\linewidth,keepaspectratio]{images/SHEimage024.png}}
     \caption{Energy band diagrams for extrinsic type semiconductors. The N-type semiconductor in a) contains occupied donor levels located at energy Ed below the conduction band. Electrons in these levels are easily excited into the conduction band. P-type semiconductors b) have vacant acceptor levels at energy Ea above the valence band. Electrons from the top of the valence band can be easily excited into these levels. The dark shaded gray corresponds to filled states and lightly shaded gray corresponds to unoccupied levels.}
 \end{figure}
 
@@ -312,7 +312,7 @@ To determine the electrical resistance of an object, one measures two quantities
 
 \begin{figure}[h]
     \centering
-    \href{http://experimentationlab.berkeley.edu/sites/default/files/images/SHEimage028.gif}{\includegraphics[width=0.5\linewidth]{images/SHEimage028.png}}
+    \href{https://berkeley-physics111b.github.io/assets/pdf/oldwebsitestructure/images/SHEimage028.gif}{\includegraphics[width=0.5\linewidth]{images/SHEimage028.png}}
     \caption{Hall Effect Geometry}
     \label{fig:HallEffectGeometry}
 \end{figure}
@@ -359,17 +359,17 @@ Finally, we note that the current through a semiconductor may be \emph{simultane
 
 \begin{figure}[h]
     \centering
-    \href{http://experimentationlab.berkeley.edu/sites/default/files/images/SHEimage052.gif}{\includegraphics[width=0.3\linewidth]{images/SHEimage052.png}}
+    \href{https://berkeley-physics111b.github.io/assets/pdf/oldwebsitestructure/images/SHEimage052.gif}{\includegraphics[width=0.3\linewidth]{images/SHEimage052.png}}
     \caption{Van der Pauw configuration}
     \label{fig:VanDerPauwConfiguration}
 \end{figure}
 
-A clever way of obtaining the Hall voltage and also the resistivity of the sample is the so-called Van der Pauw technique \href{http://experimentationlab.berkeley.edu/node/105}{\textbf{Van Der Pauw Theorem}} . Suppose we have a semiconductor sample containing four small contacts \emph{A}, \emph{B}, \emph{C}, and \emph{D} as shown in Figure \ref{fig:VanDerPauwConfiguration}. We will use these four contacts to variably drive currents and measure voltage drops, using, for example, the notation that $I_{AB}$ is the current driven from point A to point B, and that $V_{DC}$ is the voltage drop between points D and C (defined positive if the voltage at D is higher than at C). For each configuration of current flow and voltage measurement, we will measure the ``trans-resistance'' denoted as, for example, $R_{AB,DC} = V_{DC} / I_{AB}$. Four different measurement configurations will be used.
+A clever way of obtaining the Hall voltage and also the resistivity of the sample is the so-called Van der Pauw technique \href{https://berkeley-physics111b.github.io/appendices/SHE-Van-Der-Pauw-Theorem/}{\textbf{Van Der Pauw Theorem}} . Suppose we have a semiconductor sample containing four small contacts \emph{A}, \emph{B}, \emph{C}, and \emph{D} as shown in Figure \ref{fig:VanDerPauwConfiguration}. We will use these four contacts to variably drive currents and measure voltage drops, using, for example, the notation that $I_{AB}$ is the current driven from point A to point B, and that $V_{DC}$ is the voltage drop between points D and C (defined positive if the voltage at D is higher than at C). For each configuration of current flow and voltage measurement, we will measure the ``trans-resistance'' denoted as, for example, $R_{AB,DC} = V_{DC} / I_{AB}$. Four different measurement configurations will be used.
 
 
 Measurements where the current is driven between adjacent points will lead us to the resistivity, while measurements where the current is driven between non-adjacent points will lead to the Hall voltage. To find the Hall voltage, we use the last two sets of measured quantities to obtain the average trans-resistance $(R_{AC,BD} + R_{BD,AC})/2$. We use this quantity, along with a measurement of the magnetic field $B_z$ and the known sample dimensions to obtain the Hall coefficient. The Hall coefficient is determined by using either equation 5 or 7 depending on the sign of the trans-resistance.
 
-Determining the resistivity $\rho$ of the sample is somewhat more subtle. Leaving detailed derivations for Appendix A (see \url{http://experimentationlab.berkeley.edu/node/105}), we will make use of the Van der Pauw equation
+Determining the resistivity $\rho$ of the sample is somewhat more subtle. Leaving detailed derivations for Appendix A (see \url{https://berkeley-physics111b.github.io/appendices/SHE-Van-Der-Pauw-Theorem/}), we will make use of the Van der Pauw equation
 \begin{equation}
 \label{eq:VanDerPauwEquation}
     \exp \left(\frac{-\pi d}{\rho} R_{AB,DC} \right) + \exp \left(\frac{-\pi d}{\rho} R_{AD,BC} \right) = 1
@@ -379,11 +379,11 @@ by which $\rho$ is implicitly determined (here $d$ is the sample depth, referrin
 \label{eq:Resistivity}
     \rho = \frac{\pi d}{\ln(2)} \cdot \frac{(R_{AB,DC}+R_{AD,BC})}{2} \cdot f \left( \frac{R_{AB,DC}}{R_{AD,BC}} \right)
 \end{equation}
-The only difficult part remaining is the determination of the function $f(x)$, a task which need be performed only once, and which is indeed already performed for us; the solution is graphed in Figure \ref{fig:FVersusResistanceRatio}. To a good approximation, we may take $f(x) = 1/\cosh(\ln(x)/2.403)$ (to better than 0.1\% for $x < 2.2$), and better than 1\% for $x < 4.3$). For the derivation of equations \eqref{eq:VanDerPauwEquation} and \eqref{eq:Resistivity} see Appendix A (\url{http://experimentationlab.berkeley.edu/node/105}).
+The only difficult part remaining is the determination of the function $f(x)$, a task which need be performed only once, and which is indeed already performed for us; the solution is graphed in Figure \ref{fig:FVersusResistanceRatio}. To a good approximation, we may take $f(x) = 1/\cosh(\ln(x)/2.403)$ (to better than 0.1\% for $x < 2.2$), and better than 1\% for $x < 4.3$). For the derivation of equations \eqref{eq:VanDerPauwEquation} and \eqref{eq:Resistivity} see Appendix A (\url{https://berkeley-physics111b.github.io/appendices/SHE-Van-Der-Pauw-Theorem/}).
 
 \begin{figure}[h]
     \centering
-    \href{http://experimentationlab.berkeley.edu/sites/default/files/images/SHE76image003.jpg}{\includegraphics[width=0.7\linewidth]{images/SHE76image003.jpg}}
+    \href{https://berkeley-physics111b.github.io/assets/pdf/oldwebsitestructure/images/SHE76image003.jpg}{\includegraphics[width=0.7\linewidth]{images/SHE76image003.jpg}}
     \caption{The function $f$ versus the resistance ratio. This function is used to determine the resistivity of the sample. Here $R_{12,34}$ is equivalent to $R_{AB,DC}$ and $R_{23,41}$ is same as $R_{AD,BC}$. (This figure appears in ``Semiconductor Materials, Lecture Notes for MSE 223'' by E. E. Haller, Department of Materials Science and Engineering, University of California Berkeley.)}
     \label{fig:FVersusResistanceRatio}
 \end{figure}
@@ -415,12 +415,12 @@ In this experiment we are going to make measurements of Hall Voltage and sample 
 
 \begin{figure}[h]
     \centering
-    \href{http://experimentationlab.berkeley.edu/sites/default/files/images/SHEimage099.gif}{\includegraphics[width=0.4\linewidth]{images/SHEimage099.png}}
+    \href{https://berkeley-physics111b.github.io/assets/pdf/oldwebsitestructure/images/SHEimage099.gif}{\includegraphics[width=0.4\linewidth]{images/SHEimage099.png}}
     \caption{Hughes Silvestri wires the Germanium sample, using Indium and a wooden rod.}
     \label{fig:SHEimage099}
 \end{figure}
 
-Once all the data have been collected, we are going to reverse the magnetic field and take the same data again. After that is done, we will turn off the magnetic field. (Actually, we will actively drive it to zero field with a small winding current. This overcomes residual hysteretic field.) We will take a third set of data at zero magnetic field (why?). \href{http://experimentationlab.berkeley.edu/hysteresis}{\textbf{What is hysteresis?}}
+Once all the data have been collected, we are going to reverse the magnetic field and take the same data again. After that is done, we will turn off the magnetic field. (Actually, we will actively drive it to zero field with a small winding current. This overcomes residual hysteretic field.) We will take a third set of data at zero magnetic field (why?). \href{https://berkeley-physics111b.github.io/appendices/hysteresis/}{\textbf{What is hysteresis?}}
 
 For each measurement run, we set the current through the sample and the size of the $\pm$ magnetic field for the measurement. The properties of the sample are independent of the current. However, values of current too large or too small can compromise the measurement. For current values too small, the resulting voltages are very small and cannot be read accurately. For this reason, values of current below $\sim 100\mu$A are not recommended. Very high currents ($> 800\mu$A) are also not recommended as the apparatus may not be able to supply these. For this reason, at least 3 runs should be made with current in the range of $\sim 100-500\mu$A. If the derived material properties are independent of current, you can be confident that you have avoided these pitfalls. 
 
@@ -436,7 +436,7 @@ To perform these measurements, we will first cool the sample to the lowest tempe
 
 \begin{figure}[h]
     \centering
-    \href{http://experimentationlab.berkeley.edu/sites/default/files/images/SHEimage100.gif}{\includegraphics[width=0.7\linewidth]{images/SHEimage100.png}}
+    \href{https://berkeley-physics111b.github.io/assets/pdf/oldwebsitestructure/images/SHEimage100.gif}{\includegraphics[width=0.7\linewidth]{images/SHEimage100.png}}
     \caption{Operating Position of the Cryostat}
     \label{fig:OperatingPositionOfCryostat}
 \end{figure}
@@ -459,12 +459,12 @@ The Gold box is a Labview software controlled system that automatically triggers
 
 \begin{figure}
     \centering
-    \href{http://experimentationlab.berkeley.edu/sites/default/files/images/SHEimage101.gif}{\includegraphics[width=0.7\linewidth]{images/SHEimage101.png}}
+    \href{https://berkeley-physics111b.github.io/assets/pdf/oldwebsitestructure/images/SHEimage101.gif}{\includegraphics[width=0.7\linewidth]{images/SHEimage101.png}}
     \caption{Simple Block Diagram for the Hall Effect in Semiconductors experiment.}
     \label{fig:SimpleBlockDiagram}
 \end{figure}
 
-Read the Cryogenic Safety sheet \textbf{before} filling the system with Liquid Nitrogen: See the Cryogenic Liquids information from EH\&S. \href{http://experimentationlab.berkeley.edu/sites/default/files/images/77cryogenic.pdf}{\textbf{Cryogenic Liquids}}
+Read the Cryogenic Safety sheet \textbf{before} filling the system with Liquid Nitrogen: See the Cryogenic Liquids information from EH\&S. \href{https://berkeley-physics111b.github.io/assets/pdf/oldwebsitestructure/images/77cryogenic.pdf}{\textbf{Cryogenic Liquids}}
 
 \textbf{Always wear the Blue Cryogenic safety gloves, the clear safety goggles, and the clear face shield while handling of LN-2.}
 
@@ -492,7 +492,7 @@ Read the Cryogenic Safety sheet \textbf{before} filling the system with Liquid N
 
     \item Now add some of the liquid nitrogen to the cryostat so it can begin cooling. The cooling process takes some time, so move on to the next step, but periodically check the temperature displayed by the Lakeshore 330 Temperature Controller; when it reaches 240K, add more liquid nitrogen. Always wear the blue gloves and a face shield while handling liquid nitrogen. NOTE: You MUST add liquid nitrogen to the cryostat, even if you are only taking data for above room temperature.
 
-    \item On the computer Desktop, find the shortcut to the ``Control Program v9\_multifield v9.2.2'' execute this program. The following screen should pop up (showing the current version): \href{http://experimentationlab.berkeley.edu/sites/default/files/images/SHE\_FrontPanel.pdf}{\textbf{SHE Control Program Front Panel}}.
+    \item On the computer Desktop, find the shortcut to the ``Control Program v9\_multifield v9.2.2'' execute this program. The following screen should pop up (showing the current version): \href{https://berkeley-physics111b.github.io/assets/pdf/oldwebsitestructure/images/SHE\_FrontPanel.pdf}{\textbf{SHE Control Program Front Panel}}.
 
     \item Run the Control Program. Input the experiment parameters: Sample Current, Magnet Field in Gauss, Start Temperature, End Temperature (in K). The power supplies to the coils can provide enough current for a B-Field of 5000G, but for currents this strong they sometimes exceed their max power output and go into 'over voltage' mode, at which point they need to be reset. \textbf{For this reason, we recommend you do not exceed a maximum B-Field of 3500G.} You will use a temperature range of 95K to 350K. With these parameters, the program will take about 1 hour 40 minutes to finish one run. The minimum temperature the LN2-cooled sample is capable of reaching is about 88K, but this takes far more time to achieve and the additional data doesn't yield anything of interest.%For the first run, input the temperature range 200K to 300K. This will be a test to ensure everything is working properly.
 
@@ -502,7 +502,7 @@ Read the Cryogenic Safety sheet \textbf{before} filling the system with Liquid N
 
     \item The temperature will cool until it reaches the target temperature (or until LN2 runs out, at which point more must be added). Initially, the temperature dips below the specified set temperature. At this point the heater comes on and heats the sample up slowly. When the set temperature is reached, data taking will start.
 
-    \item The program takes the following data: \href{https://experimentationlab.berkeley.edu/sites/default/files/images/SHE_Data_Taking_Table.pdf}{\textbf{SHE Data Taking Table}}. The ``SAMPLE TEST CONDITION'' on the front of the gold control box (see also Figure \ref{fig:GoldBox.jpg}) indicates the voltage/current combination being measured. You may see an occasional jump of a single data point despite the rest of the data looking smooth. This is a glitch and you can cut this point from your results, though make sure you explain why it is reasonable to cut it.
+    \item The program takes the following data: \href{https://berkeley-physics111b.github.io/assets/pdf/oldwebsitestructure/images/SHE_Data_Taking_Table.pdf}{\textbf{SHE Data Taking Table}}. The ``SAMPLE TEST CONDITION'' on the front of the gold control box (see also Figure \ref{fig:GoldBox.jpg}) indicates the voltage/current combination being measured. You may see an occasional jump of a single data point despite the rest of the data looking smooth. This is a glitch and you can cut this point from your results, though make sure you explain why it is reasonable to cut it.
     
     \checkpoint{Apparatus and Procedures}{When you have completed your first run of system, explain the apparatus and the operating procedures to a Professor or GSI.} 
     
@@ -573,7 +573,7 @@ The following should be included in your report:
 
     \item A short description of the Hall Effect. \href{https://drive.google.com/file/d/1aaxKBCAtrejprBYuUYWViohH6TsHiIo8/view?usp=drive_link}{\textbf{E. Haller Article}}
 
-    \item ``Proof of the Van Der Pauw Theorem'' \href{http://experimentationlab.berkeley.edu/node/105}{\textbf{\textbf{Van Der Pauw Theorem}}}
+    \item ``Proof of the Van Der Pauw Theorem'' \href{https://berkeley-physics111b.github.io/appendices/SHE-Van-Der-Pauw-Theorem/}{\textbf{\textbf{Van Der Pauw Theorem}}}
 
     \item \href{https://drive.google.com/file/d/1tisFCjo3m3rmWQDQSPz5t88OU2G4YqMj/view?usp=drive_link}{\textbf{Four Wire Measurements}}
 

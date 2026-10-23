@@ -5,11 +5,11 @@
 
 %\newcommand{\NationalBureauofStandards}{http://physics111.lib.berkeley.edu/Physics111/Reprints/BRA/04-Table_for_Analysis_of_Beta_Spectra.pdf}
 %\newcommand{\Physics111LibrarySite}{http://physics111.lib.berkeley.edu/Physics111/Reprints/BRA/BRA_index.html}
-%\newcommand{\BetaRayApparatus}{http://experimentationlab.berkeley.edu/sites/default/files/images/BRAimage010.gif}
+%\newcommand{\BetaRayApparatus}{https://berkeley-physics111b.github.io/assets/pdf/oldwebsitestructure/images/BRAimage010.gif}
 %\newcommand{\Photo-multipliertubeHandbook}{http://physics111.lib.berkeley.edu/Physics111/Equipment_Manuals/RCA_PMT.pdf}
 %\newcommand{\BetaandGammaSpectroscopy}{http://physics111.lib.berkeley.edu/Physics111/Reprints/BRA/02-Beta_Ray_Spectrometer.pdf}
 %\newcommand{\BetaDecay}{http://physics111.lib.berkeley.edu/Physics111/Reprints/BRA/03-Beta_Decay.pdf}
-%\newcommand{\Matalabscripts)}{http://experimentationlab.berkeley.edu/matlabfitting}
+%\newcommand{\Matalabscripts)}{https://berkeley-physics111b.github.io/documentation/archive/matlab/}
 
 \begin{document}
 
@@ -25,7 +25,7 @@
 
 Radioactive decay of nuclei by emitting beta rays (electrons) is a fundamental phenomenon of nuclear physics. In this experiment you will measure the momenta of beta rays emitted by radioactive cesium. By studying the number of electrons emitted as a function of momentum you will obtain information about the nuclear decay processes.
 
-You will setup the experiment using a LabView Program and view the data with histograms. If you know what you are doing and make no mistake, you can complete the data-taking within a week. Data analysis is not trivial; you will need to plot a number of graphs, and analyze them. You will need to learn nuclear physics of beta decay and internal conversion by reading some of the reference materials listed in this write-up. You will also learn about particle motion in a magnetic field, mass spectrometer, amplifiers, single-channel analyzer, counting statistics, computer control of data-taking, and how to handle radioactive materials safely. Once you set up the electronics, data -taking is computer controlled. You use Matlab to analyze the data. There are Matlab scripts already written to help in the analysis (see Matlab fitting).
+You will set up the experiment using a Python program and view the data with histograms. If you know what you are doing and make no mistake, you can complete the data-taking within a week. Data analysis is not trivial; you will need to plot a number of graphs, and analyze them. You will need to learn nuclear physics of beta decay and internal conversion by reading some of the reference materials listed in this write-up. You will also learn about particle motion in a magnetic field, mass spectrometer, amplifiers, single-channel analyzer, counting statistics, computer control of data-taking, and how to handle radioactive materials safely. Once you set up the electronics, data-taking is computer controlled. You use Python to analyze the data. There are Python scripts already written to help in the analysis.
 
 \begin{enumerate}
     \item Pre-requisites: None
@@ -33,7 +33,9 @@ You will setup the experiment using a LabView Program and view the data with his
     \item Days Allotted for the Experiment: 6
 \end{enumerate}
 
-This lab will be graded 30\% on theory, 30\% on technique, and 40\% on analysis. For more information, see the \href{\AdvancedLabSyllabus}{\textbf{Advanced Lab Syllabus}}.
+This lab will be graded 30\% on theory, 30\% on technique, and 40\% on analysis.
+
+Last updated 10/13/26 by Auden Young
 
 Comments: E-mail \href{\MailLabManager}{\textbf{Winthrop Williams}}
 
@@ -42,19 +44,20 @@ Comments: E-mail \href{\MailLabManager}{\textbf{Winthrop Williams}}
 \begin{figure}[H]
 \captionsetup{justification=centering}
 \minipage{0.32\textwidth}
-  \href{http://experimentationlab.berkeley.edu/sites/default/files/images/Bra_1.jpg}{\includegraphics[height=100pt,keepaspectratio]{images/Bra_1.jpg}}
-  \caption{Beta Ray \\ Apparatus Block Diagram \\ \href{http://experimentationlab.berkeley.edu/sites/default/files/images/Bra_1.jpg}{Click here to see larger picture}}
+  \href{https://berkeley-physics111b.github.io/assets/pdf/oldwebsitestructure/images/Bra_1.jpg}{\includegraphics[height=100pt,keepaspectratio]{images/Bra_1.jpg}}
+  \caption{Beta Ray \\ Apparatus Block Diagram \\ \href{https://berkeley-physics111b.github.io/assets/pdf/oldwebsitestructure/images/Bra_1.jpg}{Click here to see larger picture}}
   \label{fig:BRayBlock}
 \endminipage\hfill
+% UPDATE IMAGE OF APPARATUS...
 \minipage{0.32\textwidth}
- \href{http://experimentationlab.berkeley.edu/sites/default/files/images/BRA_Rack_1.jpg}{\includegraphics[height=100pt,keepaspectratio]{images/BRA_Rack_1.jpg}}
-  \caption{Beta \\ Ray Apparatus\\ \href{http://experimentationlab.berkeley.edu/sites/default/files/images/BRA_Rack_1.jpg}{Click here to see larger picture}}\label{fig:BRayApparatus}
+ \href{https://berkeley-physics111b.github.io/assets/pdf/oldwebsitestructure/images/BRA_Rack_1.jpg}{\includegraphics[height=100pt,keepaspectratio]{images/BRA_Rack_1.jpg}}
+  \caption{Beta \\ Ray Apparatus\\ \href{https://berkeley-physics111b.github.io/assets/pdf/oldwebsitestructure/images/BRA_Rack_1.jpg}{Click here to see larger picture}}\label{fig:BRayApparatus}
 \endminipage\hfill
 \minipage{0.32\textwidth}
 \centering
-  \href{http://experimentationlab.berkeley.edu/sites/default/files/images/RCA6655A_PMT_3.jpg}{\includegraphics[height=100pt,keepaspectratio]{images/RCA6655A_PMT_3.jpg}}
+  \href{https://berkeley-physics111b.github.io/assets/pdf/oldwebsitestructure/images/RCA6655A_PMT_3.jpg}{\includegraphics[height=100pt,keepaspectratio]{images/RCA6655A_PMT_3.jpg}}
   \caption{Circuit Diagram \\ of the PMT Base \\
-  \href{http://experimentationlab.berkeley.edu/sites/default/files/images/RCA6655A_PMT_3.jpg}{Click here to see larger picture}}
+  \href{https://berkeley-physics111b.github.io/assets/pdf/oldwebsitestructure/images/RCA6655A_PMT_3.jpg}{Click here to see larger picture}}
   \label{fig:BRayTube}
 \endminipage
 \end{figure}
@@ -63,14 +66,14 @@ Comments: E-mail \href{\MailLabManager}{\textbf{Winthrop Williams}}
 \captionsetup{justification=centering}
 \minipage{0.49\textwidth}
 \centering
-  \href{http://experimentationlab.berkeley.edu/sites/default/files/images/Lead_Brick_Shield.JPG}{\includegraphics[height=140pt,keepaspectratio]{images/Lead_Brick_Shield.JPG}}
-  \caption{Beta Ray Lead\\ Brick Shielding Apparatus \\ \href{http://experimentationlab.berkeley.edu/sites/default/files/images/Lead_Brick_Shield.JPG}{Click here to see larger picture}}
+  \href{https://berkeley-physics111b.github.io/assets/pdf/oldwebsitestructure/images/Lead_Brick_Shield.JPG}{\includegraphics[height=140pt,keepaspectratio]{images/Lead_Brick_Shield.JPG}}
+  \caption{Beta Ray Lead\\ Brick Shielding Apparatus \\ \href{https://berkeley-physics111b.github.io/assets/pdf/oldwebsitestructure/images/Lead_Brick_Shield.JPG}{Click here to see larger picture}}
   \label{fig:BRayBlock}
 \endminipage\hfill
 \minipage{0.49\textwidth}
 \centering
- \href{http://experimentationlab.berkeley.edu/sites/default/files/images/Photomultiplier_Base.JPG}{\includegraphics[height=140pt,keepaspectratio]{images/Photomultiplier_Base.JPG}}
-  \caption{Photomultiplier \\ Removed from Shielding \\ \href{http://experimentationlab.berkeley.edu/sites/default/files/images/Photomultiplier_Base.JPG}{Click here to see larger picture}}\label{fig:BRayApparatus}
+ \href{https://berkeley-physics111b.github.io/assets/pdf/oldwebsitestructure/images/Photomultiplier_Base.JPG}{\includegraphics[height=140pt,keepaspectratio]{images/Photomultiplier_Base.JPG}}
+  \caption{Photomultiplier \\ Removed from Shielding \\ \href{https://berkeley-physics111b.github.io/assets/pdf/oldwebsitestructure/images/Photomultiplier_Base.JPG}{Click here to see larger picture}}\label{fig:BRayApparatus}
 \endminipage
 \end{figure}
 
@@ -84,11 +87,11 @@ Comments: E-mail \href{\MailLabManager}{\textbf{Winthrop Williams}}
 
     \item \textbf{Radiation Safety SOP} View the \href{http://youtu.be/KHxtzF5pZZM}{\textbf{'Radiation Safety Video'}}. After watching the video in the 111-Lab, get a pink Radiation Safety form from a 111-Lab staff person. Fill it out \& sign the form for getting a \textbf{Radiation Ring}.
 
-    \item Now complete the Radiation Safety Training \href{http://experimentationlab.berkeley.edu/RadiationSafety}{\textbf{Radiation\_Safety}} \textbf{After the training turn in all the forms to the teaching staff.}
+    \item Now complete the Radiation Safety Training \href{https://berkeley-physics111b.github.io/safety/radiation/}{\textbf{Radiation\_Safety}} \textbf{After the training turn in all the forms to the teaching staff.}
 
-    \item View the \href{\ErrorAnalysisVideo}{\textbf{Introduction to Error Analysis video}} and \href{\ErrorAnalysisNotes}{\textbf{\textbf{Error Analysis Notes}}}.
+    \item View the \href{\ErrorAnalysisVideo}{\textbf{Introduction to Error Analysis video}}.
 
-    \item Read the Standard Operating Procedures (\href{http://experimentationlab.berkeley.edu/sites/default/files/images/SOP\_3271\_Cs-137\_Na-22\_Co-60\_Mn-54\_Am-241\_Fe-55\_2014.pdf}{\textbf{SOP}}) for this lab before starting.
+    \item Read the Standard Operating Procedures (\href{https://berkeley-physics111b.github.io/assets/pdf/oldwebsitestructure/images/SOP\_3271\_Cs-137\_Na-22\_Co-60\_Mn-54\_Am-241\_Fe-55\_2014.pdf}{\textbf{SOP}}) for this lab before starting.
 
     \item Please fill out the \href{\ExperimentEvaluation}{\textbf{Experiment Evaluation}} after you finish the lab.
 
@@ -99,23 +102,26 @@ Comments: E-mail \href{\MailLabManager}{\textbf{Winthrop Williams}}
 \begin{enumerate}
     \item \href{http://physics111.lib.berkeley.edu/Physics111/Reprints/BRA/04-Table\_for\_Analysis\_of\_Beta\_Spectra.pdf}{\textbf{Tables for the Analysis of Beta Spectra}}; U.S. National Bureau of Standards*
 
-    \item Y. Yoshizawa, ``\href{http://physics111.lib.berkeley.edu/Physics111/Reprints/BRA/Yoshizawa_beta&gammarayspecofCs137.pdf}{\textbf{Beta and Gamma Ray Spectroscopy of Cs137}}'',* Nucl. Phys. \textbf{5}, 122 (1958).
+    \item Y. Yoshizawa, ``\href{https://www.sciencedirect.com/science/article/pii/0029558258900117?via%3Dihub}{\textbf{Beta and Gamma Ray Spectroscopy of Cs137}}'',* Nucl. Phys. \textbf{5}, 122 (1958).
 
     \item H. A. Bethe, ``\href{http://physics111.lib.berkeley.edu/Physics111/Reprints/BRA/05-Elementary\_Nuclear\_Theory.pdf}{\textbf{Elementary Nuclear Theory}}''.
 
-    \item W. C. Haxton, B. R. Holstein, ``\href{http://physics111.lib.berkeley.edu/Physics111/Reprints/BRA/BRA(state\%20of\%20the\%20science\%20and\%20art\%20of\%20beta\%20decay_OCR\%20.pdf}{\textbf{Neutrino Physics}}'', Am. Jour. Phys. \textbf{68}, 15 (2000).
+    \item W. C. Haxton, B. R. Holstein, ``\href{https://arxiv.org/pdf/hep-ph/9905257}{\textbf{Neutrino Physics}}'', Am. Jour. Phys. \textbf{68}, 15 (2000).
 
-    \item R. D. Evans, ``\href{http://physics111.lib.berkeley.edu/Physics111/Reprints/R.D.Evans\%20Atomic\%20Nucleus/The\%20Atomic\%20Nucleus\%20Evans\%20full\%20text.pdf}{\textbf{The Atomic Nucleus}}'', McGraw Hill (1972).
+    \item R. D. Evans, ``\href{https://library.psfc.mit.edu/catalog/online_pubs/books/evans_atomic_nucleus.pdf
+    }{\textbf{The Atomic Nucleus}}'', McGraw Hill (1972).
 
 \end{enumerate}
 
-* Contained information on the Fermi-Kurie plots and calculations. The reprints are all available on-line from the \href{http://physics111.lib.berkeley.edu/Physics111/Reprints/BRA/BRA\_index.html}{\textbf{Physics 111 Lab Library Site}}.
+* Contained information on the Fermi-Kurie plots and calculations.
 
 More \hyperref[sec:References]{References}
 
 You should keep a laboratory notebook. The notebook should contain a detailed record of everything that was done and how/why it was done, as well as all of the data and analysis, also with plenty of how/why entries. This will aid you when you write your report.
 
 \section{Objectives}
+
+% REWRITE to be not terrible
 
 \begin{itemize}
     \item Learn what real experimental physics is about.
@@ -139,7 +145,7 @@ Some isotopes of a certain element can decay spontaneously and may emit a combin
 
 \begin{figure}[h]
     \centering
-    \href{http://experimentationlab.berkeley.edu/sites/default/files/images/300px-BRAimage003.gif}{\includegraphics[width=0.5\linewidth]{images/300px-BRAimage003.png}}
+    \href{https://berkeley-physics111b.github.io/assets/pdf/oldwebsitestructure/images/300px-BRAimage003.gif}{\includegraphics[width=0.5\linewidth]{images/300px-BRAimage003.png}}
     \caption{Cesium decay}
     \label{fig:300px-BRAimage003}
 \end{figure}
@@ -174,19 +180,19 @@ The two beta-decays give a continuous energy spectrum of the emitted electrons, 
 \captionsetup{justification=centering}
 \begin{minipage}[t]{.5\textwidth}
     \centering
-    \href{http://experimentationlab.berkeley.edu/sites/default/files/images/BRAimage008.gif}{\includegraphics[height=100pt,keepaspectratio]{images/BRAimage008.png}}
+    \href{https://berkeley-physics111b.github.io/assets/pdf/oldwebsitestructure/images/BRAimage008.gif}{\includegraphics[height=100pt,keepaspectratio]{images/BRAimage008.png}}
     \caption{Counts vs. Momentum, Uncompensated}
     \label{fig:CountsVsMomentumUncompensated}
 \end{minipage}
 \begin{minipage}[t]{.5\textwidth}
     \centering
-    \href{http://experimentationlab.berkeley.edu/sites/default/files/images/BRAimage009.gif}{\includegraphics[height=100pt,keepaspectratio]{images/BRAimage009.png}}
+    \href{https://berkeley-physics111b.github.io/assets/pdf/oldwebsitestructure/images/BRAimage009.gif}{\includegraphics[height=100pt,keepaspectratio]{images/BRAimage009.png}}
     \caption{Counts vs. Momentum, Compensated}
     \label{fig:CountsVsMomentumCompensated}
 \end{minipage}
 \end{figure}
 
-\section{What is Hysteresis?}
+\section{What is hysteresis?}
 
 In ferromagnetic materials, microscopic regions are separated into domains. Within each domain, all the atoms have their magnetic moments aligned in one direction. Adjacent domains have their magnetic moments pointing in random directions with respect to their neighboring domains. The sum of the magnetic moments of all the domains is nearly zero (magnetization), and the material produces only a small macroscopic magnetic field.
 
@@ -195,7 +201,7 @@ Domains are separated from each other by ``domain walls'' which are 100 to 1000 
 
 \begin{figure}[h]
     \centering
-    \href{http://experimentationlab.berkeley.edu/sites/default/files/images/BRAimage026.gif}{\includegraphics[width=0.5\linewidth]{images/BRAimage026.png}}
+    \href{https://berkeley-physics111b.github.io/assets/pdf/oldwebsitestructure/images/BRAimage026.gif}{\includegraphics[width=0.5\linewidth]{images/BRAimage026.png}}
     \caption{Hysteresis loop of a ferromagnetic material}
     \label{fig:BRAimage026}
 \end{figure}
@@ -203,22 +209,40 @@ Domains are separated from each other by ``domain walls'' which are 100 to 1000 
 
 The degree of magnetization as measured by the size of the domains is non-linearly proportional to the applied external magnetic field. Also, for a given external field, the magnetization of the material depends on its history. For example, start from zero magnetization, and zero external field; increase the external field to any particular value and then reduce it back to zero. The magnetization does NOT return to zero, but remains at some finite value. A reverse external field must be applied to bring the magnetization to zero. The magnetization lags behind the applied field. This effect is known as hysteresis.
 
-A typical but exaggerate hysteresis of a ferromagnetic material is shown in figure \ref{fig:BRAimage026}, where the Magnetic Induction $B$ is plotted versus the Magnetic Field Intensity $H$, which is directly proportional to the applied current in the coil. The horizontal axis could equally well be labeled as ``$I$'' instead of ``$H$''. ``0'' is the non-magnetized or demagnetized state ($B$ = 0, $I$ = 0) which can be reached by applying an alternating current and slowly reducing its amplitude to zero. As the current increases from the demagnetized state, the $B$ value lags behind what one might expect and follows the curve to (a') and toward saturation at (a). With large variations in $I$, the behavior follows a major loop (abcdefa...); while for small variations in $I$, the behavior follows a minor loop (a'b'c'd'e'f'a'...) or (a'b'a'...) if the current $I$ never becomes negative. Certain points of a hysteresis loop have names: Br is the remnant value at $I$ = 0 after the material is saturated at (a.) Hc is the coercive field or the coercivity (i.e. the $H$ or $I$ required to reduce B to zero).
+A typical but exaggerated hysteresis of a ferromagnetic material is shown in figure \ref{fig:BRAimage026}, where the Magnetic Induction $B$ is plotted versus the Magnetic Field Intensity $H$, which is directly proportional to the applied current in the coil. The horizontal axis could equally well be labeled as ``$I$'' instead of ``$H$''. ``0'' is the non-magnetized or demagnetized state ($B$ = 0, $I$ = 0) which can be reached by applying an alternating current and slowly reducing its amplitude to zero. As the current increases from the demagnetized state, the $B$ value lags behind what one might expect and follows the curve to (a') and toward saturation at (a). With large variations in $I$, the behavior follows a major loop (abcdefa...); while for small variations in $I$, the behavior follows a minor loop (a'b'c'd'e'f'a'...) or (a'b'a'...) if the current $I$ never becomes negative. Certain points of a hysteresis loop have names: Br is the remnant value at $I$ = 0 after the material is saturated at (a.) Hc is the coercive field or the coercivity (i.e. the $H$ or $I$ required to reduce B to zero).
+
+\subsection{Sources and particle transport}
+
+One important question to ask is how a given source's spectra will look in our spectrometer. There are a few parts to this question. 
+
+First, we must consider the spectrometer's resolution - how well are we selecting out beta rays of a certain energy? In the discussion of the apparatus below, we can see that this is dependent on some combination of the diameter of the source, the size of the collimating slit near the PMT, the size of the baffle aperture in the middle of the detector, and the diameter of the detector.
+
+Second, we must consider the source itself - how is it constructed, and what kind of attenuation might occur within it? The sources we have are windowed sources, meaning FINISH; add links to technical drawings Of course, the type of source itself determines the spectrum as well.
+
+Third, we must consider the environment - how good is the vacuum, and how does that affect the mean free path of the beta rays? What energies will make it to the detector?
+
+Considering all of these questions, we can come up with a predicted spectrum that attempts to estimate how the true spectrum of the isotope will be measured in practice by our detector with our source. But how do we actually do this?
+
+FINISH
 
 \section{Apparatus}
 
+\subsection{Spectrometer}
+
 \begin{figure}[h]
     \centering
-    \href{http://experimentationlab.berkeley.edu/sites/default/files/images/600px-BRAimage010.gif}{\includegraphics[width=0.5\linewidth]{images/600px-BRAimage010.png}}
+    \href{https://berkeley-physics111b.github.io/assets/pdf/oldwebsitestructure/images/600px-BRAimage010.gif}{\includegraphics[width=0.5\linewidth]{images/600px-BRAimage010.png}}
     \caption{Diagram of the Beta-Ray apparatus}
     \label{fig:DiagramOfBetaRayApparatus}
 \end{figure}
 
-The spectrometer is a `C'-shaped vacuum chamber with conducting coils on top and bottom to produce a uniform magnetic field perpendicular to the horizontal plane of the chamber. The size of the chamber is 0.4375'' x 3.375'' (transverse dimensions). A source of $^{137}$Cs is permanently mounted inside the chamber at one end of a rod (see Figure \ref{fig:DiagramOfBetaRayApparatus} in the `C' diagram). As shown in Figure 3b, the detector is mounted at the other end, behind a slit (0.375'' high x 0.125'' wide). The detector is a piece of 1-inch in diameter plastic scintillator, wrapped with a 2-mil aluminized mylar foil, attached to a 1-1/2 inch diameter light pipe connected to a 6655A photomultiplier tube (PMT).
+The spectrometer is a `C'-shaped vacuum chamber with conducting coils on top and bottom to produce a uniform magnetic field perpendicular to the horizontal plane of the chamber. The size of the chamber is 0.4375'' x 3.375'' (transverse dimensions). A source of $^{137}$Cs is mounted inside the chamber at one end of a rod (see Figure \ref{fig:DiagramOfBetaRayApparatus} in the `C' diagram).\footnote{We also have a Sr-90 source with an adapter that can be mounted in the same location, as well as another flange with a cutout that can mount several much lower intensity `check' sources - Cs-137, C-14, and a few others.} As shown in Figure 3b, the detector is mounted at the other end, behind a slit (0.375'' high x 0.125'' wide). The detector is a piece of 1-inch in diameter plastic scintillator, wrapped with a 2-mil aluminized mylar foil, attached to a 1-1/2 inch diameter light pipe connected to a 6655A photomultiplier tube (PMT).
+
+ADD DETAIL ON BAFFLE, ETC
 
 \begin{figure}[h]
     \centering
-    \href{http://experimentationlab.berkeley.edu/sites/default/files/images/BRAimage011.gif}{\includegraphics[width=0.5\linewidth]{images/BRAimage011.png}}
+    \href{https://berkeley-physics111b.github.io/assets/pdf/oldwebsitestructure/images/BRAimage011.gif}{\includegraphics[width=0.5\linewidth]{images/BRAimage011.png}}
     \caption{Diagram showing details of the detector.}
     \label{fig:BRAimage011}
 \end{figure}
@@ -241,48 +265,60 @@ However, a correction must be applied to N because of the finite size of the sli
 
 The computer controls the current in the coils, and hence the field. It starts the current from approximately zero and increases it to a maximum in discrete steps called bins or channels. For each bin, the computer counts the number of particles that strike the detector within a period of time and saves these data.
 
-The plastic scintillator produces a light pulse when an energetic electron strikes it. This light is detected by the PMT which produces an electrical pulse with peak-voltage proportional to the energy of the incident beta particle. The pulse is sent through a preamplifier, then a linear amplifier, to a single-channel-analyzer (SCA). The SCA generates a digitized pulse for each detector signal that lies between the adjustable lower and upper thresholds. Because the SCA discriminates against noise pulses, it is also called a discriminator. The digitized pulses are sent to the computer to be recorded in the proper channel of the spectrum. The signal can also be displayed on an oscilloscope.
+\subsection{Photomultiplier tube (PMT)}
 
-You should know how the photomultiplier tube works. \href{http://physics111.lib.berkeley.edu/Physics111/Equipment\_Manuals/RCA\_PMT.pdf}{\textbf{Photomultiplier Tube Handbook}}* (Note this is a separate reprint booklet)
+The plastic scintillator produces a light pulse when an energetic electron strikes it. This light is detected by the PMT which produces an electrical pulse with peak-voltage proportional to the energy of the incident beta particle. 
 
-Include in your write-up an explanation of the PMT and what the pre-amplifier circuit might look like.
-
-\subsection{Diagram of Photomultiplier Tube}
-
-(See the RCA Photomultiplier Tube Handbook in the Physics Library)\href{http://physics111.lib.berkeley.edu/Physics111/Equipment\_Manuals/RCA\_PMT.pdf}{\textbf{Photo-multiplier tube Handbook}}* (Note: this is a separate reprint booklet.)
-
-We use a 6655A PMT for photon counting.
-
-A Photomultiplier tube is a photon detector that converts single photons into large pulses of electric current by successive multiplying stages.
+You should know how the photomultiplier tube works - see  \href{http://physics111.lib.berkeley.edu/Physics111/Equipment\_Manuals/RCA\_PMT.pdf}{\textbf{Photomultiplier Tube Handbook}}* (Note this is a separate reprint booklet) % fix link 
+We use a 6655A PMT for photon counting. A photomultiplier tube is a photon detector that converts single photons into large pulses of electric current by successive multiplying stages - see Figures \ref{fig:BRAimage047} and \ref{fig:RCA6655A_PMT_3}.
 
 \begin{figure}[h]
     \centering
-    \href{http://experimentationlab.berkeley.edu/sites/default/files/images/BRAimage047.gif}{\includegraphics[width=0.5\linewidth]{images/BRAimage047.png}}
+    \href{https://berkeley-physics111b.github.io/assets/pdf/oldwebsitestructure/images/BRAimage047.gif}{\includegraphics[width=0.5\linewidth]{images/BRAimage047.png}}
     \caption{Diagram of the inside of the Photomuliplier Tubes.}
     \label{fig:BRAimage047}
 \end{figure}
 
 \begin{figure}[h]
     \centering
-    \href{http://experimentationlab.berkeley.edu/sites/default/files/images/RCA6655A_PMT_3.jpg}{\includegraphics[width=0.5\linewidth]{images/RCA6655A_PMT_3.jpg}}
+    \href{https://berkeley-physics111b.github.io/assets/pdf/oldwebsitestructure/images/RCA6655A_PMT_3.jpg}{\includegraphics[width=0.5\linewidth]{images/RCA6655A_PMT_3.jpg}}
     \caption{Circuit diagram of the PMT Base.}
     \label{fig:RCA6655A_PMT_3}
 \end{figure}
 
+You should include in your write-up an explanation of the PMT.% and what the pre-amplifier circuit might look like.
+
+\subsection{Acquisition electronics}
+
+The pulse produced by the PMT is sent through an amplifier and then to the Analog Discovery 3, which only triggers if the pulse is above a certain threshold which you will set. If it is above that threshold, it is recorded in the appropriate channel of the spectrum by the computer.
+
+\subsection{Software}
+
+This experiment is digitally controlled by a Python program which has multiple functions, described below.
+
+
+...
+
 \section{Procedure}
+
+\subsection{Getting to know the apparatus}
 
 First read and get familiar with the LabView Beta Ray Computer Program  \cite{Siegbahn} which describe the operation of the computerized data-acquisition program that communicates with the DAQ card and controls data taking. The current is supplied to the magnet by a DC power supply in series with a current DVM meter through the relay circuits which can only be set to a particular value with this computer program.
 
 \checkpoint{LabView}{Describe the various components of the LabView program to a GSI and explain how data is collected and what will be measured.}
 
+\subsection{Magnetic field linearity}
+
+FILL IN
+
 \subsection{Set the signal and discriminator levels}
 
 \begin{enumerate}
-    \item Familiarize yourself with the relationship between the PMT voltage with a maximum of -1100 VDC, amplifier gain, and pulse height. Consult the block diagram of the apparatus (\href{http://experimentationlab.berkeley.edu/sites/default/files/images/BRAimage010.gif}{\textbf{Beta Ray Apparatus}}). The signal path is from the PMT to the current PREAMP (SR570 - Bias Voltage : pos; Filter Type : none; Input Offset : pos, 2 x 100 nA; Filter Freq : not used; Sensitivity : 2 x 1 microA/V) to AMP to a 2 second [DELAY-LINE BOX to SCOPE (when the scope is triggering internally, the delay-line has no effect, but you will need it later to delay the main pulse)], and the Tran-L-Amp Amplifier settings: DIFF DL .8, INT 2, GAIN 16. Referring to a sample spectrum, set the coil current (use the bin setting on the Integrate Single Point Program) to a bin corresponding to a high count rate. Observing the signal on the oscilloscope, gradually turn up the high voltage (negative polarity) on the PMT until an operating voltage of -800 to -1100 V (maximum). You should see many pulses of various heights. Vary the PMT voltage (always between -800 and -1100V max) and the gains of the preamp and the amplifier, and observe the effects on the signal and noise. Change the coil current corresponding to various points on the spectrum and observe how the intensity and height of the pulses change. Note what you see. Remember that you are trying to maximize the signal to noise in the pulses. Set the coil current to approximately 0 amps (bin 0) and observe the signal. Theoretically, there should be no signal at zero field. What do you see, and what can you conclude about the nature of the noise in this experiment? What is the amplitude of the signal at each stage of the processing path?
+    \item Familiarize yourself with the relationship between the PMT voltage with a maximum of -1100 VDC, amplifier gain, and pulse height. Consult the block diagram of the apparatus (\href{https://berkeley-physics111b.github.io/assets/pdf/oldwebsitestructure/images/BRAimage010.gif}{\textbf{Beta Ray Apparatus}}). The signal path is from the PMT to the current PREAMP (SR570 - Bias Voltage : pos; Filter Type : none; Input Offset : pos, 2 x 100 nA; Filter Freq : not used; Sensitivity : 2 x 1 microA/V) to AMP to a 2 second [DELAY-LINE BOX to SCOPE (when the scope is triggering internally, the delay-line has no effect, but you will need it later to delay the main pulse)], and the Tran-L-Amp Amplifier settings: DIFF DL .8, INT 2, GAIN 16. Referring to a sample spectrum, set the coil current (use the bin setting on the Integrate Single Point Program) to a bin corresponding to a high count rate. Observing the signal on the oscilloscope, gradually turn up the high voltage (negative polarity) on the PMT until an operating voltage of -800 to -1100 V (maximum). You should see many pulses of various heights. Vary the PMT voltage (always between -800 and -1100V max) and the gains of the preamp and the amplifier, and observe the effects on the signal and noise. Change the coil current corresponding to various points on the spectrum and observe how the intensity and height of the pulses change. Note what you see. Remember that you are trying to maximize the signal to noise in the pulses. Set the coil current to approximately 0 amps (bin 0) and observe the signal. Theoretically, there should be no signal at zero field. What do you see, and what can you conclude about the nature of the noise in this experiment? What is the amplitude of the signal at each stage of the processing path?
 
     You will need to use the ``Signal Point Scan'' for this part before seeing any signals from the apparatus. Refer to section setup of the \hyperref[subsec:IntegrateSinglePointProgram]{Signal Point Scan}
 
-    \item Familiarize yourself with the operation of the SCA: The normal operation of a PMT will result in small-amplitude noise pulses. We want to use the discriminator on the SCA to reduce or eliminate the noise, permitting the signal pulses which are larger in amplitude to be passed and recorded. You can adjust the LLD Lower Level Discriminator or Baseline control to remove the noise line below the pulses. Connect the Tran-L-Amp linear amplifier to the SCA and the rest of the circuit elements as shown in Figure \ref{fig:DiagramOfBetaRayApparatus}, apparatus \href{http://experimentationlab.berkeley.edu/sites/default/files/images/BRAimage010.gif}{\textbf{Beta Ray Apparatus}}. Switch the SCOPE to EXT trigger. Now the scope is only displaying pulses that pass the SCA, and the 2 microsecond (-DELAY-LINE compensates for the SCA's signal transit time.
+    \item Familiarize yourself with the operation of the SCA: The normal operation of a PMT will result in small-amplitude noise pulses. We want to use the discriminator on the SCA to reduce or eliminate the noise, permitting the signal pulses which are larger in amplitude to be passed and recorded. You can adjust the LLD Lower Level Discriminator or Baseline control to remove the noise line below the pulses. Connect the Tran-L-Amp linear amplifier to the SCA and the rest of the circuit elements as shown in Figure \ref{fig:DiagramOfBetaRayApparatus}, apparatus \href{https://berkeley-physics111b.github.io/assets/pdf/oldwebsitestructure/images/BRAimage010.gif}{\textbf{Beta Ray Apparatus}}. Switch the SCOPE to EXT trigger. Now the scope is only displaying pulses that pass the SCA, and the 2 microsecond (-DELAY-LINE compensates for the SCA's signal transit time.
 
     \item With the Single Point Program, find a bin that corresponds to a high count on the sample spectrum. This program is a one part of two of the Beta Ray Scan Program Utilities, Beta Ray Computer Program \cite{Krane}. Refer to that section now. Start with the SCA upper-level threshold (UL) set to 10 and the lower-level (LL) set to 0. There should be little or no signal displayed on the SCOPE. Increase the LL until a signal appears on the scope, this is the minimum LL setting you may use (approx. 0.36), the SCA will not operate properly at a lower setting. Now increase LL well past this setting and observe the output on the scope
 
@@ -295,17 +331,17 @@ First read and get familiar with the LabView Beta Ray Computer Program  \cite{Si
     \begin{figure}[H]
     \captionsetup{justification=centering}
     \minipage{0.32\textwidth}
-      \href{http://experimentationlab.berkeley.edu/sites/default/files/images/BRAimage015.jpg}{\includegraphics[height=115pt,keepaspectratio]{images/BRAimage015.jpg}}
+      \href{https://berkeley-physics111b.github.io/assets/pdf/oldwebsitestructure/images/BRAimage015.jpg}{\includegraphics[height=115pt,keepaspectratio]{images/BRAimage015.jpg}}
       \caption{Noisy Signal}
       \label{fig:Signal1}
     \endminipage\hfill
     \minipage{0.30\textwidth}
-     \href{http://experimentationlab.berkeley.edu/sites/default/files/images/320px-BRAimage016.jpg}{\includegraphics[height=115pt,keepaspectratio]{images/320px-BRAimage016.jpg}}
+     \href{https://berkeley-physics111b.github.io/assets/pdf/oldwebsitestructure/images/320px-BRAimage016.jpg}{\includegraphics[height=115pt,keepaspectratio]{images/320px-BRAimage016.jpg}}
       \caption{Saturated Signal}
       \label{fig:Signal2}
     \endminipage\hfill
     \minipage{0.32\textwidth}
-     \href{http://experimentationlab.berkeley.edu/sites/default/files/images/BRAimage017.jpg}{\includegraphics[height=115pt,keepaspectratio]{images/BRAimage017.jpg}}
+     \href{https://berkeley-physics111b.github.io/assets/pdf/oldwebsitestructure/images/BRAimage017.jpg}{\includegraphics[height=115pt,keepaspectratio]{images/BRAimage017.jpg}}
       \caption{PMT Noise Eliminated}
       \label{fig:Signal3}
       \endminipage
@@ -328,7 +364,7 @@ First read and get familiar with the LabView Beta Ray Computer Program  \cite{Si
 \subsection{Observe the effect of hysteresis}
 
 \begin{enumerate}
-    \item Re-read the [\href{http://experimentationlab.berkeley.edu/Hysteresis}{\textbf{hysteresis section}}] and the Analysis section of VI. \textbf{Beta Ray Computer Programs} to be sure that you understand how the scan program establishes a hysteresis loop before it begins taking data.
+    \item Re-read the [\href{https://berkeley-physics111b.github.io/appendices/hysteresis/}{\textbf{hysteresis section}}] and the Analysis section of VI. \textbf{Beta Ray Computer Programs} to be sure that you understand how the scan program establishes a hysteresis loop before it begins taking data.
 
     \item Take a quick complete spectrum (Bins 0-2000 by 100; 2000-2500 by 5; 2500-4000 by 100; 2 seconds/bin). Observe the shift in the k-peak between the two directions of current. Using the knowledge that the k-peak always occurs at a given magnetic induction (not at a given current), convince yourself that the observed shift in the spectrum between current up and current down is in the correct direction.
     
@@ -339,6 +375,10 @@ First read and get familiar with the LabView Beta Ray Computer Program  \cite{Si
 \subsection{Take data using the Beta Ray Scan Program to scan the entire beta ray spectrum}
 
 The current in the magnet is scanned up and down which equals one complete scan. The computer controls the past history of the scans so as to follow the same hysteresis curve every time every time. In adjusting scan parameters, it is more important to integrate for longer times, 60 seconds maximum, than it is to include every point in the spectrum. Print out copies of the scans. We are networked in the 111-LAB so you can choose where to print and what printer to use.
+
+\subsection{Angular resolution with the baffle}
+
+FILL IN
 
 \section{Beta Ray Computer Program}
 
@@ -370,13 +410,13 @@ This is a good time to point out how your spectra will differ depending on the d
 \begin{figure}[h]
 \begin{minipage}[t]{.5\textwidth}
     \centering
-    \href{http://experimentationlab.berkeley.edu/sites/default/files/images/280px-BRAimage028.gif}{\includegraphics[width=0.9\linewidth,keepaspectratio]{images/280px-BRAimage028.png}}
+    \href{https://berkeley-physics111b.github.io/assets/pdf/oldwebsitestructure/images/280px-BRAimage028.gif}{\includegraphics[width=0.9\linewidth,keepaspectratio]{images/280px-BRAimage028.png}}
     \caption{Exaggerated Hysteresis Loop}
     \label{fig:Spectrum1}
 \end{minipage}%
 \begin{minipage}[t]{.5\textwidth}
     \centering
-    \href{http://experimentationlab.berkeley.edu/sites/default/files/images/BRAimage029.gif}{\includegraphics[width=0.9\linewidth,keepaspectratio]{images/BRAimage029.png}}
+    \href{https://berkeley-physics111b.github.io/assets/pdf/oldwebsitestructure/images/BRAimage029.gif}{\includegraphics[width=0.9\linewidth,keepaspectratio]{images/BRAimage029.png}}
     \caption{Realistic Hysteresis Loop}
     \label{fig:Spectrum2}
 \end{minipage}
@@ -390,7 +430,7 @@ The K-peak of the beta spectrum occurs at a specific field strength, marked $B_k
 
 \begin{figure}[h]
     \centering
-    \href{http://experimentationlab.berkeley.edu/sites/default/files/images/470px-BRAimage030.gif}{\includegraphics[width=0.5\linewidth]{images/470px-BRAimage030.png}}
+    \href{https://berkeley-physics111b.github.io/assets/pdf/oldwebsitestructure/images/470px-BRAimage030.gif}{\includegraphics[width=0.5\linewidth]{images/470px-BRAimage030.png}}
     \caption{Scan Program Window}
 \end{figure}
 
@@ -465,8 +505,8 @@ Once all the desired parameters have been entered, click on the flashing [START 
 
 \begin{figure}[h]
     \centering
-    \href{http://experimentationlab.berkeley.edu/sites/default/files/images/BRAimage032.gif}{\includegraphics[width=0.5\linewidth]{images/BRAimage032.png}}
-    \href{http://experimentationlab.berkeley.edu/sites/default/files/images/BRAimage034.gif}{\includegraphics[width=0.5\linewidth]{images/BRAimage034.png}}
+    \href{https://berkeley-physics111b.github.io/assets/pdf/oldwebsitestructure/images/BRAimage032.gif}{\includegraphics[width=0.5\linewidth]{images/BRAimage032.png}}
+    \href{https://berkeley-physics111b.github.io/assets/pdf/oldwebsitestructure/images/BRAimage034.gif}{\includegraphics[width=0.5\linewidth]{images/BRAimage034.png}}
     \caption{Depiction of the hysteresis loop you will observe.}
 \end{figure}
 
@@ -501,8 +541,8 @@ During the scan process, you may stop the program pre-maturely by clicking on th
 
 \begin{figure}[h]
     \centering
-    \href{http://experimentationlab.berkeley.edu/sites/default/files/images/BRAimage035.gif}{\includegraphics[width=0.7\linewidth]{images/BRAimage035.png}} \\
-    \href{http://experimentationlab.berkeley.edu/sites/default/files/images/BRAimage036.gif}{\includegraphics[width=0.7\linewidth]{images/BRAimage036.png}}
+    \href{https://berkeley-physics111b.github.io/assets/pdf/oldwebsitestructure/images/BRAimage035.gif}{\includegraphics[width=0.7\linewidth]{images/BRAimage035.png}} \\
+    \href{https://berkeley-physics111b.github.io/assets/pdf/oldwebsitestructure/images/BRAimage036.gif}{\includegraphics[width=0.7\linewidth]{images/BRAimage036.png}}
     \caption{Comparison of Integration-Time on the Spectrum}
 \end{figure}
 
@@ -513,7 +553,7 @@ You can see from these graphs (even though their small vertical size slightly ob
 
 \begin{figure}
 \centering
-    \href{http://experimentationlab.berkeley.edu/sites/default/files/images/BRAimage037.gif}{\includegraphics[width=0.7\linewidth]{images/BRAimage037.png}}
+    \href{https://berkeley-physics111b.github.io/assets/pdf/oldwebsitestructure/images/BRAimage037.gif}{\includegraphics[width=0.7\linewidth]{images/BRAimage037.png}}
     \caption{Integration Program Sample Parameters}
 \end{figure}
 
@@ -625,7 +665,7 @@ If you compare the spectrum taken in this lab to ones taken elsewhere, you will 
 \begin{figure}[h]
 \captionsetup{justification=centering}
     \centering
-    \href{http://experimentationlab.berkeley.edu/sites/default/files/images/BRAimage039.jpg}{\includegraphics[width=0.5\linewidth]{images/BRAimage039.jpg}}
+    \href{https://berkeley-physics111b.github.io/assets/pdf/oldwebsitestructure/images/BRAimage039.jpg}{\includegraphics[width=0.5\linewidth]{images/BRAimage039.jpg}}
     \caption{Source of width S emits electrons into a uniform \\magnetic field results in an impact pattern of width $\Delta$X}
     \label{fig:BRAimage039}
 \end{figure}
@@ -637,7 +677,7 @@ G = T \times E
 
 \begin{figure}[h]
     \centering
-    \href{http://experimentationlab.berkeley.edu/sites/default/files/images/BRAimage040.gif}{\includegraphics[width=0.5\linewidth]{images/BRAimage040.png}}
+    \href{https://berkeley-physics111b.github.io/assets/pdf/oldwebsitestructure/images/BRAimage040.gif}{\includegraphics[width=0.5\linewidth]{images/BRAimage040.png}}
     \caption{Theoretical Error Function}
     \label{fig:TheoreticalErrorFunction}
 \end{figure}
@@ -646,7 +686,7 @@ So can we mathematically deconvolute our data and find the true spectrum? Yes in
 
 \begin{figure}[h]
     \centering
-    \href{http://experimentationlab.berkeley.edu/sites/default/files/images/BRAimage041.gif}{\includegraphics[width=0.5\linewidth]{images/BRAimage041.png}}
+    \href{https://berkeley-physics111b.github.io/assets/pdf/oldwebsitestructure/images/BRAimage041.gif}{\includegraphics[width=0.5\linewidth]{images/BRAimage041.png}}
     \caption{Note the ``artifact'' peak to the\\ left of the k-peak at Bin \# 2200; see Figure \ref{fig:CountsVsMomentumUncompensated}}
     \label{fig:RawSpectrum}
 \end{figure}
@@ -655,14 +695,16 @@ So now we can deconvolute our data and find our true Beta spectrum. Figure \ref{
 
 \begin{figure}[h]
     \centering
-    \href{http://experimentationlab.berkeley.edu/sites/default/files/images/BRAimage042.gif}{\includegraphics[width=0.5\linewidth]{images/BRAimage042.png}}
+    \href{https://berkeley-physics111b.github.io/assets/pdf/oldwebsitestructure/images/BRAimage042.gif}{\includegraphics[width=0.5\linewidth]{images/BRAimage042.png}}
     \caption{Resultant Beta Spectrum, see K-peak \\at Bin \#2200 and L-peak to the right of it}
     \label{fig:DeconvolutedRawSpectrum}
 \end{figure}
 
-\section{Data Analysis and Fermi-Kurie Plots}
+\subsection{Fermi-Kurie Plots}
 
-This section use the \href{http://experimentationlab.berkeley.edu/matlabfitting}{\textbf{Matlab scripts}} The Fermi-Kurie plot is simply an algorithm that transforms your spectrum to another view of the energy spectrum. It uses the formula [B10] in the National Bureau of Standards reference. The expectation of this experiment is to experimentally determine $Q_1$ and $Q_2$ , respectively the high and low energy 'X' intercept points. FK (Fermi-Kurie ) transform makes it easier to determine $Q_1$ and $Q_2$ . First you must start with your full data spectrum from channel 0 to 4095 summed up and down data shifted together and then compensated, calibrated, and background-subtracted. Make a Folder in your My Documents folder for your data saving. Save your data ending in \*.DAT. The Excel files need to be opened and re-saved as ``Text delimited with Tab'' files ending in \*.DAT. After you have acquired your data, using the summed up and summed down files save them as the Fileup1.dat and filedn1.dat in excel as ``Text delimited with Tab'' files. Shift them together by the your calculated number, (see \href{http://experimentationlab.berkeley.edu/matlabfitting}{\textbf{Matlab scripts)}} if they look okay then go on with the analysis.
+This section use the \href{https://berkeley-physics111b.github.io/documentation/archive/matlab/}{\textbf{Matlab scripts}} UPDATE TO LINK TO PYTHON scripts
+
+The Fermi-Kurie plot is simply an algorithm that transforms your spectrum to another view of the energy spectrum. It uses the formula [B10] in the National Bureau of Standards reference. The expectation of this experiment is to experimentally determine $Q_1$ and $Q_2$ , respectively the high and low energy 'X' intercept points. FK (Fermi-Kurie ) transform makes it easier to determine $Q_1$ and $Q_2$. First you must start with your full data spectrum from channel 0 to 4095 summed up and down data shifted together and then compensated, calibrated, and background-subtracted. Make a Folder in your My Documents folder for your data saving. Save your data ending in \*.DAT. The Excel files need to be opened and re-saved as ``Text delimited with Tab'' files ending in \*.DAT. After you have acquired your data, using the summed up and summed down files save them as the Fileup1.dat and filedn1.dat in excel as ``Text delimited with Tab'' files. Shift them together by the your calculated number, (see \href{https://berkeley-physics111b.github.io/documentation/archive/matlab/}{\textbf{Matlab scripts)}} if they look okay then go on with the analysis.
 
 If they are not perfect with respect to the hysteresis effects, then you will have to adjust the data yourself. You will need to shift each Y value by the different between the Y's at each X. In some instances you will have to average the Y's.
 
@@ -675,7 +717,7 @@ Now you are ready for generating the Fermi-Kurie plot;
 Crop out unwanted bad data points like negative numbers, etc with the use of markers. The Fermi-Kurie plot that you should get is something like the below graph.
 \begin{figure}[h]
 \centering
-    \href{http://experimentationlab.berkeley.edu/sites/default/files/images/BRAimage019.gif}{\includegraphics[width=0.5\linewidth]{images/BRAimage019.png}}
+    \href{https://berkeley-physics111b.github.io/assets/pdf/oldwebsitestructure/images/BRAimage019.gif}{\includegraphics[width=0.5\linewidth]{images/BRAimage019.png}}
     \caption{Sample Fermi-Kurie Plot}
 \end{figure}
 
@@ -686,17 +728,17 @@ You should repeat the steps above to get the low-energy component and the low-en
 \begin{figure}[h]
 \captionsetup{justification=centering}
 \begin{minipage}{0.32\linewidth}
-    \href{http://experimentationlab.berkeley.edu/sites/default/files/images/BRAimage021.gif}{\includegraphics[width=\linewidth]{images/BRAimage021.png}}
+    \href{https://berkeley-physics111b.github.io/assets/pdf/oldwebsitestructure/images/BRAimage021.gif}{\includegraphics[width=\linewidth]{images/BRAimage021.png}}
     \caption{High Energy}
     \label{fig:021}
     \end{minipage} \hfill
     \begin{minipage}{0.32\linewidth}
-    \href{http://experimentationlab.berkeley.edu/sites/default/files/images/480px-BRAimage020.gif}{\includegraphics[width=\linewidth]{images/480px-BRAimage020.png}}
+    \href{https://berkeley-physics111b.github.io/assets/pdf/oldwebsitestructure/images/480px-BRAimage020.gif}{\includegraphics[width=\linewidth]{images/480px-BRAimage020.png}}
     \caption{Low Energy}
     \label{fig:020}
     \end{minipage} \hfill
     \begin{minipage}{0.32\linewidth}
-        \href{http://experimentationlab.berkeley.edu/sites/default/files/images/BRAimage022.gif}{\includegraphics[width=0.8\linewidth]{images/BRAimage022.png}}
+        \href{https://berkeley-physics111b.github.io/assets/pdf/oldwebsitestructure/images/BRAimage022.gif}{\includegraphics[width=0.8\linewidth]{images/BRAimage022.png}}
     \caption{Combined Graph}
     \label{fig:Combined}
     \end{minipage}
@@ -721,7 +763,7 @@ As you work on the data, keep in mind what your ultimate goals are: To observe t
           
     \begin{figure}[h]
     \centering
-        \href{http://experimentationlab.berkeley.edu/sites/default/files/images/BRAimage025.gif}{\includegraphics[width=0.5\linewidth]{images/BRAimage025.png}}
+        \href{https://berkeley-physics111b.github.io/assets/pdf/oldwebsitestructure/images/BRAimage025.gif}{\includegraphics[width=0.5\linewidth]{images/BRAimage025.png}}
         \caption{Fermi-Kurie Plot}
         \label{fig:FermiKuriePlot}
     \end{figure}
@@ -741,7 +783,7 @@ As you work on the data, keep in mind what your ultimate goals are: To observe t
 
         \item Compare the measured line width and the expected spectrometer resolution for the conversion electron peak.
 
-        \item Check out \href{\ErrorAnalysisNotes}{\textbf{\textbf{Error Analysis Notes}}} and the video on Error Analysis.
+        \item Check out the video on Error Analysis.
 
         \item Last day of the experiment please fill out the \href{\ExperimentEvaluation}{\textbf{Experiment Evaluation}}
 
@@ -749,11 +791,14 @@ As you work on the data, keep in mind what your ultimate goals are: To observe t
 
 \end{enumerate}
 
-Copyright 2017 The Regents of the University of California. All rights reserved.
+\section{Appendix: Pulse height spectrometer}
+
+FILL IN details of Andrade's apparatus, with pictures and software (GMA software)
 
 \begin{thebibliography}{}
 \label{sec:References}
-    \bibitem{Siegbahn} M. Siegbahn, \href{http://physics111.lib.berkeley.edu/Physics111/Reprints/BRA/02-Beta\_Ray\_Spectrometer.pdf}{\textbf{Beta and Gamma Spectroscopy}}, Ch. 3.*
+    \bibitem{Siegbahn} M. Siegbahn, \href{https://archive.org/details/betagammarayspec00sieguoft/betagammarayspec00sieguoft/page/x/mode/2up} %original link: http://physics111.lib.berkeley.edu/Physics111/Reprints/BRA/02-Beta\_Ray\_Spectrometer.pdf%
+    {\textbf{Beta and Gamma Spectroscopy}}, Ch. 3.*
 
     \bibitem{Krane} K. S. Krane,``\href{http://physics111.lib.berkeley.edu/Physics111/Reprints/BRA/03-Beta\_Decay.pdf}{\textbf{Beta Decay}}.'' Introductory Nuclear Physics, Chapter 9, pp.272-288. John Wiles and Sons., 1987.
 
