@@ -15,7 +15,6 @@ Write-ups and signature sheets for each experiment. TeX files are accessible for
     <tr>
       <td>
         {% if m.pdf %}<a href="{{ base | append: m.pdf | relative_url }}"><strong>{{ m.title }}</strong></a>{% else %}<strong>{{ m.title }}</strong>{% endif %}
-        {% if m.description %}<br>{{ m.description }}{% endif %}
       </td>
       <td>
         {% if m.sheets %}<a href="{{ base | append: m.sheets | relative_url }}">Pre-lab, Mid-lab, &amp; Signature Sheet</a>{% endif %}
