@@ -10,91 +10,87 @@
   slug: AFM
   pdf: AFM.pdf
   sheets: AFM_Signatures.pdf
-- title: BMC
-  slug: BMC
-  pdf: BMC.pdf
-  sheets: BMC_Signatures.pdf
-- title: ATM
+- title: Atomic Physics (ATM)
   slug: ATM
   pdf: ATM.pdf
   sheets: ATM_Signatures.pdf
-- title: COM
-  slug: COM
-  pdf: COM.pdf
-  sheets: COM_Signatures.pdf
-- title: CO2
-  slug: CO2
-  pdf: CO2.pdf
-  sheets: CO2_Signatures.pdf
-- title: GMA
-  slug: GMA
-  pdf: GMA.pdf
-  sheets: GMA_Signatures.pdf
-- title: HAL
-  slug: HAL
-  pdf: HAL.pdf
-  sheets: HAL_Signatures.pdf
-- title: BRS
+- title: Brownian Motion in Cells (BMC)
+  slug: BMC
+  pdf: BMC.pdf
+  sheets: BMC_Signatures.pdf
+- title: Beta Ray Spectroscopy (BRS)
   slug: BRS
   pdf: BRS.pdf
   sheets: BRS_Signatures.pdf
-- title: JOS
+- title: Compton Effect (COM)
+  slug: COM
+  pdf: COM.pdf
+  sheets: COM_Signatures.pdf
+- title: Carbon Dioxide Laser (CO2)
+  slug: CO2
+  pdf: CO2.pdf
+  sheets: CO2_Signatures.pdf
+- title: Gamma Ray (GMA)
+  slug: GMA
+  pdf: GMA.pdf
+  sheets: GMA_Signatures.pdf
+- title: Hall Effect in a Plasma (HAL)
+  slug: HAL
+  pdf: HAL.pdf
+  sheets: HAL_Signatures.pdf
+- title: Josephson Effect (JOS)
   slug: JOS
   pdf: JOS.pdf
   sheets: JOS_Signatures.pdf
-- title: LLS
+- title: Low Light Signals (LLS)
   slug: LLS
   pdf: LLS.pdf
   sheets: LLS_Signatures.pdf
-- title: MNO
+- title: Magneto-Optical and Non-Linear Laser (MNO)
   slug: MNO
   pdf: MNO.pdf
   sheets: MNO_Signatures.pdf
-- title: MOT
+- title: Atom Trapping (MOT)
   slug: MOT
   pdf: MOT.pdf
   sheets: MOT_Signatures.pdf
-- title: MUO
+- title: Muon Lifetime (MUO)
   slug: MUO
   pdf: MUO.pdf
   sheets: MUO_Signatures.pdf
-- title: NLD
+- title: Nonlinear Dynamics and Chaos (NLD)
   slug: NLD
   pdf: NLD.pdf
   sheets: NLD_Signatures.pdf
-- title: NMR
+- title: Nuclear Magnetic Resonance (NMR)
   slug: NMR
   pdf: NMR.pdf
   sheets: NMR_Signatures.pdf
-- title: OPT
+- title: Optical Pumping (OPT)
   slug: OPT
   pdf: OPT.pdf
   sheets: OPT_Signatures.pdf
-- title: OTZ
+- title: Optical Trapping, Laser Tweezers (OTZ)
   slug: OTZ
   pdf: OTZ.pdf
   sheets: OTZ_Signatures.pdf
-- title: QIE
+- title: Quantum Interference and Entanglement (QIE)
   slug: QIE
   pdf: QIE.pdf
   sheets: QIE_Signatures.pdf
-- title: RUT
+- title: Rutherford Scattering (RUT)
   slug: RUT
   pdf: RUT.pdf
   sheets: RUT_Signatures.pdf
-- title: SHE
+- title: Semiconductor Hall Effect (SHE)
   slug: SHE
   pdf: SHE.pdf
   sheets: SHE_Signatures.pdf
-- title: SOL
+- title: Solar Spectroscopy (SOL)
   slug: SOL
   pdf: SOL.pdf
   sheets: SOL_Signatures.pdf
-- title: TOM
+- title: Muon Tomography (TOM)
   slug: TOM
   pdf: TOM.pdf
   sheets: TOM_Signatures.pdf
-- title: QIP
-  slug: QIP
-  pdf: QIP.pdf
-  sheets: QIP_Signatures.pdf
