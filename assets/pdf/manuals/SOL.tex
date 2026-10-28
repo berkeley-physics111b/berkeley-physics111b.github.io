@@ -46,7 +46,7 @@ This lab will be graded 20\% on theory, 30\% on technique, and 50\% on analysis.
 
 Comments: E-mail \href{\MailLabManager}{\textbf{Winthrop Williams}}
 
-Last updated 8/26/26 by Auden Young.
+Last updated 10/27/26 by Jordan Werner.
 
 Thanks to the UC Berkeley Astronomy Department. Large parts of this lab and lab manual are adapted from materials provided by Professors Jessica Lu, Ryan Chornock, and Alan Chew that were developed for the Astro 120 Optical Instrumentation Laboratory class.
 
@@ -280,7 +280,7 @@ For random independent noise sources, we can add the noise terms in quadrature. 
 
 \begin{align*}
     \frac{S}{N} &=\\
-                & S\sqrt{T}\left[u_r^2 + S +\sum\limits_{i=1}^n\left\{\left(B+d+\frac{R^2}{t}\right)+\epsilon_D\left(D+\frac{R^2}{t}\right)+(1-f)^2\epsilon_B\left(B+D+\frac{R^2}{t}\right)+(1+f)^2\epsilon_D\left(D+\frac{R^2}{t}\right)\right\}\right]^{-\frac{1}{2}}
+                & S\sqrt{T}\left[u_r^2 + S +\sum\limits_{i=1}^n\left\{\left(B+d+\frac{R^2}{t}\right)+\epsilon_D\left(D+\frac{R^2}{t}\right) +(1-f)^2\epsilon_B\left(B+D+\frac{R^2}{t}\right)+(1+f)^2\epsilon_D\left(D+\frac{R^2}{t}\right)\right\}\right]^{-\frac{1}{2}}
 \end{align*}
 
 Where $T=tn_0$ is the total integration time accumulated on the object frames, $f$ is the ratio of the source signal to the background signal per pixel, $\epsilon_B=n_0/n_B$ is the ratio of the number of object frames to background frames, and $\epsilon_D=n_0/n_D$ is the ratio of the number of object to dark current frames. We're defining $S$ as the total object signal summed over $n$ pixels and $u_r$ represents the average over $n$ pixels of any residual.
@@ -328,6 +328,7 @@ How might this affect your spectra? If you would like to do more careful simulat
     \item Multi-modal fiber optic cables
     \item Hydrogen, helium, nitrogen, and neon gas lamps
     \item High voltage gas-lamp vernier power supply
+    \item Visual fault finder (red `laser' - not actually collimated) for staff to do alignment checks - you should not need this; check with staff if you think you need it!\footnote{Note that since red is at one end of the visible spectrum, it should be on the left of the camera, not centered!}
 \end{itemize}
 
 See Figure \ref{fig:opticalpath} for a diagram of the optical path.
@@ -423,10 +424,17 @@ Additionally, you will need to understand the concept of signal-to-noise - see t
 
 In this section you will determine the mapping between pixel number and wavelength. Do this by measuring the pixel position of bright hydrogen, helium, neon, and nitrogen emission lines of known wavelengths. 
 
-Begin by placing one end of the optical fiber at a white‑light source. This allows you to visualize the diffraction pattern received by the camera. Once you confirm that the optical path is properly aligned, cover the setup with the black box and lid. 
+The fiber‑optic cable runs to the window located between the LLS and the sink station. Begin by placing one end of the optical fiber at a white‑light source (a button white light source is provided on top of the filing cabinet by the window, or you could use a phone flashlight). This allows you to visualize the diffraction pattern received by the camera. 
 
+\textbf{You should not have to do a lot of alignment work, but may have to make small adjustments.} The plane of the 50mm lens should generally be perpendicular to the beam path, but can be rotated small amounts about the z-axis within its mount (rotating too far risks distorting the image). The majority of adjustments should be done in translating the 50mm lens to adjust how much light it catches from the diffraction grating and focusing it onto the camera lens. If you need to, you may also translate the camera so that the light from the 50mm lens is focused on the center of the lens. \textbf{Nothing upstream of the 50mm lens should be adjusted. Once you confirm that the optical path is properly aligned, cover the setup with the black box and lid.}
 
-\checkpoint{Alignment.}{Call over an instructor or GSI and show them the optical path, demonstrating that the diffracted light is succesfully detected by the CMOS in the AmScope software. }
+Your goal is to have the width of the first-order diffraction pattern fill, but not exceed, the width of the camera sensor so as to maximize the resolution without cutting off how much of the spectrum you can see. The image should be in focus/not fuzzy.
+
+Recall (from Section \ref{sec:spectrograph}) only the first order ($m=1$) diffraction pattern should be going through the second lens/to the camera; you can also check that any light not making it through the first lens doesn't make it to the camera. The light may be hard to see with the cover off - this is okay and does not mean you've misaligned.
+
+%TODO: take picture of successful alignment and put in prelab/midlab/checkpoint answer sheet
+
+\checkpoint{Alignment}{Call over an instructor or GSI and show them the optical path, demonstrating that the diffracted light is succesfully detected by the CMOS in the AmScope software. }
 
 % Identify the range of visible color lines. Can the CMOS capture the full spectrum (i.e. from purple to red), or does cutoff at a specific color? Discuss with the staff and keep this in mind as you determine which strong emission lines you're able to map in the following steps.
 
@@ -463,7 +471,7 @@ Additionally, as shown on Fig. \ref{fig:gaslampspectrum}, only a portion of the 
 
 Once the images have been cleaned and trimmed, compute the average pixel value of each column and identify the peak values (you may want to use \href{https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.find_peaks.html}{find\_peaks} and \href{https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.peak_widths.html}{peak\_widths} from scipy.signal). Match the pixel corresponding to the peaks to the known strong emission lines of each element, then use the method of linear least squares on the resultant pixel-wavelength pairs to determine a polynomial fit that maps pixel number to wavelength. Additionally, find the full-width at half-max (FWHM) of one of your strong peaks centered at a known wavelength. This value corresponds to your experimental resolution, $\Delta \lambda$. You may use the standard-deviation to FWHM conversion if you prefer. Does this value agree with the theoretical expectations? 
 
-\checkpoint{Spectral resolution.}{Call over an instructor or GSI and show them your pixel to wavelength calibration plot as well as your best fit line. Find your theoretical and experimental $\Delta \lambda$ and discuss the results with an instructor or GSI.}
+\checkpoint{Spectral resolution}{Call over an instructor or GSI and show them your pixel to wavelength calibration plot as well as your best fit line. Find your theoretical and experimental $\Delta \lambda$ and discuss the results with an instructor or GSI.}
 
 %\checkpoint{Spectral Resolution}{Find your theoretical and experimental $\Delta \lambda$ and discuss the results with an instructor or GSI.}
 
@@ -473,46 +481,34 @@ Once the images have been cleaned and trimmed, compute the average pixel value o
 
 Now we get to actually look at the Sun! (But not directly, please. We prefer to minimize eye damage in this lab. Similarly, \textbf{do not look directly into the end of the optical fiber.} Aim the fiber at some paper or similar to see the light.)
 
-Before swapping the fiber‑optic mount to collect the solar spectrum, place a white‑light source at the end of the fiber‑optic cable currently in use for gas‑lamp measurements. Using the AmScope “line” or “rectangle” tool, mark the region of the continuous spectrum captured by the CMOS detector.
-This step is important because the alignment will shift slightly once you change fiber‑optic mounts. Even though the mounts are designed to maintain a consistent vertical and lateral alignment, the placement will not be perfectly identical. The marked region on the screen provides a reference to help you verify that the new alignment remains within a reasonable range.
-You should note this source of error in your calibration and analysis. (Future iterations of this lab will reduce this alignment uncertainty by upgrading the fiber‑optic mounts. For now, we appreciate your creativity in obtaining a solar spectrum with the current setup.)
+Obtain spectra of the outside sunlight under different conditions (blue sky, overcast, sunset, or fog). You should open the window to collect the spectra; you'll probably find it helpful to hold the mount out the window (though of course be careful to not drop it, and do not lean out the window excessively) to aim it better at the Sun. As with the gas‑lamp measurements, you will need to adjust the exposure times to avoid saturation while still capturing clear spectral features.
 
+\checkpoint{Different conditions}{Show a GSI spectra taken under two different conditions. Qualitatively explain similarities/differences and how they compare with your theoretical explanations.}
 
-Once you have completed this step, replace the fiber‑optic mount with the one labeled “Sun” located at the back edge of the optics table. To maintain consistent vertical and lateral alignment, these posts have been collared—do not adjust the collar height, as doing so will affect the alignment. After mounting the “Sun” fiber and verifying that the fiber‑optic input is oriented straight ahead for proper alignment, compare the spectrum position to the region you previously marked in the software. If you observe a significant deviation from the marked location, call over a staff member.
-
-
-% For this section, you will need to replace the fiber optic cable.
-% replace the optical-path fiber with the longer cable. Attach one end to the new cable to the spectrometer input, then run the other end of the cable to the window. 
-
-Next, obtain spectra of the outside sunlight under different conditions (blue sky, overcast, sunset, or fog). The “Sun” fiber‑optic cable runs to the window located between the LLS and the sink station. You may open the window to collect the spectrum, and be sure to remove the cap from the window‑side end of the fiber. As with the gas‑lamp measurements, you will need to adjust the exposure times to avoid saturation while still capturing clear spectral features.
-
-\checkpoint{Different conditions.}{Show a GSI spectra taken under two different conditions. Qualitatively explain similarities/differences and how they compare with your theoretical explanations.}
-
-Once you have captured the spectrum, convert pixel number to wavelength using your calibration plot/equation and identify narrower features (atomic, molecular or solid-state) in those spectra and manually determine their possible elemental composition and origin. Plot five to twenty of these solar absorption lines. 
+Once you have captured the spectrum, convert pixel number to wavelength using your calibration plot/equation and identify narrower features (atomic, molecular, or solid-state) in those spectra and manually determine their possible elemental composition and origin. Plot five to twenty of these solar absorption lines. 
 
 \textbf{A word of wisdom:}
 
 \begin{itemize}
-    \item \textbf{The stability of your optical bench spectrograph} may vary from one observation to the next due to environmental factors or handling/jostling of the optical components. A good practice would be to \textbf{perform a wavelength calibration immediately before and after taking a sun or combined sky observation, then combine the two wavelength calibrations to obtain a mean wavelength solution for that set of sun/sky observations.}
+    \item The stability of your optical bench spectrograph may vary from one observation to the next due to environmental factors or handling/jostling of the optical components. A good practice would be to \textbf{perform a wavelength calibration immediately before and after taking a sun or combined sky observation, then combine the two wavelength calibrations to obtain a mean wavelength solution for that set of sun/sky observations.}
 \end{itemize}
 
 
 % If you're taking data over multiple days, it is likely that the optical setup has experiences small fluctuations. You may want to re-run your calibrations with at least one lamp before taking sky data so that your mapping is accurate.
 
-Alternatively, you may use the low-resolution (R=536) solar spectrum in FITS format found at the \href{https://britastro.org/specdb/data.phpto}{BAA website} to compare to your solar spectrum. Click the ``PLOT" button to see what the plot should look like. You will have to scale the data to your solar spectrum plot. Make sure to quantify the agreement of your spectrum and the true solar spectrum.
+\subsection{Analysis}
 
-Plot how the root mean squared of the noise scales with exposure times, and confirm that your results make sense for white noise. We expect you to use the strategies you have learned in EAX to properly quantify and analyze the noise and spectral agreement in your data.
-
-Characterize the change of spectral slope between different conditions assuming that it can be described as a simpler power law ($F_{sky1}/F_{sky2}=\alpha \lambda^\beta$) (i.e. fit a power law to the resulting graph).
-
-You should also try to estimate the temperature of the Sun and analyze any errors in the result.
-
-
-
+You should perform at least the following:
 
 \begin{itemize}
-    \item This is a new experiment as of February 2026. Your feedback is incredibly important to us in refining this new experiment! On the last day of the experiment please fill out the \href{\ExperimentEvaluation}{\textbf{Experiment Evaluation}}. Please also feel free to tell course staff any additional comments you have.
+    \item Compare the low-resolution (R=536) solar spectrum in FITS format found at the \href{https://britastro.org/specdb/data.phpto}{BAA website} to your solar spectrum. (Click the ``PLOT" button to see what the plot should look like.) You will have to scale the data to your solar spectrum plot. Make sure to quantify the agreement of your spectrum and the true solar spectrum.
+    \item Plot how the root mean squared of the noise scales with exposure times, and confirm that your results make sense for white noise. We expect you to use the strategies you have learned in EAX to properly quantify and analyze the noise and spectral agreement in your data.
+    \item Characterize the change of spectral slope between different conditions assuming that it can be described as a simple power law ($F_{sky1}/F_{sky2}=\alpha \lambda^\beta$).
+    \item Estimate the temperature of the Sun and analyze any errors in the result. Where does the Sun fall on the Hertzsprung-Russell diagram?%add HR diagram to theory section? more they can do with this
+    %saha equation/ionization/width of lines?
 \end{itemize}
+
+This is a new experiment as of February 2026. Your feedback is incredibly important to us in refining this new experiment! On the last day of the experiment please fill out the \href{\ExperimentEvaluation}{\textbf{Experiment Evaluation}}. Please also feel free to tell course staff any additional comments you have.
 
 \newpage
 
